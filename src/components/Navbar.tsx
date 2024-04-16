@@ -1,3 +1,7 @@
+function name() {
+    return "Hellow"
+}
+
 export default function Navbar(){
 
 
