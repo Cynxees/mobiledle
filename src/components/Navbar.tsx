@@ -1,5 +1,6 @@
 function name() {
-    return "Hellow"
+    var hi ="hi"
+    return "Hellowwwww"
 }
 
 
