@@ -1,6 +1,6 @@
-function name() {
-    var hi ="hi"
-    return "Hellowwwww"
+function nameFn() {
+    var name = "derwin"
+    return "Hello World"
 }
 
 
