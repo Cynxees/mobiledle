@@ -8,6 +8,7 @@ export class MobileLegendsCharacter {
 
     id: Number = 0;
     name: String = "default";
+    alias: String = "defaultAlias";
     gender: String = "defaultGender";
     role: String = "defaultRole";
     species: String = "defaultSpecies";
