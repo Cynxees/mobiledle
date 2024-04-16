@@ -3,6 +3,14 @@ function nameFn() {
     return "Hello World"
 }
 
+
+function chrisKntl(name: string){
+
+
+    return "kntl"
+
+}
+
 export default function Navbar(){
 
 
