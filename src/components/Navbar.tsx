@@ -1,3 +1,7 @@
+function name() {
+    return "Hellow"
+}
+
 
 function chrisKntl(name: string){
 
