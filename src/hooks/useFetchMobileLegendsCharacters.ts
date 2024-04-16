@@ -1,4 +1,3 @@
-import { ReportHandler } from 'web-vitals';
 import { MobileLegendsCharacter } from '../types/MobileLegendsCharacter';
 
 const useFetchMobileLegendsCharacters = (inputName: String) => {
