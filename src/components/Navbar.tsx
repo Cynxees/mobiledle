@@ -8,7 +8,7 @@ export default function Navbar(){
     return (
 
 
-        <h1>Navbar</h1>
+        <h1>Tolol</h1>
     
     )
 
