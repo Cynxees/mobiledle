@@ -1,7 +1,7 @@
 export class MobileLegendsCharacter {
 
 
-    constructor(name:string){
+    constructor(name:String){
 
         this.name = name;
     }
@@ -12,11 +12,16 @@ export class MobileLegendsCharacter {
     gender: String = "defaultGender";
     role: String = "defaultRole";
     species: String = "defaultSpecies";
+    lane: String = "defaultLane"
     year: Number = 0;
-    hairColor: String = "defaultHairColor";
     region: String = "defaultRegion";
-    resource: String = "defaultResource";
-    rangeType: String = "defaultRangeType";
+    goldPrice: Number = 0;
+    diamondPrice: Number = 0;
+    ticketPrice : Number = 0;
 
+
+    rangeType: String = "defaultRangeType";
+    resource: String = "defaultResource";
+    hairColor: String = "defaultHairColor";
  
 }
