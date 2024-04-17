@@ -119,8 +119,7 @@ export type MobileLegendsCharacter = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  createdAt?: string | null,
-  updatedAt?: string | null,
+  imageUrl?: string | null
 };
 
 export type UpdateMobileLegendsCharacterInput = {
@@ -141,8 +140,7 @@ export type UpdateMobileLegendsCharacterInput = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  createdAt?: string | null,
-  updatedAt?: string | null,
+  imageUrl?: string | null
 };
 
 export type DeleteMobileLegendsCharacterInput = {
@@ -167,8 +165,7 @@ export type ModelMobileLegendsCharacterFilterInput = {
   resource?: ModelStringInput | null,
   hairColor?: ModelStringInput | null,
   species?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
+  imageUrl?: string | null
   and?: Array< ModelMobileLegendsCharacterFilterInput | null > | null,
   or?: Array< ModelMobileLegendsCharacterFilterInput | null > | null,
   not?: ModelMobileLegendsCharacterFilterInput | null,
@@ -214,8 +211,7 @@ export type ModelSubscriptionMobileLegendsCharacterFilterInput = {
   resource?: ModelSubscriptionStringInput | null,
   hairColor?: ModelSubscriptionStringInput | null,
   species?: ModelSubscriptionStringInput | null,
-  createdAt?: ModelSubscriptionStringInput | null,
-  updatedAt?: ModelSubscriptionStringInput | null,
+  imageUrl?: string | null
   and?: Array< ModelSubscriptionMobileLegendsCharacterFilterInput | null > | null,
   or?: Array< ModelSubscriptionMobileLegendsCharacterFilterInput | null > | null,
 };

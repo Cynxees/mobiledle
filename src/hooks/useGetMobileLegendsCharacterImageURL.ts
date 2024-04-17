@@ -8,8 +8,6 @@ Amplify.configure(amplifyconfig);
 
 
 const useGetMobileLegendsCharacterImageURL = async (character: MobileLegendsCharacter) => {
-    const [imageUrl, setImageUrl] = useState<string | null>(null);
-
 
     const getUrlResult = await getUrl({
         key: "heroes/icons/"+character.id,

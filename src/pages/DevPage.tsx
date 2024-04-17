@@ -8,11 +8,8 @@ import useGetMobileLegendsCharacterImageURL from "../hooks/useGetMobileLegendsCh
 export default function DevPage(){
 
 
-
     const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
-
     const [todayCharacter, setTodayCharacter] = useState<MobileLegendsCharacter | undefined>(undefined);
-    
     
     
     const [] = useState(useGetMobileLegendsCharacterImageURL(characters[0]))
@@ -21,12 +18,17 @@ export default function DevPage(){
     useEffect(() => {
         const getCharacters = async () => {
             const characterData = await useFetchMobileLegendsCharacters();
+
+            
+
             setCharacters(characterData);
         };
         const getTodayCharacter = async () => {
             const result = await useFetchTodayAnswer("CLASSIC");
             setTodayCharacter(result)
         };
+
+        
         
 
         getCharacters();
@@ -46,16 +48,16 @@ export default function DevPage(){
 
             <ClassicSearchBar />
 
-
             <ul className="list-item text-left">
                 
                 {characters.map((item : MobileLegendsCharacter) => {
 
-
+                    
 
 
                     return <li key="{item.id}">
                          
+                         <img src={item.imageUrl} alt=""/>
                          {item.id}: {item.name}, {item.alias}
                          
                          </li>
