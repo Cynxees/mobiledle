@@ -3,7 +3,7 @@ import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsChara
 import { MobileLegendsCharacter } from '../API';
 import ClassicSearchBar from "../components/ClassicSearchBar"
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
-
+import useGetMobileLegendsCharacterImageURL from "../hooks/useGetMobileLegendsCharacterImageURL"
 
 export default function DevPage(){
 
@@ -12,7 +12,11 @@ export default function DevPage(){
     const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
 
     const [todayCharacter, setTodayCharacter] = useState<MobileLegendsCharacter | undefined>(undefined);
-
+    
+    
+    
+    const [] = useState(useGetMobileLegendsCharacterImageURL(characters[0]))
+    
 
     useEffect(() => {
         const getCharacters = async () => {
@@ -23,6 +27,7 @@ export default function DevPage(){
             const result = await useFetchTodayAnswer("CLASSIC");
             setTodayCharacter(result)
         };
+        
 
         getCharacters();
         getTodayCharacter();
@@ -35,7 +40,6 @@ export default function DevPage(){
 
             <h1>Dev Page</h1>
 
-            
             <h2>Today's Answer = {todayCharacter?.name}</h2>
 
             <ClassicSearchBar />
@@ -44,7 +48,15 @@ export default function DevPage(){
             <ul className="list-item text-left">
                 
                 {characters.map((item : MobileLegendsCharacter) => {
-                    return <li key="{item.id}">{item.id}: {item.name}, {item.alias}</li>
+
+
+
+
+                    return <li key="{item.id}">
+                         
+                         {item.id}: {item.name}, {item.alias}
+                         
+                         </li>
                 })}
             </ul>
             
