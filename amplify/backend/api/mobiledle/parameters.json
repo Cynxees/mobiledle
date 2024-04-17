@@ -1,5 +1,6 @@
 {
   "AppSyncApiName": "mobiledle",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-04-17T02:39:46.840Z"
 }
