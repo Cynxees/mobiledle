@@ -41,6 +41,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
     resource: "",
     hairColor: "",
     species: "",
+    createdAt: "",
+    updatedAt: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [alias, setAlias] = React.useState(initialValues.alias);
@@ -62,6 +64,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
   const [resource, setResource] = React.useState(initialValues.resource);
   const [hairColor, setHairColor] = React.useState(initialValues.hairColor);
   const [species, setSpecies] = React.useState(initialValues.species);
+  const [createdAt, setCreatedAt] = React.useState(initialValues.createdAt);
+  const [updatedAt, setUpdatedAt] = React.useState(initialValues.updatedAt);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = mobileLegendsCharacterRecord
@@ -83,6 +87,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
     setResource(cleanValues.resource);
     setHairColor(cleanValues.hairColor);
     setSpecies(cleanValues.species);
+    setCreatedAt(cleanValues.createdAt);
+    setUpdatedAt(cleanValues.updatedAt);
     setErrors({});
   };
   const [mobileLegendsCharacterRecord, setMobileLegendsCharacterRecord] =
@@ -119,6 +125,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
     resource: [],
     hairColor: [],
     species: [],
+    createdAt: [],
+    updatedAt: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -162,6 +170,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
           resource: resource ?? null,
           hairColor: hairColor ?? null,
           species: species ?? null,
+          createdAt: createdAt ?? null,
+          updatedAt: updatedAt ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -238,6 +248,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -277,6 +289,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.alias ?? value;
@@ -316,6 +330,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.gender ?? value;
@@ -355,6 +371,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.role ?? value;
@@ -394,6 +412,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.specialty ?? value;
@@ -433,6 +453,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.lane ?? value;
@@ -472,6 +494,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.region ?? value;
@@ -515,6 +539,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.goldPrice ?? value;
@@ -558,6 +584,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.ticketPrice ?? value;
@@ -601,6 +629,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.diamondPrice ?? value;
@@ -644,6 +674,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.year ?? value;
@@ -683,6 +715,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.rangeType ?? value;
@@ -722,6 +756,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.damageType ?? value;
@@ -761,6 +797,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource: value,
               hairColor,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.resource ?? value;
@@ -800,6 +838,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor: value,
               species,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.hairColor ?? value;
@@ -839,6 +879,8 @@ export default function MobileLegendsCharacterUpdateForm(props) {
               resource,
               hairColor,
               species: value,
+              createdAt,
+              updatedAt,
             };
             const result = onChange(modelFields);
             value = result?.species ?? value;
@@ -852,6 +894,88 @@ export default function MobileLegendsCharacterUpdateForm(props) {
         errorMessage={errors.species?.errorMessage}
         hasError={errors.species?.hasError}
         {...getOverrideProps(overrides, "species")}
+      ></TextField>
+      <TextField
+        label="Created at"
+        isRequired={false}
+        isReadOnly={false}
+        value={createdAt}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              alias,
+              gender,
+              role,
+              specialty,
+              lane,
+              region,
+              goldPrice,
+              ticketPrice,
+              diamondPrice,
+              year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
+              createdAt: value,
+              updatedAt,
+            };
+            const result = onChange(modelFields);
+            value = result?.createdAt ?? value;
+          }
+          if (errors.createdAt?.hasError) {
+            runValidationTasks("createdAt", value);
+          }
+          setCreatedAt(value);
+        }}
+        onBlur={() => runValidationTasks("createdAt", createdAt)}
+        errorMessage={errors.createdAt?.errorMessage}
+        hasError={errors.createdAt?.hasError}
+        {...getOverrideProps(overrides, "createdAt")}
+      ></TextField>
+      <TextField
+        label="Updated at"
+        isRequired={false}
+        isReadOnly={false}
+        value={updatedAt}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              alias,
+              gender,
+              role,
+              specialty,
+              lane,
+              region,
+              goldPrice,
+              ticketPrice,
+              diamondPrice,
+              year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
+              createdAt,
+              updatedAt: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.updatedAt ?? value;
+          }
+          if (errors.updatedAt?.hasError) {
+            runValidationTasks("updatedAt", value);
+          }
+          setUpdatedAt(value);
+        }}
+        onBlur={() => runValidationTasks("updatedAt", updatedAt)}
+        errorMessage={errors.updatedAt?.errorMessage}
+        hasError={errors.updatedAt?.hasError}
+        {...getOverrideProps(overrides, "updatedAt")}
       ></TextField>
       <Flex
         justifyContent="space-between"

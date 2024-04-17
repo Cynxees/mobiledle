@@ -16,6 +16,9 @@ type MobileLegendsCharacter @model @auth(rules: [{allow: public}]) {
   resource: String
   hairColor: String
   species: String
+  
+  createdAt: String
+  updatedAt: String
 
 }
  

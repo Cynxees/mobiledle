@@ -39,6 +39,8 @@ export declare type MobileLegendsCharacterUpdateFormInputValues = {
     resource?: string;
     hairColor?: string;
     species?: string;
+    createdAt?: string;
+    updatedAt?: string;
 };
 export declare type MobileLegendsCharacterUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -57,6 +59,8 @@ export declare type MobileLegendsCharacterUpdateFormValidationValues = {
     resource?: ValidationFunction<string>;
     hairColor?: ValidationFunction<string>;
     species?: ValidationFunction<string>;
+    createdAt?: ValidationFunction<string>;
+    updatedAt?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MobileLegendsCharacterUpdateFormOverridesProps = {
@@ -77,6 +81,8 @@ export declare type MobileLegendsCharacterUpdateFormOverridesProps = {
     resource?: PrimitiveOverrideProps<TextFieldProps>;
     hairColor?: PrimitiveOverrideProps<TextFieldProps>;
     species?: PrimitiveOverrideProps<TextFieldProps>;
+    createdAt?: PrimitiveOverrideProps<TextFieldProps>;
+    updatedAt?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type MobileLegendsCharacterUpdateFormProps = React.PropsWithChildren<{
     overrides?: MobileLegendsCharacterUpdateFormOverridesProps | undefined | null;

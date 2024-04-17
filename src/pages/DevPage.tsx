@@ -37,6 +37,7 @@ export default function DevPage(){
 
             <h1>Dev Page</h1>
 
+            
             <h2>Today's Answer = {todayCharacter?.name}</h2>
 
             <ClassicSearchBar />

@@ -20,6 +20,8 @@ export type CreateMobileLegendsCharacterInput = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
+  createdAt?: string | null,
+  updatedAt?: string | null,
 };
 
 export type ModelMobileLegendsCharacterConditionInput = {
@@ -39,11 +41,11 @@ export type ModelMobileLegendsCharacterConditionInput = {
   resource?: ModelStringInput | null,
   hairColor?: ModelStringInput | null,
   species?: ModelStringInput | null,
+  createdAt?: ModelStringInput | null,
+  updatedAt?: ModelStringInput | null,
   and?: Array< ModelMobileLegendsCharacterConditionInput | null > | null,
   or?: Array< ModelMobileLegendsCharacterConditionInput | null > | null,
   not?: ModelMobileLegendsCharacterConditionInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
 };
 
 export type ModelStringInput = {
@@ -117,8 +119,8 @@ export type MobileLegendsCharacter = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  createdAt: string,
-  updatedAt: string,
+  createdAt?: string | null,
+  updatedAt?: string | null,
 };
 
 export type UpdateMobileLegendsCharacterInput = {
@@ -139,6 +141,8 @@ export type UpdateMobileLegendsCharacterInput = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
+  createdAt?: string | null,
+  updatedAt?: string | null,
 };
 
 export type DeleteMobileLegendsCharacterInput = {
@@ -283,8 +287,8 @@ export type CreateMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt: string,
-    updatedAt: string,
+    createdAt?: string | null,
+    updatedAt?: string | null,
   } | null,
 };
 
@@ -313,8 +317,8 @@ export type UpdateMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt: string,
-    updatedAt: string,
+    createdAt?: string | null,
+    updatedAt?: string | null,
   } | null,
 };
 
@@ -343,8 +347,8 @@ export type DeleteMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt: string,
-    updatedAt: string,
+    createdAt?: string | null,
+    updatedAt?: string | null,
   } | null,
 };
 
@@ -372,8 +376,8 @@ export type GetMobileLegendsCharacterQuery = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt: string,
-    updatedAt: string,
+    createdAt?: string | null,
+    updatedAt?: string | null,
   } | null,
 };
 
@@ -405,8 +409,8 @@ export type ListMobileLegendsCharactersQuery = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      createdAt: string,
-      updatedAt: string,
+      createdAt?: string | null,
+      updatedAt?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -436,8 +440,8 @@ export type OnCreateMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt: string,
-    updatedAt: string,
+    createdAt?: string | null,
+    updatedAt?: string | null,
   } | null,
 };
 
@@ -465,8 +469,8 @@ export type OnUpdateMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt: string,
-    updatedAt: string,
+    createdAt?: string | null,
+    updatedAt?: string | null,
   } | null,
 };
 
@@ -494,7 +498,7 @@ export type OnDeleteMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt: string,
-    updatedAt: string,
+    createdAt?: string | null,
+    updatedAt?: string | null,
   } | null,
 };

@@ -64,8 +64,6 @@ export const listMobileLegendsCharacters = /* GraphQL */ `query ListMobileLegend
       resource
       hairColor
       species
-      createdAt
-      updatedAt
       __typename
     }
     nextToken
