@@ -9,7 +9,7 @@ interface ClassicSearchBarProps {
 
 export default function ClassicInput({ characters, onDataFromChild }: ClassicSearchBarProps) {
   const [prefix, setPrefix] = useState("");
-  const [suggestions, setSuggestions] = useState<String[]>([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
   const findCharacterBasedOnName =  (name : String) => {
 
@@ -45,6 +45,13 @@ export default function ClassicInput({ characters, onDataFromChild }: ClassicSea
     }
   };
 
+  const handleSuggestionClick = (suggestion: string) => {
+    setPrefix(suggestion);
+    findCharacterBasedOnName(suggestion);
+    setSuggestions([])
+  };
+
+
   return (
     <>
       <div className="flex items-center gap-4 bg-[#B88851] rounded-md px-3 w-96">
@@ -60,10 +67,11 @@ export default function ClassicInput({ characters, onDataFromChild }: ClassicSea
             onKeyPress={handleKeyPress}
           />
           <div className="absolute top-12 w-full">
-            {suggestions.map((item: String) => (
+            {suggestions.map((item: string) => (
               <li
                 key="item"
-                className="bg-[#3b3b3b] w-full list-none py-2 border-white border text-[#e8dca4]"
+                className="bg-[#3b3b3b] w-full list-none py-2 border-white border text-[#e8dca4] cursor-pointer"
+                onClick={() => handleSuggestionClick(item)}
               >
                 {item}
               </li>
