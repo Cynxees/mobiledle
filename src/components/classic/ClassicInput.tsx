@@ -9,7 +9,7 @@ interface ClassicSearchBarProps {
 
 export default function ClassicInput({ characters, onDataFromChild }: ClassicSearchBarProps) {
   const [prefix, setPrefix] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<MobileLegendsCharacter[]>([]);
 
   const findCharacterBasedOnName =  (name : String) => {
 
@@ -28,9 +28,11 @@ export default function ClassicInput({ characters, onDataFromChild }: ClassicSea
 
     setPrefix(value);
     
+    value = value.toLowerCase()
+    
     const newSuggestions = characters
       .filter((c) => c.name.toLowerCase().startsWith(value))
-      .map((c) => c.name);
+      .map((c) => c);
 
     if (newSuggestions.length == characters.length) {
       setSuggestions([]);
@@ -41,7 +43,9 @@ export default function ClassicInput({ characters, onDataFromChild }: ClassicSea
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      findCharacterBasedOnName(prefix);
+      findCharacterBasedOnName(suggestions[0].name);
+      setPrefix("")
+      setSuggestions([])
     }
   };
 
@@ -67,13 +71,14 @@ export default function ClassicInput({ characters, onDataFromChild }: ClassicSea
             onKeyPress={handleKeyPress}
           />
           <div className="absolute top-12 w-full">
-            {suggestions.map((item: string) => (
+            {suggestions.map((item: MobileLegendsCharacter) => (
               <li
                 key="item"
                 className="bg-[#3b3b3b] w-full list-none py-2 border-white border text-[#e8dca4] cursor-pointer"
-                onClick={() => handleSuggestionClick(item)}
+                onClick={() => handleSuggestionClick(item.name)}
               >
-                {item}
+                <img src={item.imageUrl} alt="" />
+                {item.name}
               </li>
             ))}
           </div>

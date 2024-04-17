@@ -14,7 +14,7 @@ export default function HeroShowBar({
   return (
     <div className="flex gap-2">
       <div className="py-4 w-20 h-20 bg-green-500 border-white border-2 overflow-hidden flex justify-center items-center">
-        Image
+        <img src={character.imageUrl} alt="" />
       </div>
       <div
         className={`py-4 w-20 h-20 border-white border-2 overflow-hidden flex justify-center items-center ${

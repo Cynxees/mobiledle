@@ -28,9 +28,14 @@ const useFetchMobileLegendsCharacters = async () => {
     })
 
     characterResults.forEach(async (character) => {
-        const imageUrl = await useGetMobileLegendsCharacterImageURL(character);
+        try{
+
+            const imageUrl = await useGetMobileLegendsCharacterImageURL(character);
         
-        character.imageUrl = imageUrl
+            character.imageUrl = imageUrl
+        }catch(e){
+            console.log("ERROR Loading Image")
+        }
     });
         
 
