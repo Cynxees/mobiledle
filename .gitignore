@@ -35,6 +35,7 @@ build/
 dist/
 node_modules/
 aws-exports.js
+amplifyconfiguration.json
 awsconfiguration.json
 amplifyconfiguration.dart
 amplify-build-config.json
