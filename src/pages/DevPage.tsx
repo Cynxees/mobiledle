@@ -1,6 +1,8 @@
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from "../types/MobileLegendsCharacter";
 
+
+
 export default function DevPage(){
 
 
