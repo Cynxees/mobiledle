@@ -1,5 +1,5 @@
 import { GoPaperAirplane } from "react-icons/go";
-import { MobileLegendsCharacter } from "../../types/MobileLegendsCharacter";
+import { MobileLegendsCharacter } from '../../API';
 import { useState } from "react";
 
 interface ClassicSearchBarProps {
