@@ -1,15 +1,23 @@
+import { useEffect, useState } from "react";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from "../types/MobileLegendsCharacter";
-
 
 
 export default function DevPage(){
 
 
 
-    var characterArray : Array<MobileLegendsCharacter> = useFetchMobileLegendsCharacters("chris")
+    const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
 
 
+    useEffect(() => {
+        const getCharacters = async () => {
+            const characterData = await useFetchMobileLegendsCharacters("bodoh");
+            setCharacters(characterData);
+        };
+
+        getCharacters();
+    }, []);
     
     return (
 
@@ -19,8 +27,8 @@ export default function DevPage(){
             <h1>Dev Page</h1>
 
 
-            {characterArray.map((item : MobileLegendsCharacter) => {
-                return <li>{item.name}</li>
+            {characters.map((item : MobileLegendsCharacter) => {
+                return <li key="{item.id}">{item.name}</li>
             })}
 
 

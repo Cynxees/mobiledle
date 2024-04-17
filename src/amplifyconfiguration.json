@@ -1,5 +1,9 @@
 {
   "aws_project_region": "ap-southeast-1",
+  "aws_appsync_graphqlEndpoint": "https://fwkgtsinlvf6bfeusjmgdxbmwi.appsync-api.ap-southeast-1.amazonaws.com/graphql",
+  "aws_appsync_region": "ap-southeast-1",
+  "aws_appsync_authenticationType": "API_KEY",
+  "aws_appsync_apiKey": "da2-rsvwbilhmndjxnkfvz74pogfme",
   "aws_cognito_identity_pool_id": "ap-southeast-1:86bdc55d-f3f6-4794-8bb8-2e1a67db7f38",
   "aws_cognito_region": "ap-southeast-1",
   "aws_user_pools_id": "ap-southeast-1_gbFsIr2cT",
@@ -28,8 +32,6 @@
   "aws_cognito_verification_mechanisms": [
     "EMAIL"
   ],
-  "aws_user_files_s3_bucket": "mobiledle-s3ba38a-staging",
-  "aws_user_files_s3_bucket_region": "ap-southeast-1",
   "aws_dynamodb_all_tables_region": "ap-southeast-1",
   "aws_dynamodb_table_schemas": [
     {
@@ -37,8 +39,6 @@
       "region": "ap-southeast-1"
     }
   ],
-  "aws_appsync_graphqlEndpoint": "https://fwkgtsinlvf6bfeusjmgdxbmwi.appsync-api.ap-southeast-1.amazonaws.com/graphql",
-  "aws_appsync_region": "ap-southeast-1",
-  "aws_appsync_authenticationType": "API_KEY",
-  "aws_appsync_apiKey": "da2-rsvwbilhmndjxnkfvz74pogfme"
+  "aws_user_files_s3_bucket": "mobiledle-s3ba38a-staging",
+  "aws_user_files_s3_bucket_region": "ap-southeast-1"
 }

@@ -54,8 +54,6 @@ export const listMobileLegendsCharacters = /* GraphQL */ `query ListMobileLegend
       ticketPrice
       diamondPrice
       year
-      createdAt
-      updatedAt
       __typename
     }
     nextToken
