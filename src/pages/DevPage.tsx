@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
-import { MobileLegendsCharacter } from "../types/MobileLegendsCharacter";
+import { MobileLegendsCharacter } from '../API';
 import ClassicSearchBar from "../components/ClassicSearchBar"
 
 export default function DevPage(){
@@ -27,7 +27,7 @@ export default function DevPage(){
             <h1>Dev Page</h1>
 
 
-            <ClassicSearchBar characters={characters}></ClassicSearchBar>
+            <ClassicSearchBar />
 
 
             <ul className="list-item text-left">

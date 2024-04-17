@@ -1,5 +1,5 @@
+import { MobileLegendsCharacter } from '../API';
 import { listMobileLegendsCharacters } from '../graphql/queries';
-import { MobileLegendsCharacter } from '../types/MobileLegendsCharacter';
 import { generateClient } from "aws-amplify/api";
 
 const client = generateClient()
@@ -19,9 +19,7 @@ const useFetchMobileLegendsCharacters = async () => {
 
     mobileLegendsCharacterJSON.forEach(c => {
 
-        const tempCharacter = new MobileLegendsCharacter(c.id, c.name, c.alias, c.gender, c.role, c.specialty, c.lane, c.year, c.region, c.goldPrice, c.diamondPrice, c.ticketPrice, null, null, null)
-
-        characterResults.push(tempCharacter)
+        characterResults.push(c)
 
     })
 

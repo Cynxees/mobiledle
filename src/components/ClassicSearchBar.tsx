@@ -1,17 +1,26 @@
 import { useEffect, useState } from "react";
 import { BsFillQuestionSquareFill } from "react-icons/bs";
-import { MobileLegendsCharacter } from "../types/MobileLegendsCharacter";
+import { MobileLegendsCharacter } from '../API';
+import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 
 
-interface ClassicSearchBarProps {
-    characters: MobileLegendsCharacter[];
-}
 
-export default function ClassicSearchBar({ characters }: ClassicSearchBarProps) {
+export default function ClassicSearchBar() {
   
     const [prefix, setPrefix] = useState("")
     const [suggestions, setSuggestions] = useState<String[]>([])
   
+    const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
+
+
+    useEffect(() => {
+        const getCharacters = async () => {
+            const characterData = await useFetchMobileLegendsCharacters();
+            setCharacters(characterData);
+        };
+
+        getCharacters();
+    }, []);
 
     const onInput = (e : React.FormEvent<HTMLInputElement>) =>{
         

@@ -101,9 +101,11 @@ export type MobileLegendsCharacter = {
   goldPrice?: number | null,
   ticketPrice?: number | null,
   diamondPrice?: number | null,
-  year?: number | null,
-  createdAt: string,
-  updatedAt: string,
+  year?: number | null
+  damageType?: string | null,
+  resource?: string | null,
+  hairColor?: string | null,
+  species?: string | null,
 };
 
 export type UpdateMobileLegendsCharacterInput = {
