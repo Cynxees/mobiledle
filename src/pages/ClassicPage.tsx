@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import ClassicInput from "../components/classic/ClassicInput";
 import { MobileLegendsCharacter } from '../API';
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
-import ClassicSearchBar from "../components/ClassicSearchBar";
 
 export default function ClassicPage() {
   const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);

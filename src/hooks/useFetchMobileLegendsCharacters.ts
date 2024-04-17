@@ -10,7 +10,6 @@ const useFetchMobileLegendsCharacters = async () => {
 
     var characterResults : Array<MobileLegendsCharacter> = new Array<MobileLegendsCharacter>();
 
-    // List all items
     const mobileLegendsCharactersGraphQL = await client.graphql({
         query: listMobileLegendsCharacters
     });
