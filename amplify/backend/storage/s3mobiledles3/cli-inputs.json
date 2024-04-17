@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3mobiledles3",
+  "bucketName": "mobiledle-s3",
+  "policyUUID": "5b7e4ad4",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ]
+}

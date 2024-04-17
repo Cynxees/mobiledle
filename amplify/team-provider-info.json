@@ -1,0 +1,27 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify86e306a394064-staging-ba38a-authRole",
+      "UnauthRoleArn": "arn:aws:iam::881734199479:role/amplify-amplify86e306a394064-staging-ba38a-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::881734199479:role/amplify-amplify86e306a394064-staging-ba38a-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+      "UnauthRoleName": "amplify-amplify86e306a394064-staging-ba38a-unauthRole",
+      "StackName": "amplify-amplify86e306a394064-staging-ba38a",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:881734199479:stack/amplify-amplify86e306a394064-staging-ba38a/5b64b430-fc00-11ee-89a3-06cf14ec4337",
+      "AmplifyAppId": "d1kdk83ukc4d0c"
+    },
+    "categories": {
+      "auth": {
+        "mobiledle": {}
+      },
+      "storage": {
+        "s3mobiledles3": {},
+        "mobiledleDB": {}
+      },
+      "api": {
+        "mobiledle": {}
+      }
+    }
+  }
+}
