@@ -23,5 +23,26 @@
         "mobiledle": {}
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {}
+  },
+  "amplify": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mobiledle-amplify-504af-authRole",
+      "UnauthRoleArn": "arn:aws:iam::881734199479:role/amplify-mobiledle-amplify-504af-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::881734199479:role/amplify-mobiledle-amplify-504af-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-mobiledle-amplify-504af-deployment",
+      "UnauthRoleName": "amplify-mobiledle-amplify-504af-unauthRole",
+      "StackName": "amplify-mobiledle-amplify-504af",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:881734199479:stack/amplify-mobiledle-amplify-504af/61be40f0-fc6c-11ee-a4d7-025916228365",
+      "AmplifyAppId": "d1kdk83ukc4d0c"
+    },
+    "categories": {
+      "auth": {
+        "mobiledle": {}
+      }
+    }
   }
 }
