@@ -34,8 +34,6 @@ export default function DevPage(){
         getCharacters();
         getTodayCharacter();
     }, []);
-
-    
     
     return (
 
