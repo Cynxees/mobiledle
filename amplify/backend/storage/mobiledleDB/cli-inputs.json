@@ -1,0 +1,18 @@
+{
+  "resourceName": "mobiledleDB",
+  "tableName": "mobileLegendsCharacters",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "number"
+  },
+  "gsi": [
+    {
+      "name": "nameIndex",
+      "partitionKey": {
+        "fieldName": "name",
+        "fieldType": "string"
+      }
+    }
+  ],
+  "triggerFunctions": []
+}
