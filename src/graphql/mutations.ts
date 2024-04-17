@@ -25,6 +25,11 @@ export const createMobileLegendsCharacter = /* GraphQL */ `mutation CreateMobile
     ticketPrice
     diamondPrice
     year
+    rangeType
+    damageType
+    resource
+    hairColor
+    species
     createdAt
     updatedAt
     __typename
@@ -51,6 +56,11 @@ export const updateMobileLegendsCharacter = /* GraphQL */ `mutation UpdateMobile
     ticketPrice
     diamondPrice
     year
+    rangeType
+    damageType
+    resource
+    hairColor
+    species
     createdAt
     updatedAt
     __typename
@@ -77,6 +87,11 @@ export const deleteMobileLegendsCharacter = /* GraphQL */ `mutation DeleteMobile
     ticketPrice
     diamondPrice
     year
+    rangeType
+    damageType
+    resource
+    hairColor
+    species
     createdAt
     updatedAt
     __typename

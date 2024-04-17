@@ -24,6 +24,11 @@ export const onCreateMobileLegendsCharacter = /* GraphQL */ `subscription OnCrea
     ticketPrice
     diamondPrice
     year
+    rangeType
+    damageType
+    resource
+    hairColor
+    species
     createdAt
     updatedAt
     __typename
@@ -49,6 +54,11 @@ export const onUpdateMobileLegendsCharacter = /* GraphQL */ `subscription OnUpda
     ticketPrice
     diamondPrice
     year
+    rangeType
+    damageType
+    resource
+    hairColor
+    species
     createdAt
     updatedAt
     __typename
@@ -74,6 +84,11 @@ export const onDeleteMobileLegendsCharacter = /* GraphQL */ `subscription OnDele
     ticketPrice
     diamondPrice
     year
+    rangeType
+    damageType
+    resource
+    hairColor
+    species
     createdAt
     updatedAt
     __typename

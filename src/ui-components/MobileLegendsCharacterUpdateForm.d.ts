@@ -34,6 +34,11 @@ export declare type MobileLegendsCharacterUpdateFormInputValues = {
     ticketPrice?: number;
     diamondPrice?: number;
     year?: number;
+    rangeType?: string;
+    damageType?: string;
+    resource?: string;
+    hairColor?: string;
+    species?: string;
 };
 export declare type MobileLegendsCharacterUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -47,6 +52,11 @@ export declare type MobileLegendsCharacterUpdateFormValidationValues = {
     ticketPrice?: ValidationFunction<number>;
     diamondPrice?: ValidationFunction<number>;
     year?: ValidationFunction<number>;
+    rangeType?: ValidationFunction<string>;
+    damageType?: ValidationFunction<string>;
+    resource?: ValidationFunction<string>;
+    hairColor?: ValidationFunction<string>;
+    species?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type MobileLegendsCharacterUpdateFormOverridesProps = {
@@ -62,6 +72,11 @@ export declare type MobileLegendsCharacterUpdateFormOverridesProps = {
     ticketPrice?: PrimitiveOverrideProps<TextFieldProps>;
     diamondPrice?: PrimitiveOverrideProps<TextFieldProps>;
     year?: PrimitiveOverrideProps<TextFieldProps>;
+    rangeType?: PrimitiveOverrideProps<TextFieldProps>;
+    damageType?: PrimitiveOverrideProps<TextFieldProps>;
+    resource?: PrimitiveOverrideProps<TextFieldProps>;
+    hairColor?: PrimitiveOverrideProps<TextFieldProps>;
+    species?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type MobileLegendsCharacterUpdateFormProps = React.PropsWithChildren<{
     overrides?: MobileLegendsCharacterUpdateFormOverridesProps | undefined | null;

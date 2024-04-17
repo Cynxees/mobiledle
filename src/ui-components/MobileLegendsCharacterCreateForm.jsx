@@ -34,6 +34,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
     ticketPrice: "",
     diamondPrice: "",
     year: "",
+    rangeType: "",
+    damageType: "",
+    resource: "",
+    hairColor: "",
+    species: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [alias, setAlias] = React.useState(initialValues.alias);
@@ -50,6 +55,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
     initialValues.diamondPrice
   );
   const [year, setYear] = React.useState(initialValues.year);
+  const [rangeType, setRangeType] = React.useState(initialValues.rangeType);
+  const [damageType, setDamageType] = React.useState(initialValues.damageType);
+  const [resource, setResource] = React.useState(initialValues.resource);
+  const [hairColor, setHairColor] = React.useState(initialValues.hairColor);
+  const [species, setSpecies] = React.useState(initialValues.species);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
@@ -63,6 +73,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
     setTicketPrice(initialValues.ticketPrice);
     setDiamondPrice(initialValues.diamondPrice);
     setYear(initialValues.year);
+    setRangeType(initialValues.rangeType);
+    setDamageType(initialValues.damageType);
+    setResource(initialValues.resource);
+    setHairColor(initialValues.hairColor);
+    setSpecies(initialValues.species);
     setErrors({});
   };
   const validations = {
@@ -77,6 +92,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
     ticketPrice: [],
     diamondPrice: [],
     year: [],
+    rangeType: [],
+    damageType: [],
+    resource: [],
+    hairColor: [],
+    species: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -115,6 +135,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
           ticketPrice,
           diamondPrice,
           year,
+          rangeType,
+          damageType,
+          resource,
+          hairColor,
+          species,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -188,6 +213,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -222,6 +252,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.alias ?? value;
@@ -256,6 +291,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.gender ?? value;
@@ -290,6 +330,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.role ?? value;
@@ -324,6 +369,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.specialty ?? value;
@@ -358,6 +408,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.lane ?? value;
@@ -392,6 +447,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.region ?? value;
@@ -430,6 +490,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.goldPrice ?? value;
@@ -468,6 +533,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice: value,
               diamondPrice,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.ticketPrice ?? value;
@@ -506,6 +576,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice: value,
               year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.diamondPrice ?? value;
@@ -544,6 +619,11 @@ export default function MobileLegendsCharacterCreateForm(props) {
               ticketPrice,
               diamondPrice,
               year: value,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species,
             };
             const result = onChange(modelFields);
             value = result?.year ?? value;
@@ -557,6 +637,201 @@ export default function MobileLegendsCharacterCreateForm(props) {
         errorMessage={errors.year?.errorMessage}
         hasError={errors.year?.hasError}
         {...getOverrideProps(overrides, "year")}
+      ></TextField>
+      <TextField
+        label="Range type"
+        isRequired={false}
+        isReadOnly={false}
+        value={rangeType}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              alias,
+              gender,
+              role,
+              specialty,
+              lane,
+              region,
+              goldPrice,
+              ticketPrice,
+              diamondPrice,
+              year,
+              rangeType: value,
+              damageType,
+              resource,
+              hairColor,
+              species,
+            };
+            const result = onChange(modelFields);
+            value = result?.rangeType ?? value;
+          }
+          if (errors.rangeType?.hasError) {
+            runValidationTasks("rangeType", value);
+          }
+          setRangeType(value);
+        }}
+        onBlur={() => runValidationTasks("rangeType", rangeType)}
+        errorMessage={errors.rangeType?.errorMessage}
+        hasError={errors.rangeType?.hasError}
+        {...getOverrideProps(overrides, "rangeType")}
+      ></TextField>
+      <TextField
+        label="Damage type"
+        isRequired={false}
+        isReadOnly={false}
+        value={damageType}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              alias,
+              gender,
+              role,
+              specialty,
+              lane,
+              region,
+              goldPrice,
+              ticketPrice,
+              diamondPrice,
+              year,
+              rangeType,
+              damageType: value,
+              resource,
+              hairColor,
+              species,
+            };
+            const result = onChange(modelFields);
+            value = result?.damageType ?? value;
+          }
+          if (errors.damageType?.hasError) {
+            runValidationTasks("damageType", value);
+          }
+          setDamageType(value);
+        }}
+        onBlur={() => runValidationTasks("damageType", damageType)}
+        errorMessage={errors.damageType?.errorMessage}
+        hasError={errors.damageType?.hasError}
+        {...getOverrideProps(overrides, "damageType")}
+      ></TextField>
+      <TextField
+        label="Resource"
+        isRequired={false}
+        isReadOnly={false}
+        value={resource}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              alias,
+              gender,
+              role,
+              specialty,
+              lane,
+              region,
+              goldPrice,
+              ticketPrice,
+              diamondPrice,
+              year,
+              rangeType,
+              damageType,
+              resource: value,
+              hairColor,
+              species,
+            };
+            const result = onChange(modelFields);
+            value = result?.resource ?? value;
+          }
+          if (errors.resource?.hasError) {
+            runValidationTasks("resource", value);
+          }
+          setResource(value);
+        }}
+        onBlur={() => runValidationTasks("resource", resource)}
+        errorMessage={errors.resource?.errorMessage}
+        hasError={errors.resource?.hasError}
+        {...getOverrideProps(overrides, "resource")}
+      ></TextField>
+      <TextField
+        label="Hair color"
+        isRequired={false}
+        isReadOnly={false}
+        value={hairColor}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              alias,
+              gender,
+              role,
+              specialty,
+              lane,
+              region,
+              goldPrice,
+              ticketPrice,
+              diamondPrice,
+              year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor: value,
+              species,
+            };
+            const result = onChange(modelFields);
+            value = result?.hairColor ?? value;
+          }
+          if (errors.hairColor?.hasError) {
+            runValidationTasks("hairColor", value);
+          }
+          setHairColor(value);
+        }}
+        onBlur={() => runValidationTasks("hairColor", hairColor)}
+        errorMessage={errors.hairColor?.errorMessage}
+        hasError={errors.hairColor?.hasError}
+        {...getOverrideProps(overrides, "hairColor")}
+      ></TextField>
+      <TextField
+        label="Species"
+        isRequired={false}
+        isReadOnly={false}
+        value={species}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              alias,
+              gender,
+              role,
+              specialty,
+              lane,
+              region,
+              goldPrice,
+              ticketPrice,
+              diamondPrice,
+              year,
+              rangeType,
+              damageType,
+              resource,
+              hairColor,
+              species: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.species ?? value;
+          }
+          if (errors.species?.hasError) {
+            runValidationTasks("species", value);
+          }
+          setSpecies(value);
+        }}
+        onBlur={() => runValidationTasks("species", species)}
+        errorMessage={errors.species?.errorMessage}
+        hasError={errors.species?.hasError}
+        {...getOverrideProps(overrides, "species")}
       ></TextField>
       <Flex
         justifyContent="space-between"

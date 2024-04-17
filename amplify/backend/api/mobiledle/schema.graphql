@@ -10,6 +10,12 @@ type MobileLegendsCharacter @model @auth(rules: [{allow: public}]) {
   goldPrice: Int
   ticketPrice: Int
   diamondPrice: Int
-  year: Int
+  year: Int,
+  rangeType: String
+  damageType: String
+  resource: String
+  hairColor: String
+  species: String
+
 }
  

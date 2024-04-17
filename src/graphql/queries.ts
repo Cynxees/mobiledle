@@ -22,6 +22,13 @@ export const getMobileLegendsCharacter = /* GraphQL */ `query GetMobileLegendsCh
     ticketPrice
     diamondPrice
     year
+    rangeType
+    damageType
+    resource
+    hairColor
+    species
+    createdAt
+    updatedAt
     __typename
   }
 }
@@ -52,6 +59,13 @@ export const listMobileLegendsCharacters = /* GraphQL */ `query ListMobileLegend
       ticketPrice
       diamondPrice
       year
+      rangeType
+      damageType
+      resource
+      hairColor
+      species
+      createdAt
+      updatedAt
       __typename
     }
     nextToken
