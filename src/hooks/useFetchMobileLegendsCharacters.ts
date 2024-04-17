@@ -5,7 +5,7 @@ import { generateClient } from "aws-amplify/api";
 const client = generateClient()
 
 
-const useFetchMobileLegendsCharacters = async (inputName: String) => {
+const useFetchMobileLegendsCharacters = async () => {
   
 
     var characterResults : Array<MobileLegendsCharacter> = new Array<MobileLegendsCharacter>();

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from "../types/MobileLegendsCharacter";
-
+import ClassicSearchBar from "../components/ClassicSearchBar"
 
 export default function DevPage(){
 
@@ -12,7 +12,7 @@ export default function DevPage(){
 
     useEffect(() => {
         const getCharacters = async () => {
-            const characterData = await useFetchMobileLegendsCharacters("bodoh");
+            const characterData = await useFetchMobileLegendsCharacters();
             setCharacters(characterData);
         };
 
@@ -25,6 +25,10 @@ export default function DevPage(){
         <div>
 
             <h1>Dev Page</h1>
+
+
+            <ClassicSearchBar characters={characters}></ClassicSearchBar>
+
 
             <ul className="list-item text-left">
                 
