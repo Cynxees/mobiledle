@@ -1,17 +1,15 @@
 import { IoMdSettings } from "react-icons/io";
 import { FaLanguage } from "react-icons/fa6";
+import "animate.css";
 
-export default function Navbar(){
-
-    return (
-
-
-        <nav className="flex justify-between items-center">
-            <IoMdSettings />
-            <p className="text-3xl text-green-400">Mobiledle</p>
-            <FaLanguage />
-        </nav>
-    
-    )
-
+export default function Navbar() {
+  return (
+    <nav className="flex justify-between items-center w-96">
+      <IoMdSettings className="text-2xl"/>
+      <div className="text-logo-sm font-modesto bg-gradient-to-r from-[#e8dca4] to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
+        MOBILEDLE
+      </div>
+      <FaLanguage className="text-2xl"/>
+    </nav>
+  );
 }

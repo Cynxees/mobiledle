@@ -22,6 +22,10 @@
     font-family: "nova";
     src: url(./assets/fonts/NovaRound/NovaRound-Regular.ttf);
   }
+  @font-face {
+    font-family: "modesto";
+    src: url(./assets/fonts/Modesto/ModestoRegular.ttf);
+  }
 }
 
 a {
