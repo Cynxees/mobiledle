@@ -4,17 +4,30 @@ import { useState } from "react";
 
 interface ClassicSearchBarProps {
   characters: MobileLegendsCharacter[];
+  onDataFromChild: (data: MobileLegendsCharacter) => void;
 }
 
-export default function ClassicInput({ characters }: ClassicSearchBarProps) {
+export default function ClassicInput({ characters, onDataFromChild }: ClassicSearchBarProps) {
   const [prefix, setPrefix] = useState("");
   const [suggestions, setSuggestions] = useState<String[]>([]);
+
+  const findCharacterBasedOnName =  (name : String) => {
+
+    const foundCharacter = characters.find((c) => c.name.toLowerCase() === name.toLowerCase());
+    if (foundCharacter) {
+      onDataFromChild(foundCharacter);
+    } else {
+      // Handle case when character is not found
+      console.log(`Character with name ${name} not found.`);
+    }
+
+  }
 
   const onInput = (e: React.FormEvent<HTMLInputElement>) => {
     var value = e.currentTarget.value;
 
     setPrefix(value);
-
+    
     const newSuggestions = characters
       .filter((c) => c.name.toLowerCase().startsWith(value))
       .map((c) => c.name);
@@ -23,6 +36,12 @@ export default function ClassicInput({ characters }: ClassicSearchBarProps) {
       setSuggestions([]);
     } else {
       setSuggestions(newSuggestions);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      findCharacterBasedOnName(prefix);
     }
   };
 
@@ -38,6 +57,7 @@ export default function ClassicInput({ characters }: ClassicSearchBarProps) {
             placeholder="Heroes"
             value={prefix}
             onChange={onInput}
+            onKeyPress={handleKeyPress}
           />
           <div className="absolute top-12 w-full">
             {suggestions.map((item: String) => (
