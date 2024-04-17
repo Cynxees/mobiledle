@@ -22,8 +22,6 @@ export const getMobileLegendsCharacter = /* GraphQL */ `query GetMobileLegendsCh
     ticketPrice
     diamondPrice
     year
-    createdAt
-    updatedAt
     __typename
   }
 }

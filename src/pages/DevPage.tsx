@@ -26,10 +26,12 @@ export default function DevPage(){
 
             <h1>Dev Page</h1>
 
-
-            {characters.map((item : MobileLegendsCharacter) => {
-                return <li key="{item.id}">{item.name}</li>
-            })}
+            <ul className="list-item text-left">
+                
+                {characters.map((item : MobileLegendsCharacter) => {
+                    return <li key="{item.id}">{item.id}: {item.name}, {item.alias}</li>
+                })}
+            </ul>
 
 
         </div>
