@@ -23,7 +23,7 @@ const useFetchMobileLegendsCharacters = async () => {
 
     })
 
-    return characterResults;
+    return characterResults.sort((a, b) => parseInt(a.id) > parseInt(b.id) ? 1 : -1);
     
 
 };

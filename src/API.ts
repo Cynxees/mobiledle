@@ -15,6 +15,11 @@ export type CreateMobileLegendsCharacterInput = {
   ticketPrice?: number | null,
   diamondPrice?: number | null,
   year?: number | null,
+  rangeType?: string | null,
+  damageType?: string | null,
+  resource?: string | null,
+  hairColor?: string | null,
+  species?: string | null,
 };
 
 export type ModelMobileLegendsCharacterConditionInput = {

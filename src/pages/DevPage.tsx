@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from '../API';
 import ClassicSearchBar from "../components/ClassicSearchBar"
+import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
+
 
 export default function DevPage(){
 
@@ -9,15 +11,24 @@ export default function DevPage(){
 
     const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
 
+    const [todayCharacter, setTodayCharacter] = useState<MobileLegendsCharacter | undefined>(undefined);
+
 
     useEffect(() => {
         const getCharacters = async () => {
             const characterData = await useFetchMobileLegendsCharacters();
             setCharacters(characterData);
         };
+        const getTodayCharacter = async () => {
+            const result = await useFetchTodayAnswer("CLASSIC");
+            setTodayCharacter(result)
+        };
 
         getCharacters();
+        getTodayCharacter();
     }, []);
+
+    
     
     return (
 
@@ -26,6 +37,7 @@ export default function DevPage(){
 
             <h1>Dev Page</h1>
 
+            <h2>Today's Answer = {todayCharacter?.name}</h2>
 
             <ClassicSearchBar />
 
@@ -36,7 +48,7 @@ export default function DevPage(){
                     return <li key="{item.id}">{item.id}: {item.name}, {item.alias}</li>
                 })}
             </ul>
-
+            
 
         </div>
         

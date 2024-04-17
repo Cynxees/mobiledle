@@ -1,0 +1,61 @@
+id,name,alias,gender,role,specialty,lane,region,goldPrice,ticketPrice,diamondPrice,year,rangeType,damageType,resource,hairColor,species
+1,Miya,the Moonlight Archer,Female,Marksman,Finisher,Gold Lane,Azyra Woodlands,10800,399,,2016,Ranged,Physical,Mana,Silver,Human
+2,Balmond,the Bloody Beast,Male,Fighter,Damage,Jungling/EXP Lane,The Barren Lands,6500,,299,2016,Melee,Physical,None,Red,Orc
+3,Saber,the Wandering Sword,Male,Assassin,Charge,Jungling,Laboratory 1718,6500,,299,2016,Melee,Physical,Mana,Silver,Human
+4,Alice,the Queen of Blood,Female,Mage/Tank,Charge/Regen,EXP Lane/Mid Lane,The Barren Lands,15000,399,,2016,Ranged,Magic,Mana,Silver,Blood Demon
+5,Nana,the Sweet Leonin,Female,Mage,Poke,Mid Lane/Roaming,Azyra Woodlands,6500,,299,2016,Ranged,Magic,Mana,Pink,Leonin
+6,Tigreal,the Warrior of Dawn,Male,Tank,Crowd Control,Roaming,Moniyan Empire,6500,,299,2016,Melee,Physical,Mana,Brown,Human
+7,Alucard,the Demon Hunter,Male,Fighter/Assassin,Chase/Damage,Jungling,Moniyan Empire,15000,399,,2016,Melee,Physical,None,Blonde,Human
+8,Karina,the Shadow Blade,Female,Assassin,Finisher,Jungling,Azyra Woodlands,32000,,599,2016,Melee,Magic,Mana,Blue,Dark Elf
+9,Akai,the Panda Warrior,Male,Tank,Guard,Roaming/Jungling,Cadia Riverlands,32000,599,,2016,Melee,Physical,Mana,Unspecified,Panda
+10,Franco,the Frozen Warrior,Male,Tank,Initiator,Roaming,Northern Vale,32000,749,,2016,Melee,Physical,Mana,Red,Human
+11,Bane,the Frozen King,Male,Fighter/Mage,Push/Burst,EXP Lane/Jungling,Northern Vale,6500,,299,2016,Melee,Mixed,Mana,Unspecified,Human/Octopus
+12,Bruno,the Protector,Male,Marksman,Finisher,Gold Lane,Agelta Drylands,15000,399,,2016,Ranged,Physical,Mana,Blonde,Cyborg
+13,Clint,the West Justice,Male,Marksman,Finisher,Gold Lane,Agelta Drylands,15000,399,,2016,Ranged,Physical,Mana,Silver,Human
+14,Rafaela,the Wings of Holiness,Female,Support,Regen,Roaming,Moniyan Empire,6500,,299,2016,Ranged,Magic,Mana,Blonde,Light Angel
+15,Eudora,the Lightning Weaver,Female,Mage,Control,Mid Lane,Northern Vale,2000,399,,2016,Ranged,Magic,Mana,Silver,Light Elf
+16,Zilong,the Spear of Dragon,Male,Fighter/Assassin,Chase/Damage,EXP Lane/Jungling,Cadia Riverlands,15000,399,,2016,Melee,Physical,Mana,Brown,Human
+17,Fanny,the Blade Dancer,Female,Assassin,Chase,Jungling,Moniyan Empire,24000,,499,2016,Melee,Physical,Energy,Blonde,Human
+18,Layla,the Energy Gunner,Female,Marksman,Finisher,Gold Lane,Agelta Drylands,2000,,299,2016,Ranged,Physical,Mana,Blonde,Human
+19,Minotaur,the Son of Minos,Male,Tank/Support,Crowd Control,Roaming,Agelta Drylands,15000,,399,2016,Melee,Physical,None,Red,Minotaur
+20,Lolita,the Steel Elf,Female,Support/Tank,Guard/Crowd Control,Roaming,Agelta Drylands,32000,,599,2016,Melee,Physical,Mana,Blonde,Half Elf
+21,Hayabusa,the Crimson Shadow,Male,Assassin,Chase,Jungling,Cadia Riverlands,32000,,599,2016,Melee,Physical,Energy,Black,Human
+22,Freya,the Valkyrie,Female,Fighter,Chase,EXP Lane/Jungling,Northern Vale,,,599,2016,Melee,Physical,None,Blonde,Human
+23,Gord,the Professor of the Mystics,Male,Mage,Poke,Mid Lane,Northern Vale,24000,499,,2016,Ranged,Magic,Mana,Blue,Human
+24,Natalia,the Bright Claw,Female,Assassin,Chase,Jungling/Roaming,Moniyan Empire,32000,,599,2016,Melee,Physical,Mana,Red,Human
+25,Kagura,the Onmyouji Master,Female,Mage,Poke,Mid Lane,Cadia Riverlands,32000,,599,2016,Ranged,Magic,Mana,Silver,Human
+26,Chou,the Kung Fu Boy,Male,Fighter,Chase,EXP Lane/Roaming,Eruditio,24000,,499,2016,Melee,Physical,None,Silver,Human
+27,Sun,the Monkey King,Male,Fighter,Push,EXP Lane/Jungling,Cadia Riverlands,32000,,599,2016,Melee,Physical,Mana,Blonde,Mountain Spirit
+28,Alpha,the Blade of Enmity,Male,Fighter,Charge,EXP Lane/Jungling,Agelta Drylands,32000,,599,2017,Melee,Physical,Mana,Unspecified,Cyborg
+29,Ruby,the Little Red Hood,Female,Fighter,Crowd Control,EXP Lane/Roaming,Moniyan Empire,32000,,599,2017,Melee,Physical,Mana,Blonde,Human
+30,Yi Sun-shin,the Paenlong Legend,Male,Assassin/Marksman,Finisher/Chase,Jungling,Cadia Riverlands,32000,,599,2016,Mixed,Physical,Mana,Black,Human
+31,Moskov,the Spear of Quiescence,Male,Marksman,Finisher,Gold Lane,Agelta Drylands,32000,,399,2017,Ranged,Physical,Mana,Purple,Human (Corrupted)
+32,Johnson,the Wild Engine,Male,Tank/Support,Support/Crowd Control,Roaming,Agelta Drylands,32000,,599,2017,Melee,Magic,None,Unspecified,Cyborg
+33,Cyclops,the Starsoul Magician,Male,Mage,Poke,Mid Lane/Jungling,Nebula Chronorift,15000,,399,2017,Ranged,Magic,Mana,Unspecified,Dwarf Giant
+34,Estes,the Moon Elf King,Male,Support,Regen,Roaming,Azrya Woodlands,24000,,499,2017,Ranged,Magic,Mana,Silver,Moon Elf
+35,Hilda,the Power of Megalith,Female,Fighter/Tank,Damage/Regen,EXP Lane/Roaming,Northern Vale,24000,,499,2017,Melee,Physical,None,Red,Human
+36,Aurora,the Maiden of the Glacier,Female,Mage,Crowd Control,Mid Lane,Northern Vale,24000,,499,2017,Ranged,Magic,Mana,Silver,Human
+37,Lapu-Lapu,the Courageous Blade,Male,Fighter,Chase,EXP Lane,Vonetis Islands,32000,,599,2017,Melee,Physical,None,Brown,Human
+38,Vexana,the Shimmer of Hope,Female,Mage,Poke,Mid Lane,The Barren Lands,32000,599,599,2017,Ranged,Magic,Mana,Blue,Undead
+39,Roger,the Dire Wolf Hunter,Male,Fighter/Marksman,Finisher/Burst,Jungling,Moniyan Empire,32000,599,599,2017,Mixed,Physical,Mana,Black,Human/Werewolf
+40,Karrie,the Lost Star,Female,Marksman,Poke,Gold Lane,Minoan Kingdom,24000,599,599,2017,Ranged,Physical,Mana,Silver,Yasson
+41,Gatotkaca,the Iron Steel,Male,Tank,Initiator/CC,Roaming,Land of Dawn,32000,599,599,2017,Melee,Magic,None,Unspecified,Human
+42,Harley,the Mage Genius,Male,Mage/Assassin,Poke/Reap,Mid Lane,Dynamo Jungle,32000,599,599,2017,Ranged,Magic,Mana,Blonde,Human
+43,Irithel,the Jungle Heart,Female,Marksman,Chase,Gold Lane,Silvermoon City,32000,599,599,2017,Ranged,Physical,Energy,Red,Elf
+44,Grock,the Fortress Titan,Male,Tank/Fighter,Initiator/Charge,Roaming,Land of Dawn,32000,599,599,2017,Melee,Physical,Mana,Unspecified,Castle
+45,Argus,the Nightstalker,Male,Fighter/Tank,Regen/Chase,EXP Lane,Western Desert,32000,599,599,2017,Melee,Physical,None,Unspecified,Fallen Angel
+46,Odette,the Swan Princess,Female,Mage,Burst/Reap,Mid Lane,Swan Castle,32000,599,599,2017,Ranged,Magic,Mana,Blonde,Human
+47,Lancelot,the Perfumed Knight,Male,Assassin,Chase/Burst,Roaming,Lakeside Gorge,32000,599,599,2017,Melee,Physical,Mana,Blonde,Human
+48,Diggie,the Timekeeper,Male,Support,Crowd Control,Roaming,Lost City,24000,499,499,2017,Ranged,Magic,Mana,Brown,Owl
+49,Hylos,the Grand Warden,Male,Tank,Guard,Roaming/EXP Lane,Agelta Drylands,32000,,599,2017,Ranged,Magic,Mana,Silver,Centaur
+50,Zhask,the Nightmaric Spawn,Male,Mage,Summon,Mid Lane,Staramble,32000,599,599,2017,Ranged,Magic,Mana,Unspecified,Extraterrestial
+51,Helcurt,the Shadowbringer,Male,Assassin,Burst/Charge,Roaming,Shadow Abyss,32000,599,599,2017,Melee,Physical,Mana,Silver,Unknown
+52,Pharsa,the Wings of Vengeance,Female,Mage,Poke/Burst,Mid Lane,Cyclops,32000,599,599,2017,Ranged,Magic,Mana,Black,Human
+53,Lesley,the Deadly Sniper,Female,Marksman/Assassin,Reap/Burst,Gold Lane,Wasteland,32000,599,599,2018,Ranged,Physical,Energy,Red,Human
+54,Jawhead,the Boy Next Door,None,Fighter/Tank,Initiator/CC,Roaming,Frostmoon,32000,599,599,2018,Melee,Physical,Mana,Unspecified,Robot
+55,Angela,the Bunnylove,Female,Support,Guard,Roaming,Laboratory 1718,24000,,499,2018,Ranged,Magic,Mana,Blonde,Android
+56,Gusion,the Holy Blade,Male,Assassin,Burst,Jungling,Moniyan Empire,32000,599,599,2018,Melee,Magic,Mana,Brown,Human
+57,Valir,the Son of Flames,Male,Mage,Poke/Burst,Mid Lane,Land of Dawn,32000,599,599,2018,Ranged,Magic,Mana,Orange,Human
+58,Martis,the Ashura King,Male,Fighter,Chase/Burst,Roaming,Northern Vale,32000,599,599,2018,Melee,Physical,None,Silver,Ashura
+59,Uranus,the Aesthereal Defender,Male,Tank,Regen,EXP Lane/Roaming,Celestial Palace,32000,,599,2018,Melee,Magic,Mana,Unspecified,Aethereal
+60,Hanabi,the Scarlet Flower,Female,Marksman,Finisher,Gold Lane,Cadia Riverlands,32000,,599,2018,Ranged,Physical,Mana,Black,Human
