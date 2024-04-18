@@ -14,6 +14,8 @@ export default function HeroShowBar({
   var partialColor = "bg-orange-600"
   var correctColor = "bg-green-600"
 
+  
+  
 
   return (
     <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg">
