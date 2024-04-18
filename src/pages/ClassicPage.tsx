@@ -8,12 +8,13 @@ import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsChara
 import ClassicSearchBar from "../components/ClassicSearchBar";
 import ClassicTableTitle from "../components/classic/ClassicTableTitle";
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
-import ClassicSidebar from "../components/classic/ClassicSidebar";
+import HeroBank from "../components/classic/HeroBank";
 
 export default function ClassicPage() {
   const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
   const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>([]);
   const [todayCharacter, setTodayCharacter] = useState<MobileLegendsCharacter | undefined>(undefined);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,8 +36,8 @@ export default function ClassicPage() {
 
   return (
     <>
-    <aside className="fixed top-0 right-0 z-40 hidden md:block md:w-60 lg:w-96 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-scroll">
-      <ClassicSidebar />
+    <aside className="fixed top-0 right-0 z-40 hidden md:block md:w-56 lg:w-[30vw] h-screen pt-10 transition-transform -translate-x-full sm:translate-x-0 overflow-y-scroll">
+      <HeroBank />
     </aside>
     <section className="flex flex-col gap-10 items-center">
       <Navbar />
@@ -50,6 +51,13 @@ export default function ClassicPage() {
         ))}
       </div>
       <ColorIndicator />
+
+        <div className="flex flex-col md:hidden align-middle mx-auto">
+
+          <div className="text-4xl text-white mb-5">Heroes</div>
+          <HeroBank/>
+        </div>
+
     </section>
     </>
   );

@@ -83,6 +83,10 @@ export default function ClassicInput({
                   <img
                     src={item.imageUrl || undefined}
                     alt=""
+                    onError={({ currentTarget }) => {
+                      currentTarget.src="/noPicture.png";
+                      currentTarget.onerror = null
+                    }}
                     className="max-w-10 max-h-10"
                   />
                   <div className="">{item.name}</div>

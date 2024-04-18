@@ -13,7 +13,10 @@ export default function HeroShowBar({
   return (
     <div className="flex gap-2 z-0">
       <div className="py-4 w-20 h-20 bg-green-500 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
-        <img src={character.imageUrl || undefined} alt="" />
+        <img src={character.imageUrl || undefined} alt="" onError={({ currentTarget }) => {
+                    currentTarget.src="/noPicture.png";
+                    currentTarget.onerror = null
+                }}/>
       </div>
       <div
         className={`py-4 w-20 h-20 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s ${

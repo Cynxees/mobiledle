@@ -6,17 +6,20 @@ import CharacterIcon from "../icons/CharacterIcon";
 
 
 
-export default function ClassicSidebar() {
+export default function HeroBank() {
 
     const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
   
     useEffect(() => {
       const fetchData = async () => {
         const characterData = await useFetchMobileLegendsCharacters();
-        setCharacters(characterData);
+        setCharacters(characterData)
+
       }
 
       fetchData();
+
+
     })
 
 
@@ -24,7 +27,7 @@ export default function ClassicSidebar() {
     return(
 
 
-        <div className="flex flex-row flex-wrap w-full flex-grow-0 flex-shrink-0 gap-5">
+        <div className="flex flex-row flex-wrap w-full flex-grow-0 flex-shrink-0 gap-5  items-center justify-center">
             
             {characters.map((item : MobileLegendsCharacter) => {
                     
