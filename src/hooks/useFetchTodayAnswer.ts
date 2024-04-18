@@ -10,7 +10,7 @@ const useFetchTodayAnswer = async (gamemode : String) => {
     
         const today = new Date();
     
-        const date = today.getDate()-6;
+        const date = today.getDate();
         const month = today.getMonth();
         const year = today.getFullYear();
     

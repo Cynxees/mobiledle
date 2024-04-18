@@ -21,7 +21,7 @@ export default function HeroShowBar({
     <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg">
       
       <div className="absolute w-28 h-28 overflow-hidden animate__animated animate__zoomInRight">
-      <img className="absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" src={character.imageUrl || undefined} alt="" onError={({ currentTarget }) => {
+      <img className="absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
                     currentTarget.src="/noPicture.png";
                     currentTarget.onerror = null
               }}/>

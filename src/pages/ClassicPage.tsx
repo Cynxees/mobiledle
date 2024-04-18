@@ -63,6 +63,7 @@ export default function ClassicPage() {
   return (
     <>
       <aside className={`${showBank ? "lg:block" : "hidden"} fixed top-0 right-0 z-40 justify-end   lg:w-[30vw] max-lg:hidden h-screen overflow-y-scroll`}>
+        
         <HeroBank />
       </aside>
       <section

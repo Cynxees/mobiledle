@@ -119,7 +119,7 @@ export type MobileLegendsCharacter = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  imageUrl?: string
+  imageUrl: string[],
 };
 
 export type UpdateMobileLegendsCharacterInput = {
@@ -387,6 +387,7 @@ export type ListMobileLegendsCharactersQuery = {
   listMobileLegendsCharacters?:  {
     __typename: "ModelMobileLegendsCharacterConnection",
     items:  Array< {
+      imageUrl: string[];
       __typename: "MobileLegendsCharacter",
       id: string,
       name: string,

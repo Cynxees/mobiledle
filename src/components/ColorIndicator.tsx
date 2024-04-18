@@ -12,7 +12,7 @@ export default function ColorIndicator() {
           <p>Incorrect</p>
         </span>
         <span className="flex flex-col items-center">
-          <div className="bg-yellow-400 w-8 h-8"></div>
+          <div className="bg-orange-400 w-8 h-8"></div>
           <p>Partial</p>
         </span>
       </div>
