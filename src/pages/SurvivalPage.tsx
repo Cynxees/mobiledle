@@ -13,15 +13,13 @@ export default function SurvivalPage() {
 
     function startRound(){
 
-        let random = Math.random()*100%characters.length
+        // let random = Math.random()*100%characters.length
 
-        random = 0
+        let random = 0
 
-        setCurrentCharacter(characters[parseInt(random.toString())])
+        setCurrentCharacter(characters[random])
         
         console.log(random)
-
-
 
     }
 
@@ -38,9 +36,19 @@ export default function SurvivalPage() {
         fetchData();
     }, []);
 
+
+    const handleDrag = (e : DragEvent, data : DraggableData) => {
+
+        e.preventDefault()
+        console.log(e)
+        
+
+    }
+
     return (
         <div>
             <Draggable
+                onDrag={handleDrag}
                 axis="x"
                 handle=".handle"
                 defaultPosition={{ x: 0, y: 0 }}
@@ -50,7 +58,7 @@ export default function SurvivalPage() {
                 <div className="handle">
 
                     {currentCharacter?.name}
-                    <img src={currentCharacter?.imageUrl[0]} alt={currentCharacter?.name} draggable={false} />
+                    <img src={currentCharacter?.imageUrl[1]} alt={currentCharacter?.name} draggable={false} />
 
                 </div>
             </Draggable>
