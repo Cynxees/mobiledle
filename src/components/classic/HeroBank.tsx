@@ -29,7 +29,7 @@ export default function HeroBank({ showPopUp } : HeroBankModel) {
     return(
 
 
-        <div className={`flex flex-row flex-wrap w-full  flex-shrink-0 gap-5  items-center justify-center ${showPopUp ? "blur-sm" : "" }`}>
+        <div className={`flex flex-row flex-wrap w-full  flex-shrink-0 gap-5  items-center justify-center ${showPopUp ? "blur-sm" : ""}`}>
             
             {characters.map((item : MobileLegendsCharacter) => {
                     
