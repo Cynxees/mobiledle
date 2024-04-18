@@ -10,9 +10,9 @@ export default function HeroShowBar({
   todayCharacter,
 }: ClassicSearchBarProps) {
 
-  var wrongColor = "bg-red-700"
-  var partialColor = "bg-orange-600"
-  var correctColor = "bg-green-600"
+  var wrongColor = "bg-red-700 text-shadow shadow-black"
+  var partialColor = "bg-orange-600 text-shadow shadow-black"
+  var correctColor = "bg-green-600 text-shadow shadow-black"
 
   
   
