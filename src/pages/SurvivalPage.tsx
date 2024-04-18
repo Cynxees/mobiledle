@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from "../API";
-import Draggable from 'react-draggable';
+import Draggable, {DraggableEventHandler} from 'react-draggable';
+
 
 export default function SurvivalPage() {
     const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
@@ -37,9 +38,8 @@ export default function SurvivalPage() {
     }, []);
 
 
-    const handleDrag = (e : DragEvent, data : DraggableData) => {
+    const handleDrag = (e : DraggableEventHandler) => {
 
-        e.preventDefault()
         console.log(e)
         
 

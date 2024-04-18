@@ -28,7 +28,7 @@ export default function HeroShowBar({
       </div>
       <div className="py-4 w-28 h-28 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
       
-        <img className="z-10" src={character.imageUrl || undefined} alt="" onError={({ currentTarget }) => {
+        <img className="z-10" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
                     currentTarget.src="/noPicture.png";
                     currentTarget.onerror = null
                 }}/>
