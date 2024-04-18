@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import ClassicInput from "../components/classic/ClassicInput";
 import { MobileLegendsCharacter } from "../API";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
-import ClassicSearchBar from "../components/ClassicSearchBar";
 import ClassicTableTitle from "../components/classic/ClassicTableTitle";
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 import HeroBank from "../components/classic/HeroBank";
@@ -70,7 +69,21 @@ export default function ClassicPage() {
     if (isWin) {
       localStorage.setItem("isWin", "true");
     }
+    localStorage.setItem("savedDate", new Date().toLocaleDateString());
   }, [userAnswers, isWin]);
+
+  useEffect(() => {
+    // Check if the data was saved today
+    const savedDate = localStorage.getItem("savedDate");
+    const today = new Date().toLocaleDateString();
+    if (savedDate !== today) {
+      // Clear localStorage if it's a new day
+      localStorage.removeItem("userAnswers");
+      localStorage.removeItem("isWin");
+      // Save the current date as the savedDate
+      localStorage.setItem("savedDate", today);
+    }
+  }, []);
 
   const handleShowBank = () => {
     setShowBank(!showBank)
