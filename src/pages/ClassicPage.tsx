@@ -11,15 +11,29 @@ import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 import HeroBank from "../components/classic/HeroBank";
 import { MdCancel } from "react-icons/md";
 
-
 export default function ClassicPage() {
   const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
-  const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>([]);
+  const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>(
+    () => {
+      const storedData = localStorage.getItem("userAnswers");
+      return storedData ? JSON.parse(storedData) : [];
+    }
+  );
+
   const [todayCharacter, setTodayCharacter] = useState<
     MobileLegendsCharacter | undefined
   >(undefined);
   const [showPopup, setShowPopup] = useState(false);
   const [showBank, setShowBank] = useState(true);
+
+  const [isWin, setIsWin] = useState<boolean>(() => {
+    const storedData = localStorage.getItem("isWin");
+    return storedData === "true"; // Convert the string to boolean
+  });
+
+  const [aliasOptions, setAliasOptions] = useState<MobileLegendsCharacter[]>(
+    []
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +55,8 @@ export default function ClassicPage() {
 
       // Check if dataFromChild matches todayCharacter
       if (dataFromChild.id === todayCharacter?.id) {
+        setIsWin(true);
+        localStorage.setItem("isWin", "true");
         setTimeout(() => {
           setShowPopup(true);
         }, 3650);
@@ -48,13 +64,17 @@ export default function ClassicPage() {
     }
   };
 
+  useEffect(() => {
+    localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
+    localStorage.setItem("isWin", "false");
+    if (isWin) {
+      localStorage.setItem("isWin", "true");
+    }
+  }, [userAnswers, isWin]);
+
   const handleShowBank = () => {
     setShowBank(!showBank)
   }
-
-  const handlePopupToggle = () => {
-    setShowPopup((prev) => !prev);
-  };
 
   const handleCancelClick = () => {
     setShowPopup(false); // Close the popup
@@ -63,8 +83,7 @@ export default function ClassicPage() {
   return (
     <>
       <aside className={`${showBank ? "lg:block" : "hidden"} fixed top-0 right-0 z-40 justify-end   lg:w-[30vw] max-lg:hidden h-screen overflow-y-scroll`}>
-        
-        <HeroBank />
+        <HeroBank showPopUp={showPopup}/>
       </aside>
       <section
         className={`flex flex-col gap-5 items-center ${
@@ -72,16 +91,19 @@ export default function ClassicPage() {
         }`}
       >
         <Navbar />
-        <ClassicInput
-          characters={characters}
-          onDataFromChild={handleChildData}
-        />
+        {!isWin && (
+          <ClassicInput
+            characters={characters}
+            onDataFromChild={handleChildData}
+          />
+        )}
+
         <label className="inline-flex items-center cursor-pointer">
           <input type="checkbox" className="sr-only peer" onChange={handleShowBank} />
           <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
           <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Mythical IMMORTAL 😎 Mode</span>
         </label>
-        
+
         <ClassicTableTitle />
         <div className="flex flex-col gap-5 mb-16">
           {userAnswers.map((character, index) => (
@@ -95,10 +117,17 @@ export default function ClassicPage() {
         </div>
         <ColorIndicator />
       </section>
-      <div className={`${showBank ? "block" : "hidden"} flex flex-col lg:hidden align-middle mx-auto`}>
-
-          <div className="text-4xl text-white mb-5">Heroes</div>
-          <HeroBank/>
+      <div
+        className={`${
+          showBank ? "block" : "hidden"
+        } flex flex-col lg:hidden align-middle mx-auto`}
+      >
+        <div
+          className={`text-4xl text-white mb-5 ${showPopup ? "blur-sm" : ""}`}
+        >
+          Heroes
+        </div>
+        <HeroBank showPopUp={showPopup} />
       </div>
       {showPopup && (
         <div
@@ -110,7 +139,14 @@ export default function ClassicPage() {
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Congratulations
               </h3>
-              <MdCancel onClick={handleCancelClick} className="text-3xl"/>
+              <MdCancel onClick={handleCancelClick} className="text-3xl" />
+            </div>
+            <div className="user-guess-alias">
+              <div className="user-guess-alias">
+                {aliasOptions.map((hero, index) => (
+                  <div key={index}>{hero.alias}</div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
