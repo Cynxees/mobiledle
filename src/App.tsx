@@ -4,6 +4,7 @@ import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import ClassicPage from "./pages/ClassicPage";
 import DevPage from "./pages/DevPage";
+import 'animate.css';
 
 function App() {
   return (

@@ -11,26 +11,19 @@ import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 
 export default function ClassicPage() {
   const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
-
   const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>([]);
-
-  const [todayCharacter, setTodayCharacter] = useState<
-    MobileLegendsCharacter | undefined
-  >(undefined);
+  const [todayCharacter, setTodayCharacter] = useState<MobileLegendsCharacter | undefined>(undefined);
 
   useEffect(() => {
-    const getCharacters = async () => {
+    const fetchData = async () => {
       const characterData = await useFetchMobileLegendsCharacters();
       setCharacters(characterData);
-    };
 
-    const getTodayCharacter = async () => {
       const result = await useFetchTodayAnswer("CLASSIC");
       setTodayCharacter(result);
     };
 
-    getCharacters();
-    getTodayCharacter();
+    fetchData();
   }, []);
 
   const handleChildData = (dataFromChild: MobileLegendsCharacter) => {
@@ -42,17 +35,15 @@ export default function ClassicPage() {
   return (
     <section className="flex flex-col gap-10 items-center">
       <Navbar />
-      <ClassicInput
-        characters={characters}
-        onDataFromChild={handleChildData}
-      ></ClassicInput>
+      <ClassicInput characters={characters} onDataFromChild={handleChildData} />
       <ClassicTableTitle />
-      {userAnswers
-        ?.slice()
-        .reverse()
-        .map((character, index) => (
-          <HeroShowBar key={index} character={character} todayCharacter={todayCharacter}/>
+      <div className="flex flex-col gap-5">
+        {userAnswers.map((character, index) => (
+          <div key={index} style={{ order: userAnswers.length - index }}>
+            <HeroShowBar character={character} todayCharacter={todayCharacter} />
+          </div>
         ))}
+      </div>
       <ColorIndicator />
     </section>
   );

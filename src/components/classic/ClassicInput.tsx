@@ -1,5 +1,5 @@
 import { GoPaperAirplane } from "react-icons/go";
-import { MobileLegendsCharacter } from '../../API';
+import { MobileLegendsCharacter } from "../../API";
 import { useState } from "react";
 
 interface ClassicSearchBarProps {
@@ -7,29 +7,32 @@ interface ClassicSearchBarProps {
   onDataFromChild: (data: MobileLegendsCharacter) => void;
 }
 
-export default function ClassicInput({ characters, onDataFromChild }: ClassicSearchBarProps) {
+export default function ClassicInput({
+  characters,
+  onDataFromChild,
+}: ClassicSearchBarProps) {
   const [prefix, setPrefix] = useState("");
   const [suggestions, setSuggestions] = useState<MobileLegendsCharacter[]>([]);
 
-  const findCharacterBasedOnName =  (name : String) => {
-
-    const foundCharacter = characters.find((c) => c.name.toLowerCase() === name.toLowerCase());
+  const findCharacterBasedOnName = (name: String) => {
+    const foundCharacter = characters.find(
+      (c) => c.name.toLowerCase() === name.toLowerCase()
+    );
     if (foundCharacter) {
       onDataFromChild(foundCharacter);
     } else {
       // Handle case when character is not found
       console.log(`Character with name ${name} not found.`);
     }
-
-  }
+  };
 
   const onInput = (e: React.FormEvent<HTMLInputElement>) => {
     var value = e.currentTarget.value;
 
     setPrefix(value);
-    
-    value = value.toLowerCase()
-    
+
+    value = value.toLowerCase();
+
     const newSuggestions = characters
       .filter((c) => c.name.toLowerCase().startsWith(value))
       .map((c) => c);
@@ -44,17 +47,16 @@ export default function ClassicInput({ characters, onDataFromChild }: ClassicSea
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       findCharacterBasedOnName(suggestions[0].name);
-      setPrefix("")
-      setSuggestions([])
+      setPrefix("");
+      setSuggestions([]);
     }
   };
 
   const handleSuggestionClick = (suggestion: string) => {
     setPrefix(suggestion);
     findCharacterBasedOnName(suggestion);
-    setSuggestions([])
+    setSuggestions([]);
   };
-
 
   return (
     <>
@@ -70,15 +72,21 @@ export default function ClassicInput({ characters, onDataFromChild }: ClassicSea
             onChange={onInput}
             onKeyPress={handleKeyPress}
           />
-          <div className="absolute top-12 w-full">
+          <div className="absolute top-12 w-full z-20">
             {suggestions.map((item: MobileLegendsCharacter) => (
               <li
-                key="item"
+                key={item.id}
                 className="bg-[#3b3b3b] w-full list-none py-2 border-white border text-[#e8dca4] cursor-pointer"
                 onClick={() => handleSuggestionClick(item.name)}
               >
-                <img src={item.imageUrl} alt="" />
-                {item.name}
+                <div className="flex items-center px-2 gap-3">
+                  <img
+                    src={item.imageUrl || undefined}
+                    alt=""
+                    className="max-w-10 max-h-10"
+                  />
+                  <div className="">{item.name}</div>
+                </div>
               </li>
             ))}
           </div>
