@@ -16,6 +16,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --animate-duration: 0.7s;
+  --animate-delay: 0.5s;
 }
 
 @layer base {

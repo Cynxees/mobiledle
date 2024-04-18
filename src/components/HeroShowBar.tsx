@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { MobileLegendsCharacter } from "../API";
 
 interface ClassicSearchBarProps {
