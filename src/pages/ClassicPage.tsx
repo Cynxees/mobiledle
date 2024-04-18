@@ -56,7 +56,7 @@ export default function ClassicPage() {
 
   return (
     <>
-      <aside className="fixed top-0 right-0 z-40 hidden md:block md:w-60 lg:w-96 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-scroll">
+      <aside className="fixed top-0 right-0 z-40 hidden md:block md:w-60 lg:w-[30vw] h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-scroll">
         <HeroBank />
       </aside>
       <section
