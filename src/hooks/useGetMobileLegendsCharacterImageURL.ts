@@ -10,14 +10,25 @@ Amplify.configure(amplifyconfig);
 const useGetMobileLegendsCharacterImageURL = async (character: MobileLegendsCharacter) => {
 
 
-    const getUrlResult = await getUrl({
+    let getUrlResult = await getUrl({
         key: "heroes/icons/"+character.id,
         options: {
           accessLevel: 'guest'  
         },
     });
 
-    return getUrlResult.url.href.toString()
+    let iconImage = getUrlResult.url.href.toString()
+
+    getUrlResult = await getUrl({
+      key: "heroes/cards/"+character.id,
+      options: {
+        accessLevel: 'guest'  
+      },
+    });
+
+    let cardImage = getUrlResult.url.href.toString()
+
+    return [iconImage, cardImage]
 
 };
 

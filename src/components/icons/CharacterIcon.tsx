@@ -12,7 +12,7 @@ export default function CharacterIcon({
     return(
 
         <div className="flex flex-col h-50">
-            <img src={character.imageUrl} alt="" className="max-w-[100px]" onError={({ currentTarget }) => {
+            <img src={character.imageUrl[0]} alt="" className="max-w-[100px]" onError={({ currentTarget }) => {
                     currentTarget.src="/noPicture.png";
                     currentTarget.onerror = null
                 }}/>

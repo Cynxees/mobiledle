@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage";
 import ClassicPage from "./pages/ClassicPage";
 import DevPage from "./pages/DevPage";
 import 'animate.css';
+import SurvivalPage from "./pages/SurvivalPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="" element={<LandingPage />} />
             <Route path="classic" element={<ClassicPage />} />
             <Route path="dev" element={<DevPage />} />
+            <Route path="survival" element={<SurvivalPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

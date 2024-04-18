@@ -1,4 +1,4 @@
-import { GoPaperAirplane } from "react-icons/go";
+import { GoArrowDownRight, GoArrowRight, GoPaperAirplane } from "react-icons/go";
 import { MobileLegendsCharacter } from "../../API";
 import { useState } from "react";
 
@@ -60,11 +60,11 @@ export default function ClassicInput({
 
   return (
     <>
-      <div className="flex items-center gap-4 bg-[#B88851] rounded-md ps-1 pr-3 w-96">
+      <div className="flex items-center gap-4 bg-gradient-to-tr from-[#dccd8c] to-[#caa172] rounded-md ps-2 pr-3 w-96">
         <div className="relative w-full">
           <input
             type="text"
-            className="my-1 h-10 pl-3 w-full rounded-md outline-none"
+            className="my-2 h-10 pl-3 w-full rounded-md outline-none bg-[#0b1e34] text-gray-100"
             id="search-bar-classic"
             autoComplete="off"
             placeholder="Heroes"
@@ -76,12 +76,12 @@ export default function ClassicInput({
             {suggestions.map((item: MobileLegendsCharacter) => (
               <li
                 key={item.id}
-                className="bg-[#1f1f1f] w-full list-none py-2 border-t-[1px] border-t-gray-700 text-[#e8dca4] cursor-pointer"
+                className="bg-[#caa172] w-full list-none py-2 border-t-[1px] border-t-gray-700 text-[#e8dca4] cursor-pointer"
                 onClick={() => handleSuggestionClick(item.name)}
               >
                 <div className="flex items-center px-2 gap-3">
                   <img
-                    src={item.imageUrl || undefined}
+                    src={item.imageUrl[0] || undefined}
                     alt=""
                     onError={({ currentTarget }) => {
                       currentTarget.src="/noPicture.png";
@@ -96,7 +96,7 @@ export default function ClassicInput({
           </div>
         </div>
 
-        <GoPaperAirplane className="text-4xl cursor-pointer" />
+        <GoArrowRight size="30px" color="" className="text-4xl cursor-pointer font-extrabold" />
       </div>
     </>
   );

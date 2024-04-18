@@ -55,7 +55,7 @@ export default function DevPage(){
 
                     return <li key="{item.id}">
                          
-                         <img src={item.imageUrl} alt=""/>
+                         <img src={item.imageUrl[0]} alt=""/>
                          {item.id}: {item.name}, {item.alias}
                          
                          </li>
