@@ -119,7 +119,7 @@ export type MobileLegendsCharacter = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  imageUrl?: string | null
+  imageUrl?: string
 };
 
 export type UpdateMobileLegendsCharacterInput = {

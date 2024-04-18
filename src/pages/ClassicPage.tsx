@@ -8,6 +8,7 @@ import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsChara
 import ClassicSearchBar from "../components/ClassicSearchBar";
 import ClassicTableTitle from "../components/classic/ClassicTableTitle";
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
+import ClassicSidebar from "../components/classic/ClassicSidebar";
 
 export default function ClassicPage() {
   const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
@@ -33,6 +34,10 @@ export default function ClassicPage() {
   };
 
   return (
+    <>
+    <aside className="fixed top-0 right-0 z-40 hidden md:block md:w-60 lg:w-96 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-scroll">
+      <ClassicSidebar />
+    </aside>
     <section className="flex flex-col gap-10 items-center">
       <Navbar />
       <ClassicInput characters={characters} onDataFromChild={handleChildData} />
@@ -46,5 +51,6 @@ export default function ClassicPage() {
       </div>
       <ColorIndicator />
     </section>
+    </>
   );
 }
