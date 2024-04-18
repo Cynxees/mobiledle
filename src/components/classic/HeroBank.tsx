@@ -4,9 +4,11 @@ import { MobileLegendsCharacter } from "../../API";
 import useFetchMobileLegendsCharacters from "../../hooks/useFetchMobileLegendsCharacters";
 import CharacterIcon from "../icons/CharacterIcon";
 
+interface HeroBankModel {
+    showPopUp: boolean
+  }
 
-
-export default function HeroBank() {
+export default function HeroBank({ showPopUp } : HeroBankModel) {
 
     const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
   
@@ -27,7 +29,7 @@ export default function HeroBank() {
     return(
 
 
-        <div className="flex flex-row flex-wrap w-full  flex-shrink-0 gap-5  items-center justify-center">
+        <div className={`flex flex-row flex-wrap w-full  flex-shrink-0 gap-5  items-center justify-center ${showPopUp ? "blur-sm" : "" }`}>
             
             {characters.map((item : MobileLegendsCharacter) => {
                     
