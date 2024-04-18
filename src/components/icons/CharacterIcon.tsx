@@ -17,7 +17,6 @@ export default function CharacterIcon({
                     currentTarget.onerror = null
                 }}/>
             <div>{character.name}</div>
-            <div className="text-xs text-gray-400">{character.lane}</div>
         </div>
 
     )

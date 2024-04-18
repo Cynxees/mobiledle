@@ -62,7 +62,7 @@ export default function ClassicPage() {
 
   return (
     <>
-      <aside className={`${showBank ? "md:block" : "hidden"} fixed top-0 right-0 z-40 justify-end hidden  md:w-60 lg:w-[30vw] h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-scroll`}>
+      <aside className={`${showBank ? "lg:block" : "hidden"} fixed top-0 right-0 z-40 justify-end   lg:w-[30vw] max-lg:hidden h-screen overflow-y-scroll`}>
         <HeroBank />
       </aside>
       <section
@@ -94,7 +94,7 @@ export default function ClassicPage() {
         </div>
         <ColorIndicator />
       </section>
-      <div className={`${showBank ? "block" : "hidden"} flex flex-col md:hidden align-middle mx-auto`}>
+      <div className={`${showBank ? "block" : "hidden"} flex flex-col lg:hidden align-middle mx-auto`}>
 
           <div className="text-4xl text-white mb-5">Heroes</div>
           <HeroBank/>
