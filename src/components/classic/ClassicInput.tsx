@@ -60,7 +60,7 @@ export default function ClassicInput({
 
   return (
     <>
-      <div className="flex items-center gap-4 bg-[#B88851] rounded-md px-2 w-96">
+      <div className="flex items-center gap-4 bg-[#B88851] rounded-md ps-1 pr-3 w-96">
         <div className="relative w-full">
           <input
             type="text"
@@ -72,11 +72,11 @@ export default function ClassicInput({
             onChange={onInput}
             onKeyPress={handleKeyPress}
           />
-          <div className="absolute top-12 w-full z-20">
+          <div className={`${suggestions.length<4 ? "" : "overflow-y-scroll" } absolute top-12 w-full z-20 max-h-52`}>
             {suggestions.map((item: MobileLegendsCharacter) => (
               <li
                 key={item.id}
-                className="bg-[#3b3b3b] w-full list-none py-2 border-white border text-[#e8dca4] cursor-pointer"
+                className="bg-[#1f1f1f] w-full list-none py-2 border-t-[1px] border-t-gray-700 text-[#e8dca4] cursor-pointer"
                 onClick={() => handleSuggestionClick(item.name)}
               >
                 <div className="flex items-center px-2 gap-3">

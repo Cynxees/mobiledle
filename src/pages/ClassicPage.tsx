@@ -11,13 +11,15 @@ import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 import HeroBank from "../components/classic/HeroBank";
 import { MdCancel } from "react-icons/md";
 
+
 export default function ClassicPage() {
   const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
   const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>([]);
   const [todayCharacter, setTodayCharacter] = useState<
     MobileLegendsCharacter | undefined
   >(undefined);
-  const [showPopup, setShowPopup] = useState(false); // State for showing/hiding popup
+  const [showPopup, setShowPopup] = useState(false);
+  const [showBank, setShowBank] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +48,10 @@ export default function ClassicPage() {
     }
   };
 
+  const handleShowBank = () => {
+    setShowBank(!showBank)
+  }
+
   const handlePopupToggle = () => {
     setShowPopup((prev) => !prev);
   };
@@ -56,11 +62,11 @@ export default function ClassicPage() {
 
   return (
     <>
-      <aside className="fixed top-0 right-0 z-40 hidden md:block md:w-60 lg:w-[30vw] h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-scroll">
+      <aside className={`${showBank ? "md:block" : "hidden"} fixed top-0 right-0 z-40 justify-end hidden  md:w-60 lg:w-[30vw] h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-scroll`}>
         <HeroBank />
       </aside>
       <section
-        className={`flex flex-col gap-10 items-center ${
+        className={`flex flex-col gap-5 items-center ${
           showPopup ? "blur-sm" : ""
         }`}
       >
@@ -69,8 +75,14 @@ export default function ClassicPage() {
           characters={characters}
           onDataFromChild={handleChildData}
         />
+        <label className="inline-flex items-center cursor-pointer">
+          <input type="checkbox" className="sr-only peer" onChange={handleShowBank} />
+          <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
+          <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Mythical IMMORTAL 😎 Mode</span>
+        </label>
+        
         <ClassicTableTitle />
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 mb-16">
           {userAnswers.map((character, index) => (
             <div key={index} style={{ order: userAnswers.length - index }}>
               <HeroShowBar
@@ -82,11 +94,11 @@ export default function ClassicPage() {
         </div>
         <ColorIndicator />
       </section>
-      <div className="flex flex-col md:hidden align-middle mx-auto">
+      <div className={`${showBank ? "block" : "hidden"} flex flex-col md:hidden align-middle mx-auto`}>
 
           <div className="text-4xl text-white mb-5">Heroes</div>
           <HeroBank/>
-        </div>
+      </div>
       {showPopup && (
         <div
           id="info-popup"

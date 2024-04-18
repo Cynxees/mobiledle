@@ -10,9 +10,14 @@ export default function HeroShowBar({
   todayCharacter,
 }: ClassicSearchBarProps) {
 
+  var wrongColor = "bg-red-700"
+  var partialColor = "bg-orange-600"
+  var correctColor = "bg-green-600"
+
+
   return (
-    <div className="flex gap-2 z-0">
-      <div className="py-4 w-20 h-20 bg-green-500 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
+    <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg">
+      <div className="py-4 w-20 h-20 border-white border-2 bg-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
         <img src={character.imageUrl || undefined} alt="" onError={({ currentTarget }) => {
                     currentTarget.src="/noPicture.png";
                     currentTarget.onerror = null
@@ -21,19 +26,19 @@ export default function HeroShowBar({
       <div
         className={`py-4 w-20 h-20 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s ${
           character.gender === todayCharacter?.gender
-            ? "bg-green-500"
-            : "bg-red-400"
+            ? correctColor
+            : wrongColor
         } `}
       >
         {character.gender}
       </div>
       <div
-        className={`py-4 w-20 h-20 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-2s ${
+        className={`py-4 w-20 h-20 font-extrabold border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-2s ${
           character.role === todayCharacter?.role
-            ? "bg-green-500"
+            ? correctColor
             : character?.role?.includes(todayCharacter?.role || "")
-              ? "bg-yellow-400" // Apply yellow if character's role is a subset of todayCharacter's role
-              : "bg-red-400"
+              ? partialColor
+              : wrongColor
         }`}
       >
         {character.role?.replace("/", " , ")}
@@ -41,10 +46,10 @@ export default function HeroShowBar({
       <div
         className={`py-4 w-20 h-20 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-3s ${
           character.lane === todayCharacter?.lane
-            ? "bg-green-500"
+            ? correctColor
             : character?.lane?.includes(todayCharacter?.lane || "")
-              ? "bg-yellow-400" // Apply yellow if character's lane is a subset of todayCharacter's lane
-              : "bg-red-400"
+              ? partialColor
+              : wrongColor
         }`}
       >
         {character.lane?.replace("/", " , ")}
@@ -53,8 +58,8 @@ export default function HeroShowBar({
       <div
         className={`py-4 w-20 h-20 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-4s ${
           character.region === todayCharacter?.region
-            ? "bg-green-500"
-            : "bg-red-400"
+            ? correctColor
+            : wrongColor
         }`}
       >
         {character.region}
@@ -62,8 +67,8 @@ export default function HeroShowBar({
       <div
         className={`py-4 w-20 h-20 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-5s ${
           character.year === todayCharacter?.year
-            ? "bg-green-500"
-            : "bg-red-400"
+            ? correctColor
+            : wrongColor
         }`}
       >
         {character.year}
