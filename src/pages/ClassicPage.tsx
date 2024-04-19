@@ -30,7 +30,7 @@ export default function ClassicPage() {
     MobileLegendsCharacter | undefined
   >(undefined);
   const [showPopup, setShowPopup] = useState(false);
-  const [showBank, setShowBank] = useState(false);
+  const [showBank, setShowBank] = useState(true);
   const [userPredict, setUserPredict] = useState<userGuess>({
     isClicked: false,
     isCorrect: false,
@@ -127,6 +127,8 @@ export default function ClassicPage() {
   const handleCancelClick = () => {
     setShowPopup(false); // Close the popup
   };
+
+  if (characters.length < 1) return <div>Loading...</div>;
 
   return (
     <>

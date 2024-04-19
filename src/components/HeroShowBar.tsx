@@ -14,7 +14,34 @@ export default function HeroShowBar({
   var partialColor = "bg-orange-600 text-shadow shadow-gray-700 w-28 h-28"
   var correctColor = "bg-green-600 text-shadow shadow-gray-700 w-28 h-28"
 
+  if(!todayCharacter) return
+
+  var characterLanes = character.lane.split('/')
+  var todayCharacterLanes = todayCharacter.lane.split('/')
+  var laneIsPartial = false
+
+
+  console.log(characterLanes.sort((a,b) => a>b ? 1 : -1))
+  console.log(todayCharacterLanes.sort((a,b) => a>b ? 1 : -1))
+
+  characterLanes.forEach(lane => {
+    
+
+    todayCharacterLanes.forEach(todayLane => {
+
+
+      console.log('checking ', lane, ' || ', todayLane)
+      
+      if(lane == todayLane){
+
+        laneIsPartial = true
+        
+      }
+
+    })
   
+  })
+
   
 
   return (
@@ -55,9 +82,9 @@ export default function HeroShowBar({
       </div>
       <div
         className={`py-4 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-3s ${
-          character.lane === todayCharacter?.lane
+          todayCharacterLanes.sort((a,b) => a>b ? 1 : -1).every(e => characterLanes.includes(e) )
             ? correctColor
-            : character?.lane?.includes(todayCharacter?.lane || "")
+            : laneIsPartial
               ? partialColor
               : wrongColor
         }`}
