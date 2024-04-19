@@ -27,6 +27,12 @@ export default function ClassicPage() {
   const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>(
     () => {
       const storedData = localStorage.getItem("userAnswers");
+       //check if now is a new day
+    const savedDate = localStorage.getItem("savedDate");
+    const today = new Date().toLocaleDateString();
+    if (savedDate !== today) {
+      return []
+    }
       return storedData ? JSON.parse(storedData) : [];
     }
   );
@@ -48,6 +54,12 @@ export default function ClassicPage() {
 
   const [isWin, setIsWin] = useState<boolean>(() => {
     const storedData = localStorage.getItem("isWin");
+     //check if now is a new day
+     const savedDate = localStorage.getItem("savedDate");
+     const today = new Date().toLocaleDateString();
+     if (savedDate !== today) {
+       return false
+     }
     return storedData === "true"; // Convert the string to boolean
   });
 
@@ -95,14 +107,7 @@ export default function ClassicPage() {
 
   //local storage init
   useEffect(() => {
-    //check if now is a new day
-    const savedDate = localStorage.getItem("savedDate");
-    const today = new Date().toLocaleDateString();
-    if (savedDate !== today) {
-      localStorage.removeItem("userAnswers");
-      localStorage.removeItem("isWin");
-      localStorage.setItem("savedDate", today);
-    }
+   
 
     // make sure that the item is in the local storage
     localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
