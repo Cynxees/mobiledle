@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from "../API";
-import Draggable from 'react-draggable';
+import Draggable, {DraggableEvent, DraggableData} from 'react-draggable';
+
 
 export default function SurvivalPage() {
     const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
@@ -9,6 +10,7 @@ export default function SurvivalPage() {
     const [score, setScore] = useState(0);
     const [correctPrompt, setCorrectPrompt] = useState("")
     const [incorrectPrompt, setIncorrectPrompt] = useState("")
+    const [characterRotation, setCharactersRotation] = useState(0)
 
 
     function startRound(){
@@ -25,22 +27,31 @@ export default function SurvivalPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const characterData = await useFetchMobileLegendsCharacters();
-            setCharacters(characterData);
+            const characterData = await useFetchMobileLegendsCharacters().then( c=> {
+
+                console.log("setting characters")
+                setCharacters(c)
+                setCurrentCharacter(c[0])
+                startRound()
+            }
+
+            );
             
-            startRound()
             
 
         };
 
-        fetchData();
+        fetchData()
     }, []);
 
 
-    const handleDrag = (e : DragEvent, data : DraggableData) => {
+    const handleDrag = (e : DraggableEvent, data : DraggableData) => {
 
-        e.preventDefault()
-        console.log(e)
+        setCharactersRotation(data.lastX*2)
+        
+        console.log(characterRotation)
+
+        
         
 
     }
@@ -58,7 +69,7 @@ export default function SurvivalPage() {
                 <div className="handle">
 
                     {currentCharacter?.name}
-                    <img src={currentCharacter?.imageUrl[1]} alt={currentCharacter?.name} draggable={false} />
+                    <img className={`${"rotate-" + characterRotation.toString()}`} src={currentCharacter?.imageUrl[1]} alt={currentCharacter?.name} draggable={false} />
 
                 </div>
             </Draggable>
