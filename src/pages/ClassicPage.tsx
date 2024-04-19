@@ -12,12 +12,16 @@ import { TiTick } from "react-icons/ti";
 import { MdCancel } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 
+import { useTranslation } from "react-i18next";
+
 interface userGuess {
   isCorrect: boolean;
   isClicked: boolean;
 }
 
 export default function ClassicPage() {
+  const { t } = useTranslation();
+
   const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
   const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>(
     () => {
@@ -29,8 +33,13 @@ export default function ClassicPage() {
   const [todayCharacter, setTodayCharacter] = useState<
     MobileLegendsCharacter | undefined
   >(undefined);
+
   const [showPopup, setShowPopup] = useState(false);
   const [showBank, setShowBank] = useState(true);
+  const [totalWins, setTotalWins] = useState<number>(() => {
+    return parseInt(localStorage.getItem("totalWins"))
+  })
+
   const [userPredict, setUserPredict] = useState<userGuess>({
     isClicked: false,
     isCorrect: false,
@@ -45,6 +54,7 @@ export default function ClassicPage() {
     []
   );
 
+  //fetching character and todayCharacter
   useEffect(() => {
     const fetchData = async () => {
       const characterData = await useFetchMobileLegendsCharacters();
@@ -57,6 +67,7 @@ export default function ClassicPage() {
     fetchData();
   }, []);
 
+  //alias option function
   useEffect(() => {
     if (!todayCharacter || todayCharacter.id === undefined) {
       console.log("todayCharacter or its id is undefined.");
@@ -79,7 +90,9 @@ export default function ClassicPage() {
     setAliasOptions(initialOptions);
 }, [todayCharacter]);
 
+  //local storage init
   useEffect(() => {
+    //check if now is a new day
     const savedDate = localStorage.getItem("savedDate");
     const today = new Date().toLocaleDateString();
     if (savedDate !== today) {
@@ -87,14 +100,18 @@ export default function ClassicPage() {
       localStorage.removeItem("isWin");
       localStorage.setItem("savedDate", today);
     }
+
+    // make sure that the item is in the local storage
     localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
     localStorage.setItem("isWin", "false");
     if (isWin) {
       localStorage.setItem("isWin", "true");
     }
     localStorage.setItem("savedDate", new Date().toLocaleDateString());
-  }, [userAnswers, isWin]);
+    localStorage.setItem("totalWins", totalWins.toString())
+  }, [userAnswers, isWin, totalWins]);
 
+  //userAnswer function
   const handleChildData = (dataFromChild: MobileLegendsCharacter) => {
     if (dataFromChild != null) {
       setUserAnswers((prevAnswers) => [...prevAnswers, dataFromChild]);
@@ -105,6 +122,8 @@ export default function ClassicPage() {
       if (dataFromChild.id === todayCharacter?.id) {
         setIsWin(true);
         localStorage.setItem("isWin", "true");
+        setTotalWins(prevTotalWins => prevTotalWins + 1);
+        localStorage.setItem("totalWins", (totalWins).toString())
         setTimeout(() => {
           setShowPopup(true);
         }, 3630);
@@ -125,7 +144,7 @@ export default function ClassicPage() {
   };
 
   const handleCancelClick = () => {
-    setShowPopup(false); // Close the popup
+    setShowPopup(false); 
   };
 
   if (characters.length < 1) return <div>Loading...</div>;
@@ -151,7 +170,7 @@ export default function ClassicPage() {
             onDataFromChild={handleChildData}
           />
         )}
-
+        <div>{t`Total Wins`} : {totalWins}</div>
         <label className="inline-flex items-center cursor-pointer">
           <input
             type="checkbox"

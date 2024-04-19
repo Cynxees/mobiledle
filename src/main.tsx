@@ -4,6 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from './amplifyconfiguration.json';
+import './i18n';
 
 Amplify.configure(amplifyconfig);
 
