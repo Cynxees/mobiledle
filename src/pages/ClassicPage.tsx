@@ -23,14 +23,14 @@ export default function ClassicPage() {
     MobileLegendsCharacter | undefined
   >(undefined);
   const [showPopup, setShowPopup] = useState(false);
-  const [showBank, setShowBank] = useState(true);
+  const [showBank, setShowBank] = useState(false);
 
   const [isWin, setIsWin] = useState<boolean>(() => {
     const storedData = localStorage.getItem("isWin");
     return storedData === "true"; // Convert the string to boolean
   });
 
-  const [aliasOptions, setAliasOptions] = useState<MobileLegendsCharacter[]>(
+  const [aliasOptions, setAliasOptions] = useState<MobileLegendsCharacter[] >(
     []
   );
 
@@ -41,27 +41,16 @@ export default function ClassicPage() {
 
       const result = await useFetchTodayAnswer("CLASSIC");
       setTodayCharacter(result);
+      if(todayCharacter != undefined){
+        setAliasOptions([todayCharacter, characters[10], characters[12]])
+      }
+      
     };
 
     fetchData();
   }, []);
 
-  const handleChildData = (dataFromChild: MobileLegendsCharacter) => {
-    if (dataFromChild != null) {
-      setUserAnswers((prevAnswers) => [...prevAnswers, dataFromChild]);
-
-      console.log(dataFromChild, todayCharacter);
-
-      // Check if dataFromChild matches todayCharacter
-      if (dataFromChild.id === todayCharacter?.id) {
-        setIsWin(true);
-        localStorage.setItem("isWin", "true");
-        setTimeout(() => {
-          setShowPopup(true);
-        }, 3650);
-      }
-    }
-  };
+  
 
   useEffect(() => {
     localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
@@ -85,6 +74,25 @@ export default function ClassicPage() {
     }
   }, []);
 
+  const handleChildData = (dataFromChild: MobileLegendsCharacter) => {
+    if (dataFromChild != null) {
+      setUserAnswers((prevAnswers) => [...prevAnswers, dataFromChild]);
+
+      console.log(dataFromChild, todayCharacter);
+
+      // Check if dataFromChild matches todayCharacter
+      if (dataFromChild.id === todayCharacter?.id) {
+        setIsWin(true);
+        localStorage.setItem("isWin", "true");
+        setTimeout(() => {
+          setShowPopup(true);
+        }, 3650);
+      }
+    }
+  };
+
+ 
+
   const handleShowBank = () => {
     setShowBank(!showBank)
   }
@@ -95,7 +103,7 @@ export default function ClassicPage() {
 
   return (
     <>
-      <aside className={`${showBank ? "lg:block" : "hidden"} fixed top-0 right-0 z-40 justify-end   lg:w-[30vw] max-lg:hidden h-screen overflow-y-scroll`}>
+      <aside className={`${showBank ? "lg:block" : "hidden"} fixed top-0 right-0 z-40 justify-end lg:w-[22vw] max-lg:hidden h-screen overflow-y-scroll`}>
         <HeroBank showPopUp={showPopup}/>
       </aside>
       <section
@@ -150,16 +158,15 @@ export default function ClassicPage() {
           <div className="relative p-4 rounded-lg dark:bg-[#B88851]">
             <div className="flex gap-3 justify-center items-center">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Congratulations
+                Hylos Alias(2x point if correct)
               </h3>
-              <MdCancel onClick={handleCancelClick} className="text-3xl" />
+              {/* <MdCancel onClick={handleCancelClick} className="text-3xl" /> */}
             </div>
-            <div className="user-guess-alias">
-              <div className="user-guess-alias">
+            <div className="user-guess-alias flex flex-col gap-2 mt-4">
                 {aliasOptions.map((hero, index) => (
-                  <div key={index}>{hero.alias}</div>
+                  <div key={index} className="border-2 border-white py-3 cursor-pointer">{hero.alias}</div>
                 ))}
-              </div>
+              
             </div>
           </div>
         </div>
