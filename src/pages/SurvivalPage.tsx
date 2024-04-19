@@ -3,10 +3,11 @@ import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsChara
 import { MobileLegendsCharacter } from "../API";
 import Draggable, {DraggableEvent, DraggableData, ControlPosition} from 'react-draggable';
 import preloadImage from "../components/utils/preloadImage";
+import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
 
 
 export default function SurvivalPage() {
-    const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
+    const { characters, isLoading } = useMobileLegendsCharacters();
     const [currentCharacter, setCurrentCharacter] = useState<MobileLegendsCharacter>();
     const [countdown, setCountdown] = useState(14);
     const [score, setScore] = useState(0);
@@ -53,12 +54,14 @@ export default function SurvivalPage() {
 
 
     useEffect(() => {
+
+        if(isLoading) return
+        
         const fetchData = async () => {
-            const characterData = await useFetchMobileLegendsCharacters()
 
             console.log("setting characters")
             const imagesPromiseList: Promise<any>[] = []
-            characterData.forEach(c =>{
+            characters.forEach(c =>{
 
                 console.log(c.imageUrl)
                 imagesPromiseList.push(preloadImage(c.imageUrl[0]))
@@ -69,8 +72,7 @@ export default function SurvivalPage() {
 
             await Promise.all(imagesPromiseList)
 
-            setCurrentCharacter(characterData[0])
-            setCharacters(characterData)
+            setCurrentCharacter(characters[0])
             setCountdownActive(true)
             setIsAllLoaded(true)
             
@@ -78,7 +80,7 @@ export default function SurvivalPage() {
         };
 
         fetchData()
-    }, []);
+    }, [isLoading]);
 
     useEffect(() => {
     

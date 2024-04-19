@@ -13,6 +13,7 @@ import { MdCancel } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 
 import { useTranslation } from "react-i18next";
+import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
 
 interface userGuess {
   isCorrect: boolean;
@@ -22,7 +23,7 @@ interface userGuess {
 export default function ClassicPage() {
   const { t } = useTranslation();
 
-  const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
+  const { characters, isLoading } = useMobileLegendsCharacters();
   const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>(
     () => {
       const storedData = localStorage.getItem("userAnswers");
@@ -56,16 +57,18 @@ export default function ClassicPage() {
 
   //fetching character and todayCharacter
   useEffect(() => {
+
+
+    if(isLoading) return;
+
     const fetchData = async () => {
-      const characterData = await useFetchMobileLegendsCharacters();
-      setCharacters(characterData);
 
       const result = await useFetchTodayAnswer("CLASSIC");
       setTodayCharacter(result);
     };
 
     fetchData();
-  }, []);
+  }, [isLoading]);
 
   //alias option function
   useEffect(() => {
