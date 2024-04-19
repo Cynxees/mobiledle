@@ -38,7 +38,7 @@ export default function ClassicPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [showBank, setShowBank] = useState(true);
   const [totalWins, setTotalWins] = useState<number>(() => {
-    return parseInt(localStorage.getItem("totalWins"))
+    return parseInt(localStorage.getItem("totalWins")) || 0
   })
 
   const [userPredict, setUserPredict] = useState<userGuess>({
