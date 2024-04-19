@@ -4,7 +4,37 @@ import { MobileLegendsCharacter } from "../API";
 import Draggable, {DraggableEvent, DraggableData, ControlPosition} from 'react-draggable';
 import preloadImage from "../components/utils/preloadImage";
 import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
+import Navbar from "../components/Navbar";
 
+
+function getRandomStat(character: MobileLegendsCharacter) {
+
+    let random = Math.floor(Math.random()*100)%16
+
+    // if( random => 7 && random <= 9) return getRandomStat(character)
+
+    switch(random){
+        case 0 : return character.name
+        case 1 : return character.alias
+        case 2 : return character.gender
+        case 3 : return character.role
+        case 4 : return character.specialty
+        case 5 : return character.lane
+        case 6 : return character.region
+        case 7 : return character.goldPrice
+        case 8 : return character.ticketPrice
+        case 9 : return character.diamondPrice
+        case 10: return character.year
+        case 11 : return character.rangeType
+        case 12 : return character.damageType
+        case 13 : return character.resource
+        case 14 : return character.hairColor
+        case 15 : return character.species
+    }
+    
+
+
+}
 
 export default function SurvivalPage() {
     const { characters, isLoading } = useMobileLegendsCharacters();
@@ -14,7 +44,7 @@ export default function SurvivalPage() {
     const [correctPrompt, setCorrectPrompt] = useState("")
     const [incorrectPrompt, setIncorrectPrompt] = useState("")
     const [characterRotation, setCharactersRotation] = useState(0)
-    const [characterOpacity, setCharactersOpacity] = useState(100)
+    const [characterOpacity, setCharactersOpacity] = useState(0)
     const [x, setX]= useState(0)
     const [countdownClass, setCountdownClass]= useState("")
     const [countdownSpeed, setCountdownSpeed]= useState(1000)
@@ -26,6 +56,7 @@ export default function SurvivalPage() {
     const [leftText, setLeftText]= useState("")
     const [rightText, setRightText]= useState("")
     const [isAllLoaded, setIsAllLoaded] = useState(false);
+    const [gameStarted, setGameStarted] = useState(false);
 
 
     useEffect(() => {
@@ -63,7 +94,6 @@ export default function SurvivalPage() {
             const imagesPromiseList: Promise<any>[] = []
             characters.forEach(c =>{
 
-                console.log(c.imageUrl)
                 imagesPromiseList.push(preloadImage(c.imageUrl[0]))
             }
 
@@ -71,11 +101,8 @@ export default function SurvivalPage() {
 
 
             await Promise.all(imagesPromiseList)
-
-            setCurrentCharacter(characters[0])
-            setCountdownActive(true)
-            setIsAllLoaded(true)
             
+            setIsAllLoaded(true)
 
         };
 
@@ -84,20 +111,40 @@ export default function SurvivalPage() {
 
     useEffect(() => {
     
-        const startRound = () => {
+        if(!isAllLoaded) return
+        const fillCurrentCharacter = () => {
             console.log("starting round")
-            let random = 0
+            setRandomCurrentCharacter()
 
-            setCurrentCharacter(characters[random])
-
-            setLeftText("trait1")
-            setRightText("trait2")
 
         }
 
-        startRound()
+        fillCurrentCharacter()
     
+    }, [isAllLoaded])
+
+    useEffect(() => {
+
+        if(!currentCharacter) return
+
+        setLeftText(getRandomStat(currentCharacter).toString())
+        setRightText(getRandomStat(currentCharacter).toString())
+
+        setCountdownActive(true)
+        setGameStarted(true)
+
     }, [currentCharacter])
+
+    function setRandomCurrentCharacter(){
+
+        
+        let random = Math.floor(Math.random()*100)%characters.length
+
+        setCurrentCharacter(characters[0])
+
+
+    }
+
 
     const handleDrag = (e : DraggableEvent, data : DraggableData) => {
 
@@ -128,7 +175,7 @@ export default function SurvivalPage() {
         setCharactersRotation(data.lastX*0.5**3)
         setX(newX)
 
-        setCharactersOpacity(1-Math.abs(x)/150)
+        setCharactersOpacity(Math.abs(x)/150)
 
         if(x>0){
             setRightOpacity(Math.abs(x)/500)
@@ -140,7 +187,6 @@ export default function SurvivalPage() {
         }
         
         
-        console.log('rotation : ', characterRotation, ' x: ', x)
         
 
     }
@@ -149,15 +195,27 @@ export default function SurvivalPage() {
         console.log('Drag stopped', data);
     };
 
+
     
 
-    if (!isAllLoaded) return <div>Loading...</div>;
+    if (!gameStarted) return <div>Loading...</div>;
 
     
     
 
     return (
-        <div className="grid grid-cols-3 w-full select-none">
+        <div className="flex flex-col items-center justify-center">
+
+        <div className="w-screen h-screen -z-50 fixed">
+
+            <video src="/survivalVideo.mp4" className="min-w-full min-h-full blur-xl opacity-10" autoPlay muted loop></video>
+
+        </div>
+        <Navbar>
+
+        </Navbar>
+            
+        <div className="grid grid-cols-3 w-full select-none mt-20">
 
 
 
@@ -173,7 +231,7 @@ export default function SurvivalPage() {
             <div className="z-10 relative">
 
             <div className={`font-nova-bold text-6xl mb-10 ${countdownClass}`}>
-                {(countdown > 12) ? "?" : (countdown > 11) ? "READY?" : (countdown > 10) ? "START" : countdown}
+                {(countdown > 12) ? "?" : (countdown > 11) ? "READY?" : (countdown > 10) ? "START" : (countdown < 1) ? "DEFEAT" : countdown} 
             </div>
 
             <Draggable
@@ -187,7 +245,7 @@ export default function SurvivalPage() {
                 grid={[10, 0]}
                 scale={1}
             >
-                <div className="handle relative z-10" style={{ opacity: characterOpacity }}>
+                <div className="handle relative z-10 mb-20 transform " style={{ WebkitFilter: `brightness(${characterOpacity + 0.6})`, filter : `brightness(100%)` }}>
 
                 <div className="bg-image absolute inset-0 scale-[2] bg-center  w-full  blur-3xl opacity-80 motion-reduce:animate-bounce animate-pulse" 
                     style={{ backgroundImage: `url(${currentCharacter?.imageUrl[1]})`, backgroundSize: 'cover', transform: `rotate(${characterRotation}deg)` }} />
@@ -208,6 +266,7 @@ export default function SurvivalPage() {
             </div>
             </div>
 
+        </div>
         </div>
     );
 }
