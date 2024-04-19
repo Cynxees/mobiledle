@@ -35,7 +35,7 @@ export default function HeroBank({ showPopUp } : HeroBankModel) {
                     
 
                 return(
-                    <CharacterIcon character={item} />
+                    <CharacterIcon character={item} key={item.id}/>
                 )
             })}
         </div>

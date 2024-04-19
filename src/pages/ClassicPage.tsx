@@ -8,7 +8,14 @@ import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsChara
 import ClassicTableTitle from "../components/classic/ClassicTableTitle";
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 import HeroBank from "../components/classic/HeroBank";
+import { TiTick } from "react-icons/ti";
 import { MdCancel } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
+
+interface userGuess {
+  isCorrect: boolean;
+  isClicked: boolean;
+}
 
 export default function ClassicPage() {
   const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
@@ -23,7 +30,11 @@ export default function ClassicPage() {
     MobileLegendsCharacter | undefined
   >(undefined);
   const [showPopup, setShowPopup] = useState(false);
-  const [showBank, setShowBank] = useState(true);
+  const [showBank, setShowBank] = useState(false);
+  const [userPredict, setUserPredict] = useState<userGuess>({
+    isClicked: false,
+    isCorrect: false,
+  });
 
   const [isWin, setIsWin] = useState<boolean>(() => {
     const storedData = localStorage.getItem("isWin");
@@ -46,6 +57,44 @@ export default function ClassicPage() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (!todayCharacter || todayCharacter.id === undefined) {
+      console.log("todayCharacter or its id is undefined.");
+      return;
+  }
+    const initialOptions = [todayCharacter];
+    const availableIndices = new Set(Array.from({ length: characters.length }, (_, index) => index)); // Create a set of all indices
+
+    availableIndices.delete(parseInt(todayCharacter.id) - 1);
+
+    while (initialOptions.length < 3) {
+        const randomIndex = Math.floor(Math.random() * availableIndices.size);
+        const randomIndexValue = Array.from(availableIndices)[randomIndex];
+        initialOptions.push(characters[randomIndexValue]);
+        availableIndices.delete(randomIndexValue);
+    }
+
+    initialOptions.sort(() => Math.random() - 0.5);
+
+    setAliasOptions(initialOptions);
+}, [todayCharacter]);
+
+  useEffect(() => {
+    const savedDate = localStorage.getItem("savedDate");
+    const today = new Date().toLocaleDateString();
+    if (savedDate !== today) {
+      localStorage.removeItem("userAnswers");
+      localStorage.removeItem("isWin");
+      localStorage.setItem("savedDate", today);
+    }
+    localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
+    localStorage.setItem("isWin", "false");
+    if (isWin) {
+      localStorage.setItem("isWin", "true");
+    }
+    localStorage.setItem("savedDate", new Date().toLocaleDateString());
+  }, [userAnswers, isWin]);
+
   const handleChildData = (dataFromChild: MobileLegendsCharacter) => {
     if (dataFromChild != null) {
       setUserAnswers((prevAnswers) => [...prevAnswers, dataFromChild]);
@@ -58,36 +107,22 @@ export default function ClassicPage() {
         localStorage.setItem("isWin", "true");
         setTimeout(() => {
           setShowPopup(true);
-        }, 3650);
+        }, 3630);
       }
     }
   };
 
-  useEffect(() => {
-    localStorage.setItem("userAnswers", JSON.stringify(userAnswers));
-    localStorage.setItem("isWin", "false");
-    if (isWin) {
-      localStorage.setItem("isWin", "true");
-    }
-    localStorage.setItem("savedDate", new Date().toLocaleDateString());
-  }, [userAnswers, isWin]);
-
-  useEffect(() => {
-    // Check if the data was saved today
-    const savedDate = localStorage.getItem("savedDate");
-    const today = new Date().toLocaleDateString();
-    if (savedDate !== today) {
-      // Clear localStorage if it's a new day
-      localStorage.removeItem("userAnswers");
-      localStorage.removeItem("isWin");
-      // Save the current date as the savedDate
-      localStorage.setItem("savedDate", today);
-    }
-  }, []);
+  const handlePopUpClick = (clickedAlias: string) => {
+    setUserPredict((prevPredict) => ({
+      ...prevPredict,
+      isClicked: true,
+      isCorrect: clickedAlias === todayCharacter?.alias,
+    }));
+  };
 
   const handleShowBank = () => {
-    setShowBank(!showBank)
-  }
+    setShowBank(!showBank);
+  };
 
   const handleCancelClick = () => {
     setShowPopup(false); // Close the popup
@@ -95,8 +130,12 @@ export default function ClassicPage() {
 
   return (
     <>
-      <aside className={`${showBank ? "lg:block" : "hidden"} fixed top-0 right-0 z-40 justify-end   lg:w-[30vw] max-lg:hidden h-screen overflow-y-scroll`}>
-        <HeroBank showPopUp={showPopup}/>
+      <aside
+        className={`${
+          showBank ? "lg:block" : "hidden"
+        } fixed top-0 right-0 z-40 justify-end lg:w-[22vw] max-lg:hidden h-screen overflow-y-scroll`}
+      >
+        <HeroBank showPopUp={showPopup} />
       </aside>
       <section
         className={`flex flex-col gap-5 items-center ${
@@ -112,9 +151,15 @@ export default function ClassicPage() {
         )}
 
         <label className="inline-flex items-center cursor-pointer">
-          <input type="checkbox" className="sr-only peer" onChange={handleShowBank} />
+          <input
+            type="checkbox"
+            className="sr-only peer"
+            onChange={handleShowBank}
+          />
           <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
-          <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Mythical IMMORTAL 😎 Mode</span>
+          <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+            Mythical IMMORTAL 😎 Mode
+          </span>
         </label>
 
         <ClassicTableTitle />
@@ -147,19 +192,41 @@ export default function ClassicPage() {
           id="info-popup"
           className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-lg h-auto md:h-auto"
         >
-          <div className="relative p-4 rounded-lg dark:bg-[#B88851]">
+          <div className="relative rounded-lg bg-[#B88851] p-5">
             <div className="flex gap-3 justify-center items-center">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Congratulations
+              <h3 className="text-2xl font-bold text-[#E8DCA4]">
+                {todayCharacter.name} Alias(2x point if correct)
               </h3>
-              <MdCancel onClick={handleCancelClick} className="text-3xl" />
+              {userPredict.isClicked && <MdCancel onClick={handleCancelClick} className="text-3xl cursor-pointer" />}
+              
             </div>
-            <div className="user-guess-alias">
-              <div className="user-guess-alias">
-                {aliasOptions.map((hero, index) => (
-                  <div key={index}>{hero.alias}</div>
+            <div className="user-guess-alias flex flex-col gap-2 mt-4">
+              {!userPredict.isClicked &&
+                aliasOptions.map((hero, index) => (
+                  <div
+                    key={index}
+                    id={hero.alias}
+                    className={`border-2 py-3 cursor-pointer border-[#D8C088] hover:bg-[#C8A46D] hover:border-white hover:text-white transition-all duration-300 ease-in-out text-[#E8DCA4]`}
+                    onClick={() => handlePopUpClick(hero.alias)}
+                  >
+                    {hero.alias}
+                  </div>
                 ))}
-              </div>
+              {userPredict.isClicked && (
+                <div className="text-[#E8DCA4] flex items-center justify-center gap-2">
+                  {userPredict.isCorrect === true ? (
+                    <>
+                      <TiTick className="text-4xl text-green-300"/>
+                      <p className="text-green-300 text-xl">Correct</p>
+                    </>
+                  ) : (
+                    <>
+                      <IoClose  className="text-4xl text-rose-200"/>
+                      <p className="text-rose-200 text-xl">False</p>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
