@@ -366,7 +366,7 @@ export default function SurvivalPage() {
 
                 </div>
             </Draggable>
-            <div className="w-full px-10 py-2 border border-yellow-100 border-2 rounded-xl">{score}</div>
+            <div className="w-full px-10 py-2 border-yellow-100 border-2 rounded-xl">{score}</div>
             </div>
 
             <div className="h-full w-60 relative flex z-10 ">
