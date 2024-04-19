@@ -10,38 +10,29 @@ const client = generateClient()
 const useFetchMobileLegendsCharacters = async () => {
   
 
-    var characterResults : Array<MobileLegendsCharacter> = new Array<MobileLegendsCharacter>();
 
     const mobileLegendsCharactersGraphQL = await client.graphql({
         query: listMobileLegendsCharacters
     });
     
-    const mobileLegendsCharacterJSON = mobileLegendsCharactersGraphQL.data.listMobileLegendsCharacters.items;
+    const characterResults  = mobileLegendsCharactersGraphQL.data.listMobileLegendsCharacters.items;
 
 
-
-    mobileLegendsCharacterJSON.forEach(c => {
-
-        
-        characterResults.push(c)
-
-    })
-
-    characterResults.forEach(async (character) => {
-        try{
-
+    const fetchImagePromises = characterResults.map(async character => {
+        try {
             const imageUrl = await useGetMobileLegendsCharacterImageURL(character);
-        
-            character.imageUrl = imageUrl
-            
-
-        }catch(e){
-            console.log("ERROR Loading Image")
+            character.imageUrl = imageUrl;
+        } catch (error) {
+            console.error("ERROR Loading Image", error);
         }
+        return character; 
     });
-        
 
-    return characterResults.sort((a, b) => parseInt(a.id) > parseInt(b.id) ? 1 : -1);
+
+    const updatedCharacterResults = await Promise.all(fetchImagePromises);
+    return updatedCharacterResults.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+
+
     
 
 };
