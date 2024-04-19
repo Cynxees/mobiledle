@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { MobileLegendsCharacter } from "../API";
 
 interface ClassicSearchBarProps {
@@ -9,6 +10,7 @@ export default function HeroShowBar({
   character,
   todayCharacter,
 }: ClassicSearchBarProps) {
+  const { t } = useTranslation();
 
   var wrongColor = "bg-red-700 text-shadow shadow-gray-700 w-28 h-28"
   var partialColor = "bg-orange-600 text-shadow shadow-gray-700 w-28 h-28"
@@ -67,7 +69,8 @@ export default function HeroShowBar({
             : wrongColor
         } `}
       >
-        {character.gender}
+      {character.gender === "Male" ? t("Male") : t("Female")}
+
       </div>
       <div
         className={`py-4  font-extrabold border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-2s ${

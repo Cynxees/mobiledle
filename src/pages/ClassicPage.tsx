@@ -183,8 +183,9 @@ export default function ClassicPage() {
           </span>
         </label>
 
-        <ClassicTableTitle />
+        
         <div className="flex flex-col gap-5 mb-16">
+        <ClassicTableTitle />
           {userAnswers.map((character, index) => (
             <div key={index} style={{ order: userAnswers.length - index }}>
               <HeroShowBar
