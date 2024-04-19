@@ -276,7 +276,7 @@ export default function SurvivalPage() {
 
 
         }
-        
+        setCharactersOpacity(0.2)
         setRightOpacity(0)
         setLeftOpacity(0)
         setX(0)
