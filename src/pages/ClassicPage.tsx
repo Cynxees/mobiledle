@@ -184,7 +184,7 @@ export default function ClassicPage() {
         </label>
 
         
-        <div className="flex flex-col gap-5 mb-16">
+        <div className="flex flex-col gap-5 mb-16 mx-24">
         <ClassicTableTitle />
           {userAnswers.map((character, index) => (
             <div key={index} style={{ order: userAnswers.length - index }}>
