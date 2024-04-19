@@ -10,10 +10,8 @@ import MobileLegendsCharactersProvider from './providers/MobileLegendsCharacters
 Amplify.configure(amplifyconfig);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
     
     <MobileLegendsCharactersProvider>
       <App />
-    </MobileLegendsCharactersProvider>
-  </React.StrictMode>,
+    </MobileLegendsCharactersProvider>,
 )

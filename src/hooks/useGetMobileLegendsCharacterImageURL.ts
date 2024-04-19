@@ -22,7 +22,7 @@ const useGetMobileLegendsCharacterImageURL = async (character: MobileLegendsChar
     getUrlResult = await getUrl({
       key: "heroes/cards/"+character.id,
       options: {
-        accessLevel: 'guest'  
+        accessLevel: 'guest'
       },
     });
 
