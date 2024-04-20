@@ -5,11 +5,13 @@ import { useState } from "react";
 interface ClassicSearchBarProps {
   characters: MobileLegendsCharacter[];
   onDataFromChild: (data: MobileLegendsCharacter) => void;
+  userAnswers: MobileLegendsCharacter[];
 }
 
 export default function ClassicInput({
   characters,
   onDataFromChild,
+  userAnswers
 }: ClassicSearchBarProps) {
   const [prefix, setPrefix] = useState("");
   const [suggestions, setSuggestions] = useState<MobileLegendsCharacter[]>([]);
@@ -37,10 +39,23 @@ export default function ClassicInput({
       .filter((c) => c.name.toLowerCase().startsWith(value))
       .map((c) => c);
 
-    if (newSuggestions.length == characters.length) {
+    if (newSuggestions.length == characters.length || newSuggestions.length < 1) {
       setSuggestions([]);
     } else {
-      setSuggestions(newSuggestions);
+
+      let tempArray = newSuggestions
+
+      userAnswers.map(c => {
+
+        newSuggestions.map(sug => {
+          if(c.id == sug.id) tempArray = tempArray.filter(temp =>
+            temp.id != sug.id
+          )
+        })
+
+      })
+
+      setSuggestions(tempArray);
     }
   };
 

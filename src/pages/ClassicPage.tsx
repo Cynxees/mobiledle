@@ -132,7 +132,7 @@ export default function ClassicPage() {
       >
         <HeroBank />
       </aside>
-      <section className={`flex flex-col gap-5 items-center`}>
+      <section className={`flex flex-col gap-5 items-center mt-[20vh]`}>
         
         
 
@@ -142,6 +142,7 @@ export default function ClassicPage() {
           <ClassicInput
             characters={characters}
             onDataFromChild={handleChildData}
+            userAnswers = {userAnswers}
           />
         )}
         <div>
