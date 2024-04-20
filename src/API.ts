@@ -20,8 +20,7 @@ export type CreateMobileLegendsCharacterInput = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  createdAt?: string | null,
-  updatedAt?: string | null,
+  imageUrl?: Array< string | null > | null,
 };
 
 export type ModelMobileLegendsCharacterConditionInput = {
@@ -41,8 +40,7 @@ export type ModelMobileLegendsCharacterConditionInput = {
   resource?: ModelStringInput | null,
   hairColor?: ModelStringInput | null,
   species?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
+  imageUrl?: Array< ModelStringInput | null > | null,
   and?: Array< ModelMobileLegendsCharacterConditionInput | null > | null,
   or?: Array< ModelMobileLegendsCharacterConditionInput | null > | null,
   not?: ModelMobileLegendsCharacterConditionInput | null,
@@ -119,7 +117,7 @@ export type MobileLegendsCharacter = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  imageUrl: string[],
+  imageUrl?: Array< string | null > | null,
 };
 
 export type UpdateMobileLegendsCharacterInput = {
@@ -140,10 +138,35 @@ export type UpdateMobileLegendsCharacterInput = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  imageUrl?: string | null
+  imageUrl?: Array< ModelStringInput | null > | null,
 };
 
 export type DeleteMobileLegendsCharacterInput = {
+  id: string,
+};
+
+export type CreateChatInput = {
+  text?: string | null,
+  createdAt?: string | null,
+  owner?: string | null,
+};
+
+export type Chat = {
+  __typename: "Chat",
+  id: string,
+  text?: string | null,
+  createdAt?: string | null,
+  owner?: string | null,
+};
+
+export type UpdateChatInput = {
+  id: string,
+  text?: string | null,
+  createdAt?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteChatInput = {
   id: string,
 };
 
@@ -165,7 +188,7 @@ export type ModelMobileLegendsCharacterFilterInput = {
   resource?: ModelStringInput | null,
   hairColor?: ModelStringInput | null,
   species?: ModelStringInput | null,
-  imageUrl?: string | null
+  imageUrl?: Array< ModelStringInput | null > | null,
   and?: Array< ModelMobileLegendsCharacterFilterInput | null > | null,
   or?: Array< ModelMobileLegendsCharacterFilterInput | null > | null,
   not?: ModelMobileLegendsCharacterFilterInput | null,
@@ -193,6 +216,34 @@ export type ModelMobileLegendsCharacterConnection = {
   nextToken?: string | null,
 };
 
+export type TableChatFilterInput = {
+  id?: TableStringFilterInput | null,
+  text?: TableStringFilterInput | null,
+  createdAt?: TableStringFilterInput | null,
+  owner?: TableStringFilterInput | null,
+};
+
+export type TableStringFilterInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  size?: ModelSizeInput | null,
+};
+
+export type ChatConnection = {
+  __typename: "ChatConnection",
+  items?:  Array<Chat | null > | null,
+  nextToken?: string | null,
+};
+
 export type ModelSubscriptionMobileLegendsCharacterFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   name?: ModelSubscriptionStringInput | null,
@@ -211,7 +262,7 @@ export type ModelSubscriptionMobileLegendsCharacterFilterInput = {
   resource?: ModelSubscriptionStringInput | null,
   hairColor?: ModelSubscriptionStringInput | null,
   species?: ModelSubscriptionStringInput | null,
-  imageUrl?: string | null
+  imageUrl?: Array< ModelStringInput | null > | null,
   and?: Array< ModelSubscriptionMobileLegendsCharacterFilterInput | null > | null,
   or?: Array< ModelSubscriptionMobileLegendsCharacterFilterInput | null > | null,
 };
@@ -283,8 +334,7 @@ export type CreateMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -313,8 +363,7 @@ export type UpdateMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -343,8 +392,49 @@ export type DeleteMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
+    imageUrl?: Array< string | null > | null,
+  } | null,
+};
+
+export type CreateChatMutationVariables = {
+  input: CreateChatInput,
+};
+
+export type CreateChatMutation = {
+  createChat?:  {
+    __typename: "Chat",
+    id: string,
+    text?: string | null,
     createdAt?: string | null,
-    updatedAt?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateChatMutationVariables = {
+  input: UpdateChatInput,
+};
+
+export type UpdateChatMutation = {
+  updateChat?:  {
+    __typename: "Chat",
+    id: string,
+    text?: string | null,
+    createdAt?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteChatMutationVariables = {
+  input: DeleteChatInput,
+};
+
+export type DeleteChatMutation = {
+  deleteChat?:  {
+    __typename: "Chat",
+    id: string,
+    text?: string | null,
+    createdAt?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -372,8 +462,7 @@ export type GetMobileLegendsCharacterQuery = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -387,7 +476,6 @@ export type ListMobileLegendsCharactersQuery = {
   listMobileLegendsCharacters?:  {
     __typename: "ModelMobileLegendsCharacterConnection",
     items:  Array< {
-      imageUrl: string[];
       __typename: "MobileLegendsCharacter",
       id: string,
       name: string,
@@ -406,9 +494,42 @@ export type ListMobileLegendsCharactersQuery = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      createdAt?: string | null,
-      updatedAt?: string | null,
+      imageUrl?: Array< string | null > | null,
     } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetChatQueryVariables = {
+  id: string,
+};
+
+export type GetChatQuery = {
+  getChat?:  {
+    __typename: "Chat",
+    id: string,
+    text?: string | null,
+    createdAt?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListChatsQueryVariables = {
+  filter?: TableChatFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListChatsQuery = {
+  listChats?:  {
+    __typename: "ChatConnection",
+    items?:  Array< {
+      __typename: "Chat",
+      id: string,
+      text?: string | null,
+      createdAt?: string | null,
+      owner?: string | null,
+    } | null > | null,
     nextToken?: string | null,
   } | null,
 };
@@ -437,8 +558,7 @@ export type OnCreateMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -466,8 +586,7 @@ export type OnUpdateMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    createdAt?: string | null,
-    updatedAt?: string | null,
+    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -495,7 +614,57 @@ export type OnDeleteMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
+    imageUrl?: Array< string | null > | null,
+  } | null,
+};
+
+export type OnCreateChatSubscriptionVariables = {
+  id?: string | null,
+  text?: string | null,
+  createdAt?: string | null,
+  owner?: string | null,
+};
+
+export type OnCreateChatSubscription = {
+  onCreateChat?:  {
+    __typename: "Chat",
+    id: string,
+    text?: string | null,
     createdAt?: string | null,
-    updatedAt?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdateChatSubscriptionVariables = {
+  id?: string | null,
+  text?: string | null,
+  createdAt?: string | null,
+  owner?: string | null,
+};
+
+export type OnUpdateChatSubscription = {
+  onUpdateChat?:  {
+    __typename: "Chat",
+    id: string,
+    text?: string | null,
+    createdAt?: string | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteChatSubscriptionVariables = {
+  id?: string | null,
+  text?: string | null,
+  createdAt?: string | null,
+  owner?: string | null,
+};
+
+export type OnDeleteChatSubscription = {
+  onDeleteChat?:  {
+    __typename: "Chat",
+    id: string,
+    text?: string | null,
+    createdAt?: string | null,
+    owner?: string | null,
   } | null,
 };

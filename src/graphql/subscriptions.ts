@@ -29,8 +29,7 @@ export const onCreateMobileLegendsCharacter = /* GraphQL */ `subscription OnCrea
     resource
     hairColor
     species
-    createdAt
-    updatedAt
+    imageUrl
     __typename
   }
 }
@@ -59,8 +58,7 @@ export const onUpdateMobileLegendsCharacter = /* GraphQL */ `subscription OnUpda
     resource
     hairColor
     species
-    createdAt
-    updatedAt
+    imageUrl
     __typename
   }
 }
@@ -89,12 +87,65 @@ export const onDeleteMobileLegendsCharacter = /* GraphQL */ `subscription OnDele
     resource
     hairColor
     species
-    createdAt
-    updatedAt
+    imageUrl
     __typename
   }
 }
 ` as GeneratedSubscription<
   APITypes.OnDeleteMobileLegendsCharacterSubscriptionVariables,
   APITypes.OnDeleteMobileLegendsCharacterSubscription
+>;
+export const onCreateChat = /* GraphQL */ `subscription OnCreateChat(
+  $id: String
+  $text: String
+  $createdAt: String
+  $owner: String
+) {
+  onCreateChat(id: $id, text: $text, createdAt: $createdAt, owner: $owner) {
+    id
+    text
+    createdAt
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateChatSubscriptionVariables,
+  APITypes.OnCreateChatSubscription
+>;
+export const onUpdateChat = /* GraphQL */ `subscription OnUpdateChat(
+  $id: String
+  $text: String
+  $createdAt: String
+  $owner: String
+) {
+  onUpdateChat(id: $id, text: $text, createdAt: $createdAt, owner: $owner) {
+    id
+    text
+    createdAt
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateChatSubscriptionVariables,
+  APITypes.OnUpdateChatSubscription
+>;
+export const onDeleteChat = /* GraphQL */ `subscription OnDeleteChat(
+  $id: String
+  $text: String
+  $createdAt: String
+  $owner: String
+) {
+  onDeleteChat(id: $id, text: $text, createdAt: $createdAt, owner: $owner) {
+    id
+    text
+    createdAt
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteChatSubscriptionVariables,
+  APITypes.OnDeleteChatSubscription
 >;

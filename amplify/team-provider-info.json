@@ -17,7 +17,14 @@
       },
       "storage": {
         "s3mobiledles3": {},
-        "mobiledleDB": {}
+        "mobiledleDB": {},
+        "ChatTable": {
+          "tableName": "ChatTable",
+          "region": "ap-southeast-1",
+          "arn": "arn:aws:dynamodb:ap-southeast-1:881734199479:table/ChatTable",
+          "partitionKeyName": "id",
+          "partitionKeyType": "S"
+        }
       },
       "api": {
         "mobiledle": {}
