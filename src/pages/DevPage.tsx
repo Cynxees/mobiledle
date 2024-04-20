@@ -116,6 +116,9 @@ export default function DevPage(){
 
         getTodayCharacter();
     }, [isLoading]);
+
+    console.log(characters)
+
     
     if(!init)return <div>Loading...</div>
 

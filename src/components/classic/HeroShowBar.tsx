@@ -102,7 +102,7 @@ export default function HeroShowBar({
             : wrongColor
         }`}
       >
-        {character.region}
+        {t(`${character.region}`)}
       </div>
       <div
         className={`py-4  border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-5s ${

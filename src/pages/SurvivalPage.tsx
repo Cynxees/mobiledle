@@ -6,6 +6,7 @@ import preloadImage from "../components/utils/preloadImage";
 import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
 import Navbar from "../components/navigation/Navbar";
 
+import { useTranslation } from "react-i18next";
 
 function getRandomStat(character: MobileLegendsCharacter) {
 
@@ -89,6 +90,9 @@ function getRandomCharacter(characters : MobileLegendsCharacter[]){
 
 
 export default function SurvivalPage() {
+
+    const { t } = useTranslation();
+
     const { characters, isLoading } = useMobileLegendsCharacters();
     const [currentCharacter, setCurrentCharacter] = useState<MobileLegendsCharacter>();
     const [countdown, setCountdown] = useState(14);
@@ -328,7 +332,7 @@ export default function SurvivalPage() {
             <div className="h-full w-60 relative flex z-30">
             <div className={`${(leftOpacity>0) ? 'animate-pulse' :  'animate-none' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1 +leftOpacity }}/>
             <div className="w-full my-auto text-orange-200 brightness-110 items-center align-middle text-3xl relative z-00 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.2+leftOpacity*5 }}>
-            {leftText}
+            {t(`${leftText}`)}
             </div>
             </div>
             
@@ -368,7 +372,7 @@ export default function SurvivalPage() {
             <div className="h-full w-60 relative flex z-10 ">
             <div className={`${(rightOpacity>0) ? 'animate-pulse' :  '' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1+rightOpacity }}/>
             <div className="w-full my-auto text-wrap text-orange-200 brightness-110  items-center align-middle text-3xl relative z-10 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.3+rightOpacity*5 }}>
-            {rightText}
+            {t(`${rightText}`)}
             </div>
             </div>
 
