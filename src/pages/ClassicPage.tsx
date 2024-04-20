@@ -112,6 +112,10 @@ export default function ClassicPage() {
         <HeroBank />
       </aside>
       <section className={`flex flex-col gap-5 items-center`}>
+        
+        
+
+        <div className="flex flex-col gap-5 mb-16 mx-24 items-center justify-center">
         <Navbar />
         {!isWin && (
           <ClassicInput
@@ -133,8 +137,6 @@ export default function ClassicPage() {
             Mythical IMMORTAL 😎 Mode
           </span>
         </label>
-
-        <div className="flex flex-col gap-5 mb-16 mx-24">
           <ClassicTableTitle />
           {userAnswers.map((character, index) => (
             <div key={index} style={{ order: userAnswers.length - index }}>

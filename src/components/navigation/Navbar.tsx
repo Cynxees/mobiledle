@@ -27,15 +27,16 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="flex justify-between items-center">
+    <nav className="flex justify-between items-center w-full gap-10">
       <IoMdSettings className="text-5xl" />
-      <div className="text-logo-sm font-modesto mx-10 bg-gradient-to-r from-[#e8dca4] to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
+      <div className="text-logo-sm font-modesto bg-gradient-to-r from-[#e8dca4] to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
         MOBILEDLE
       </div>
       {currentLanguage === "en" ? (
-        <button onClick={() => changeLanguage("id")}>English</button>
+        <img src="public\us-flag.jpeg" className="w-12 h-8 cursor-pointer" onClick={() => changeLanguage("id")}></img>
       ) : (
-        <button onClick={() => changeLanguage("en")}>Indonesia</button>
+        // <button onClick={() => changeLanguage("en")}>ID</button>
+        <img src="public\indo-flag.jpeg" className="w-12 h-8 cursor-pointer" onClick={() => changeLanguage("en")}></img>
       )}
       {/* <span>
         <button className="w-full mb-3" onClick={() => changeLanguage("en")}>English</button>
