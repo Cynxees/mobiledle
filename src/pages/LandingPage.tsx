@@ -32,7 +32,7 @@ export default function LandingPage() {
   () => ({
     background: {
       color: {
-        value: "#101010",
+        value: "",
       },
     },
     fpsLimit: 60,
@@ -41,11 +41,7 @@ export default function LandingPage() {
         onClick: {
           enable: true,
           mode: "push",
-        },
-        onHover: {
-          enable: true,
-          mode: "repulse",
-        },
+        }
       },
       modes: {
         push: {
@@ -59,17 +55,10 @@ export default function LandingPage() {
     },
     particles: {
       color: {
-        value: "#e6d8a0",
-      },
-      links: {
-        color: "#e6d8a0",
-        distance: 300,
-        enable: true,
-        opacity: 0.5,
-        width: 1,
+        value: "#ffffcc",
       },
       move: {
-        direction: "none",
+        direction: "top",
         enable: true,
         outModes: {
           default: "out",
@@ -85,13 +74,13 @@ export default function LandingPage() {
         value: 20,
       },
       opacity: {
-        value: 1,
+        value: 0.4,
       },
       shape: {
         type: "circle",
       },
       size: {
-        value: { min: 1, max: 5 },
+        value: { min: 3, max: 6 },
       },
     },
     detectRetina: true,
@@ -104,7 +93,7 @@ export default function LandingPage() {
 
   return (
     <div>
-    <img className="w-screen h-screen object-cover absolute -z-10 left-0 top-0 blur-lg opacity-20" src="/landing-bg.jpg"/>
+    <img className="w-screen h-screen object-cover absolute -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-30" src="/landing-bg.jpg"/>
     <div className="flex flex-col gap-10">
 
         <Particles

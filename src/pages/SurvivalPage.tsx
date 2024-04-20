@@ -322,6 +322,12 @@ export default function SurvivalPage() {
 
         </div>
 
+        <div className="w-screen h-screen -z-30 fixed">
+
+            
+
+        </div>
+
         <div className="bg-gray-900 rounded-lg shadow-inner shadow-white  border-yellow-100 border-2 p-20 ">
         <Navbar>
 
