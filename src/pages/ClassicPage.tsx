@@ -33,9 +33,30 @@ export default function ClassicPage() {
       if (savedDate !== today) {
         return [];
       }
+
+      
+
       return storedData ? JSON.parse(storedData) : [];
     }
   );
+
+
+  useEffect(()=>{
+
+    if(isLoading) return
+    
+    userAnswers.map(c => {
+       characters.map(ch => {
+        if(c.id == ch.id){
+        c.imageUrl = ch.imageUrl
+        return
+      }
+    })
+  
+    })
+  }, [isLoading])
+  
+
   const [totalWins, setTotalWins] = useState<number>(() => {
     return parseInt(localStorage.getItem("totalWins")) || 0;
   });
