@@ -3,7 +3,8 @@ import { FaLanguage } from "react-icons/fa6";
 import "animate.css";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-export default function Navbar() {
+
+const Navbar = () => {
   const { t, i18n } = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState<string>(() => {
@@ -46,3 +47,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default Navbar
