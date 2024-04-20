@@ -17,7 +17,7 @@ const useGetMobileLegendsCharacterImageURL = async (character: MobileLegendsChar
         },
     });
 
-    let iconImage = getUrlResult.url.href.toString()
+    const iconImage = getUrlResult.url.href.toString()
 
     getUrlResult = await getUrl({
       key: "heroes/cards/"+character.id,
@@ -26,7 +26,7 @@ const useGetMobileLegendsCharacterImageURL = async (character: MobileLegendsChar
       },
     });
 
-    let cardImage = getUrlResult.url.href.toString()
+    const cardImage = getUrlResult.url.href.toString()
 
     return [iconImage, cardImage]
 

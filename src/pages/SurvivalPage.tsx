@@ -14,11 +14,11 @@ import { loadSlim } from "@tsparticles/slim";
 
 function getRandomStat(character: MobileLegendsCharacter) {
 
-    let random = Math.floor(Math.random()*100)%12
+    const random = Math.floor(Math.random()*100)%12
 
     // if( random => 7 && random <= 9) return getRandomStat(character)
 
-    let characterStats = [
+    const characterStats = [
         character.alias, 
         character.gender, 
         character.role, 
@@ -41,7 +41,7 @@ function getRandomStat(character: MobileLegendsCharacter) {
 
 function getWrongStat(character: MobileLegendsCharacter, characters: MobileLegendsCharacter[]){
     
-    let characterStats = [
+    const characterStats = [
         character.alias, 
         character.gender, 
         character.role, 
@@ -57,10 +57,10 @@ function getWrongStat(character: MobileLegendsCharacter, characters: MobileLegen
     ]
 
     while(true){
-        let random = Math.floor(Math.random()*100)%12
-        let randomCharacter = characters[Math.floor(Math.random()*100)%characters.length]
+        const random = Math.floor(Math.random()*100)%12
+        const randomCharacter = characters[Math.floor(Math.random()*100)%characters.length]
 
-        let randomCharacterStats = [
+        const randomCharacterStats = [
             randomCharacter.alias, 
             randomCharacter.gender, 
             randomCharacter.role, 
@@ -87,7 +87,7 @@ function getWrongStat(character: MobileLegendsCharacter, characters: MobileLegen
 function getRandomCharacter(characters : MobileLegendsCharacter[]){
 
         
-    let random = Math.floor(Math.random()*100)%30
+    const random = Math.floor(Math.random()*100)%30
 
 
     return characters[random]
@@ -195,10 +195,10 @@ export default function SurvivalPage() {
 
         setCountdown(10)
 
-        let correctPrompt = getRandomStat(currentCharacter).toString()
-        let wrongPrompt = getWrongStat(currentCharacter, characters).toString()
+        const correctPrompt = getRandomStat(currentCharacter).toString()
+        const wrongPrompt = getWrongStat(currentCharacter, characters).toString()
         
-        let random = Math.floor(Math.random()*10)
+        const random = Math.floor(Math.random()*10)
 
         if(random%2 == 0){
             setLeftText(correctPrompt)
@@ -314,7 +314,7 @@ export default function SurvivalPage() {
 
 
         // let mouseX = e['targetTouches'][0].clientX
-        let center = innerWidth/2
+        const center = innerWidth/2
         const mouseBounds = { left: center-100, right: center+100 };
 
         // console.log('mouseX ', mouseX, 'center', center, mouseBounds)
@@ -357,7 +357,7 @@ export default function SurvivalPage() {
     }
 
     const handleStop = (e: DraggableEvent, data: DraggableData) => {
-        let stoppedX = data.x
+        const stoppedX = data.x
 
         if(stoppedX < -70){
 

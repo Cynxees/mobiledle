@@ -12,15 +12,15 @@ export default function HeroShowBar({
 }: ClassicSearchBarProps) {
   const { t } = useTranslation();
 
-  var wrongColor = "bg-red-700 text-shadow shadow-gray-700 w-28 h-28"
-  var partialColor = "bg-orange-600 text-shadow shadow-gray-700 w-28 h-28"
-  var correctColor = "bg-green-600 text-shadow shadow-gray-700 w-28 h-28"
+  const wrongColor = "bg-red-700 text-shadow shadow-gray-700 w-28 h-28"
+  const partialColor = "bg-orange-600 text-shadow shadow-gray-700 w-28 h-28"
+  const correctColor = "bg-green-600 text-shadow shadow-gray-700 w-28 h-28"
 
   if(!todayCharacter) return
 
-  var characterLanes = character.lane.split('/')
-  var todayCharacterLanes = todayCharacter.lane.split('/')
-  var laneIsPartial = false
+  const characterLanes = character.lane.split('/')
+  const todayCharacterLanes = todayCharacter.lane.split('/')
+  let laneIsPartial = false
 
 
   console.log(characterLanes.sort((a,b) => a>b ? 1 : -1))

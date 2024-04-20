@@ -16,7 +16,7 @@ export default function ClassicInput({
   const [prefix, setPrefix] = useState("");
   const [suggestions, setSuggestions] = useState<MobileLegendsCharacter[]>([]);
 
-  const findCharacterBasedOnName = (name: String) => {
+  const findCharacterBasedOnName = (name: string) => {
     const foundCharacter = characters.find(
       (c) => c.name.toLowerCase() === name.toLowerCase()
     );
@@ -29,7 +29,7 @@ export default function ClassicInput({
   };
 
   const onInput = (e: React.FormEvent<HTMLInputElement>) => {
-    var value = e.currentTarget.value;
+    let value = e.currentTarget.value;
 
     setPrefix(value);
 

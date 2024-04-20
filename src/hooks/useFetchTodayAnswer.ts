@@ -1,7 +1,7 @@
 import { MobileLegendsCharacter } from '../API';
 import useFetchMobileLegendsCharacters from './useFetchMobileLegendsCharacters';
 
-const useFetchTodayAnswer = async (gamemode : String) => {
+const useFetchTodayAnswer = async (gamemode : string) => {
   
 
     if(gamemode.toUpperCase() == "CLASSIC"){

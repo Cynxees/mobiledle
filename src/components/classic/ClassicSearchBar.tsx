@@ -8,7 +8,7 @@ import useFetchMobileLegendsCharacters from "../../hooks/useFetchMobileLegendsCh
 export default function ClassicSearchBar() {
   
     const [prefix, setPrefix] = useState("")
-    const [suggestions, setSuggestions] = useState<String[]>([])
+    const [suggestions, setSuggestions] = useState<string[]>([])
   
     const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
 
@@ -24,7 +24,7 @@ export default function ClassicSearchBar() {
 
     const onInput = (e : React.FormEvent<HTMLInputElement>) =>{
         
-        var value = e.currentTarget.value;
+        const value = e.currentTarget.value;
 
         setPrefix(value);
 
@@ -68,7 +68,7 @@ export default function ClassicSearchBar() {
                 />
 
                 <div className="absolute w-full">
-                {suggestions.map((item : String) => (
+                {suggestions.map((item : string) => (
                     <li key="item" className="bg-gray-600 w-full list-none py-2 border-gray-400 border">{item}</li>
                 ))}
                 </div>
