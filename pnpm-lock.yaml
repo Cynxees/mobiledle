@@ -5,18 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@aws-amplify/graphql-api-construct':
-    specifier: ^1.8.1
-    version: 1.8.1(aws-cdk-lib@2.137.0)(constructs@3.4.344)
   '@aws-amplify/ui-react':
     specifier: ^6.1.7
     version: 6.1.7(@types/react@18.2.66)(aws-amplify@6.0.28)(react-dom@18.2.0)(react@18.2.0)
   '@aws-amplify/ui-react-storage':
     specifier: ^3.0.17
     version: 3.0.17(@types/react@18.2.66)(aws-amplify@6.0.28)(react-dom@18.2.0)(react@18.2.0)
-  '@aws-cdk/aws-appsync':
-    specifier: ^1.204.0
-    version: 1.204.0(@aws-cdk/aws-certificatemanager@1.204.0)(@aws-cdk/aws-cognito@1.204.0)(@aws-cdk/aws-dynamodb@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-elasticsearch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-opensearchservice@1.204.0)(@aws-cdk/aws-rds@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-secretsmanager@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
   '@tsparticles/engine':
     specifier: ^3.3.0
     version: 3.3.0
@@ -31,10 +25,7 @@ dependencies:
     version: 4.1.1
   aws-amplify:
     specifier: ^6.0.28
-    version: 6.0.28(aws-cdk-lib@2.137.0)(constructs@3.4.344)
-  aws-cdk:
-    specifier: ^2.138.0
-    version: 2.138.0
+    version: 6.0.28(aws-cdk-lib@2.137.0)(constructs@10.3.0)
   graphql:
     specifier: ^16.8.1
     version: 16.8.1
@@ -56,9 +47,6 @@ dependencies:
   react-icons:
     specifier: ^5.1.0
     version: 5.1.0(react@18.2.0)
-  tsparticles-preset-stars:
-    specifier: ^2.12.0
-    version: 2.12.0
 
 devDependencies:
   '@types/react':
@@ -139,12 +127,12 @@ packages:
       - aws-crt
     dev: false
 
-  /@aws-amplify/api-graphql@4.0.28(aws-cdk-lib@2.137.0)(constructs@3.4.344):
+  /@aws-amplify/api-graphql@4.0.28(aws-cdk-lib@2.137.0)(constructs@10.3.0):
     resolution: {integrity: sha512-A+ZjaLQGEs21IULQ3B07OG1/sMRxR9JIVirO2nGm2jcEUaoWzUngxEhIt55YGbBPWmUmCYjXm1Dzdxxsh5pC2g==}
     dependencies:
       '@aws-amplify/api-rest': 4.0.27(@aws-amplify/core@6.0.27)
       '@aws-amplify/core': 6.0.27
-      '@aws-amplify/data-schema-types': 0.7.17(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      '@aws-amplify/data-schema-types': 0.7.17(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       '@aws-sdk/types': 3.387.0
       graphql: 15.8.0
       rxjs: 7.8.1
@@ -164,10 +152,10 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@aws-amplify/api@6.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@3.4.344):
+  /@aws-amplify/api@6.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@10.3.0):
     resolution: {integrity: sha512-QjKrNyFnt8avxgHMgF8in+bgpmSmnNpunTd5oTiA23cEKkcpZ1Dm4RvNjuqGWV3IxlfEbvI/0awUrBnmY8q69A==}
     dependencies:
-      '@aws-amplify/api-graphql': 4.0.28(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      '@aws-amplify/api-graphql': 4.0.28(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       '@aws-amplify/api-rest': 4.0.27(@aws-amplify/core@6.0.27)
       tslib: 2.6.2
     transitivePeerDependencies:
@@ -198,22 +186,22 @@ packages:
       uuid: 9.0.1
     dev: false
 
-  /@aws-amplify/data-schema-types@0.7.17(aws-cdk-lib@2.137.0)(constructs@3.4.344):
+  /@aws-amplify/data-schema-types@0.7.17(aws-cdk-lib@2.137.0)(constructs@10.3.0):
     resolution: {integrity: sha512-/J8ubs23aKTx1OYJ5Pqn8bAWHT6CsmdZNxPzaZiT+TFLoy4B0eSzBKFKUlYQ84Qeujk1NhVeZ20J8bqdMN5MUw==}
     dependencies:
-      '@aws-amplify/plugin-types': 0.9.0-beta.2(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      '@aws-amplify/plugin-types': 0.9.0-beta.2(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       rxjs: 7.8.1
     transitivePeerDependencies:
       - aws-cdk-lib
       - constructs
     dev: false
 
-  /@aws-amplify/datastore@5.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@3.4.344):
+  /@aws-amplify/datastore@5.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@10.3.0):
     resolution: {integrity: sha512-A51yUQZk/oZlor1mofyPfqotfA41agRZUFVTSJS0oMEsjzadDbJ1IqbVzKstiM9XhMjVVUn1hEytgZZFAu0OPA==}
     peerDependencies:
       '@aws-amplify/core': ^6.0.0
     dependencies:
-      '@aws-amplify/api': 6.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      '@aws-amplify/api': 6.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       '@aws-amplify/core': 6.0.27
       buffer: 4.9.2
       idb: 5.0.6
@@ -225,55 +213,6 @@ packages:
       - constructs
     dev: false
 
-  /@aws-amplify/graphql-api-construct@1.8.1(aws-cdk-lib@2.137.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-PQf7JfD9enno0A6RcY/idiuYlGkfxSD/iNoQf5+vBHCyJOP3A7w9aJa5+t4KdvxZygUW51S58mbxByHz1AJ8Ow==}
-    peerDependencies:
-      aws-cdk-lib: ^2.80.0
-      constructs: ^10.0.5
-    dependencies:
-      aws-cdk-lib: 2.137.0(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-    bundledDependencies:
-      - '@aws-amplify/backend-output-schemas'
-      - '@aws-amplify/backend-output-storage'
-      - '@aws-amplify/graphql-auth-transformer'
-      - '@aws-amplify/graphql-default-value-transformer'
-      - '@aws-amplify/graphql-directives'
-      - '@aws-amplify/graphql-function-transformer'
-      - '@aws-amplify/graphql-http-transformer'
-      - '@aws-amplify/graphql-index-transformer'
-      - '@aws-amplify/graphql-maps-to-transformer'
-      - '@aws-amplify/graphql-model-transformer'
-      - '@aws-amplify/graphql-predictions-transformer'
-      - '@aws-amplify/graphql-relational-transformer'
-      - '@aws-amplify/graphql-searchable-transformer'
-      - '@aws-amplify/graphql-sql-transformer'
-      - '@aws-amplify/graphql-transformer'
-      - '@aws-amplify/graphql-transformer-core'
-      - '@aws-amplify/graphql-transformer-interfaces'
-      - '@aws-amplify/platform-core'
-      - '@aws-amplify/plugin-types'
-      - charenc
-      - crypt
-      - fs-extra
-      - graceful-fs
-      - graphql
-      - graphql-mapping-template
-      - graphql-transformer-common
-      - hjson
-      - immer
-      - is-buffer
-      - jsonfile
-      - libphonenumber-js
-      - lodash
-      - md5
-      - object-hash
-      - pluralize
-      - ts-dedent
-      - universalify
-      - zod
-
   /@aws-amplify/notifications@2.0.27(@aws-amplify/core@6.0.27):
     resolution: {integrity: sha512-/YLfjWo3nxmIJxCHzL8Ra5YG+gx01sZuGvpRX3couvsXoviywPIWE7D2KoxO1so9Z6qTaN7335XvtCxYcdLXSw==}
     peerDependencies:
@@ -284,14 +223,14 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@aws-amplify/plugin-types@0.9.0-beta.2(aws-cdk-lib@2.137.0)(constructs@3.4.344):
+  /@aws-amplify/plugin-types@0.9.0-beta.2(aws-cdk-lib@2.137.0)(constructs@10.3.0):
     resolution: {integrity: sha512-jQLNPuvVban9bZAqx3Qthf6ZVrV4QmxLsExiDY456CnZWZwHAtFxNPF6v4r64Og7NhzWB/kxa/QuS+d8cwLZ/A==}
     peerDependencies:
       aws-cdk-lib: ^2.127.0
       constructs: ^10.0.0
     dependencies:
-      aws-cdk-lib: 2.137.0(constructs@3.4.344)
-      constructs: 3.4.344
+      aws-cdk-lib: 2.137.0(constructs@10.3.0)
+      constructs: 10.3.0
     dev: false
 
   /@aws-amplify/storage@6.0.27(@aws-amplify/core@6.0.27):
@@ -315,7 +254,7 @@ packages:
     dependencies:
       '@aws-amplify/ui': 6.0.13(aws-amplify@6.0.28)(xstate@4.38.3)
       '@xstate/react': 3.2.2(@types/react@18.2.66)(react@18.2.0)(xstate@4.38.3)
-      aws-amplify: 6.0.28(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      aws-amplify: 6.0.28(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       lodash: 4.17.21
       react: 18.2.0
       react-hook-form: 7.51.3(react@18.2.0)
@@ -335,7 +274,7 @@ packages:
       '@aws-amplify/ui': 6.0.13(aws-amplify@6.0.28)(xstate@4.38.3)
       '@aws-amplify/ui-react': 6.1.7(@types/react@18.2.66)(aws-amplify@6.0.28)(react-dom@18.2.0)(react@18.2.0)
       '@aws-amplify/ui-react-core': 3.0.13(@types/react@18.2.66)(aws-amplify@6.0.28)(react@18.2.0)
-      aws-amplify: 6.0.28(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      aws-amplify: 6.0.28(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       lodash: 4.17.21
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -362,7 +301,7 @@ packages:
       '@radix-ui/react-dropdown-menu': 1.0.0(@types/react@18.2.66)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-slider': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@xstate/react': 3.2.2(@types/react@18.2.66)(react@18.2.0)(xstate@4.38.3)
-      aws-amplify: 6.0.28(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      aws-amplify: 6.0.28(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       lodash: 4.17.21
       qrcode: 1.5.0
       react: 18.2.0
@@ -383,7 +322,7 @@ packages:
       xstate:
         optional: true
     dependencies:
-      aws-amplify: 6.0.28(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      aws-amplify: 6.0.28(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       csstype: 3.1.3
       lodash: 4.17.21
       style-dictionary: 3.9.1
@@ -401,955 +340,6 @@ packages:
 
   /@aws-cdk/asset-node-proxy-agent-v6@2.0.3:
     resolution: {integrity: sha512-twhuEG+JPOYCYPx/xy5uH2+VUsIEhPTzDY0F1KuB+ocjWWB/KEDiOVL19nHvbPCB6fhWnkykXEMJ4HHcKvjtvg==}
-    dev: false
-
-  /@aws-cdk/assets@1.204.0(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-rY9YHZ3gUWr+dLwTwSUWYbIfk/AXy4JZRkhLbunrtzjQhH+QMm/2IWIebfBGu+A5AlVRaFbRLonReuGP5WZoUQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-acmpca@1.204.0(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-2zyuQZwynwkz2qiuFDp088tglWXKX3q7saWRDqeuq2n2HE6PGuQRjd4zjl9nDGUVxQYtzzXyEuPyaEta8fg9lQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-applicationautoscaling@1.204.0(@aws-cdk/aws-autoscaling-common@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-sEe2NODKUowJx2guM2SPfs/20gGdBq1C09M32b8c1im7K+PqQkHkE156nyz5Ml0hpsNeCZlRS17oKZ042aZevQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-autoscaling-common': 1.204.0
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-autoscaling-common': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-appsync@1.204.0(@aws-cdk/aws-certificatemanager@1.204.0)(@aws-cdk/aws-cognito@1.204.0)(@aws-cdk/aws-dynamodb@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-elasticsearch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-opensearchservice@1.204.0)(@aws-cdk/aws-rds@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-secretsmanager@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-s9AFevq1YFL9eN+ulX8EgGWf0+khTJgJ5ZzXls80WXUlh8f2SYRwARxSsTqdIBWrAEFSuusofDHrj8BYGqHqdg==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-certificatemanager': 1.204.0
-      '@aws-cdk/aws-cognito': 1.204.0
-      '@aws-cdk/aws-dynamodb': 1.204.0
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-elasticsearch': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-lambda': 1.204.0
-      '@aws-cdk/aws-opensearchservice': 1.204.0
-      '@aws-cdk/aws-rds': 1.204.0
-      '@aws-cdk/aws-s3-assets': 1.204.0
-      '@aws-cdk/aws-secretsmanager': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-certificatemanager': 1.204.0(@aws-cdk/aws-acmpca@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-cognito': 1.204.0(@aws-cdk/aws-certificatemanager@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-dynamodb': 1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kinesis@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-elasticsearch': 1.204.0(@aws-cdk/aws-certificatemanager@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/aws-secretsmanager@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-lambda': 1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codeguruprofiler@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-ecr-assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-efs@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-signer@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-opensearchservice': 1.204.0(@aws-cdk/aws-certificatemanager@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/aws-secretsmanager@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-rds': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-secretsmanager@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3-assets': 1.204.0(@aws-cdk/assets@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-secretsmanager': 1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-sam@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-autoscaling-common@1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-P+PwbTaj28Eg9+/U9ZTXTh1gA7L9Z45GL+9xcEZvEqAkJt9MNgzZICavVZu1sMD74foK1r1ZOBXTsqV6wEiltQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-certificatemanager@1.204.0(@aws-cdk/aws-acmpca@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-ZLykfAOb5Zbg/MFtzA+eHhMAK1xL32+oHKSK6tAYrgvv2aS42wJE4zSBV6jGCjnCkhcliUd5pwnACEl3ib0KLw==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-acmpca': 1.204.0
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-lambda': 1.204.0
-      '@aws-cdk/aws-route53': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-acmpca': 1.204.0(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-lambda': 1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codeguruprofiler@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-ecr-assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-efs@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-signer@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-route53': 1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-cloudformation@1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-9PkZa9mKLneB0My8wJC7lLZmPJsnOxNYy57ZZlRCQhK0eO6Jc9eVqrI29537W+3ireaEjCLEitkb8NO1FN/kQA==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-lambda': 1.204.0
-      '@aws-cdk/aws-s3': 1.204.0
-      '@aws-cdk/aws-sns': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-lambda': 1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codeguruprofiler@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-ecr-assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-efs@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-signer@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3': 1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-sns': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codestarnotifications@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-cloudwatch@1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-ADT2D+4FtB9Zcy/TlF2tswQmjmrPVgORYTkznQQ2SniCODHWzz558+G1RV+IVvWRdH7nYQtV0UEuGZKpffWh2w==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-codeguruprofiler@1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-IrgY4SmVf9p5POfHm8BsPzaAO5lQTG7nhb5qN5AzS6zKCTuEjjTNHjx1TOfPV12mMIDAIVsK91mjDlAR88Mjbg==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-codestarnotifications@1.204.0(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-t//hSpC5/uVW2321YlbGabNVzhWayvqz+xSnagADGcT9qiq3KQR/uUlrgpHv1/eHRMk7EMrY9prlXeZpfzZ+cw==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-cognito@1.204.0(@aws-cdk/aws-certificatemanager@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-7QIbExW9dn1fktpDOh2nMHmor2S3uuHtIX5y33lc9OKg3xUuYw4AZ67MKapunN7QUBlffTlNzoUqlHoNSab+Zg==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-certificatemanager': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-lambda': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/custom-resources': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-certificatemanager': 1.204.0(@aws-cdk/aws-acmpca@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-lambda': 1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codeguruprofiler@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-ecr-assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-efs@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-signer@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/custom-resources': 1.204.0(@aws-cdk/aws-cloudformation@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-    bundledDependencies:
-      - punycode
-
-  /@aws-cdk/aws-dynamodb@1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kinesis@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-mJhbrmLiRa2etpzH2Uyz5429+YXIQeZqg0uXESEDLf5xCoypmwXn3zdxcBlz2sIbhTZcWta8s+dqIIor+GcMJQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-applicationautoscaling': 1.204.0
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kinesis': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-lambda': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/custom-resources': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-applicationautoscaling': 1.204.0(@aws-cdk/aws-autoscaling-common@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kinesis': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-lambda': 1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codeguruprofiler@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-ecr-assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-efs@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-signer@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/custom-resources': 1.204.0(@aws-cdk/aws-cloudformation@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-ec2@1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-SoqZEgzdfPW0aa+FQ0CjzbDG+X+sDu6/BnLL2O10lxpa+9Dc1iyArAqNKFJG5KXGJe9ibvQXyNQqEjeGRFc22Q==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-logs': 1.204.0
-      '@aws-cdk/aws-s3': 1.204.0
-      '@aws-cdk/aws-s3-assets': 1.204.0
-      '@aws-cdk/aws-ssm': 1.204.0
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      '@aws-cdk/region-info': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-logs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3': 1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3-assets': 1.204.0(@aws-cdk/assets@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ssm': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      '@aws-cdk/region-info': 1.204.0
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-ecr-assets@1.204.0(@aws-cdk/assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-2GHD3pZdDoPxq3HhD4czANuI7TMoxpjszbzsQAc2wbdMX1j+K4vIL+PBpj3altfscPqcvy1v70lBjbG5rcBIkQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/assets': 1.204.0
-      '@aws-cdk/aws-ecr': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-s3': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/assets': 1.204.0(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ecr': 1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3': 1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-ecr@1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-oCts9e+ackWoFHeyn/3oKm3X1lSizleWNNXHp5WGM38lpNVrtCLMKSShu5iXJBhqRH2Mz1AcA4fDMWhe8DvJFA==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-events': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-events': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-efs@1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-FB6nHgCuzYF5K9ywqYPEPjL2G1ATLIR9dJp1p4ydcEUuXDb4KSEVN4Bgx+q1e7EkWGIq+9glr+ckheEcTvETgw==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-elasticsearch@1.204.0(@aws-cdk/aws-certificatemanager@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/aws-secretsmanager@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-RidCuPU3JzwiQozxGH1Uar+np0LCeUW8bLRmzywfmAzKhjU96Xv6MjQDGHyKL0JWoLUFPUKA7CcN0xNfvcSJ0A==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-certificatemanager': 1.204.0
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-logs': 1.204.0
-      '@aws-cdk/aws-route53': 1.204.0
-      '@aws-cdk/aws-secretsmanager': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/custom-resources': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-certificatemanager': 1.204.0(@aws-cdk/aws-acmpca@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-logs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-route53': 1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-secretsmanager': 1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-sam@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/custom-resources': 1.204.0(@aws-cdk/aws-cloudformation@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-events@1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-KnfUmtv+4RhydD9+5CHFxNJxtgn7+Xftwfwg1G7qV/tWYPFHcNIvhlSOgwDrQPa+pTo1MmkiUN0lAR0G8B/cbw==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-iam@1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-Fh2egW3v/uDdw3m4jvcupS7COL/+sJl2NHjz9l298ddyMxqDwJD2NQwE8mvgPLK4rDtAtDnE0c8RS6d+NWiC+w==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/region-info': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      '@aws-cdk/region-info': 1.204.0
-      constructs: 3.4.344
-    transitivePeerDependencies:
-      - '@aws-cdk/cloud-assembly-schema'
-    dev: false
-
-  /@aws-cdk/aws-kinesis@1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-CZm0Qk0PoagLZ81XadxgKFM0/20fhFuYRnT98oqdvsrqvYJddXaKt/peCI5v/PbRtptGkpn2FoHjkwxKWoJNJA==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-logs': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-logs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-kms@1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-iryZQ428L1VUVQ0zE96XTWWX7ANVtDrb6x+ZXXLTVUEPgjEd/W6zlcp++Qi0A3a9HLNd4PbEhK9rs0UKNTylzw==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-lambda@1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codeguruprofiler@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-ecr-assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-efs@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-signer@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-r0XXovrLAx8Q8Fz915SwzyQM/KLhEB6YCp3CsWliFGSOHEjRP8yX8UZdEJqe5kYD7Th9JAhUVzKgyv20P7g5Tg==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-applicationautoscaling': 1.204.0
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-codeguruprofiler': 1.204.0
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-ecr': 1.204.0
-      '@aws-cdk/aws-ecr-assets': 1.204.0
-      '@aws-cdk/aws-efs': 1.204.0
-      '@aws-cdk/aws-events': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-logs': 1.204.0
-      '@aws-cdk/aws-s3': 1.204.0
-      '@aws-cdk/aws-s3-assets': 1.204.0
-      '@aws-cdk/aws-signer': 1.204.0
-      '@aws-cdk/aws-sns': 1.204.0
-      '@aws-cdk/aws-sqs': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      '@aws-cdk/region-info': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-applicationautoscaling': 1.204.0(@aws-cdk/aws-autoscaling-common@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-codeguruprofiler': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ecr': 1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ecr-assets': 1.204.0(@aws-cdk/assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-efs': 1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-events': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-logs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3': 1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3-assets': 1.204.0(@aws-cdk/assets@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-signer': 1.204.0(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-sns': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codestarnotifications@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-sqs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      '@aws-cdk/region-info': 1.204.0
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-logs@1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-PuHsDSkX6JFBgldxViGw91eFLageJ2cX89/RyLbWaJJUV4tlUKXSmmkVgOaBmvil0QKuGqbOzLXcXCoIK9Sg3A==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-s3-assets': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3-assets': 1.204.0(@aws-cdk/assets@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-opensearchservice@1.204.0(@aws-cdk/aws-certificatemanager@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/aws-secretsmanager@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-b/GfLIs8sS55Yk+Yqq1jBYMUHxpfUvuxjs6lb3DwIbm7T0modf7/oU8GnW3RU9eOXgT1x75ALpJv9LHDjxaS5g==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-certificatemanager': 1.204.0
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-logs': 1.204.0
-      '@aws-cdk/aws-route53': 1.204.0
-      '@aws-cdk/aws-secretsmanager': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/custom-resources': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-certificatemanager': 1.204.0(@aws-cdk/aws-acmpca@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-route53@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-logs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-route53': 1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-secretsmanager': 1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-sam@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/custom-resources': 1.204.0(@aws-cdk/aws-cloudformation@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-rds@1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-secretsmanager@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-2zNnLS7DUAWKtwG5m09qTSbFO8Ylxd0dtat1xEDmqb+QnTLPnODTELp75JMjietb9Zye1LMjFxr6x07Ublq1cg==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-events': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-logs': 1.204.0
-      '@aws-cdk/aws-s3': 1.204.0
-      '@aws-cdk/aws-secretsmanager': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-events': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-logs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3': 1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-secretsmanager': 1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-sam@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-route53@1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/custom-resources@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-wQpGUXqc2y7yJFTipfuVxWy/VGeshyGlfGl4evusQK9Md0DMpVmG8kRgazLk1myqUSNSfi643UwvDJqNbYmdnA==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-logs': 1.204.0
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/custom-resources': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-logs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/custom-resources': 1.204.0(@aws-cdk/aws-cloudformation@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-s3-assets@1.204.0(@aws-cdk/assets@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-3MQbVZ95wW29Bl63tqu0Bz0td3osLyGg352l5G7Ztf3nK35FpuQlgxO4kcu74+s2sRwdd/R4KFV6eWhhPk+J7g==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/assets': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-s3': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/assets': 1.204.0(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-s3': 1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-s3@1.204.0(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-jsQ4n1L4MdPYDirBoOYgg7yzSk1TaFYo4dnwDlKiLJ5LcHG3Nai1cHb9XQbCy/9KKqbWsbd3WlkH+vcWEl8EUA==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-events': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-events': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-sam@1.204.0(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-8M3e1ZT6/nO6Yxtr7YtcrTF5YG6kjw8PcnOjda0SfUFo8Xya7oi1OZvDRIfAeOexsIgqjKSV8s7brDrWM5DIpg==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-secretsmanager@1.204.0(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-sam@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-ykpjYmP6qVOFbHtkaQBu3Xk7xp2UTR0ouzk7pb+zrEHKGmRvzGq+8J0IU+qXBJgQIVwFAPf2IgOSTzj6FJPdyA==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-lambda': 1.204.0
-      '@aws-cdk/aws-sam': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-lambda': 1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codeguruprofiler@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-ecr-assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-efs@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-signer@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-sam': 1.204.0(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-signer@1.204.0(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-AI26FhWF3+f/vDh3mleQa2CXv2/CmSerXgyk4XHMVVTTCjnlYGGmHmGlzYhqOSw6ALpQNdOSw8GVxU/ySpQCaw==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-sns@1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codestarnotifications@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-KoWxqKT/dTjt9Pk0a3kJLcd6xZHvrwbZDC0mrLtxdRNhQoHmnURAHW2UqX/lefrCU1GcUFf4L58N9ehBTunAFQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-codestarnotifications': 1.204.0
-      '@aws-cdk/aws-events': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/aws-sqs': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-codestarnotifications': 1.204.0(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-events': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-sqs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-sqs@1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-dVzuGMh6d5/X9P9jel1w2Wgdy5MuSE35+eBSFxN+S7oJRoVSARpyKMNYAPMCW+2OJCDw7fIqO1rWbsZBT1Gq8g==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-cloudwatch': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/aws-ssm@1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-yYx7HZ8cWNXDAmX/99WkB477QhLoV2rcB8orei8aj7nRkNq5TMjeox0IJaZVgU+edNEDOi1fVX3flh0SAMiUrg==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-kms': 1.204.0
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-kms': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/cloud-assembly-schema@1.204.0:
-    resolution: {integrity: sha512-DMNSR4DNKMNNfhOq1UizwZvesOKdhk3R3gRigrvWBHIkHMQg+W6aZFl7WZLKSBkChAXhIsH///psjhDQ20gl1w==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    dev: false
-    bundledDependencies:
-      - jsonschema
-      - semver
-
-  /@aws-cdk/core@1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-yO/flJ9ihpzRhLTEqlbdbuPGtyyghHiiQPkUTLslwUM5vThVTbpgvW4UQHSGqytyst4MYXrN2jQn2RkwIRU57g==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0
-      '@aws-cdk/region-info': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-      '@aws-cdk/cx-api': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)
-      '@aws-cdk/region-info': 1.204.0
-      constructs: 3.4.344
-    dev: false
-    bundledDependencies:
-      - fs-extra
-      - minimatch
-      - '@balena/dockerignore'
-      - ignore
-
-  /@aws-cdk/custom-resources@1.204.0(@aws-cdk/aws-cloudformation@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344):
-    resolution: {integrity: sha512-0w3oi7LnAtMZpf7uUBDH6aT2Oo1EBQrqD+VTvPZDX8PJFAox8ol7buZ9sSTpIXgv9j/GK9yaPTIHt4m8ok9kVQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/aws-cloudformation': 1.204.0
-      '@aws-cdk/aws-ec2': 1.204.0
-      '@aws-cdk/aws-iam': 1.204.0
-      '@aws-cdk/aws-lambda': 1.204.0
-      '@aws-cdk/aws-logs': 1.204.0
-      '@aws-cdk/aws-sns': 1.204.0
-      '@aws-cdk/core': 1.204.0
-      constructs: ^3.3.69
-    dependencies:
-      '@aws-cdk/aws-cloudformation': 1.204.0(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-lambda@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-ec2': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-ssm@1.204.0)(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-iam': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-lambda': 1.204.0(@aws-cdk/aws-applicationautoscaling@1.204.0)(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codeguruprofiler@1.204.0)(@aws-cdk/aws-ec2@1.204.0)(@aws-cdk/aws-ecr-assets@1.204.0)(@aws-cdk/aws-ecr@1.204.0)(@aws-cdk/aws-efs@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-logs@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/aws-s3@1.204.0)(@aws-cdk/aws-signer@1.204.0)(@aws-cdk/aws-sns@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-logs': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-s3-assets@1.204.0)(@aws-cdk/core@1.204.0)(@aws-cdk/cx-api@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/aws-sns': 1.204.0(@aws-cdk/aws-cloudwatch@1.204.0)(@aws-cdk/aws-codestarnotifications@1.204.0)(@aws-cdk/aws-events@1.204.0)(@aws-cdk/aws-iam@1.204.0)(@aws-cdk/aws-kms@1.204.0)(@aws-cdk/aws-sqs@1.204.0)(@aws-cdk/core@1.204.0)(constructs@3.4.344)
-      '@aws-cdk/core': 1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0)(@aws-cdk/cx-api@1.204.0)(@aws-cdk/region-info@1.204.0)(constructs@3.4.344)
-      constructs: 3.4.344
-    dev: false
-
-  /@aws-cdk/cx-api@1.204.0(@aws-cdk/cloud-assembly-schema@1.204.0):
-    resolution: {integrity: sha512-Juh/jL1kFPD5JcI9Uu6X0mM2L6hBCN5grdjSS40F8dThbH25VPzFBejaKjiy5nP1UZB83X+HW3utYOEi97DqxA==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
-    peerDependencies:
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-    dependencies:
-      '@aws-cdk/cloud-assembly-schema': 1.204.0
-    dev: false
-    bundledDependencies:
-      - semver
-
-  /@aws-cdk/region-info@1.204.0:
-    resolution: {integrity: sha512-lPkYJNoN4Gjlf0Fdfgcd1RTm5RD9qtfaFMwVvTn2KGTr7ZqmFskGQ9FqIcd5vd6GmsbAL8OrFOToLr1AHDuOiQ==}
-    engines: {node: '>= 14.15.0'}
-    deprecated: |-
-      AWS CDK v1 has reached End-of-Support on 2023-06-01.
-      This package is no longer being updated, and users should migrate to AWS CDK v2.
-
-      For more information on how to migrate, see https://docs.aws.amazon.com/cdk/v2/guide/migrating-v2.html
     dev: false
 
   /@aws-crypto/crc32@3.0.0:
@@ -3953,14 +2943,14 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /aws-amplify@6.0.28(aws-cdk-lib@2.137.0)(constructs@3.4.344):
+  /aws-amplify@6.0.28(aws-cdk-lib@2.137.0)(constructs@10.3.0):
     resolution: {integrity: sha512-gxP/osZNDGb5skWUpka6XCTjAyMsWLMI6gGpIuehxzA4xZ8/V/lOcwy4yoY0UB6830zEh5Jw8AZOBBpBTgrdZQ==}
     dependencies:
       '@aws-amplify/analytics': 7.0.27(@aws-amplify/core@6.0.27)
-      '@aws-amplify/api': 6.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      '@aws-amplify/api': 6.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       '@aws-amplify/auth': 6.0.27(@aws-amplify/core@6.0.27)
       '@aws-amplify/core': 6.0.27
-      '@aws-amplify/datastore': 5.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@3.4.344)
+      '@aws-amplify/datastore': 5.0.28(@aws-amplify/core@6.0.27)(aws-cdk-lib@2.137.0)(constructs@10.3.0)
       '@aws-amplify/notifications': 2.0.27(@aws-amplify/core@6.0.27)
       '@aws-amplify/storage': 6.0.27(@aws-amplify/core@6.0.27)
       tslib: 2.6.2
@@ -3970,7 +2960,7 @@ packages:
       - constructs
     dev: false
 
-  /aws-cdk-lib@2.137.0(constructs@3.4.344):
+  /aws-cdk-lib@2.137.0(constructs@10.3.0):
     resolution: {integrity: sha512-pD3AGdKBa8q1+vVWRabiDHuecVMlP8ERGPHc9Pb0dVlpbC/ODC6XXC1S0TAMsr0JI5Lh6pk4vL5cC+spsMeotw==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
@@ -3979,7 +2969,7 @@ packages:
       '@aws-cdk/asset-awscli-v1': 2.2.202
       '@aws-cdk/asset-kubectl-v20': 2.1.2
       '@aws-cdk/asset-node-proxy-agent-v6': 2.0.3
-      constructs: 3.4.344
+      constructs: 10.3.0
     dev: false
     bundledDependencies:
       - '@balena/dockerignore'
@@ -3993,14 +2983,6 @@ packages:
       - table
       - yaml
       - mime-types
-
-  /aws-cdk@2.138.0:
-    resolution: {integrity: sha512-48xvfEaiM07RB+p05RHqRAVtKcxkGzXnwdTo765Ba0rUFK2ZQ9leykVeBDvdCj9u0eMv2fCRspP/wQxPOU2H/g==}
-    engines: {node: '>= 14.15.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: false
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -4192,8 +3174,8 @@ packages:
       upper-case: 2.0.2
     dev: false
 
-  /constructs@3.4.344:
-    resolution: {integrity: sha512-Qq3upn44oGdvgasHUKWVFsrynyYrtVRd9fd8ko9cJOrFzx9eCm3iI4bhBryQqaISdausbTYUOXmoEe/YSJ16Nw==}
+  /constructs@10.3.0:
+    resolution: {integrity: sha512-vbK8i3rIb/xwZxSpTjz3SagHn1qq9BChLEfy5Hf6fB3/2eFbrwt2n9kHwQcS0CPTRBesreeAcsJfMq2229FnbQ==}
     engines: {node: '>= 16.14.0'}
     dev: false
 
@@ -4558,14 +3540,6 @@ packages:
   /fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
-
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
 
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -5725,75 +4699,6 @@ packages:
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-    dev: false
-
-  /tsparticles-basic@2.12.0:
-    resolution: {integrity: sha512-pN6FBpL0UsIUXjYbiui5+IVsbIItbQGOlwyGV55g6IYJBgdTNXgFX0HRYZGE9ZZ9psEXqzqwLM37zvWnb5AG9g==}
-    deprecated: starting from tsparticles v3 the packages are now moved to @tsparticles/package-name instead of tsparticles-package-name
-    dependencies:
-      tsparticles-engine: 2.12.0
-      tsparticles-move-base: 2.12.0
-      tsparticles-shape-circle: 2.12.0
-      tsparticles-updater-color: 2.12.0
-      tsparticles-updater-opacity: 2.12.0
-      tsparticles-updater-out-modes: 2.12.0
-      tsparticles-updater-size: 2.12.0
-    dev: false
-
-  /tsparticles-engine@2.12.0:
-    resolution: {integrity: sha512-ZjDIYex6jBJ4iMc9+z0uPe7SgBnmb6l+EJm83MPIsOny9lPpetMsnw/8YJ3xdxn8hV+S3myTpTN1CkOVmFv0QQ==}
-    deprecated: starting from tsparticles v3 the packages are now moved to @tsparticles/package-name instead of tsparticles-package-name
-    requiresBuild: true
-    dev: false
-
-  /tsparticles-move-base@2.12.0:
-    resolution: {integrity: sha512-oSogCDougIImq+iRtIFJD0YFArlorSi8IW3HD2gO3USkH+aNn3ZqZNTqp321uB08K34HpS263DTbhLHa/D6BWw==}
-    deprecated: starting from tsparticles v3 the packages are now moved to @tsparticles/package-name instead of tsparticles-package-name
-    dependencies:
-      tsparticles-engine: 2.12.0
-    dev: false
-
-  /tsparticles-preset-stars@2.12.0:
-    resolution: {integrity: sha512-/v/lK5nx0jBi6GE+gQrI2+G8Q83+gAFxTyj+sdQLQ9d8TCrkzgFnW4Ko415GEA7lUYq9xcoDUkfIG+IPRDEwgA==}
-    deprecated: '@tsparticles/preset-stars is the new package, please use that'
-    dependencies:
-      tsparticles-basic: 2.12.0
-      tsparticles-engine: 2.12.0
-    dev: false
-
-  /tsparticles-shape-circle@2.12.0:
-    resolution: {integrity: sha512-L6OngbAlbadG7b783x16ns3+SZ7i0SSB66M8xGa5/k+YcY7zm8zG0uPt1Hd+xQDR2aNA3RngVM10O23/Lwk65Q==}
-    deprecated: starting from tsparticles v3 the packages are now moved to @tsparticles/package-name instead of tsparticles-package-name
-    dependencies:
-      tsparticles-engine: 2.12.0
-    dev: false
-
-  /tsparticles-updater-color@2.12.0:
-    resolution: {integrity: sha512-KcG3a8zd0f8CTiOrylXGChBrjhKcchvDJjx9sp5qpwQK61JlNojNCU35xoaSk2eEHeOvFjh0o3CXWUmYPUcBTQ==}
-    deprecated: starting from tsparticles v3 the packages are now moved to @tsparticles/package-name instead of tsparticles-package-name
-    dependencies:
-      tsparticles-engine: 2.12.0
-    dev: false
-
-  /tsparticles-updater-opacity@2.12.0:
-    resolution: {integrity: sha512-YUjMsgHdaYi4HN89LLogboYcCi1o9VGo21upoqxq19yRy0hRCtx2NhH22iHF/i5WrX6jqshN0iuiiNefC53CsA==}
-    deprecated: starting from tsparticles v3 the packages are now moved to @tsparticles/package-name instead of tsparticles-package-name
-    dependencies:
-      tsparticles-engine: 2.12.0
-    dev: false
-
-  /tsparticles-updater-out-modes@2.12.0:
-    resolution: {integrity: sha512-owBp4Gk0JNlSrmp12XVEeBroDhLZU+Uq3szbWlHGSfcR88W4c/0bt0FiH5bHUqORIkw+m8O56hCjbqwj69kpOQ==}
-    deprecated: starting from tsparticles v3 the packages are now moved to @tsparticles/package-name instead of tsparticles-package-name
-    dependencies:
-      tsparticles-engine: 2.12.0
-    dev: false
-
-  /tsparticles-updater-size@2.12.0:
-    resolution: {integrity: sha512-B0yRdEDd/qZXCGDL/ussHfx5YJ9UhTqNvmS5X2rR2hiZhBAE2fmsXLeWkdtF2QusjPeEqFDxrkGiLOsh6poqRA==}
-    deprecated: starting from tsparticles v3 the packages are now moved to @tsparticles/package-name instead of tsparticles-package-name
-    dependencies:
-      tsparticles-engine: 2.12.0
     dev: false
 
   /type-check@0.4.0:
