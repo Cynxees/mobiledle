@@ -429,6 +429,7 @@ export default function SurvivalPage() {
         <div className="bg-gray-900 rounded-lg shadow-inner shadow-white  border-yellow-100 border-2 p-5 md:p-20 w-full h-full mx-auto md:mt-[10vh] md:w-4/5 md:h-4/5 lg:w-3/5 xl:w-2/5">
         <Navbar />
 
+        
         <div className="grid grid-cols-6 w-full h-full select-none mt-20 px-2">
 
             <div className="h-full w-full relative flex z-30">
