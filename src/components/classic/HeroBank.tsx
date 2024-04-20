@@ -3,6 +3,7 @@ import { BsFillQuestionSquareFill } from "react-icons/bs";
 import { MobileLegendsCharacter } from "../../API";
 import useFetchMobileLegendsCharacters from "../../hooks/useFetchMobileLegendsCharacters";
 import CharacterIcon from "../icons/CharacterIcon";
+import { useMobileLegendsCharacters } from "../../contexts/MobileLegendsCharactersContext";
 
 interface HeroBankModel {
     showPopUp: boolean
@@ -10,21 +11,7 @@ interface HeroBankModel {
 
 export default function HeroBank({ showPopUp } : HeroBankModel) {
 
-    const [characters, setCharacters] = useState<MobileLegendsCharacter[]>([]);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        const characterData = await useFetchMobileLegendsCharacters();
-        setCharacters(characterData)
-
-      }
-
-      fetchData();
-
-
-    })
-
-
+    const {characters, isLoading} = useMobileLegendsCharacters();
 
     return(
 
