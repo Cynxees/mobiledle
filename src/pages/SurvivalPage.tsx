@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback  } from "react";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from "../API";
 import Draggable, {DraggableEvent, DraggableData, ControlPosition} from 'react-draggable';
 import preloadImage from "../components/utils/preloadImage";
 import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navigation/Navbar";
 
 import { useTranslation } from "react-i18next";
 
@@ -306,9 +306,7 @@ export default function SurvivalPage() {
         setScore(0)
 
     }
-
-
-    
+ 
 
     if (!gameStarted) return <div>Loading...</div>;
 
@@ -324,14 +322,12 @@ export default function SurvivalPage() {
 
         </div>
 
-        <div className="bg-gray-900 rounded-lg  border-white border-2 p-20 ">
+        <div className="bg-gray-900 rounded-lg shadow-inner shadow-white  border-yellow-100 border-2 p-20 ">
         <Navbar>
 
         </Navbar>
-            
+        
         <div className="grid grid-cols-3 w-full select-none mt-20">
-
-
 
             <div className="h-full w-60 relative flex z-30">
             <div className={`${(leftOpacity>0) ? 'animate-pulse' :  'animate-none' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1 +leftOpacity }}/>

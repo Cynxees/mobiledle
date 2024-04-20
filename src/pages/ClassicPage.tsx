@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ColorIndicator from "../components/ColorIndicator";
-import HeroShowBar from "../components/HeroShowBar";
-import Navbar from "../components/Navbar";
+import ColorIndicator from "../components/classic/ColorIndicator";
+import HeroShowBar from "../components/classic/HeroShowBar";
+import Navbar from "../components/navigation/Navbar";
 import ClassicInput from "../components/classic/ClassicInput";
 import { MobileLegendsCharacter } from "../API";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
