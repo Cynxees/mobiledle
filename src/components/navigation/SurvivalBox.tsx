@@ -8,7 +8,7 @@ export default function SurvivalBox() {
   return (
     <>
       <a
-        className="p-8 border-2 rounded-lg cursor-pointer border-[#d1b4ff] hover:bg-purple-400 group "
+        className="p-8 border-2 rounded-lg cursor-pointer border-[#d1b4ff] hover:bg-purple-400 group transition duration-500"
         href="/survival"
       >
         <div className="flex justify-center items-center gap-4 ">

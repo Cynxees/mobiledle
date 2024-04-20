@@ -25,7 +25,9 @@ export default function DevPage(){
 
         getTodayCharacter();
     }, [isLoading]);
-    
+
+    console.log(characters)
+
     return (
 
 
