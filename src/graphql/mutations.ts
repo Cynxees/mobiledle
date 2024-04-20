@@ -30,8 +30,7 @@ export const createMobileLegendsCharacter = /* GraphQL */ `mutation CreateMobile
     resource
     hairColor
     species
-    createdAt
-    updatedAt
+    imageUrl
     __typename
   }
 }
@@ -61,8 +60,7 @@ export const updateMobileLegendsCharacter = /* GraphQL */ `mutation UpdateMobile
     resource
     hairColor
     species
-    createdAt
-    updatedAt
+    imageUrl
     __typename
   }
 }
@@ -92,12 +90,50 @@ export const deleteMobileLegendsCharacter = /* GraphQL */ `mutation DeleteMobile
     resource
     hairColor
     species
-    createdAt
-    updatedAt
+    imageUrl
     __typename
   }
 }
 ` as GeneratedMutation<
   APITypes.DeleteMobileLegendsCharacterMutationVariables,
   APITypes.DeleteMobileLegendsCharacterMutation
+>;
+export const createChat = /* GraphQL */ `mutation CreateChat($input: CreateChatInput!) {
+  createChat(input: $input) {
+    id
+    text
+    createdAt
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateChatMutationVariables,
+  APITypes.CreateChatMutation
+>;
+export const updateChat = /* GraphQL */ `mutation UpdateChat($input: UpdateChatInput!) {
+  updateChat(input: $input) {
+    id
+    text
+    createdAt
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateChatMutationVariables,
+  APITypes.UpdateChatMutation
+>;
+export const deleteChat = /* GraphQL */ `mutation DeleteChat($input: DeleteChatInput!) {
+  deleteChat(input: $input) {
+    id
+    text
+    createdAt
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteChatMutationVariables,
+  APITypes.DeleteChatMutation
 >;

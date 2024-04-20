@@ -27,8 +27,7 @@ export const getMobileLegendsCharacter = /* GraphQL */ `query GetMobileLegendsCh
     resource
     hairColor
     species
-    createdAt
-    updatedAt
+    imageUrl
     __typename
   }
 }
@@ -64,6 +63,7 @@ export const listMobileLegendsCharacters = /* GraphQL */ `query ListMobileLegend
       resource
       hairColor
       species
+      imageUrl
       __typename
     }
     nextToken
@@ -74,3 +74,31 @@ export const listMobileLegendsCharacters = /* GraphQL */ `query ListMobileLegend
   APITypes.ListMobileLegendsCharactersQueryVariables,
   APITypes.ListMobileLegendsCharactersQuery
 >;
+export const getChat = /* GraphQL */ `query GetChat($id: String!) {
+  getChat(id: $id) {
+    id
+    text
+    createdAt
+    owner
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetChatQueryVariables, APITypes.GetChatQuery>;
+export const listChats = /* GraphQL */ `query ListChats(
+  $filter: TableChatFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listChats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      text
+      createdAt
+      owner
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.ListChatsQueryVariables, APITypes.ListChatsQuery>;
