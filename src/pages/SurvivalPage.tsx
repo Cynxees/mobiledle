@@ -1,15 +1,12 @@
-import { useEffect, useState, useCallback, useMemo  } from "react";
-import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
+import { useEffect, useState, useMemo  } from "react";
 import { MobileLegendsCharacter } from "../API";
-import Draggable, {DraggableEvent, DraggableData, ControlPosition} from 'react-draggable';
+import Draggable, {DraggableEvent, DraggableData} from 'react-draggable';
 import preloadImage from "../components/utils/preloadImage";
 import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
 import Navbar from "../components/navigation/Navbar";
 import {
     type Container,
-    type ISourceOptions,
-    MoveDirection,
-    OutMode,
+    type ISourceOptions
   } from "@tsparticles/engine";
 import { useTranslation } from "react-i18next";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
@@ -123,76 +120,76 @@ export default function SurvivalPage() {
     const [rightText, setRightText]= useState("")
     const [rightIsCorrect, setRightCorrect] = useState(false)
     const [isAllLoaded, setIsAllLoaded] = useState(false);
-    const [particleInit, setParticleInit] = useState(false);
+    // const [particleInit, setParticleInit] = useState(false);
     const [gameStarted, setGameStarted] = useState(false);
 
-    const [particleSpeed, setParticleSpeed] = useState(1)
+    // const [particleSpeed, setParticleSpeed] = useState(1)
 
 
-    const particlesLoaded = async (container?: Container): Promise<void> => {
+    // const particlesLoaded = async (container?: Container): Promise<void> => {
 
-    };
+    // };
 
 
-    const options: ISourceOptions = useMemo(
-    () => ({
-        background: {
-        color: {
-            value: "",
-        },
-        },
-        fpsLimit: 60,
-        interactivity: {
-        events: {
-            onClick: {
-            enable: true,
-            mode: "push",
-            }
-        },
-        modes: {
-            push: {
-            quantity: 1,
-            },
-            repulse: {
-            distance: 150,
-            duration: 0.4,
-            },
-        },
-        },
-        particles: {
-        color: {
-            value: "#ffffcc",
-        },
-        move: {
-            direction: "top",
-            enable: true,
-            outModes: {
-            default: "out",
-            },
-            random: false,
-            speed: particleSpeed,
-            straight: false,
-        },
-        number: {
-            density: {
-            enable: true,
-            },
-            value: 20,
-        },
-        opacity: {
-            value: 0.4,
-        },
-        shape: {
-            type: "circle",
-        },
-        size: {
-            value: { min: 3, max: 6 },
-        },
-        },
-        detectRetina: true,
-    }),
-    [],
-    );
+    // const options: ISourceOptions = useMemo(
+    // () => ({
+    //     background: {
+    //     color: {
+    //         value: "",
+    //     },
+    //     },
+    //     fpsLimit: 60,
+    //     interactivity: {
+    //     events: {
+    //         onClick: {
+    //         enable: true,
+    //         mode: "push",
+    //         }
+    //     },
+    //     modes: {
+    //         push: {
+    //         quantity: 1,
+    //         },
+    //         repulse: {
+    //         distance: 150,
+    //         duration: 0.4,
+    //         },
+    //     },
+    //     },
+    //     particles: {
+    //     color: {
+    //         value: "#ffffcc",
+    //     },
+    //     move: {
+    //         direction: "top",
+    //         enable: true,
+    //         outModes: {
+    //         default: "out",
+    //         },
+    //         random: false,
+    //         speed: particleSpeed,
+    //         straight: false,
+    //     },
+    //     number: {
+    //         density: {
+    //         enable: true,
+    //         },
+    //         value: 20,
+    //     },
+    //     opacity: {
+    //         value: 0.4,
+    //     },
+    //     shape: {
+    //         type: "circle",
+    //     },
+    //     size: {
+    //         value: { min: 3, max: 6 },
+    //     },
+    //     },
+    //     detectRetina: false,
+    // }),
+    // [],
+    // );
 
     function startRound(){
 
@@ -227,7 +224,7 @@ export default function SurvivalPage() {
             if (countdown > 0) {
                 setCountdown(countdown - 1);
             }
-        }, 1000);
+        }, countdownSpeed);
 
         return () => clearTimeout(timer);
     }, [countdown, countdownActive]);
@@ -270,18 +267,18 @@ export default function SurvivalPage() {
     }, [isLoading]);
 
     
-    useEffect(() => {
+    // useEffect(() => {
 
         
-        console.log("init particle")
+    //     console.log("init particle")
 
-        if(!particleInit) initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-          }).then(() => {
-            setParticleInit(true);
-        });
+    //     if(!particleInit) initParticlesEngine(async (engine) => {
+    //         await loadSlim(engine);
+    //       }).then(() => {
+    //         setParticleInit(true);
+    //     });
 
-    }, )
+    // }, )
 
     useEffect(() => {
     
@@ -416,12 +413,12 @@ export default function SurvivalPage() {
 
             <video src="/survivalVideo.mp4" className="min-w-full min-h-full object-cover blur-xl opacity-10" autoPlay muted loop></video>
 
-            <Particles
+            {/* <Particles
             id="tsparticles-survival"
             particlesLoaded={particlesLoaded}
             options={options}
             className="absolute -z-10" 
-            />
+            /> */}
 
         </div>
 
@@ -438,18 +435,20 @@ export default function SurvivalPage() {
 
             <div className="h-full w-full relative flex z-30">
             <div className={`${(leftOpacity>0) ? 'animate-pulse' :  'animate-none' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1 +leftOpacity }}/>
-            <div className="w-full mr-auto text-balance my-auto text-orange-200 brightness-110 items-center align-middle text-xl md:text-3xl relative z-00 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.2+leftOpacity*5 }}>
+            <div className="w-full mr-auto text-center text-balance my-auto -translate-y-10 text-orange-200 brightness-110 items-center align-middle text-xl md:text-3xl relative z-00 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.2+leftOpacity*5 }}>
             {t(`${leftText}`)}
             </div>
             </div>
             
             
-            <div className="z-10 col-span-4 h-full flex flex-col flex-shrink">
+            <div className="z-10 col-span-4 h-full relative flex-shrink">
 
             <div className={`font-nova-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-10 ${countdownClass}`}>
                 {(countdown > 12) ? "?" : (countdown > 11) ? "READY?" : (countdown > 10) ? "START" : (countdown < 1) ? "DEFEAT" : countdown} 
             </div>
 
+            <div className="absolute mx-auto left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 ">
+                
             <Draggable
                 onDrag={handleDrag}
                 onStop={handleStop}
@@ -464,23 +463,24 @@ export default function SurvivalPage() {
             >
                 <div className="handle relative z-30 mb-20 transform w-full h-full " style={{ WebkitFilter: `brightness(${characterOpacity + 0.6})`, filter : `brightness(100%)` }}>
 
-                <div className="bg-image absolute inset-0 scale-[1.5] bg-center  h-full w-full  blur-3xl opacity-80 motion-reduce:animate-bounce animate-pulse" 
+                <div className="bg-image absolute inset-0 bg-center bg-cover max-h-[28vh] lg:max-h-full blur-3xl opacity-80 motion-reduce:animate-bounce animate-pulse" 
                     style={{ backgroundImage: `url(${currentCharacter?.imageUrl[1]})`, backgroundSize: 'cover', transform: `rotate(${characterRotation}deg)` }} />
                     
-                <div className="" style={{ transform: `rotate(${characterRotation}deg)` }}>{currentCharacter?.name}
-                <img className="rounded-xl max-h-[28vh] lg:max-h-full z-10 mx-auto " src={currentCharacter?.imageUrl[1]} alt={currentCharacter?.name} draggable={false}></img>
-                </div>
+                <img className="rounded-xl max-h-[28vh] lg:max-h-full z-10 mx-auto scale-150 md:scale-110 " src={currentCharacter?.imageUrl[1]} alt={currentCharacter?.name} draggable={false}></img>
+                
 
-                <div className="px-5 mx-auto py-2 border-yellow-100 mt-5 rounded-full">Score : {score}</div>
 
                 </div>
             </Draggable>
+            
+            <div className="px-5 mx-auto py-2 border-yellow-100 text-xl">{score*100}</div>
+            </div>
 
             </div>
 
             <div className="h-full w-full relative flex z-10 ">
             <div className={`${(rightOpacity>0) ? 'animate-pulse' :  '' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1+rightOpacity }}/>
-            <div className="w-full text-center text-balance my-auto text-orange-200 brightness-110 items-center align-middle text-xl md:text-3xl relative z-10 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.3+rightOpacity*5 }}>
+            <div className="w-full text-center text-balance mr-14 -translate-y-10 my-auto text-orange-200 brightness-110 items-center align-middle text-xl md:text-3xl relative z-10 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.3+rightOpacity*5 }}>
             {t(`${rightText}`)}
             </div>
             </div>

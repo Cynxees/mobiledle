@@ -27,16 +27,16 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="flex justify-between items-center w-full gap-10">
-      <IoMdSettings className="text-5xl" />
-      <a href={'/'} className="text-logo-sm font-modesto bg-gradient-to-r from-[#e8dca4]  to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
+    <nav className="flex justify-center items-center w-full gap-5 md:gap-10">
+      <IoMdSettings className="md:min-w-12 min-w-6 w-6 text-3xl" />
+      <a href={'/'} className="md:text-5xl text-3xl font-modesto bg-gradient-to-r from-[#e8dca4]  to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
         MOBILEDLE
       </a>
       {currentLanguage === "en" ? (
-        <img src="public\us-flag.jpeg" className="w-12 h-8 cursor-pointer" onClick={() => changeLanguage("id")}></img>
+        <img src="public\us-flag.jpeg" className="md:w-12 w-6 cursor-pointer" onClick={() => changeLanguage("id")}></img>
       ) : (
         // <button onClick={() => changeLanguage("en")}>ID</button>
-        <img src="public\indo-flag.jpeg" className="w-12 h-8 cursor-pointer" onClick={() => changeLanguage("en")}></img>
+        <img src="public\indo-flag.jpeg" className="md:w-12 w-6  cursor-pointer" onClick={() => changeLanguage("en")}></img>
       )}
       {/* <span>
         <button className="w-full mb-3" onClick={() => changeLanguage("en")}>English</button>
