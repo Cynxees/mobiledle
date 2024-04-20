@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BsFillQuestionSquareFill } from "react-icons/bs";
-import { MobileLegendsCharacter } from '../API';
-import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
+import { MobileLegendsCharacter } from '../../API';
+import useFetchMobileLegendsCharacters from "../../hooks/useFetchMobileLegendsCharacters";
 
 
 

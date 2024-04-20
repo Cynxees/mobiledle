@@ -8,7 +8,7 @@ export default function ClassicBox() {
   return (
     <>
       <a
-        className="p-8 border-2 rounded-lg cursor-pointer border-[#CB812D]"
+        className="p-8 border-2 rounded-lg cursor-pointer border-[#CB812D] bg-[#101010] shadow-xl shadow-black"
         href="/classic"
       >
         <div className="flex justify-center items-center gap-4">

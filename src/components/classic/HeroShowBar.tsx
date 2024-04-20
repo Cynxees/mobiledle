@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { MobileLegendsCharacter } from "../API";
+import { MobileLegendsCharacter } from "../../API";
 
 interface ClassicSearchBarProps {
   character: MobileLegendsCharacter;
@@ -63,7 +63,7 @@ export default function HeroShowBar({
                 }}/>
       </div>
       <div
-        className={`py-4  border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s ${
+        className={`py-4  border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/classic-bg.png')] bg-blend-multiply ${
           character.gender === todayCharacter?.gender
             ? correctColor
             : wrongColor
