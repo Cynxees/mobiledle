@@ -60,7 +60,7 @@ export default function ClassicPage() {
      if (savedDate !== today) {
        return false
      }
-    return storedData === "true"; // Convert the string to boolean
+    return storedData === "true"; 
   });
 
   const [aliasOptions, setAliasOptions] = useState<MobileLegendsCharacter[]>(
