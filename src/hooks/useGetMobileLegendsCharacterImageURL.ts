@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { getUrl, list } from 'aws-amplify/storage';
+import { getUrl } from 'aws-amplify/storage';
 import { MobileLegendsCharacter } from '../API';
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from '../amplifyconfiguration.json';

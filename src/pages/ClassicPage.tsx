@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ColorIndicator from "../components/classic/ColorIndicator";
 import HeroShowBar from "../components/classic/HeroShowBar";
 import Navbar from "../components/navigation/Navbar";

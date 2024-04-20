@@ -1,4 +1,3 @@
-import { MobileLegendsCharacter } from '../API';
 import useFetchMobileLegendsCharacters from './useFetchMobileLegendsCharacters';
 
 const useFetchTodayAnswer = async (gamemode : string) => {

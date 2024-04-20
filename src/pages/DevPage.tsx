@@ -2,12 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import {
   type Container,
-  type ISourceOptions,
-  MoveDirection,
-  OutMode,
+  type ISourceOptions
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
-import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from '../API';
 import ClassicSearchBar from "../components/classic/ClassicSearchBar"
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";

@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { MobileLegendsCharacter } from '../API';
 import { listMobileLegendsCharacters } from '../graphql/queries';
 import { generateClient } from "aws-amplify/api";
 import useGetMobileLegendsCharacterImageURL from './useGetMobileLegendsCharacterImageURL';

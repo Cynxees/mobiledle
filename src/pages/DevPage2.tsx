@@ -1,8 +1,5 @@
 
-const endpoint = 'https://fwkgtsinlvf6bfeusjmgdxbmwi.appsync-api.ap-southeast-1.amazonaws.com/graphql'
-const apiId = 'qtdtmju7fzfehbp3n7bgg3uxje'
-import React, { InputHTMLAttributes, useEffect, useState } from 'react';
-import { listChats } from '../graphql/queries';
+import React, { useState } from 'react';
 import { createChat as CreateChatMutation, createChat, updateChat } from '../graphql/mutations';
 import { onCreateChat, onUpdateChat } from '../graphql/subscriptions';
 import { generateClient } from 'aws-amplify/api';
