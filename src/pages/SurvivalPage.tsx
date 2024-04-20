@@ -1,12 +1,19 @@
-import { useEffect, useState, useCallback  } from "react";
+import { useEffect, useState, useCallback, useMemo  } from "react";
 import useFetchMobileLegendsCharacters from "../hooks/useFetchMobileLegendsCharacters";
 import { MobileLegendsCharacter } from "../API";
 import Draggable, {DraggableEvent, DraggableData, ControlPosition} from 'react-draggable';
 import preloadImage from "../components/utils/preloadImage";
 import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
 import Navbar from "../components/navigation/Navbar";
-
+import {
+    type Container,
+    type ISourceOptions,
+    MoveDirection,
+    OutMode,
+  } from "@tsparticles/engine";
 import { useTranslation } from "react-i18next";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
 function getRandomStat(character: MobileLegendsCharacter) {
 
@@ -29,7 +36,8 @@ function getRandomStat(character: MobileLegendsCharacter) {
         character.species
     ]
 
-    return characterStats[random]
+    console.log('right stat: ',characterStats[random], 'from ', character)
+    return characterStats[random].toString().replace('/', '/ ')
 
 
 }
@@ -70,7 +78,9 @@ function getWrongStat(character: MobileLegendsCharacter, characters: MobileLegen
             randomCharacter.species
         ]
 
-        if(randomCharacterStats[random] != characterStats[random]) return randomCharacterStats[random]
+        console.log('wrong stat: ',randomCharacterStats[random], 'from ', randomCharacter)
+
+        if(randomCharacterStats[random] != characterStats[random]) return randomCharacterStats[random].toString().replace('/', '/ ')
 
         
     }
@@ -113,7 +123,76 @@ export default function SurvivalPage() {
     const [rightText, setRightText]= useState("")
     const [rightIsCorrect, setRightCorrect] = useState(false)
     const [isAllLoaded, setIsAllLoaded] = useState(false);
+    const [particleInit, setParticleInit] = useState(false);
     const [gameStarted, setGameStarted] = useState(false);
+
+    const [particleSpeed, setParticleSpeed] = useState(1)
+
+
+    const particlesLoaded = async (container?: Container): Promise<void> => {
+
+    };
+
+
+    const options: ISourceOptions = useMemo(
+    () => ({
+        background: {
+        color: {
+            value: "",
+        },
+        },
+        fpsLimit: 60,
+        interactivity: {
+        events: {
+            onClick: {
+            enable: true,
+            mode: "push",
+            }
+        },
+        modes: {
+            push: {
+            quantity: 1,
+            },
+            repulse: {
+            distance: 150,
+            duration: 0.4,
+            },
+        },
+        },
+        particles: {
+        color: {
+            value: "#ffffcc",
+        },
+        move: {
+            direction: "top",
+            enable: true,
+            outModes: {
+            default: "out",
+            },
+            random: false,
+            speed: particleSpeed,
+            straight: false,
+        },
+        number: {
+            density: {
+            enable: true,
+            },
+            value: 20,
+        },
+        opacity: {
+            value: 0.4,
+        },
+        shape: {
+            type: "circle",
+        },
+        size: {
+            value: { min: 3, max: 6 },
+        },
+        },
+        detectRetina: true,
+    }),
+    [],
+    );
 
     function startRound(){
 
@@ -122,7 +201,9 @@ export default function SurvivalPage() {
         let correctPrompt = getRandomStat(currentCharacter).toString()
         let wrongPrompt = getWrongStat(currentCharacter, characters).toString()
         
-        if(countdown%2 == 0){
+        let random = Math.floor(Math.random()*10)
+
+        if(random%2 == 0){
             setLeftText(correctPrompt)
             setRightText(wrongPrompt)
             setRightCorrect(false)
@@ -138,12 +219,11 @@ export default function SurvivalPage() {
     }
 
 
-
     useEffect(() => {
         
         if(!countdownActive) return 
 
-        const timer = setTimeout(() => {
+        const timer = window.setTimeout(() => {
             if (countdown > 0) {
                 setCountdown(countdown - 1);
             }
@@ -189,9 +269,24 @@ export default function SurvivalPage() {
         fetchData()
     }, [isLoading]);
 
+    
+    useEffect(() => {
+
+        
+        console.log("init particle")
+
+        if(!particleInit) initParticlesEngine(async (engine) => {
+            await loadSlim(engine);
+          }).then(() => {
+            setParticleInit(true);
+        });
+
+    }, )
+
     useEffect(() => {
     
         if(!isAllLoaded) return
+
         const fillCurrentCharacter = () => {
             console.log("starting round")
             setCurrentCharacter(getRandomCharacter(characters))
@@ -280,6 +375,7 @@ export default function SurvivalPage() {
 
 
         }
+        setCharactersRotation(0)
         setCharactersOpacity(0.2)
         setRightOpacity(0)
         setLeftOpacity(0)
@@ -314,38 +410,43 @@ export default function SurvivalPage() {
     
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="items-center justify-center w-screen h-screen overflow-hidden">
 
-        <div className="w-screen h-screen -z-50 fixed">
+        <div className="w-full h-full -z-50 fixed max-md:hidden">
 
-            <video src="/survivalVideo.mp4" className="min-w-full min-h-full blur-xl opacity-10" autoPlay muted loop></video>
+            <video src="/survivalVideo.mp4" className="min-w-full min-h-full object-cover blur-xl opacity-10" autoPlay muted loop></video>
+
+            <Particles
+            id="tsparticles-survival"
+            particlesLoaded={particlesLoaded}
+            options={options}
+            className="absolute -z-10" 
+            />
 
         </div>
 
         <div className="w-screen h-screen -z-30 fixed">
 
-            
-
         </div>
 
-        <div className="bg-gray-900 rounded-lg shadow-inner shadow-white  border-yellow-100 border-2 p-20 ">
+        <div className="bg-gray-900 rounded-lg shadow-inner shadow-white  border-yellow-100 border-2 p-5 md:p-20 w-full h-full mx-auto md:mt-[10vh] md:w-4/5 md:h-4/5 lg:w-3/5 xl:w-2/5">
         <Navbar>
 
         </Navbar>
         
-        <div className="grid grid-cols-3 w-full select-none mt-20">
+        <div className="grid grid-cols-6 w-full h-full select-none mt-20 px-2">
 
-            <div className="h-full w-60 relative flex z-30">
+            <div className="h-full w-full relative flex z-30">
             <div className={`${(leftOpacity>0) ? 'animate-pulse' :  'animate-none' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1 +leftOpacity }}/>
-            <div className="w-full my-auto text-orange-200 brightness-110 items-center align-middle text-3xl relative z-00 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.2+leftOpacity*5 }}>
+            <div className="w-full mr-auto text-balance my-auto text-orange-200 brightness-110 items-center align-middle text-xl md:text-3xl relative z-00 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.2+leftOpacity*5 }}>
             {t(`${leftText}`)}
             </div>
             </div>
             
             
-            <div className="z-10 relative">
+            <div className="z-10 col-span-4 h-full flex flex-col flex-shrink">
 
-            <div className={`font-nova-bold text-6xl mb-10 ${countdownClass}`}>
+            <div className={`font-nova-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-10 ${countdownClass}`}>
                 {(countdown > 12) ? "?" : (countdown > 11) ? "READY?" : (countdown > 10) ? "START" : (countdown < 1) ? "DEFEAT" : countdown} 
             </div>
 
@@ -361,23 +462,25 @@ export default function SurvivalPage() {
                 scale={1}
                 
             >
-                <div className="handle relative z-30 mb-20 transform " style={{ WebkitFilter: `brightness(${characterOpacity + 0.6})`, filter : `brightness(100%)` }}>
+                <div className="handle relative z-30 mb-20 transform w-full h-full " style={{ WebkitFilter: `brightness(${characterOpacity + 0.6})`, filter : `brightness(100%)` }}>
 
-                <div className="bg-image absolute inset-0 scale-[2] bg-center  w-full  blur-3xl opacity-80 motion-reduce:animate-bounce animate-pulse" 
+                <div className="bg-image absolute inset-0 scale-[1.5] bg-center  h-full w-full  blur-3xl opacity-80 motion-reduce:animate-bounce animate-pulse" 
                     style={{ backgroundImage: `url(${currentCharacter?.imageUrl[1]})`, backgroundSize: 'cover', transform: `rotate(${characterRotation}deg)` }} />
                     
-                <div style={{ transform: `rotate(${characterRotation}deg)` }}>{currentCharacter?.name}
-                <img className="rounded-xl w-60 h-96  relative z-10" src={currentCharacter?.imageUrl[1]} alt={currentCharacter?.name} draggable={false}></img></div>
+                <div className="" style={{ transform: `rotate(${characterRotation}deg)` }}>{currentCharacter?.name}
+                <img className="rounded-xl max-h-[28vh] lg:max-h-full z-10 mx-auto " src={currentCharacter?.imageUrl[1]} alt={currentCharacter?.name} draggable={false}></img>
+                </div>
 
+                <div className="px-5 mx-auto py-2 border-yellow-100 mt-5 rounded-full">Score : {score}</div>
 
                 </div>
             </Draggable>
-            <div className="w-full px-10 py-2 border-yellow-100 border-2 rounded-xl">{score}</div>
+
             </div>
 
-            <div className="h-full w-60 relative flex z-10 ">
+            <div className="h-full w-full relative flex z-10 ">
             <div className={`${(rightOpacity>0) ? 'animate-pulse' :  '' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1+rightOpacity }}/>
-            <div className="w-full my-auto text-wrap text-orange-200 brightness-110  items-center align-middle text-3xl relative z-10 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.3+rightOpacity*5 }}>
+            <div className="w-full text-center text-balance my-auto text-orange-200 brightness-110 items-center align-middle text-xl md:text-3xl relative z-10 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.3+rightOpacity*5 }}>
             {t(`${rightText}`)}
             </div>
             </div>

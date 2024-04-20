@@ -100,7 +100,7 @@ export default function ClassicPage() {
     setShowBank(!showBank);
   };
 
-  if (characters.length < 1) return <div>Loading...</div>;
+  if (characters.length < 1) return <div> Loading...</div>;
 
   return (
     <>

@@ -29,9 +29,9 @@ export default function Navbar() {
   return (
     <nav className="flex justify-between items-center w-full gap-10">
       <IoMdSettings className="text-5xl" />
-      <div className="text-logo-sm font-modesto bg-gradient-to-r from-[#e8dca4] to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
+      <a href={'/'} className="text-logo-sm font-modesto bg-gradient-to-r from-[#e8dca4]  to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
         MOBILEDLE
-      </div>
+      </a>
       {currentLanguage === "en" ? (
         <img src="public\us-flag.jpeg" className="w-12 h-8 cursor-pointer" onClick={() => changeLanguage("id")}></img>
       ) : (
