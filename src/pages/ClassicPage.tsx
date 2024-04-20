@@ -127,8 +127,10 @@ export default function ClassicPage() {
     <>
       <aside
         className={`${
-          showBank ? "lg:block" : "hidden"
-        } fixed top-0 right-0 z-40 justify-end lg:w-[22vw] max-lg:hidden h-screen overflow-y-scroll`}
+          showBank ? "xl:block" : "hidden"
+        } fixed top-0 right-0 z-40 justify-end xl:w-[22vw] max-xl:hidden h-screen overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+
+
       >
         <HeroBank />
       </aside>
@@ -174,7 +176,7 @@ export default function ClassicPage() {
       <div
         className={`${
           showBank ? "block" : "hidden"
-        } flex flex-col lg:hidden align-middle mx-auto`}
+        } flex flex-col xl:hidden align-middle mx-auto`}
       >
         <div className={`text-4xl text-white mb-5 `}>Heroes</div>
         <HeroBank />
