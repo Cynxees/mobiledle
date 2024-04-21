@@ -1,11 +1,11 @@
 import { MobileLegendsCharacter } from "../../API";
 import CharacterIcon from "../icons/CharacterIcon";
-import { useMobileLegendsCharacters } from "../../contexts/MobileLegendsCharactersContext";
+import { useMobileLegendsCharacters } from "../../providers/MobileLegendsCharactersProvider";
 
 
 export default function HeroBank() {
 
-    const {characters, isLoading} = useMobileLegendsCharacters();
+    const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
     return(
 

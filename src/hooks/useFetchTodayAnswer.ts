@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
-import { useMobileLegendsCharacters } from '../contexts/MobileLegendsCharactersContext';
+import { useMobileLegendsCharacters } from '../providers/MobileLegendsCharactersProvider';
 
 const useFetchTodayAnswer = (gamemode) => {
-    const { characters, isLoading } = useMobileLegendsCharacters()
+    const { data: characters, isLoading, error } = useMobileLegendsCharacters();
     const [todayCharacter, setTodayCharacter] = useState(null);
 
     useEffect(() => {

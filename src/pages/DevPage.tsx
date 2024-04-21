@@ -8,16 +8,15 @@ import { loadSlim } from "@tsparticles/slim";
 import { MobileLegendsCharacter } from '../API';
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 import useGetMobileLegendsCharacterImageURL from "../hooks/useGetMobileLegendsCharacterImageURL"
-import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
+import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 
 export default function DevPage(){
 
     const [init, setInit] = useState(false);
-    const { characters, isLoading } = useMobileLegendsCharacters();
-    const [todayCharacter, setTodayCharacter] = useState<MobileLegendsCharacter | undefined>(undefined);
+    const { data: characters, isLoading, error } = useMobileLegendsCharacters();
+    const todayCharacter = useFetchTodayAnswer('CLASSIC')
     
     
-    const [] = useState(useGetMobileLegendsCharacterImageURL(characters[0]))
     
     useEffect(() => {
         initParticlesEngine(async (engine) => {
@@ -102,21 +101,9 @@ export default function DevPage(){
     [],
   );
 
-    useEffect(() => {
-
-        if(isLoading) return
-        const getTodayCharacter = async () => {
-            const result = await useFetchTodayAnswer("CLASSIC");
-            setTodayCharacter(result)
-        };
-
-        getTodayCharacter();
-    }, [isLoading]);
-
-    console.log(characters)
 
     
-    if(!init)return <div>Loading...</div>
+    if(!init || isLoading)return <div>Loading...</div>
 
     return (
 
@@ -128,26 +115,32 @@ export default function DevPage(){
                 options={options}
                 className="absolute -z-10"
             />
+
+            <div className="mt-[30vh]">
             <h1>Dev Page</h1>
 
             <h2>Today's Answer = {todayCharacter?.name}</h2>
 
-            <ul className="list-item text-left">
+            <ul className="text-left flex flex-wrap w-[80%] mx-auto py-16 justify-center mt-10 border-4 border-white shadow-white shadow-2xl mb-72 bg-gray-400 bg-opacity-10 rounded-3xl gap-5">
                 
                 {characters.map((item : MobileLegendsCharacter) => {
 
                     
 
 
-                    return <li key="{item.id}">
+                    return <div key="{item.id}" className="flex flex-row w-[10vw] gap-5">
                          
-                         <img src={item.imageUrl[0]} alt=""/>
-                         {item.id}: {item.name}, {item.alias}
+                         <img src={item.imageUrl[0]} alt="" className="w-24 h-24"/>
+                         <div>
+                          
+                         <div className="text-xl">{item.id}: {item.name}</div>
+                         <div className="text-sm text-gray-400">{item.alias}</div>
+                         </div>
                          
-                         </li>
+                         </div>
                 })}
             </ul>
-            
+            </div>
 
         </div>
         

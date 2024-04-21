@@ -10,11 +10,13 @@ import {
   OutMode,
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
+import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 
 export default function LandingPage() {
 
   const [init, setInit] = useState(false);
 
+  const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -89,7 +91,7 @@ export default function LandingPage() {
   );
 
 
-  if(!init) return <div>Loading...</div>
+  if (isLoading || !init) return <div>Loading...</div>;
 
   return (
     <div>

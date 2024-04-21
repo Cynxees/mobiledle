@@ -22,17 +22,12 @@ export default function HeroShowBar({
   const todayCharacterLanes = todayCharacter.lane.split('/')
   let laneIsPartial = false
 
-
-  console.log(characterLanes.sort((a,b) => a>b ? 1 : -1))
-  console.log(todayCharacterLanes.sort((a,b) => a>b ? 1 : -1))
-
   characterLanes.forEach(lane => {
     
 
     todayCharacterLanes.forEach(todayLane => {
 
 
-      console.log('checking ', lane, ' || ', todayLane)
       
       if(lane == todayLane){
 

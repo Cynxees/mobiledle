@@ -9,7 +9,7 @@ import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 import HeroBank from "../components/classic/HeroBank";
 
 import { useTranslation } from "react-i18next";
-import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
+import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 
 interface userGuess {
   isCorrect: boolean;
@@ -19,7 +19,7 @@ interface userGuess {
 export default function ClassicPage() {
   const { t } = useTranslation();
 
-  const { characters, isLoading } = useMobileLegendsCharacters();
+  const { data: characters, isLoading, error } = useMobileLegendsCharacters();
   const todayCharacter = useFetchTodayAnswer("CLASSIC");
 
   const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>(
@@ -104,11 +104,10 @@ export default function ClassicPage() {
   };
 
   const handleShowBank = () => {
-    console.log(userAnswers)
     setShowBank(!showBank);
   };
 
-  if (characters.length < 1) return <div> Loading...</div>;
+  if (isLoading) return <div> Loading...</div>;
 
   return (
     <>

@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo  } from "react";
 import { MobileLegendsCharacter } from "../API";
 import Draggable, {DraggableEvent, DraggableData} from 'react-draggable';
 import preloadImage from "../components/utils/preloadImage";
-import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
+import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 import Navbar from "../components/navigation/Navbar";
 import {
     type Container,
@@ -100,7 +100,7 @@ export default function SurvivalPage() {
 
     const { t } = useTranslation();
 
-    const { characters, isLoading } = useMobileLegendsCharacters();
+    const { data: characters, isLoading, error } = useMobileLegendsCharacters();
     const [currentCharacter, setCurrentCharacter] = useState<MobileLegendsCharacter>();
     const [countdown, setCountdown] = useState(14);
     const [score, setScore] = useState(0);
