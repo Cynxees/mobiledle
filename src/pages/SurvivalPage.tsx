@@ -251,7 +251,7 @@ export default function SurvivalPage() {
             const imagesPromiseList: Promise<any>[] = []
             characters.forEach(c =>{
 
-                if(c.imageUrl[1] != null && c.imageUrl[1] != undefined && c.id < 30) imagesPromiseList.push(preloadImage(c.imageUrl[1]))
+                if(c.imageUrl[1] != null && c.imageUrl[1] != undefined && parseInt(c.id) < 30) imagesPromiseList.push(preloadImage(c.imageUrl[1]))
             }
 
             )
