@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@aws-amplify/graphql-api-construct':
+    specifier: ^1.8.1
+    version: 1.8.1(aws-cdk-lib@2.137.0)(constructs@10.3.0)
   '@aws-amplify/ui-react':
     specifier: ^6.1.7
     version: 6.1.7(@types/react@18.2.66)(aws-amplify@6.0.28)(react-dom@18.2.0)(react@18.2.0)
@@ -212,6 +215,55 @@ packages:
       - aws-cdk-lib
       - constructs
     dev: false
+
+  /@aws-amplify/graphql-api-construct@1.8.1(aws-cdk-lib@2.137.0)(constructs@10.3.0):
+    resolution: {integrity: sha512-PQf7JfD9enno0A6RcY/idiuYlGkfxSD/iNoQf5+vBHCyJOP3A7w9aJa5+t4KdvxZygUW51S58mbxByHz1AJ8Ow==}
+    peerDependencies:
+      aws-cdk-lib: ^2.80.0
+      constructs: ^10.0.5
+    dependencies:
+      aws-cdk-lib: 2.137.0(constructs@10.3.0)
+      constructs: 10.3.0
+    dev: false
+    bundledDependencies:
+      - '@aws-amplify/backend-output-schemas'
+      - '@aws-amplify/backend-output-storage'
+      - '@aws-amplify/graphql-auth-transformer'
+      - '@aws-amplify/graphql-default-value-transformer'
+      - '@aws-amplify/graphql-directives'
+      - '@aws-amplify/graphql-function-transformer'
+      - '@aws-amplify/graphql-http-transformer'
+      - '@aws-amplify/graphql-index-transformer'
+      - '@aws-amplify/graphql-maps-to-transformer'
+      - '@aws-amplify/graphql-model-transformer'
+      - '@aws-amplify/graphql-predictions-transformer'
+      - '@aws-amplify/graphql-relational-transformer'
+      - '@aws-amplify/graphql-searchable-transformer'
+      - '@aws-amplify/graphql-sql-transformer'
+      - '@aws-amplify/graphql-transformer'
+      - '@aws-amplify/graphql-transformer-core'
+      - '@aws-amplify/graphql-transformer-interfaces'
+      - '@aws-amplify/platform-core'
+      - '@aws-amplify/plugin-types'
+      - charenc
+      - crypt
+      - fs-extra
+      - graceful-fs
+      - graphql
+      - graphql-mapping-template
+      - graphql-transformer-common
+      - hjson
+      - immer
+      - is-buffer
+      - jsonfile
+      - libphonenumber-js
+      - lodash
+      - md5
+      - object-hash
+      - pluralize
+      - ts-dedent
+      - universalify
+      - zod
 
   /@aws-amplify/notifications@2.0.27(@aws-amplify/core@6.0.27):
     resolution: {integrity: sha512-/YLfjWo3nxmIJxCHzL8Ra5YG+gx01sZuGvpRX3couvsXoviywPIWE7D2KoxO1so9Z6qTaN7335XvtCxYcdLXSw==}
