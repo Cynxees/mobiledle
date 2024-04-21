@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <nav className="flex justify-center items-center w-full gap-5 md:gap-10">
       <IoMdSettings className="md:min-w-12 min-w-6 w-6 text-3xl" />
-      <Link to='/' className="md:text-5xl text-3xl font-modesto bg-gradient-to-r from-[#e8dca4]  to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
+      <Link to='/' className="md:text-5xl text-4xl font-modesto bg-gradient-to-br from-[#fff5c6]  to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-logo-lg transition-all duration-500 ease-in-out">
         MOBILEDLE
       </Link>
       {currentLanguage === "en" ? (

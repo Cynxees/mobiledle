@@ -82,8 +82,10 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       id
       chatroomId
       userId
+      ttl
       __typename
     }
+    ttl
     __typename
   }
 }
@@ -97,6 +99,7 @@ export const listUsers = /* GraphQL */ `query ListUsers(
     items {
       id
       username
+      ttl
       __typename
     }
     nextToken
@@ -112,13 +115,16 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
     user {
       id
       username
+      ttl
       __typename
     }
     chatroom {
       id
       name
+      ttl
       __typename
     }
+    ttl
     __typename
   }
 }
@@ -136,6 +142,7 @@ export const listChatroomUsers = /* GraphQL */ `query ListChatroomUsers(
       id
       chatroomId
       userId
+      ttl
       __typename
     }
     nextToken
@@ -154,15 +161,19 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
       id
       chatroomId
       userId
+      ttl
       __typename
     }
+    ownerId
     chatroom {
       id
       name
+      ttl
       __typename
     }
     chatroomId
     createdAt
+    ttl
     __typename
   }
 }
@@ -179,8 +190,10 @@ export const listChatroomMessages = /* GraphQL */ `query ListChatroomMessages(
     items {
       id
       content
+      ownerId
       chatroomId
       createdAt
+      ttl
       __typename
     }
     nextToken
@@ -198,16 +211,20 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
     messages {
       id
       content
+      ownerId
       chatroomId
       createdAt
+      ttl
       __typename
     }
     users {
       id
       chatroomId
       userId
+      ttl
       __typename
     }
+    ttl
     __typename
   }
 }
@@ -224,6 +241,7 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
     items {
       id
       name
+      ttl
       __typename
     }
     nextToken

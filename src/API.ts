@@ -144,6 +144,7 @@ export type DeleteMobileLegendsCharacterInput = {
 
 export type CreateUserInput = {
   username?: string | null,
+  ttl: number,
 };
 
 export type User = {
@@ -151,6 +152,7 @@ export type User = {
   id: string,
   username?: string | null,
   chatrooms?:  Array<ChatroomUser | null > | null,
+  ttl: number,
 };
 
 export type ChatroomUser = {
@@ -160,6 +162,7 @@ export type ChatroomUser = {
   userId: string,
   user?: User | null,
   chatroom?: Chatroom | null,
+  ttl: number,
 };
 
 export type Chatroom = {
@@ -168,6 +171,7 @@ export type Chatroom = {
   name: string,
   messages?:  Array<ChatroomMessage | null > | null,
   users?:  Array<ChatroomUser | null > | null,
+  ttl: number,
 };
 
 export type ChatroomMessage = {
@@ -175,14 +179,17 @@ export type ChatroomMessage = {
   id: string,
   content: string,
   owner?: ChatroomUser | null,
+  ownerId: string,
   chatroom?: Chatroom | null,
   chatroomId: string,
   createdAt: string,
+  ttl: number,
 };
 
 export type UpdateUserInput = {
   id: string,
   username?: string | null,
+  ttl?: number | null,
 };
 
 export type DeleteUserInput = {
@@ -192,12 +199,14 @@ export type DeleteUserInput = {
 export type CreateChatroomUserInput = {
   chatroomId: string,
   userId: string,
+  ttl: number,
 };
 
 export type UpdateChatroomUserInput = {
   id: string,
   chatroomId?: string | null,
   userId?: string | null,
+  ttl?: number | null,
 };
 
 export type DeleteChatroomUserInput = {
@@ -207,14 +216,18 @@ export type DeleteChatroomUserInput = {
 export type CreateChatroomMessageInput = {
   content: string,
   chatroomId: string,
+  ownerId: string,
   createdAt: string,
+  ttl: number,
 };
 
 export type UpdateChatroomMessageInput = {
   id: string,
   content?: string | null,
   chatroomId?: string | null,
+  ownerId?: string | null,
   createdAt?: string | null,
+  ttl?: number | null,
 };
 
 export type DeleteChatroomMessageInput = {
@@ -223,11 +236,13 @@ export type DeleteChatroomMessageInput = {
 
 export type CreateChatroomInput = {
   name: string,
+  ttl: number,
 };
 
 export type UpdateChatroomInput = {
   id: string,
   name?: string | null,
+  ttl?: number | null,
 };
 
 export type DeleteChatroomInput = {
@@ -335,6 +350,7 @@ export type ChatroomUserConnection = {
 export type TableChatroomMessageFilterInput = {
   id?: TableIDFilterInput | null,
   content?: TableStringFilterInput | null,
+  ownerId?: TableIDFilterInput | null,
   chatroomId?: TableIDFilterInput | null,
   createdAt?: TableStringFilterInput | null,
 };
@@ -521,7 +537,9 @@ export type CreateUserMutation = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -539,7 +557,9 @@ export type UpdateUserMutation = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -557,7 +577,9 @@ export type DeleteUserMutation = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -575,12 +597,15 @@ export type CreateChatroomUserMutation = {
       __typename: "User",
       id: string,
       username?: string | null,
+      ttl: number,
     } | null,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
+    ttl: number,
   } | null,
 };
 
@@ -598,12 +623,15 @@ export type UpdateChatroomUserMutation = {
       __typename: "User",
       id: string,
       username?: string | null,
+      ttl: number,
     } | null,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
+    ttl: number,
   } | null,
 };
 
@@ -621,12 +649,15 @@ export type DeleteChatroomUserMutation = {
       __typename: "User",
       id: string,
       username?: string | null,
+      ttl: number,
     } | null,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
+    ttl: number,
   } | null,
 };
 
@@ -644,14 +675,18 @@ export type CreateChatroomMessageMutation = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null,
+    ownerId: string,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
     chatroomId: string,
     createdAt: string,
+    ttl: number,
   } | null,
 };
 
@@ -669,14 +704,18 @@ export type UpdateChatroomMessageMutation = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null,
+    ownerId: string,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
     chatroomId: string,
     createdAt: string,
+    ttl: number,
   } | null,
 };
 
@@ -694,14 +733,18 @@ export type DeleteChatroomMessageMutation = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null,
+    ownerId: string,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
     chatroomId: string,
     createdAt: string,
+    ttl: number,
   } | null,
 };
 
@@ -718,15 +761,19 @@ export type CreateChatroomMutation = {
       __typename: "ChatroomMessage",
       id: string,
       content: string,
+      ownerId: string,
       chatroomId: string,
       createdAt: string,
+      ttl: number,
     } | null > | null,
     users?:  Array< {
       __typename: "ChatroomUser",
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -743,15 +790,19 @@ export type UpdateChatroomMutation = {
       __typename: "ChatroomMessage",
       id: string,
       content: string,
+      ownerId: string,
       chatroomId: string,
       createdAt: string,
+      ttl: number,
     } | null > | null,
     users?:  Array< {
       __typename: "ChatroomUser",
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -768,15 +819,19 @@ export type DeleteChatroomMutation = {
       __typename: "ChatroomMessage",
       id: string,
       content: string,
+      ownerId: string,
       chatroomId: string,
       createdAt: string,
+      ttl: number,
     } | null > | null,
     users?:  Array< {
       __typename: "ChatroomUser",
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -856,7 +911,9 @@ export type GetUserQuery = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -873,6 +930,7 @@ export type ListUsersQuery = {
       __typename: "User",
       id: string,
       username?: string | null,
+      ttl: number,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -892,12 +950,15 @@ export type GetChatroomUserQuery = {
       __typename: "User",
       id: string,
       username?: string | null,
+      ttl: number,
     } | null,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
+    ttl: number,
   } | null,
 };
 
@@ -915,6 +976,7 @@ export type ListChatroomUsersQuery = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -934,14 +996,18 @@ export type GetChatroomMessageQuery = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null,
+    ownerId: string,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
     chatroomId: string,
     createdAt: string,
+    ttl: number,
   } | null,
 };
 
@@ -958,8 +1024,10 @@ export type ListChatroomMessagesQuery = {
       __typename: "ChatroomMessage",
       id: string,
       content: string,
+      ownerId: string,
       chatroomId: string,
       createdAt: string,
+      ttl: number,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -978,15 +1046,19 @@ export type GetChatroomQuery = {
       __typename: "ChatroomMessage",
       id: string,
       content: string,
+      ownerId: string,
       chatroomId: string,
       createdAt: string,
+      ttl: number,
     } | null > | null,
     users?:  Array< {
       __typename: "ChatroomUser",
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -1003,6 +1075,7 @@ export type ListChatroomsQuery = {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null > | null,
     nextToken?: string | null,
   } | null,
@@ -1107,7 +1180,9 @@ export type OnCreateUserSubscription = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -1126,7 +1201,9 @@ export type OnUpdateUserSubscription = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -1145,7 +1222,9 @@ export type OnDeleteUserSubscription = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -1165,12 +1244,15 @@ export type OnCreateChatroomUserSubscription = {
       __typename: "User",
       id: string,
       username?: string | null,
+      ttl: number,
     } | null,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
+    ttl: number,
   } | null,
 };
 
@@ -1190,12 +1272,15 @@ export type OnUpdateChatroomUserSubscription = {
       __typename: "User",
       id: string,
       username?: string | null,
+      ttl: number,
     } | null,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
+    ttl: number,
   } | null,
 };
 
@@ -1215,18 +1300,22 @@ export type OnDeleteChatroomUserSubscription = {
       __typename: "User",
       id: string,
       username?: string | null,
+      ttl: number,
     } | null,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
+    ttl: number,
   } | null,
 };
 
 export type OnCreateChatroomMessageSubscriptionVariables = {
   id?: string | null,
   content?: string | null,
+  ownerId?: string | null,
   chatroomId?: string | null,
   createdAt?: string | null,
 };
@@ -1241,20 +1330,25 @@ export type OnCreateChatroomMessageSubscription = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null,
+    ownerId: string,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
     chatroomId: string,
     createdAt: string,
+    ttl: number,
   } | null,
 };
 
 export type OnUpdateChatroomMessageSubscriptionVariables = {
   id?: string | null,
   content?: string | null,
+  ownerId?: string | null,
   chatroomId?: string | null,
   createdAt?: string | null,
 };
@@ -1269,20 +1363,25 @@ export type OnUpdateChatroomMessageSubscription = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null,
+    ownerId: string,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
     chatroomId: string,
     createdAt: string,
+    ttl: number,
   } | null,
 };
 
 export type OnDeleteChatroomMessageSubscriptionVariables = {
   id?: string | null,
   content?: string | null,
+  ownerId?: string | null,
   chatroomId?: string | null,
   createdAt?: string | null,
 };
@@ -1297,14 +1396,18 @@ export type OnDeleteChatroomMessageSubscription = {
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null,
+    ownerId: string,
     chatroom?:  {
       __typename: "Chatroom",
       id: string,
       name: string,
+      ttl: number,
     } | null,
     chatroomId: string,
     createdAt: string,
+    ttl: number,
   } | null,
 };
 
@@ -1322,15 +1425,19 @@ export type OnCreateChatroomSubscription = {
       __typename: "ChatroomMessage",
       id: string,
       content: string,
+      ownerId: string,
       chatroomId: string,
       createdAt: string,
+      ttl: number,
     } | null > | null,
     users?:  Array< {
       __typename: "ChatroomUser",
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -1348,15 +1455,19 @@ export type OnUpdateChatroomSubscription = {
       __typename: "ChatroomMessage",
       id: string,
       content: string,
+      ownerId: string,
       chatroomId: string,
       createdAt: string,
+      ttl: number,
     } | null > | null,
     users?:  Array< {
       __typename: "ChatroomUser",
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };
 
@@ -1374,14 +1485,18 @@ export type OnDeleteChatroomSubscription = {
       __typename: "ChatroomMessage",
       id: string,
       content: string,
+      ownerId: string,
       chatroomId: string,
       createdAt: string,
+      ttl: number,
     } | null > | null,
     users?:  Array< {
       __typename: "ChatroomUser",
       id: string,
       chatroomId: string,
       userId: string,
+      ttl: number,
     } | null > | null,
+    ttl: number,
   } | null,
 };

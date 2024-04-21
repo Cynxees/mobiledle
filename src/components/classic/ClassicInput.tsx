@@ -75,11 +75,11 @@ export default function ClassicInput({
 
   return (
     <>
-      <div className="flex items-center gap-4 bg-gradient-to-tr from-[#dccd8c] to-[#caa172] rounded-md ps-2 pr-3 w-96">
+      <div className="flex items-center gap-4 bg-gradient-to-tr from-[#dccd8c] to-[#caa172] rounded-md ps-2 pr-3 md:w-96 w-full">
         <div className="relative w-full">
           <input
             type="text"
-            className="my-2 h-10 pl-3 w-full rounded-md outline-none bg-[#0b1e34] text-gray-100"
+            className="my-2 md:h-10 h-14 pl-3 w-full rounded-md outline-none bg-[#0b1e34] text-gray-100"
             id="search-bar-classic"
             autoComplete="off"
             placeholder="Heroes"

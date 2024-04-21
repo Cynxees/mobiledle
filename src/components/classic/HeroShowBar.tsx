@@ -27,8 +27,6 @@ export default function HeroShowBar({
 
     todayCharacterLanes.forEach(todayLane => {
 
-
-      
       if(lane == todayLane){
 
         laneIsPartial = true
@@ -80,7 +78,7 @@ export default function HeroShowBar({
       </div>
       <div
         className={`py-4 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-3s ${
-          todayCharacterLanes.sort((a,b) => a>b ? 1 : -1).every(e => characterLanes.includes(e) )
+          (todayCharacterLanes.sort((a,b) => a>b ? 1 : -1).every(e => characterLanes.includes(e) ) && todayCharacterLanes.length == characterLanes.length)
             ? correctColor
             : laneIsPartial
               ? partialColor

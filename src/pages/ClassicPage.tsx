@@ -120,7 +120,7 @@ export default function ClassicPage() {
       >
         <HeroBank />
       </aside>
-      <section className={`flex flex-col gap-5 items-center mt-[20vh]`}>
+      <section className={`flex flex-col gap-5 items-center md:mt-[20vh] mt-[60vh]`}>
         
         
 
@@ -165,7 +165,10 @@ export default function ClassicPage() {
         } flex flex-col xl:hidden align-middle mx-auto`}
       >
         <div className={`text-4xl text-white mb-5 `}>Heroes</div>
+        <div className="px-24">
+
         <HeroBank />
+        </div>
       </div>
     </>
   );
