@@ -10,13 +10,11 @@ const MobileLegendsCharactersProvider = ({ children }) => {
     const [characters, setCharacters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    console.log('fetching characters...')
 
     useEffect(() => {
         const fetchCharacters = async () => {
-            console.log('first fetch...')
+            console.log('fetching characters...')
             const response = await client.graphql({ query: listMobileLegendsCharacters });
-            console.log('2:', response)
             const characterResults = response.data.listMobileLegendsCharacters.items;
 
 
@@ -32,7 +30,7 @@ const MobileLegendsCharactersProvider = ({ children }) => {
 
             const updatedCharacterResults = await Promise.all(fetchImagePromises);
             setCharacters(updatedCharacterResults.sort((a, b) => parseInt(a.id) - parseInt(b.id)));
-            setCharacters(characterResults)
+            console.log('characters fetched...')
             setIsLoading(false);
         };
 

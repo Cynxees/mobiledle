@@ -56,6 +56,48 @@
     }
   },
   "function": {},
+  "parameters": {
+    "AMPLIFY_storage_ChatTable_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ChatTable"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ChatTable_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ChatTable"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ChatTable_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ChatTable"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ChatTable_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ChatTable"
+        }
+      ]
+    },
+    "AMPLIFY_storage_ChatTable_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "ChatTable"
+        }
+      ]
+    }
+  },
   "storage": {
     "mobiledleDB": {
       "providerPlugin": "awscloudformation",

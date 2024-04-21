@@ -1,5 +1,5 @@
 /* tslint:disable */
- 
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 import * as APITypes from "../API";
@@ -63,6 +63,7 @@ export const listMobileLegendsCharacters = /* GraphQL */ `query ListMobileLegend
       resource
       hairColor
       species
+      imageUrl
       __typename
     }
     nextToken
@@ -73,31 +74,163 @@ export const listMobileLegendsCharacters = /* GraphQL */ `query ListMobileLegend
   APITypes.ListMobileLegendsCharactersQueryVariables,
   APITypes.ListMobileLegendsCharactersQuery
 >;
-export const getChat = /* GraphQL */ `query GetChat($id: String!) {
-  getChat(id: $id) {
+export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
+  getUser(id: $id) {
     id
-    text
-    createdAt
-    owner
+    username
+    chatrooms {
+      id
+      chatroomId
+      userId
+      __typename
+    }
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetChatQueryVariables, APITypes.GetChatQuery>;
-export const listChats = /* GraphQL */ `query ListChats(
-  $filter: TableChatFilterInput
+` as GeneratedQuery<APITypes.GetUserQueryVariables, APITypes.GetUserQuery>;
+export const listUsers = /* GraphQL */ `query ListUsers(
+  $filter: TableUserFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listChats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      text
-      createdAt
-      owner
+      username
       __typename
     }
     nextToken
     __typename
   }
 }
-` as GeneratedQuery<APITypes.ListChatsQueryVariables, APITypes.ListChatsQuery>;
+` as GeneratedQuery<APITypes.ListUsersQueryVariables, APITypes.ListUsersQuery>;
+export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
+  getChatroomUser(id: $id) {
+    id
+    chatroomId
+    userId
+    user {
+      id
+      username
+      __typename
+    }
+    chatroom {
+      id
+      name
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetChatroomUserQueryVariables,
+  APITypes.GetChatroomUserQuery
+>;
+export const listChatroomUsers = /* GraphQL */ `query ListChatroomUsers(
+  $filter: TableChatroomUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listChatroomUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListChatroomUsersQueryVariables,
+  APITypes.ListChatroomUsersQuery
+>;
+export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: ID!) {
+  getChatroomMessage(id: $id) {
+    id
+    content
+    owner {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    chatroom {
+      id
+      name
+      __typename
+    }
+    chatroomId
+    createdAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetChatroomMessageQueryVariables,
+  APITypes.GetChatroomMessageQuery
+>;
+export const listChatroomMessages = /* GraphQL */ `query ListChatroomMessages(
+  $filter: TableChatroomMessageFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listChatroomMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      content
+      chatroomId
+      createdAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListChatroomMessagesQueryVariables,
+  APITypes.ListChatroomMessagesQuery
+>;
+export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
+  getChatroom(id: $id) {
+    id
+    name
+    messages {
+      id
+      content
+      chatroomId
+      createdAt
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetChatroomQueryVariables,
+  APITypes.GetChatroomQuery
+>;
+export const listChatrooms = /* GraphQL */ `query ListChatrooms(
+  $filter: TableChatroomFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listChatrooms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListChatroomsQueryVariables,
+  APITypes.ListChatroomsQuery
+>;

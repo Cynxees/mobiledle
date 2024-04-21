@@ -20,9 +20,7 @@ export default function ClassicPage() {
   const { t } = useTranslation();
 
   const { characters, isLoading } = useMobileLegendsCharacters();
-  const [todayCharacter, setTodayCharacter] = useState<
-    MobileLegendsCharacter | undefined
-  >(undefined);
+  const todayCharacter = useFetchTodayAnswer("CLASSIC");
 
   const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>(
     () => {
@@ -77,18 +75,6 @@ export default function ClassicPage() {
 
   const [showBank, setShowBank] = useState(true);
 
-  //fetching character and todayCharacter
-  useEffect(() => {
-    if (isLoading) return;
-
-    const fetchData = async () => {
-      const result = await useFetchTodayAnswer("CLASSIC");
-      setTodayCharacter(result);
-    };
-
-    fetchData();
-  }, [isLoading]);
-
   //local storage init
   useEffect(() => {
     // make sure that the item is in the local storage
@@ -118,6 +104,7 @@ export default function ClassicPage() {
   };
 
   const handleShowBank = () => {
+    console.log(userAnswers)
     setShowBank(!showBank);
   };
 
@@ -163,7 +150,7 @@ export default function ClassicPage() {
         </label>
           <ClassicTableTitle />
           {userAnswers.map((character, index) => (
-            <div key={index} style={{ order: userAnswers.length - index }}>
+            <div key={index} className="" style={{ order: userAnswers.length - index }}>
               <HeroShowBar
                 character={character}
                 todayCharacter={todayCharacter}

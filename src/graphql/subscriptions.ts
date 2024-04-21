@@ -1,5 +1,5 @@
 /* tslint:disable */
- 
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 import * as APITypes from "../API";
@@ -95,57 +95,294 @@ export const onDeleteMobileLegendsCharacter = /* GraphQL */ `subscription OnDele
   APITypes.OnDeleteMobileLegendsCharacterSubscriptionVariables,
   APITypes.OnDeleteMobileLegendsCharacterSubscription
 >;
-export const onCreateChat = /* GraphQL */ `subscription OnCreateChat(
-  $id: String
-  $text: String
-  $createdAt: String
-  $owner: String
-) {
-  onCreateChat(id: $id, text: $text, createdAt: $createdAt, owner: $owner) {
+export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($id: ID, $username: String) {
+  onCreateUser(id: $id, username: $username) {
     id
-    text
-    createdAt
-    owner
+    username
+    chatrooms {
+      id
+      chatroomId
+      userId
+      __typename
+    }
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnCreateChatSubscriptionVariables,
-  APITypes.OnCreateChatSubscription
+  APITypes.OnCreateUserSubscriptionVariables,
+  APITypes.OnCreateUserSubscription
 >;
-export const onUpdateChat = /* GraphQL */ `subscription OnUpdateChat(
-  $id: String
-  $text: String
-  $createdAt: String
-  $owner: String
-) {
-  onUpdateChat(id: $id, text: $text, createdAt: $createdAt, owner: $owner) {
+export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($id: ID, $username: String) {
+  onUpdateUser(id: $id, username: $username) {
     id
-    text
-    createdAt
-    owner
+    username
+    chatrooms {
+      id
+      chatroomId
+      userId
+      __typename
+    }
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnUpdateChatSubscriptionVariables,
-  APITypes.OnUpdateChatSubscription
+  APITypes.OnUpdateUserSubscriptionVariables,
+  APITypes.OnUpdateUserSubscription
 >;
-export const onDeleteChat = /* GraphQL */ `subscription OnDeleteChat(
-  $id: String
-  $text: String
-  $createdAt: String
-  $owner: String
-) {
-  onDeleteChat(id: $id, text: $text, createdAt: $createdAt, owner: $owner) {
+export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($id: ID, $username: String) {
+  onDeleteUser(id: $id, username: $username) {
     id
-    text
-    createdAt
-    owner
+    username
+    chatrooms {
+      id
+      chatroomId
+      userId
+      __typename
+    }
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnDeleteChatSubscriptionVariables,
-  APITypes.OnDeleteChatSubscription
+  APITypes.OnDeleteUserSubscriptionVariables,
+  APITypes.OnDeleteUserSubscription
+>;
+export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroomUser($id: ID, $chatroomId: ID, $userId: ID) {
+  onCreateChatroomUser(id: $id, chatroomId: $chatroomId, userId: $userId) {
+    id
+    chatroomId
+    userId
+    user {
+      id
+      username
+      __typename
+    }
+    chatroom {
+      id
+      name
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateChatroomUserSubscriptionVariables,
+  APITypes.OnCreateChatroomUserSubscription
+>;
+export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroomUser($id: ID, $chatroomId: ID, $userId: ID) {
+  onUpdateChatroomUser(id: $id, chatroomId: $chatroomId, userId: $userId) {
+    id
+    chatroomId
+    userId
+    user {
+      id
+      username
+      __typename
+    }
+    chatroom {
+      id
+      name
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateChatroomUserSubscriptionVariables,
+  APITypes.OnUpdateChatroomUserSubscription
+>;
+export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroomUser($id: ID, $chatroomId: ID, $userId: ID) {
+  onDeleteChatroomUser(id: $id, chatroomId: $chatroomId, userId: $userId) {
+    id
+    chatroomId
+    userId
+    user {
+      id
+      username
+      __typename
+    }
+    chatroom {
+      id
+      name
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteChatroomUserSubscriptionVariables,
+  APITypes.OnDeleteChatroomUserSubscription
+>;
+export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatroomMessage(
+  $id: ID
+  $content: String
+  $chatroomId: ID
+  $createdAt: AWSDateTime
+) {
+  onCreateChatroomMessage(
+    id: $id
+    content: $content
+    chatroomId: $chatroomId
+    createdAt: $createdAt
+  ) {
+    id
+    content
+    owner {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    chatroom {
+      id
+      name
+      __typename
+    }
+    chatroomId
+    createdAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateChatroomMessageSubscriptionVariables,
+  APITypes.OnCreateChatroomMessageSubscription
+>;
+export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatroomMessage(
+  $id: ID
+  $content: String
+  $chatroomId: ID
+  $createdAt: AWSDateTime
+) {
+  onUpdateChatroomMessage(
+    id: $id
+    content: $content
+    chatroomId: $chatroomId
+    createdAt: $createdAt
+  ) {
+    id
+    content
+    owner {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    chatroom {
+      id
+      name
+      __typename
+    }
+    chatroomId
+    createdAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateChatroomMessageSubscriptionVariables,
+  APITypes.OnUpdateChatroomMessageSubscription
+>;
+export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatroomMessage(
+  $id: ID
+  $content: String
+  $chatroomId: ID
+  $createdAt: AWSDateTime
+) {
+  onDeleteChatroomMessage(
+    id: $id
+    content: $content
+    chatroomId: $chatroomId
+    createdAt: $createdAt
+  ) {
+    id
+    content
+    owner {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    chatroom {
+      id
+      name
+      __typename
+    }
+    chatroomId
+    createdAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteChatroomMessageSubscriptionVariables,
+  APITypes.OnDeleteChatroomMessageSubscription
+>;
+export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id: ID, $name: String) {
+  onCreateChatroom(id: $id, name: $name) {
+    id
+    name
+    messages {
+      id
+      content
+      chatroomId
+      createdAt
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateChatroomSubscriptionVariables,
+  APITypes.OnCreateChatroomSubscription
+>;
+export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id: ID, $name: String) {
+  onUpdateChatroom(id: $id, name: $name) {
+    id
+    name
+    messages {
+      id
+      content
+      chatroomId
+      createdAt
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateChatroomSubscriptionVariables,
+  APITypes.OnUpdateChatroomSubscription
+>;
+export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id: ID, $name: String) {
+  onDeleteChatroom(id: $id, name: $name) {
+    id
+    name
+    messages {
+      id
+      content
+      chatroomId
+      createdAt
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
+      __typename
+    }
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteChatroomSubscriptionVariables,
+  APITypes.OnDeleteChatroomSubscription
 >;

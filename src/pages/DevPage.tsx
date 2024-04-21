@@ -6,7 +6,6 @@ import {
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { MobileLegendsCharacter } from '../API';
-import ClassicSearchBar from "../components/classic/ClassicSearchBar"
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 import useGetMobileLegendsCharacterImageURL from "../hooks/useGetMobileLegendsCharacterImageURL"
 import { useMobileLegendsCharacters } from "../contexts/MobileLegendsCharactersContext";
@@ -132,8 +131,6 @@ export default function DevPage(){
             <h1>Dev Page</h1>
 
             <h2>Today's Answer = {todayCharacter?.name}</h2>
-
-            <ClassicSearchBar />
 
             <ul className="list-item text-left">
                 
