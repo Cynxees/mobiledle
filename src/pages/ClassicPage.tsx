@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ColorIndicator from "../components/classic/ColorIndicator";
 import HeroShowBar from "../components/classic/HeroShowBar";
 import Navbar from "../components/navigation/Navbar";
@@ -10,6 +10,7 @@ import HeroBank from "../components/classic/HeroBank";
 
 import { useTranslation } from "react-i18next";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
+import WinCard from "../components/public/WinCard";
 
 interface userGuess {
   isCorrect: boolean;
@@ -75,6 +76,8 @@ export default function ClassicPage() {
 
   const [showBank, setShowBank] = useState(true);
 
+  const winCardRef = useRef<HTMLDivElement>(null);
+
   //local storage init
   useEffect(() => {
     // make sure that the item is in the local storage
@@ -86,6 +89,13 @@ export default function ClassicPage() {
     localStorage.setItem("savedDate", new Date().toLocaleDateString());
     localStorage.setItem("totalWins", totalWins.toString());
   }, [userAnswers, isWin, totalWins]);
+
+  //scroll to winCard
+  useEffect(() => {
+    if (isWin && winCardRef.current) {
+      winCardRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [isWin, winCardRef.current]);
 
   //userAnswer function
   const handleChildData = (dataFromChild: MobileLegendsCharacter) => {
@@ -120,7 +130,7 @@ export default function ClassicPage() {
       >
         <HeroBank />
       </aside>
-      <section className={`flex flex-col gap-5 items-center md:mt-[20vh] mt-[60vh]`}>
+      <section className={`flex flex-col gap-5 items-center md:mt-[20vh] mt-[25vh]`}>
         
         
 
@@ -157,6 +167,8 @@ export default function ClassicPage() {
             </div>
           ))}
         </div>
+        {isWin && <WinCard winCardRef={winCardRef}/>}
+        
         <ColorIndicator />
       </section>
       <div
