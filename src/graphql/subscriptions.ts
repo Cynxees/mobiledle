@@ -103,42 +103,6 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($id: ID, $u
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -158,42 +122,6 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($id: ID, $u
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -213,42 +141,6 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($id: ID, $u
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -268,26 +160,6 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
     user {
       id
       username
-      chatrooms {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -295,49 +167,6 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -357,26 +186,6 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
     user {
       id
       username
-      chatrooms {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -384,49 +193,6 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -446,26 +212,6 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
     user {
       id
       username
-      chatrooms {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -473,49 +219,6 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -547,42 +250,6 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -591,49 +258,6 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -667,42 +291,6 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -711,49 +299,6 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -787,42 +332,6 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -831,49 +340,6 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -895,50 +361,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
     messages {
       id
       content
-      owner {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ownerId
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       chatroomId
       createdAt
       ttl
@@ -948,42 +371,6 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -1003,50 +390,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
     messages {
       id
       content
-      owner {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ownerId
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       chatroomId
       createdAt
       ttl
@@ -1056,42 +400,6 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -1111,50 +419,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
     messages {
       id
       content
-      owner {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ownerId
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       chatroomId
       createdAt
       ttl
@@ -1164,42 +429,6 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }

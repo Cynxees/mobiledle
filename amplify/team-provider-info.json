@@ -28,6 +28,12 @@
       },
       "api": {
         "mobiledle": {}
+      },
+      "function": {
+        "generateUniqueChatroomCode": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/generateUniqueChatroomCode-6d6b61366f466363582f-build.zip"
+        }
       }
     }
   },

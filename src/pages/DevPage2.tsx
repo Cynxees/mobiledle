@@ -6,7 +6,6 @@ import { Chatroom, ChatroomMessage } from '../API';
 import getTtlFromMinutes from '../components/utils/getTtlFromMinutes';
 import { listChatrooms, getChatroom } from '../graphql/queries';
 
-
 const client = generateClient();
 
 
@@ -44,6 +43,10 @@ export default function DevPage2() {
             setInit(true)
             
             
+        }).catch((error) => {
+    
+            console.error('listChatrooms error: ', error)
+    
         })
         
 
@@ -160,28 +163,27 @@ export default function DevPage2() {
         console.log('createUser: ',createUserQL.then(result => setUserID(result.data.createUser.id)))
     }
 
-    function handleChatroomCreateButton(): void {
+    const handleChatroomCreateButton = async() => {
     
         console.log('creating chatroom: ');
 
         const createChatQL = client
-            .graphql({ 
-                query: createChatroom,
-                variables: {
-                    input: {
-                        name: chatroomName,
-                        ttl: getTtlFromMinutes(60*24),
-                        code: generateRoomcode(chatrooms)
-                        
-                    }
-                },
-                
-            
+        .graphql({ 
+            query: createChatroom,
+            variables: {
+                input: {
+                    name: chatroomName,
+                    ttl: getTtlFromMinutes(60*24)
+                    
+                }
+            },
+        
         })
         .then(result => {
             
-            console.log('chatroom created: ', result)
+            console.log('chatroom created: ', result.data)
             setChatroomID(result.data.createChatroom.id)
+            setChatroomCode(result.data.createChatroom.code)
             console.log('chatroom id fetched')
             chatroomMessageSubscription(result.data.createChatroom.id)
             
@@ -189,6 +191,7 @@ export default function DevPage2() {
         
         })
         .catch(error => console.error('createChatroom: ',error))
+    
     
     
     }
@@ -279,7 +282,7 @@ export default function DevPage2() {
             <div className='flex w-full'>message: <input className='w-full' type="text" onInput={handleMessageInput} value={messageInput} /><button onClick={handleCreateMessageButton} className=''>Create</button></div>
 
             <br /><br />
-            <div>
+            <div className='w-full border rounded-lg'>
 
                 {chatroomCode}
                 {(chats != null) ? chats.map((chat)=>
@@ -293,6 +296,16 @@ export default function DevPage2() {
 
             </div>
             
+            <br /><br />
+            <div className='w-full border rounded-lg text-start p-5'>
+
+                {chatrooms.map((chatroom)=> 
+                    <div key={chatroom.code}>
+                        {chatroom.code}: {chatroom.name}
+                    </div>
+                )}
+
+            </div>
 
             
             

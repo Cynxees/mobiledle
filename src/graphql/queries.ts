@@ -8,6 +8,13 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
+export const generateUniqueChatroomCode = /* GraphQL */ `query GenerateUniqueChatroomCode {
+  generateUniqueChatroomCode
+}
+` as GeneratedQuery<
+  APITypes.GenerateUniqueChatroomCodeQueryVariables,
+  APITypes.GenerateUniqueChatroomCodeQuery
+>;
 export const getMobileLegendsCharacter = /* GraphQL */ `query GetMobileLegendsCharacter($id: ID!) {
   getMobileLegendsCharacter(id: $id) {
     id
@@ -82,42 +89,6 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -135,26 +106,6 @@ export const listUsers = /* GraphQL */ `query ListUsers(
     items {
       id
       username
-      chatrooms {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -171,26 +122,6 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
     user {
       id
       username
-      chatrooms {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -198,49 +129,6 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -262,42 +150,6 @@ export const listChatroomUsers = /* GraphQL */ `query ListChatroomUsers(
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -317,42 +169,6 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -361,49 +177,6 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }
@@ -426,50 +199,7 @@ export const listChatroomMessages = /* GraphQL */ `query ListChatroomMessages(
     items {
       id
       content
-      owner {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ownerId
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       chatroomId
       createdAt
       ttl
@@ -483,58 +213,15 @@ export const listChatroomMessages = /* GraphQL */ `query ListChatroomMessages(
   APITypes.ListChatroomMessagesQueryVariables,
   APITypes.ListChatroomMessagesQuery
 >;
-export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
-  getChatroom(id: $id) {
+export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: String!) {
+  getChatroomByCode(code: $code) {
     id
     name
     code
     messages {
       id
       content
-      owner {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ownerId
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       chatroomId
       createdAt
       ttl
@@ -544,42 +231,35 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
       id
       chatroomId
       userId
-      user {
-        id
-        username
-        chatrooms {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
-      chatroom {
-        id
-        name
-        code
-        messages {
-          id
-          content
-          ownerId
-          chatroomId
-          createdAt
-          ttl
-          __typename
-        }
-        users {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
+      ttl
+      __typename
+    }
+    ttl
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetChatroomByCodeQueryVariables,
+  APITypes.GetChatroomByCodeQuery
+>;
+export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
+  getChatroom(id: $id) {
+    id
+    name
+    code
+    messages {
+      id
+      content
+      ownerId
+      chatroomId
+      createdAt
+      ttl
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
       ttl
       __typename
     }
@@ -601,49 +281,6 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
       id
       name
       code
-      messages {
-        id
-        content
-        owner {
-          id
-          chatroomId
-          userId
-          ttl
-          __typename
-        }
-        ownerId
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        chatroomId
-        createdAt
-        ttl
-        __typename
-      }
-      users {
-        id
-        chatroomId
-        userId
-        user {
-          id
-          username
-          ttl
-          __typename
-        }
-        chatroom {
-          id
-          name
-          code
-          ttl
-          __typename
-        }
-        ttl
-        __typename
-      }
       ttl
       __typename
     }

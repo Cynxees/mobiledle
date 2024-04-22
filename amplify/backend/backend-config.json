@@ -55,8 +55,41 @@
       "service": "Cognito"
     }
   },
-  "function": {},
+  "function": {
+    "generateUniqueChatroomCode": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
   "parameters": {
+    "AMPLIFY_function_generateUniqueChatroomCode_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "generateUniqueChatroomCode"
+        }
+      ]
+    },
+    "AMPLIFY_function_generateUniqueChatroomCode_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "generateUniqueChatroomCode"
+        }
+      ]
+    },
     "AMPLIFY_storage_ChatTable_arn": {
       "usedBy": [
         {
