@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { generateClient } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom } from '../graphql/subscriptions';
-import { ChatroomMessage } from '../API';
+import { Chatroom, ChatroomMessage } from '../API';
 import getTtlFromMinutes from '../components/utils/getTtlFromMinutes';
+import { listChatrooms, getChatroom } from '../graphql/queries';
 
 
 const client = generateClient();
@@ -24,8 +25,79 @@ export default function DevPage2() {
     const [owner, setOwner] = useState('tolol');
     const [inputText, setInputText] = useState('');
 
-    const chatroomSubscription = (chatroomID) => {
+    const [chatrooms, setChatrooms] = useState<Chatroom[]>([]);
+    const [chatroomCode, setChatroomCode] = useState('');
+    const [init, setInit] = useState(false)
+
+    useEffect( () =>  {
+
+        chatroomSubscription()
+
+        console.log('fetching chatrooms...')
+        client.graphql({
+            query: listChatrooms
+
+        }).then((data) =>{
+
+            console.log('fetched chatrooms... ', data)
+            setChatrooms(data.data.listChatrooms.items)
+            setInit(true)
+            
+            
+        })
         
+
+
+    }, [])
+
+    const generateRoomcode = (chatrooms : Chatroom[]) => {
+
+        console.log('generating room code...')
+        
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const charactersLength = characters.length;
+        let isDone = false
+
+        
+        while(!isDone){
+
+            let counter = 0;
+            while (counter < 4) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                counter += 1;
+            }
+
+            isDone = true
+            
+
+        }
+        console.log('room code generated: ', result)
+
+        return result;
+
+    }
+
+    const chatroomSubscription = () => {
+        
+        const sub = client.graphql({
+            query: onCreateChatroom
+
+        }).subscribe({
+            next: ({data}) => {
+                
+                console.log('got chats: ', data)
+                setChatrooms((currentChatroom) => [...currentChatroom, data.onCreateChatroom])
+                
+            },error: error => console.error(error)})
+
+        return sub
+    }
+
+
+    const chatroomMessageSubscription = (chatroomID) => {
+        
+        console.log('subscribing to chatroomMessage')
         const sub = client.graphql({
             query: onCreateChatroomMessage,
             variables: {
@@ -36,10 +108,12 @@ export default function DevPage2() {
             next: ({data}) => {
                 
                 console.log('got chats: ', data)
-                setChats((currentChat) => [...currentChat, data.onCreateChatroomMessage])
                 
+                setChats((currentChat) => [...currentChat, data.onCreateChatroomMessage])
+                setChatroomCode(data.onCreateChatroomMessage.chatroom.code)
             },error: error => console.error(error)})
 
+        console.log('subscribing to chatroomMessage successful')
         return sub
     }
     
@@ -63,6 +137,8 @@ export default function DevPage2() {
     function handleChatroomNameInput(event: React.FormEvent<HTMLInputElement>): void {
         setChatroomName(event.currentTarget.value)
     }
+
+    
 
 
     function handleUserCreateButton(): void {
@@ -94,19 +170,27 @@ export default function DevPage2() {
                 variables: {
                     input: {
                         name: chatroomName,
-                        ttl: getTtlFromMinutes(60*24)
+                        ttl: getTtlFromMinutes(60*24),
+                        code: generateRoomcode(chatrooms)
                         
                     }
-                }
+                },
+                
             
-        });
-        createChatQL.then(result => {
+        })
+        .then(result => {
+            
+            console.log('chatroom created: ', result)
             setChatroomID(result.data.createChatroom.id)
-            chatroomSubscription(result.data.createChatroom.id)
+            console.log('chatroom id fetched')
+            chatroomMessageSubscription(result.data.createChatroom.id)
             
             console.log('createChatroom: ', result)
         
         })
+        .catch(error => console.error('createChatroom: ',error))
+    
+    
     }
 
 
@@ -114,7 +198,7 @@ export default function DevPage2() {
     
         console.log('joining room');
 
-        chatroomSubscription(chatroomID)
+        chatroomMessageSubscription(chatroomID)
         
 
     }
@@ -128,7 +212,7 @@ export default function DevPage2() {
                 query: createChatroomMessage,
                 variables: {
                     input : {
-                        ownerId: userID,
+                        ownerId: chatroomUserID,
                         chatroomId: chatroomID,
                         content: messageInput,
                         createdAt: new Date().toISOString(),
@@ -197,8 +281,14 @@ export default function DevPage2() {
             <br /><br />
             <div>
 
-                {(chats != null) ? chats.map((chat)=> 
-                    <div key={chat.id}>{chat.ownerId}: {chat.content}</div>
+                {chatroomCode}
+                {(chats != null) ? chats.map((chat)=>
+                
+
+                    <div key={chat.id}>
+                        {chat.content}
+                        
+                    </div>
                 ):''}
 
             </div>
@@ -210,135 +300,3 @@ export default function DevPage2() {
 
     )
 }
-
-
-// export default function DevPage2() {
-
-
-    // const createSub = client
-    //     .graphql({ query: onCreateChat })
-    //     .subscribe({
-    //     next: ({ data }) => {
-    //         setChats(data.onCreateChat.text)
-    //         console.log('receive create data: ', data)
-    //     }
-    //         ,
-    //     error: (error) => console.warn(error)
-    // });
-
-//     const updateSub = client
-//         .graphql({ query: onUpdateChat  })
-//         .subscribe({
-//             next: ({ data }) => {
-//                 setChats(data.onUpdateChat.text)
-//                 console.log('receive update data: ', data)
-//         },
-//         error: (error) => console.warn(error)
-//     });
-
-//     const sub = client
-//         .graphql({
-//             query: onCreateChat,
-//         })
-//         .subscribe({
-//             next: ({ data }) => console.log(data),
-//             error: (error) => console.warn(error)
-//         })
-
-
-//     function handleInput(event: React.FormEvent<HTMLInputElement>): void {
-        
-//         setInputText(event.currentTarget.value)
-
-//     }
-
-//     function handleOwnerInput(event: React.FormEvent<HTMLInputElement>): void {
-        
-        
-//         setOwner(event.currentTarget.value)
-
-//     }
-
-//     function handleIdInput(event: React.FormEvent<HTMLInputElement>): void {
-        
-//         setChatId(event.currentTarget.value)
-
-//     }
-
-    // function handleSubmit(): void {
-    
-    //     console.log('sending: ', inputText);
-
-    //     const createChatQL = client
-    //         .graphql({ 
-    //             query: createChat,
-    //             variables: {
-
-    //                 input: {
-    //                     owner: owner,
-    //                     text: inputText,
-    //                     createdAt: new Date().toString()
-    //                 }
-    //             }
-            
-    //         });
-
-    //     console.log('createChat: ',createChatQL.then(result => setChatId(result.data.createChat.id)))
-
-
-    // }
-
-//     function handleSubmitUpdate(): void {
-    
-//         console.log('sending: ', inputText);
-
-//         try{
-//         const updateQL = client
-//             .graphql({ 
-//                 query: updateChat,
-//                 variables: {
-
-//                     input: {
-
-//                         id: chatId,
-//                         owner: owner,
-//                         text: inputText,
-//                         createdAt: new Date().toString()
-//                     }
-//                 }
-            
-//             })
-//             console.log('updateSub: ',updateQL)
-
-//         }catch(e){
-//             console.log(e)
-//         }
-
-
-
-//     }
-
-//     return(
-
-//         <div>
-
-//             <div>{chats.toString()}</div>
-
-//             id: <input type="text" onChange={handleIdInput} value={chatId}/>
-//             <br></br>
-//             owner : <input type="text" onChange={handleOwnerInput} value={owner}/>
-            
-//             <br></br>
-//             <br></br>
-//             <br></br>
-//             <br></br>
-//             text : <input type="text" onChange={handleInput} value={inputText}/>
-//             <button onClick={handleSubmit} >submit</button>
-//             <button onClick={handleSubmitUpdate} >update</button>
-
-//         </div>
-
-
-//     )
-
-// }
