@@ -9,7 +9,7 @@ export default function ClassicBox() {
   return (
     <>
       <Link
-        className="p-8 border-2 group rounded-lg cursor-pointer border-[#CB812D]  hover:bg-[#CB812D] hover:border-[#e8dca4] transition duration-500 bg-[#101010] shadow-lg shadow-black"
+        className="p-8 border-2 group rounded-lg cursor-pointer border-[#CB812D]  hover:bg-[#CB812D] hover:border-[#e8dca4] transition duration-500 bg-[#101010] shadow-lg shadow-black w-full"
         to="/classic"
       >
         <div className="flex justify-center items-center gap-4">

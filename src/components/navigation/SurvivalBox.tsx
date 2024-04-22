@@ -9,7 +9,7 @@ export default function SurvivalBox() {
   return (
     <>
       <Link
-        className="p-8 border-2 rounded-lg cursor-pointer border-[#d1b4ff] hover:bg-purple-400 group transition duration-500 bg-[#101010] shadow-lg shadow-black "
+        className="p-8 border-2 rounded-lg cursor-pointer border-[#d1b4ff] hover:bg-purple-400 group transition duration-500 bg-[#101010] shadow-lg shadow-black w-full"
         to="/survival"
       >
         <div className="flex justify-center items-center gap-4 ">
