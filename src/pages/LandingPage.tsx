@@ -11,6 +11,7 @@ import {
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
+import ArcadeBox from "../components/navigation/ArcadeBox";
 
 export default function LandingPage() {
 
@@ -109,6 +110,7 @@ export default function LandingPage() {
       <Navbar />
       <ClassicBox />
       <SurvivalBox />
+      <ArcadeBox />
     </div>
     </div>
   );

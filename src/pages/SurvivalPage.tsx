@@ -433,7 +433,7 @@ export default function SurvivalPage() {
         <div className="grid grid-cols-6 w-full h-full select-none mt-20 px-2">
 
             <div className="h-full w-full relative flex z-30">
-            <div className={`${(leftOpacity>0) ? 'animate-pulse' :  'animate-none' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1 +leftOpacity }}/>
+            <div className={`${(leftOpacity>0) ? 'animate-pulse' :  'animate-none' } bg-orange-300 blur-3xl w-full h-[50vh] top-1/2 -translate-y-1/2 absolute`} style={{ opacity: 0.1 +leftOpacity }}/>
             <div className="w-full mr-auto text-center text-balance my-auto -translate-y-10 text-orange-200 brightness-110 items-center align-middle text-xl md:text-3xl relative z-00 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.2+leftOpacity*5 }}>
             {t(`${leftText}`)}
             </div>
@@ -478,7 +478,7 @@ export default function SurvivalPage() {
             </div>
 
             <div className="h-full w-full relative flex z-10 ">
-            <div className={`${(rightOpacity>0) ? 'animate-pulse' :  '' } bg-orange-300 blur-3xl w-full h-full absolute`} style={{ opacity: 0.1+rightOpacity }}/>
+            <div className={`${(rightOpacity>0) ? 'animate-pulse' :  '' } bg-orange-300 blur-3xl w-full h-[50vh] top-1/2 -translate-y-1/2 absolute`} style={{ opacity: 0.1+rightOpacity }}/>
             <div className="w-full text-center text-balance mr-14 -translate-y-10 my-auto text-orange-200 brightness-110 items-center align-middle text-xl md:text-3xl relative z-10 text-shadow-lg shadow-black motion-reduce:animate-bounce" style={{ opacity: 0.3+rightOpacity*5 }}>
             {t(`${rightText}`)}
             </div>
