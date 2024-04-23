@@ -106,6 +106,19 @@ export const createUser = /* GraphQL */ `mutation CreateUser($input: CreateUserI
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -125,6 +138,19 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser($input: UpdateUserI
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -144,6 +170,19 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser($input: DeleteUserI
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -163,6 +202,13 @@ export const createChatroomUser = /* GraphQL */ `mutation CreateChatroomUser($in
     user {
       id
       username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -170,6 +216,22 @@ export const createChatroomUser = /* GraphQL */ `mutation CreateChatroomUser($in
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -189,6 +251,13 @@ export const updateChatroomUser = /* GraphQL */ `mutation UpdateChatroomUser($in
     user {
       id
       username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -196,6 +265,22 @@ export const updateChatroomUser = /* GraphQL */ `mutation UpdateChatroomUser($in
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -215,6 +300,13 @@ export const deleteChatroomUser = /* GraphQL */ `mutation DeleteChatroomUser($in
     user {
       id
       username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -222,6 +314,22 @@ export const deleteChatroomUser = /* GraphQL */ `mutation DeleteChatroomUser($in
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -241,6 +349,19 @@ export const createChatroomMessage = /* GraphQL */ `mutation CreateChatroomMessa
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -249,6 +370,22 @@ export const createChatroomMessage = /* GraphQL */ `mutation CreateChatroomMessa
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -270,6 +407,19 @@ export const updateChatroomMessage = /* GraphQL */ `mutation UpdateChatroomMessa
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -278,6 +428,22 @@ export const updateChatroomMessage = /* GraphQL */ `mutation UpdateChatroomMessa
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -299,6 +465,19 @@ export const deleteChatroomMessage = /* GraphQL */ `mutation DeleteChatroomMessa
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -307,6 +486,22 @@ export const deleteChatroomMessage = /* GraphQL */ `mutation DeleteChatroomMessa
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -328,7 +523,21 @@ export const createChatroom = /* GraphQL */ `mutation CreateChatroom($input: Cre
     messages {
       id
       content
+      owner {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ownerId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       chatroomId
       createdAt
       ttl
@@ -338,6 +547,19 @@ export const createChatroom = /* GraphQL */ `mutation CreateChatroom($input: Cre
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -357,7 +579,21 @@ export const updateChatroom = /* GraphQL */ `mutation UpdateChatroom($input: Upd
     messages {
       id
       content
+      owner {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ownerId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       chatroomId
       createdAt
       ttl
@@ -367,6 +603,19 @@ export const updateChatroom = /* GraphQL */ `mutation UpdateChatroom($input: Upd
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -386,7 +635,21 @@ export const deleteChatroom = /* GraphQL */ `mutation DeleteChatroom($input: Del
     messages {
       id
       content
+      owner {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ownerId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       chatroomId
       createdAt
       ttl
@@ -396,6 +659,19 @@ export const deleteChatroom = /* GraphQL */ `mutation DeleteChatroom($input: Del
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }

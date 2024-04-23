@@ -12,11 +12,13 @@ import {
 import { loadSlim } from "@tsparticles/slim";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 import ArcadeBox from "../components/navigation/ArcadeBox";
+import { useUser } from "../providers/UserProvider";
 
 export default function LandingPage() {
 
   const [init, setInit] = useState(false);
-
+  
+  const { data: user, isLoading: userIsLoading, error: userError } = useUser() 
   const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
   useEffect(() => {

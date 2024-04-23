@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo  } from "react";
 import { MobileLegendsCharacter } from "../API";
 import Draggable, {DraggableEvent, DraggableData} from 'react-draggable';
-import preloadImage from "../components/utils/preloadImage";
+import preloadImage from "../utils/preloadImage";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 import Navbar from "../components/navigation/Navbar";
 import {

@@ -2,11 +2,13 @@ import { useQuery } from 'react-query';
 import { generateClient } from "aws-amplify/api";
 import { listMobileLegendsCharacters } from '../graphql/queries';
 import useGetMobileLegendsCharacterImageURL from '../hooks/useGetMobileLegendsCharacterImageURL';
+import { useUser } from './UserProvider';
 
 const fetchCharacters = async () => {
     const client = generateClient();
     const response = await client.graphql({ query: listMobileLegendsCharacters });
     const characterResults = response.data.listMobileLegendsCharacters.items;
+    
    
     
     console.log('fetching characters')
@@ -34,7 +36,7 @@ export const useMobileLegendsCharacters = () => {
         cacheTime: Infinity,
         refetchOnMount: false,
         refetchOnReconnect: false,
-        refetchOnWindowFocus: false
+        refetchOnWindowFocus: false,
     });
     // console.log('query: ', temp)
     return temp

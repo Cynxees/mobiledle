@@ -89,6 +89,19 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -106,6 +119,13 @@ export const listUsers = /* GraphQL */ `query ListUsers(
     items {
       id
       username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -122,6 +142,13 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
     user {
       id
       username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -129,6 +156,22 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -150,6 +193,19 @@ export const listChatroomUsers = /* GraphQL */ `query ListChatroomUsers(
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -169,6 +225,19 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -177,6 +246,22 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -199,7 +284,21 @@ export const listChatroomMessages = /* GraphQL */ `query ListChatroomMessages(
     items {
       id
       content
+      owner {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ownerId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       chatroomId
       createdAt
       ttl
@@ -221,7 +320,21 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
     messages {
       id
       content
+      owner {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ownerId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       chatroomId
       createdAt
       ttl
@@ -231,6 +344,19 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -250,7 +376,21 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
     messages {
       id
       content
+      owner {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ownerId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       chatroomId
       createdAt
       ttl
@@ -260,6 +400,19 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
       id
       chatroomId
       userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
       ttl
       __typename
     }
@@ -281,6 +434,22 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
       id
       name
       code
+      messages {
+        id
+        content
+        ownerId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        __typename
+      }
       ttl
       __typename
     }

@@ -3,7 +3,7 @@ import { generateClient } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom } from '../graphql/subscriptions';
 import { Chatroom, ChatroomMessage } from '../API';
-import getTtlFromMinutes from '../components/utils/getTtlFromMinutes';
+import getTtlFromMinutes from '../utils/getTtlFromMinutes';
 import { listChatrooms, getChatroom } from '../graphql/queries';
 
 const client = generateClient();
