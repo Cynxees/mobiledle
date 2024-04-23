@@ -100,6 +100,7 @@ export const useUser = () => {
         refetchOnMount: false,
         refetchOnReconnect: false,
         refetchOnWindowFocus: false,
+        
     });
 
     return temp

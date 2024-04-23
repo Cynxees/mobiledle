@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import { generateClient } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom } from '../../graphql/subscriptions';
@@ -20,13 +20,13 @@ export default function ArcadeRoomPage() {
 
     const [chatroomUser, setChatroomUser] = useState<ChatroomUser>()
     const [chatroom, setChatroom] = useState<Chatroom>()
-    const [chatroomMessages, setChatroomMessages] = useState<ChatroomMessage[]>([])
-
+    const [chatroomMessages, setChatroomMessages] = useState<Array<ChatroomMessage>>([])
     
     const [chatroomInit, setChatroomInit] = useState(false)
     const [chatroomMessageInit, setChatroomMessageInit] = useState(false)
     const [chatroomUserInit, setChatroomUserInit] = useState(false)
 
+    const [chatInput, setChatInput] = useState('')
 
     useEffect(() => {
         if(paramsVerified) return
@@ -87,6 +87,7 @@ export default function ArcadeRoomPage() {
         
         user.chatrooms.map((chatroomUser) => {
 
+            if(chatroomUser.chatroom == null) return
             if(chatroomUser.chatroom.code == params.code){
                 
                 if(userExist) return 
@@ -99,8 +100,6 @@ export default function ArcadeRoomPage() {
                 
             }
         })
-
-        
         
 
         if(!userExist) {
@@ -112,20 +111,65 @@ export default function ArcadeRoomPage() {
     useEffect(() => {
 
         if(!chatroomInit) return
-
         const onCreateMessageSub = onCreateMessageSubscription()
+        console.log('subscribed to onCreateMessage')
         const onUpdateChatroomSub = onUpdateChatroomSubscription()
+        console.log('subscribed to onUpdateMessage')
         
         return(() => {
             console.log('unsubscribing from onCreateMessage/onUpdateChatroom ...')
             onCreateMessageSub.unsubscribe()
             onUpdateChatroomSub.unsubscribe()
+
         })
 
     }, [chatroomInit])
 
+    useEffect(() => {
 
+        if(!chatroomUserInit) return
+
+        
+        return (() => {
+            console.log('setting user ttl to 5 minutes...')
+            client.graphql({
+                query: updateChatroomUser,
+                variables: {
+                    input: {
+                        id: chatroomUser.id,
+                        ttl: getTtlFromMinutes(5)
+                    }
+                }
+            }).then((data)=> {
+                console.log('ttl set to 5 minutes: ', data)
+            })
+        })
+
+
+    }, [chatroomUserInit])
+
+    useEffect(() => {
+
+        if(!chatroomUserInit) return
+
+        console.log('updating chatroomUser TTL')
+        client.graphql({
+            query : updateChatroomUser,
+            variables: {
+                input: {
+                    id : chatroomUser.id,
+                    ttl : getTtlFromMinutes(60*5),
+                }
+            }
+        }).then((data) => {
+            console.log('updated chatroomUser TTL: ', data)
+        })
+
+
+
+    }, [chatroomUserInit])
     
+
     
     const onCreateMessageSubscription = () => {
         return client
@@ -135,9 +179,14 @@ export default function ArcadeRoomPage() {
                 chatroomId: chatroom.id
             }
         }).subscribe(data => {
-            console.log('subscribed to onCreateMessage')
+            console.log('got message: ', data)
             if(onCreateChatroomMessage != null){
-                setChatroomMessages([...chatroomMessages, data.data.onCreateChatroomMessage])
+                setChatroomMessages((oldMessages) => ([
+                    
+                    ...oldMessages,
+                    data.data.onCreateChatroomMessage
+
+                ]))
             }
         })
     }
@@ -150,14 +199,66 @@ export default function ArcadeRoomPage() {
                 id: chatroom.id
             }
         }).subscribe(data => {
-            console.log('subscribed to onUpdateChatroom')
+            console.log('got updateChatroom: ', data)
             setChatroom(data.data.onUpdateChatroom)
         })
     }
 
+    const handleChatInput = (e : React.FormEvent<HTMLInputElement>) => {
+
+        setChatInput(e.currentTarget.value)
+    }
+
+    const handleChatKeyDown = (e : React.KeyboardEvent) => {
+        
+        if(e.key === 'Enter') {
+
+            
+            client.graphql({
+                query: createChatroomMessage,
+                variables: {
+                    input: {
+                        chatroomId: chatroom.id,
+                        createdAt: new Date().toISOString(),
+                        content: chatInput,
+                        ownerId: chatroomUser.id,
+                        ttl: getTtlFromMinutes(60)
+                    }
+                }
+            })
+
+            setChatInput('')
+
+        }
+    }
+
     return(
-        <div>
-            {params.code}
+        <div className='grid grid-cols-5 w-screen h-screen'>
+            
+            <div className='col-span-4 w-full h-full flex flex-col justify-center'>
+                {params.code}
+            </div>
+
+            <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full h-screen overflow-hidden flex flex-col justify-between'>
+                <div className='flex flex-col mt-auto w-full text-start ps-5 align-bottom overflowy-scroll overflow-x-hidden max-h-full'>
+
+                    {chatroomMessages.map((message) => {
+
+                        return( 
+                        <div key={message.id}>
+                            {message.owner.user.username}: {message.content}
+                        </div>
+                        )
+                    })}
+   
+
+                </div>
+                <div className=''>
+                    <input onChange={handleChatInput} onKeyDown={handleChatKeyDown} value={chatInput} className='w-full rounded-t-sm bg-gray-300 h-20 text-black ps-5 text-2xl' type="text" placeholder='Type Here' />
+                </div>
+
+            </div>
+                
         </div>
     )
 

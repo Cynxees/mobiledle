@@ -23,7 +23,7 @@ export default function ArcadeLandingPage() {
     
     const [isRefreshed, setRefresh] = useState(true)
     const [chatroomFetched, setChatroomFetched] = useState(false)
-    const { data: user, isLoading: userIsLoading, error: userError } = useUser()
+    const { data: user, isLoading: userIsLoading, error: userError, refetch } = useUser()
     const [init, setInit] = useState(false)
     
     
@@ -50,6 +50,7 @@ export default function ArcadeLandingPage() {
 
     useEffect(()=> {
 
+        refetch()
         if(!userIsLoading) setUsername(user ? user.username : username)
 
     }, [userIsLoading])
