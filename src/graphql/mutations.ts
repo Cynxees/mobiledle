@@ -120,6 +120,8 @@ export const createUser = /* GraphQL */ `mutation CreateUser($input: CreateUserI
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
     ttl
@@ -152,6 +154,8 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser($input: UpdateUserI
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
     ttl
@@ -184,6 +188,8 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser($input: DeleteUserI
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
     ttl
@@ -207,6 +213,8 @@ export const createChatroomUser = /* GraphQL */ `mutation CreateChatroomUser($in
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
       ttl
@@ -219,7 +227,7 @@ export const createChatroomUser = /* GraphQL */ `mutation CreateChatroomUser($in
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -230,12 +238,29 @@ export const createChatroomUser = /* GraphQL */ `mutation CreateChatroomUser($in
         chatroomId
         userId
         ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
         __typename
       }
       ttl
       __typename
     }
     ttl
+    points
+    state
     __typename
   }
 }
@@ -256,6 +281,8 @@ export const updateChatroomUser = /* GraphQL */ `mutation UpdateChatroomUser($in
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
       ttl
@@ -268,7 +295,7 @@ export const updateChatroomUser = /* GraphQL */ `mutation UpdateChatroomUser($in
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -279,12 +306,29 @@ export const updateChatroomUser = /* GraphQL */ `mutation UpdateChatroomUser($in
         chatroomId
         userId
         ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
         __typename
       }
       ttl
       __typename
     }
     ttl
+    points
+    state
     __typename
   }
 }
@@ -305,6 +349,8 @@ export const deleteChatroomUser = /* GraphQL */ `mutation DeleteChatroomUser($in
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
       ttl
@@ -317,7 +363,7 @@ export const deleteChatroomUser = /* GraphQL */ `mutation DeleteChatroomUser($in
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -328,12 +374,29 @@ export const deleteChatroomUser = /* GraphQL */ `mutation DeleteChatroomUser($in
         chatroomId
         userId
         ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
         __typename
       }
       ttl
       __typename
     }
     ttl
+    points
+    state
     __typename
   }
 }
@@ -345,7 +408,7 @@ export const createChatroomMessage = /* GraphQL */ `mutation CreateChatroomMessa
   createChatroomMessage(input: $input) {
     id
     content
-    owner {
+    chatroomUser {
       id
       chatroomId
       userId
@@ -363,9 +426,11 @@ export const createChatroomMessage = /* GraphQL */ `mutation CreateChatroomMessa
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
-    ownerId
+    chatroomUserId
     chatroom {
       id
       name
@@ -373,7 +438,7 @@ export const createChatroomMessage = /* GraphQL */ `mutation CreateChatroomMessa
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -384,6 +449,21 @@ export const createChatroomMessage = /* GraphQL */ `mutation CreateChatroomMessa
         chatroomId
         userId
         ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
         __typename
       }
       ttl
@@ -403,7 +483,7 @@ export const updateChatroomMessage = /* GraphQL */ `mutation UpdateChatroomMessa
   updateChatroomMessage(input: $input) {
     id
     content
-    owner {
+    chatroomUser {
       id
       chatroomId
       userId
@@ -421,9 +501,11 @@ export const updateChatroomMessage = /* GraphQL */ `mutation UpdateChatroomMessa
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
-    ownerId
+    chatroomUserId
     chatroom {
       id
       name
@@ -431,7 +513,7 @@ export const updateChatroomMessage = /* GraphQL */ `mutation UpdateChatroomMessa
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -442,6 +524,21 @@ export const updateChatroomMessage = /* GraphQL */ `mutation UpdateChatroomMessa
         chatroomId
         userId
         ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
         __typename
       }
       ttl
@@ -461,7 +558,7 @@ export const deleteChatroomMessage = /* GraphQL */ `mutation DeleteChatroomMessa
   deleteChatroomMessage(input: $input) {
     id
     content
-    owner {
+    chatroomUser {
       id
       chatroomId
       userId
@@ -479,9 +576,11 @@ export const deleteChatroomMessage = /* GraphQL */ `mutation DeleteChatroomMessa
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
-    ownerId
+    chatroomUserId
     chatroom {
       id
       name
@@ -489,7 +588,7 @@ export const deleteChatroomMessage = /* GraphQL */ `mutation DeleteChatroomMessa
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -500,6 +599,21 @@ export const deleteChatroomMessage = /* GraphQL */ `mutation DeleteChatroomMessa
         chatroomId
         userId
         ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
         __typename
       }
       ttl
@@ -523,14 +637,16 @@ export const createChatroom = /* GraphQL */ `mutation CreateChatroom($input: Cre
     messages {
       id
       content
-      owner {
+      chatroomUser {
         id
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
-      ownerId
+      chatroomUserId
       chatroom {
         id
         name
@@ -561,6 +677,48 @@ export const createChatroom = /* GraphQL */ `mutation CreateChatroom($input: Cre
         __typename
       }
       ttl
+      points
+      state
+      __typename
+    }
+    chatroomState {
+      id
+      chatroomId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      mode
+      currentState
+      prompt {
+        id
+        question
+        description
+        imageUrl
+        answer
+        type
+        timeLimit
+        ttl
+        __typename
+      }
+      willEndAt
+      gameDuration
+      round
+      maxPoints
+      ttl
+      points
       __typename
     }
     ttl
@@ -579,14 +737,16 @@ export const updateChatroom = /* GraphQL */ `mutation UpdateChatroom($input: Upd
     messages {
       id
       content
-      owner {
+      chatroomUser {
         id
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
-      ownerId
+      chatroomUserId
       chatroom {
         id
         name
@@ -617,6 +777,48 @@ export const updateChatroom = /* GraphQL */ `mutation UpdateChatroom($input: Upd
         __typename
       }
       ttl
+      points
+      state
+      __typename
+    }
+    chatroomState {
+      id
+      chatroomId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      mode
+      currentState
+      prompt {
+        id
+        question
+        description
+        imageUrl
+        answer
+        type
+        timeLimit
+        ttl
+        __typename
+      }
+      willEndAt
+      gameDuration
+      round
+      maxPoints
+      ttl
+      points
       __typename
     }
     ttl
@@ -635,14 +837,16 @@ export const deleteChatroom = /* GraphQL */ `mutation DeleteChatroom($input: Del
     messages {
       id
       content
-      owner {
+      chatroomUser {
         id
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
-      ownerId
+      chatroomUserId
       chatroom {
         id
         name
@@ -673,6 +877,48 @@ export const deleteChatroom = /* GraphQL */ `mutation DeleteChatroom($input: Del
         __typename
       }
       ttl
+      points
+      state
+      __typename
+    }
+    chatroomState {
+      id
+      chatroomId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      mode
+      currentState
+      prompt {
+        id
+        question
+        description
+        imageUrl
+        answer
+        type
+        timeLimit
+        ttl
+        __typename
+      }
+      willEndAt
+      gameDuration
+      round
+      maxPoints
+      ttl
+      points
       __typename
     }
     ttl
@@ -682,4 +928,325 @@ export const deleteChatroom = /* GraphQL */ `mutation DeleteChatroom($input: Del
 ` as GeneratedMutation<
   APITypes.DeleteChatroomMutationVariables,
   APITypes.DeleteChatroomMutation
+>;
+export const createPrompt = /* GraphQL */ `mutation CreatePrompt($input: CreatePromptInput!) {
+  createPrompt(input: $input) {
+    id
+    question
+    description
+    imageUrl
+    answer
+    type
+    timeLimit
+    ttl
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreatePromptMutationVariables,
+  APITypes.CreatePromptMutation
+>;
+export const updatePrompt = /* GraphQL */ `mutation UpdatePrompt($input: UpdatePromptInput!) {
+  updatePrompt(input: $input) {
+    id
+    question
+    description
+    imageUrl
+    answer
+    type
+    timeLimit
+    ttl
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdatePromptMutationVariables,
+  APITypes.UpdatePromptMutation
+>;
+export const deletePrompt = /* GraphQL */ `mutation DeletePrompt($input: DeletePromptInput!) {
+  deletePrompt(input: $input) {
+    id
+    question
+    description
+    imageUrl
+    answer
+    type
+    timeLimit
+    ttl
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeletePromptMutationVariables,
+  APITypes.DeletePromptMutation
+>;
+export const createChatroomState = /* GraphQL */ `mutation CreateChatroomState($input: CreateChatroomStateInput!) {
+  createChatroomState(input: $input) {
+    id
+    chatroomId
+    chatroom {
+      id
+      name
+      code
+      messages {
+        id
+        content
+        chatroomUserId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
+        __typename
+      }
+      ttl
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      ttl
+      points
+      state
+      __typename
+    }
+    mode
+    currentState
+    prompt {
+      id
+      question
+      description
+      imageUrl
+      answer
+      type
+      timeLimit
+      ttl
+      __typename
+    }
+    willEndAt
+    gameDuration
+    round
+    maxPoints
+    ttl
+    points
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateChatroomStateMutationVariables,
+  APITypes.CreateChatroomStateMutation
+>;
+export const updateChatroomState = /* GraphQL */ `mutation UpdateChatroomState($input: UpdateChatroomStateInput!) {
+  updateChatroomState(input: $input) {
+    id
+    chatroomId
+    chatroom {
+      id
+      name
+      code
+      messages {
+        id
+        content
+        chatroomUserId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
+        __typename
+      }
+      ttl
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      ttl
+      points
+      state
+      __typename
+    }
+    mode
+    currentState
+    prompt {
+      id
+      question
+      description
+      imageUrl
+      answer
+      type
+      timeLimit
+      ttl
+      __typename
+    }
+    willEndAt
+    gameDuration
+    round
+    maxPoints
+    ttl
+    points
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateChatroomStateMutationVariables,
+  APITypes.UpdateChatroomStateMutation
+>;
+export const deleteChatroomState = /* GraphQL */ `mutation DeleteChatroomState($input: DeleteChatroomStateInput!) {
+  deleteChatroomState(input: $input) {
+    id
+    chatroomId
+    chatroom {
+      id
+      name
+      code
+      messages {
+        id
+        content
+        chatroomUserId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        points
+        __typename
+      }
+      ttl
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      ttl
+      points
+      state
+      __typename
+    }
+    mode
+    currentState
+    prompt {
+      id
+      question
+      description
+      imageUrl
+      answer
+      type
+      timeLimit
+      ttl
+      __typename
+    }
+    willEndAt
+    gameDuration
+    round
+    maxPoints
+    ttl
+    points
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteChatroomStateMutationVariables,
+  APITypes.DeleteChatroomStateMutation
 >;

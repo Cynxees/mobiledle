@@ -4,6 +4,13 @@
   "aws_appsync_region": "ap-southeast-1",
   "aws_appsync_authenticationType": "API_KEY",
   "aws_appsync_apiKey": "da2-rsvwbilhmndjxnkfvz74pogfme",
+  "aws_cloud_logic_custom": [
+    {
+      "name": "mobiledleAPI",
+      "endpoint": "https://rwtjw2qmuh.execute-api.ap-southeast-1.amazonaws.com/staging",
+      "region": "ap-southeast-1"
+    }
+  ],
   "aws_cognito_identity_pool_id": "ap-southeast-1:86bdc55d-f3f6-4794-8bb8-2e1a67db7f38",
   "aws_cognito_region": "ap-southeast-1",
   "aws_user_pools_id": "ap-southeast-1_gbFsIr2cT",

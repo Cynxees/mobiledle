@@ -27,7 +27,14 @@
         }
       },
       "api": {
-        "mobiledle": {}
+        "mobiledle": {},
+        "mobiledleAPI": {}
+      },
+      "function": {
+        "gameStart": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/gameStart-565244616c3278457448-build.zip"
+        }
       }
     }
   },

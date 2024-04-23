@@ -215,7 +215,7 @@ export default function DevPage2() {
                 query: createChatroomMessage,
                 variables: {
                     input : {
-                        ownerId: chatroomUserID,
+                        chatroomUserId: chatroomUserID,
                         chatroomId: chatroomID,
                         content: messageInput,
                         createdAt: new Date().toISOString(),

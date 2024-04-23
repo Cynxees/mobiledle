@@ -127,6 +127,25 @@ export default function ArcadeRoomPage() {
 
     useEffect(() => {
 
+        if(!chatroomInit) return
+
+        console.log('updating room ttl by 5 min') 
+        client.graphql({
+            query: updateChatroom,
+            variables: {
+                input: {
+                    id: chatroom.id,
+                    ttl: getTtlFromMinutes(10)
+                }
+            }
+        }).then((data) => {
+            console.log('chatroom ttl updated [join room]: ', data)
+        })
+
+
+    }, [chatroomInit])
+    useEffect(() => {
+
         if(!chatroomUserInit) return
 
         
@@ -221,7 +240,7 @@ export default function ArcadeRoomPage() {
                         chatroomId: chatroom.id,
                         createdAt: new Date().toISOString(),
                         content: chatInput,
-                        ownerId: chatroomUser.id,
+                        chatroomUserId: chatroomUser.id,
                         ttl: getTtlFromMinutes(60)
                     }
                 }
@@ -246,7 +265,7 @@ export default function ArcadeRoomPage() {
 
                         return( 
                         <div key={message.id}>
-                            {message.owner.user.username}: {message.content}
+                            {message.chatroomUser.user.username}: {message.content}
                         </div>
                         )
                     })}
