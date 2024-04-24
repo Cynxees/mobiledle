@@ -256,12 +256,12 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -336,12 +336,12 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -404,12 +404,12 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -491,12 +491,12 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -570,12 +570,12 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -645,12 +645,12 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -750,12 +750,12 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     ttl
@@ -850,12 +850,12 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     ttl
@@ -950,12 +950,12 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     ttl
@@ -1096,12 +1096,12 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -1142,12 +1142,12 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
       ttl
       __typename
     }
+    promptId
     willEndAt
     gameDuration
     round
     maxPoints
     ttl
-    points
     __typename
   }
 }
@@ -1157,17 +1157,17 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
 >;
 export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroomState(
   $id: ID
-  $chatroomId: ID
+  $promptId: ID
+  $round: Int
   $mode: String
   $currentState: String
-  $willEndAt: AWSDateTime
 ) {
   onUpdateChatroomState(
     id: $id
-    chatroomId: $chatroomId
+    promptId: $promptId
+    round: $round
     mode: $mode
     currentState: $currentState
-    willEndAt: $willEndAt
   ) {
     id
     chatroomId
@@ -1198,12 +1198,12 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -1244,12 +1244,12 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
       ttl
       __typename
     }
+    promptId
     willEndAt
     gameDuration
     round
     maxPoints
     ttl
-    points
     __typename
   }
 }
@@ -1300,12 +1300,12 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -1346,12 +1346,12 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
       ttl
       __typename
     }
+    promptId
     willEndAt
     gameDuration
     round
     maxPoints
     ttl
-    points
     __typename
   }
 }

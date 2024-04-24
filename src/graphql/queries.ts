@@ -178,12 +178,12 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -289,12 +289,12 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -433,12 +433,12 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     ttl
@@ -533,12 +533,12 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     ttl
@@ -582,12 +582,12 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -671,12 +671,12 @@ export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) 
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -717,12 +717,12 @@ export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) 
       ttl
       __typename
     }
+    promptId
     willEndAt
     gameDuration
     round
     maxPoints
     ttl
-    points
     __typename
   }
 }
@@ -768,12 +768,12 @@ export const listChatroomStates = /* GraphQL */ `query ListChatroomStates(
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     nextToken

@@ -2,7 +2,7 @@ import React, { FormEventHandler, useEffect, useState } from 'react';
 import { generateClient } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom } from '../../graphql/subscriptions';
-import { Chatroom, ChatroomMessage, ChatroomUser } from '../../API';
+import { Chatroom, ChatroomMessage, ChatroomUser, ChatroomState } from '../../API';
 import getTtlFromMinutes from '../../utils/getTtlFromMinutes';
 import { listChatrooms, getChatroom, getChatroomByCode, getChatroomUser, listChatroomUsers } from '../../graphql/queries';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,6 +20,7 @@ export default function ArcadeRoomPage() {
 
     const [chatroomUser, setChatroomUser] = useState<ChatroomUser>()
     const [chatroom, setChatroom] = useState<Chatroom>()
+    const [chatroomState, setChatroomState] = useState<ChatroomState>()
     const [chatroomMessages, setChatroomMessages] = useState<Array<ChatroomMessage>>([])
     
     const [chatroomInit, setChatroomInit] = useState(false)
@@ -52,6 +53,7 @@ export default function ArcadeRoomPage() {
                 }).then(data => {
                     setChatroom(data.data.getChatroomByCode)
                     setChatroomInit(true)
+                    setChatroomState(data.data.getChatroomByCode.chatroomState)
                     console.log('chatroom Initialized: ', data)
                 })
         }
@@ -250,6 +252,8 @@ export default function ArcadeRoomPage() {
 
         }
     }
+
+    if(!chatroomInit) return <div>loading...</div>
 
     return(
         <div className='grid grid-cols-5 w-screen h-screen'>

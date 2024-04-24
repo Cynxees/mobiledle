@@ -247,12 +247,12 @@ export const createChatroomUser = /* GraphQL */ `mutation CreateChatroomUser($in
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -315,12 +315,12 @@ export const updateChatroomUser = /* GraphQL */ `mutation UpdateChatroomUser($in
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -383,12 +383,12 @@ export const deleteChatroomUser = /* GraphQL */ `mutation DeleteChatroomUser($in
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -458,12 +458,12 @@ export const createChatroomMessage = /* GraphQL */ `mutation CreateChatroomMessa
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -533,12 +533,12 @@ export const updateChatroomMessage = /* GraphQL */ `mutation UpdateChatroomMessa
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -608,12 +608,12 @@ export const deleteChatroomMessage = /* GraphQL */ `mutation DeleteChatroomMessa
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -713,12 +713,12 @@ export const createChatroom = /* GraphQL */ `mutation CreateChatroom($input: Cre
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     ttl
@@ -813,12 +813,12 @@ export const updateChatroom = /* GraphQL */ `mutation UpdateChatroom($input: Upd
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     ttl
@@ -913,12 +913,12 @@ export const deleteChatroom = /* GraphQL */ `mutation DeleteChatroom($input: Del
         ttl
         __typename
       }
+      promptId
       willEndAt
       gameDuration
       round
       maxPoints
       ttl
-      points
       __typename
     }
     ttl
@@ -1011,12 +1011,12 @@ export const createChatroomState = /* GraphQL */ `mutation CreateChatroomState($
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -1057,12 +1057,12 @@ export const createChatroomState = /* GraphQL */ `mutation CreateChatroomState($
       ttl
       __typename
     }
+    promptId
     willEndAt
     gameDuration
     round
     maxPoints
     ttl
-    points
     __typename
   }
 }
@@ -1101,12 +1101,12 @@ export const updateChatroomState = /* GraphQL */ `mutation UpdateChatroomState($
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -1147,12 +1147,12 @@ export const updateChatroomState = /* GraphQL */ `mutation UpdateChatroomState($
       ttl
       __typename
     }
+    promptId
     willEndAt
     gameDuration
     round
     maxPoints
     ttl
-    points
     __typename
   }
 }
@@ -1191,12 +1191,12 @@ export const deleteChatroomState = /* GraphQL */ `mutation DeleteChatroomState($
         chatroomId
         mode
         currentState
+        promptId
         willEndAt
         gameDuration
         round
         maxPoints
         ttl
-        points
         __typename
       }
       ttl
@@ -1237,12 +1237,12 @@ export const deleteChatroomState = /* GraphQL */ `mutation DeleteChatroomState($
       ttl
       __typename
     }
+    promptId
     willEndAt
     gameDuration
     round
     maxPoints
     ttl
-    points
     __typename
   }
 }
