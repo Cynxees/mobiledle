@@ -1,5 +1,5 @@
 import React, { FormEventHandler, useEffect, useState } from 'react';
-import { generateClient } from 'aws-amplify/api';
+import { generateClient, post } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom } from '../../graphql/subscriptions';
 import { Chatroom, ChatroomMessage, ChatroomUser, ChatroomState } from '../../API';
@@ -8,12 +8,21 @@ import { listChatrooms, getChatroom, getChatroomByCode, getChatroomUser, listCha
 import { useNavigate, useParams } from 'react-router-dom';
 import { useUser } from '../../providers/UserProvider';
 import { isLeafType } from 'graphql';
+import { Tooltip } from 'react-tooltip'
+import { PiPersonFill } from 'react-icons/pi';
+import { IoPersonSharp } from 'react-icons/io5';
 
 export default function ArcadeRoomPage() {
 
     const navigate = useNavigate()
     let params = useParams()
     const client = generateClient()
+
+    const [linkTooltip, setLinkTooltip] = useState('Copy to Clipboard')
+    const [usersTooltip, setUsersTooltip] = useState('')
+
+
+
 
     const [paramsVerified, setParamsVerified] = useState(false)
     const { data: user, isLoading: userIsLoading, error: userError } = useUser()
@@ -253,6 +262,23 @@ export default function ArcadeRoomPage() {
         }
     }
 
+ 
+    const handleClickStartGame = async () => {
+
+        const callAPI = post({
+            apiName: 'mobiledleAPI',
+            path: '/items',
+
+        })
+
+        const {body} = await callAPI.response
+        const response = await body.json();
+        console.log('POST call succeeded');
+        console.log(response);
+
+        
+    }
+
 
     
     if(!chatroomInit) return <div>loading...</div>
@@ -260,11 +286,54 @@ export default function ArcadeRoomPage() {
     return(
         <div className='grid grid-cols-5 w-screen h-screen'>
             
-            <div className='col-span-4 w-full h-full flex flex-col justify-center'>
+            <div className='col-span-4 w-full h-full flex flex-col justify-between'>
 
                 
+                <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row'>
+                    
+                
+                    <div 
+                    className='text-[2vh] align-middle text-start my-auto font-modesto px-5 cursor-pointer'  
+                    onClick={() => {navigator.clipboard.writeText(`https://www.mobiledle.com/arcade/${params.code}`); setLinkTooltip('Link Copied!') }}
+                    onMouseLeave={() => setLinkTooltip('Copy to Clipboard')}
+                    data-tooltip-id="link-tooltip"
+                    data-tooltip-content={linkTooltip}
+                    data-tooltip-delay-show={100}
+                    data-tooltip-float={true}
+                    data-tooltip-offset={30}
+                    data-tooltip-variant='light'
+                    data-tooltip-place="bottom">
+                    
+                        <Tooltip id='link-tooltip'></Tooltip>
+                        MOBILEDLE.COM/ARCADE/<span className='text-orange-200'>{params.code}</span>
+                    </div>
 
-                {params.code}
+                    <div 
+                    className='w-full bg-gray-700 font-modesto text-start flex flex-row justify-between text-[2vh] pr-5'
+                    
+                    
+                    >
+                        <span></span>
+                        <span className='my-auto flex flex-row cursor-default' onMouseEnter={() => {
+                        setUsersTooltip((chatroom.users.map((user) => user.user.username.toString()).join("\n")))
+                    }}
+                        data-tooltip-id="users-tooltip"
+                        data-tooltip-content={usersTooltip}
+                        data-tooltip-delay-show={100}
+                        data-tooltip-float={true}
+                        data-tooltip-offset={30}
+                        data-tooltip-variant='light'
+                        data-tooltip-place="bottom">{chatroom.users.length} <IoPersonSharp className='my-auto ms-2' /></span>
+                        <Tooltip id='users-tooltip'></Tooltip>
+                    </div>
+
+
+                </div>
+
+                <div>
+
+                </div>
+                <button className='w-52 align-bottom border-1 border-white mx-auto' onClick={handleClickStartGame}>Start Game</button>
             </div>
 
             <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full h-screen overflow-hidden flex flex-col justify-between'>
@@ -281,8 +350,8 @@ export default function ArcadeRoomPage() {
    
 
                 </div>
-                <div className=''>
-                    <input onChange={handleChatInput} onKeyDown={handleChatKeyDown} value={chatInput} className='w-full rounded-t-sm bg-gray-300 h-20 text-black ps-5 text-2xl' type="text" placeholder='Type Here' />
+                <div className='mt-4 border-2 border-t-neutral-600 border-transparent'>
+                    <input onChange={handleChatInput} onKeyDown={handleChatKeyDown} value={chatInput} className='w-full rounded-t-[0.1rem] bg-neutral-900 h-16 text-white ps-5 text-2xl' type="text" placeholder='Type Here' />
                 </div>
 
             </div>
