@@ -253,12 +253,17 @@ export default function ArcadeRoomPage() {
         }
     }
 
+
+    
     if(!chatroomInit) return <div>loading...</div>
 
     return(
         <div className='grid grid-cols-5 w-screen h-screen'>
             
             <div className='col-span-4 w-full h-full flex flex-col justify-center'>
+
+                
+
                 {params.code}
             </div>
 
