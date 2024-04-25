@@ -1,16 +1,19 @@
 import React, { FormEventHandler, useEffect, useState } from 'react';
 import { generateClient, post } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../../graphql/mutations';
-import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom } from '../../graphql/subscriptions';
-import { Chatroom, ChatroomMessage, ChatroomUser, ChatroomState } from '../../API';
+import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom, onUpdateChatroomState } from '../../graphql/subscriptions';
+import { Chatroom, ChatroomMessage, ChatroomUser, ChatroomState, Prompt, MobileLegendsCharacter } from '../../API';
 import getTtlFromMinutes from '../../utils/getTtlFromMinutes';
-import { listChatrooms, getChatroom, getChatroomByCode, getChatroomUser, listChatroomUsers } from '../../graphql/queries';
+import { listChatrooms, getChatroom, getChatroomByCode, getChatroomUser, listChatroomUsers, getPrompt, getMobileLegendsCharacter } from '../../graphql/queries';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useUser } from '../../providers/UserProvider';
 import { isLeafType } from 'graphql';
 import { Tooltip } from 'react-tooltip'
 import { PiPersonFill } from 'react-icons/pi';
 import { IoPersonSharp } from 'react-icons/io5';
+import { useMobileLegendsCharacters } from '../../providers/MobileLegendsCharactersProvider';
+
+
 
 export default function ArcadeRoomPage() {
 
@@ -21,7 +24,7 @@ export default function ArcadeRoomPage() {
     const [linkTooltip, setLinkTooltip] = useState('Copy to Clipboard')
     const [usersTooltip, setUsersTooltip] = useState('')
 
-
+    const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
 
     const [paramsVerified, setParamsVerified] = useState(false)
@@ -30,6 +33,7 @@ export default function ArcadeRoomPage() {
     const [chatroomUser, setChatroomUser] = useState<ChatroomUser>()
     const [chatroom, setChatroom] = useState<Chatroom>()
     const [chatroomState, setChatroomState] = useState<ChatroomState>()
+    const [prompt, setPrompt] = useState<Prompt>()
     const [chatroomMessages, setChatroomMessages] = useState<Array<ChatroomMessage>>([])
     
     const [chatroomInit, setChatroomInit] = useState(false)
@@ -37,6 +41,40 @@ export default function ArcadeRoomPage() {
     const [chatroomUserInit, setChatroomUserInit] = useState(false)
 
     const [chatInput, setChatInput] = useState('')
+
+
+    const fetchPrompt = (inputPromptId?: string) => {
+
+        console.log('fetching prompt')
+
+
+        const promptId = inputPromptId ? inputPromptId : chatroomState.promptId
+
+        console.log('promptId: ', promptId)
+        if(!promptId){
+            console.warn('no promptId: ', promptId , 'state: ', chatroomState)
+            return
+        }
+        
+
+        client.graphql({
+            query: getPrompt,
+            variables: {
+                id: promptId
+            }
+        }).then((data) => {
+            setPrompt(data.data.getPrompt)
+            console.log('prompt fetched: ', data.data.getPrompt)
+        }).catch((err) => {
+
+            console.error('prompt fetch error: ', err, 'id: ', promptId)
+
+        })
+
+
+        
+
+    }
 
     useEffect(() => {
         if(paramsVerified) return
@@ -62,13 +100,19 @@ export default function ArcadeRoomPage() {
                 }).then(data => {
                     setChatroom(data.data.getChatroomByCode)
                     setChatroomInit(true)
-                    setChatroomState(data.data.getChatroomByCode.chatroomState)
                     console.log('chatroom Initialized: ', data)
+                    setChatroomState(data.data.getChatroomByCode.chatroomState)
+                    console.log('chatroomState Initialized: ', data.data.getChatroomByCode.chatroomState)
+                    if(data.data.getChatroomByCode.chatroomState.promptId) fetchPrompt(data.data.getChatroomByCode.chatroomState.promptId)
+                }).catch(err => {
+                    console.error('initalize chatroom error: ', err)
+                    navigate("/error/1")
                 })
         }
         initializeChatroom()
 
     }, [userIsLoading, paramsVerified])
+
 
     useEffect(()=> {
 
@@ -125,12 +169,15 @@ export default function ArcadeRoomPage() {
         const onCreateMessageSub = onCreateMessageSubscription()
         console.log('subscribed to onCreateMessage')
         const onUpdateChatroomSub = onUpdateChatroomSubscription()
-        console.log('subscribed to onUpdateMessage')
+        console.log('subscribed to onUpdateChatroom')
+        const onUpdateChatroomUpdateSub = onUpdateChatroomStateSubscription()
+        console.log('subscribed to onUpdateChatroomState')
         
         return(() => {
-            console.log('unsubscribing from onCreateMessage/onUpdateChatroom ...')
+            console.log('unsubscribing from onCreateMessage/onUpdateChatroom ...', onCreateMessageSub, onUpdateChatroomSub, onUpdateChatroomUpdateSub)
             onCreateMessageSub.unsubscribe()
             onUpdateChatroomSub.unsubscribe()
+            onUpdateChatroomUpdateSub.unsubscribe()
 
         })
 
@@ -234,6 +281,25 @@ export default function ArcadeRoomPage() {
         })
     }
 
+    const onUpdateChatroomStateSubscription = () => {
+
+        console.log('subscribing to chatroomState with id: ', chatroomState.id)
+        return client
+        .graphql({
+            query: onUpdateChatroomState,
+            variables: {
+                id: chatroomState.id
+
+            }
+        }).subscribe(data => {
+            console.log('got updateChatroomState: ', data)
+            setChatroomState(data.data.onUpdateChatroomState)
+            fetchPrompt(data.data.onUpdateChatroomState.promptId)
+        })
+    }
+    
+    
+
     const handleChatInput = (e : React.FormEvent<HTMLInputElement>) => {
 
         setChatInput(e.currentTarget.value)
@@ -265,12 +331,19 @@ export default function ArcadeRoomPage() {
  
     const handleClickStartGame = async () => {
 
-        const callAPI = post({
-            apiName: 'mobiledleAPI',
-            path: '/items',
+        
+        console.log('button click: ', chatroomState)
 
+        const callAPI  = post({
+            apiName: 'mobiledleapi',
+            path: '/functions',
+            options: {
+                body: {
+                    chatroomStateId: chatroomState.id
+                }
+            }
+    
         })
-
         const {body} = await callAPI.response
         const response = await body.json();
         console.log('POST call succeeded');
@@ -291,9 +364,11 @@ export default function ArcadeRoomPage() {
                 
                 <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row'>
                     
+                    
+                    <img src="/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => navigate('/')} />
                 
                     <div 
-                    className='text-[2vh] align-middle text-start my-auto font-modesto px-5 cursor-pointer'  
+                    className='text-[2vh] align-middle text-start my-auto font-modesto pr-5 cursor-pointer'  
                     onClick={() => {navigator.clipboard.writeText(`https://www.mobiledle.com/arcade/${params.code}`); setLinkTooltip('Link Copied!') }}
                     onMouseLeave={() => setLinkTooltip('Copy to Clipboard')}
                     data-tooltip-id="link-tooltip"
@@ -331,9 +406,31 @@ export default function ArcadeRoomPage() {
                 </div>
 
                 <div>
+                    
+                    {
+                        (prompt) ?
+                            
+                            <div>
+
+                                {prompt.question}
+                                <img className='mx-auto' src={characters[prompt.mobileLegendsCharacterId].imageUrl[0]} alt="" />
+
+
+
+                            </div>
+                        
+                        
+                        
+                        : ""
+                    
+                    
+                    }
+                    
+
+
 
                 </div>
-                <button className='w-52 align-bottom border-1 border-white mx-auto' onClick={handleClickStartGame}>Start Game</button>
+                <button className='w-52 align-bottom mb-[5%] border-1 border-white mx-auto' onClick={handleClickStartGame}>Start Game</button>
             </div>
 
             <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full h-screen overflow-hidden flex flex-col justify-between'>

@@ -1,9 +1,9 @@
 {
   "version": 1,
   "paths": {
-    "/items": {
-      "name": "/items",
-      "lambdaFunction": "gameStart",
+    "/functions": {
+      "name": "/functions",
+      "lambdaFunction": "launchGame",
       "permissions": {
         "setting": "open"
       }

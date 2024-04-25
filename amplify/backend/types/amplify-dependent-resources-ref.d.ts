@@ -5,7 +5,7 @@ export type AmplifyDependentResourcesAttributes = {
       "GraphQLAPIIdOutput": "string",
       "GraphQLAPIKeyOutput": "string"
     },
-    "mobiledleAPI": {
+    "mobiledleapi": {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
@@ -24,7 +24,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "gameStart": {
+    "launchGame": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",

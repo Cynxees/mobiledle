@@ -17,7 +17,6 @@ export default function ArcadeLandingPage() {
     const [username, setUsername] = useState('')
     const [usernameChanged, setUsernameChanged] = useState(false)
     
-
     const [roomName, setRoomName] = useState('')
     const [roomCode, setRoomCode] = useState('')
     
@@ -180,7 +179,6 @@ export default function ArcadeLandingPage() {
         console.log('username: ',username)
 
     }
-
 
     const handleRefreshRoomClick = () => {
         setRefresh(false)

@@ -425,6 +425,7 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
@@ -525,6 +526,7 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
@@ -605,6 +607,28 @@ export const getPrompt = /* GraphQL */ `query GetPrompt($id: ID!) {
   getPrompt(id: $id) {
     id
     question
+    mobileLegendsCharacter {
+      id
+      name
+      alias
+      gender
+      role
+      specialty
+      lane
+      region
+      goldPrice
+      ticketPrice
+      diamondPrice
+      year
+      rangeType
+      damageType
+      resource
+      hairColor
+      species
+      imageUrl
+      __typename
+    }
+    mobileLegendsCharacterId
     description
     imageUrl
     answer
@@ -624,6 +648,28 @@ export const listPrompts = /* GraphQL */ `query ListPrompts(
     items {
       id
       question
+      mobileLegendsCharacter {
+        id
+        name
+        alias
+        gender
+        role
+        specialty
+        lane
+        region
+        goldPrice
+        ticketPrice
+        diamondPrice
+        year
+        rangeType
+        damageType
+        resource
+        hairColor
+        species
+        imageUrl
+        __typename
+      }
+      mobileLegendsCharacterId
       description
       imageUrl
       answer
@@ -709,6 +755,28 @@ export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) 
     prompt {
       id
       question
+      mobileLegendsCharacter {
+        id
+        name
+        alias
+        gender
+        role
+        specialty
+        lane
+        region
+        goldPrice
+        ticketPrice
+        diamondPrice
+        year
+        rangeType
+        damageType
+        resource
+        hairColor
+        species
+        imageUrl
+        __typename
+      }
+      mobileLegendsCharacterId
       description
       imageUrl
       answer
@@ -760,6 +828,7 @@ export const listChatroomStates = /* GraphQL */ `query ListChatroomStates(
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
