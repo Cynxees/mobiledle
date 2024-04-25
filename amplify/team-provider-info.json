@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-amplify86e306a394064-staging-ba38a-unauthRole",
       "StackName": "amplify-amplify86e306a394064-staging-ba38a",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:881734199479:stack/amplify-amplify86e306a394064-staging-ba38a/5b64b430-fc00-11ee-89a3-06cf14ec4337",
-      "AmplifyAppId": "d1kdk83ukc4d0c"
+      "AmplifyAppId": "d1kdk83ukc4d0c",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplify86e306a394064-staging-ba38a-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -28,12 +29,12 @@
       },
       "api": {
         "mobiledle": {},
-        "mobiledleAPI": {}
+        "mobiledleapi": {}
       },
       "function": {
-        "gameStart": {
+        "launchGame": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/gameStart-7a443561434e47674875-build.zip"
+          "s3Key": "amplify-builds/launchGame-4476304f384a52374b72-build.zip"
         }
       }
     }

@@ -68,7 +68,7 @@ export default function ClassicInput({
   };
 
   const handleSuggestionClick = (suggestion: string) => {
-    setPrefix(suggestion);
+    setPrefix("");
     findCharacterBasedOnName(suggestion);
     setSuggestions([]);
   };

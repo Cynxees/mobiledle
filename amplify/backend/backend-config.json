@@ -21,7 +21,7 @@
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
     },
-    "mobiledleAPI": {
+    "mobiledleapi": {
       "dependsOn": [
         {
           "attributes": [
@@ -29,7 +29,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "gameStart"
+          "resourceName": "launchGame"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -70,26 +70,37 @@
     }
   },
   "function": {
-    "gameStart": {
+    "launchGame": {
       "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "parameters": {
-    "AMPLIFY_function_gameStart_deploymentBucketName": {
+    "AMPLIFY_function_launchGame_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "gameStart"
+          "resourceName": "launchGame"
         }
       ]
     },
-    "AMPLIFY_function_gameStart_s3Key": {
+    "AMPLIFY_function_launchGame_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "gameStart"
+          "resourceName": "launchGame"
         }
       ]
     },
