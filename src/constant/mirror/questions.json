@@ -1,0 +1,224 @@
+[
+  {
+    "question": "In a difficult situation, do you prefer to confront the problem head-on or find a clever workaround?",
+    "options": [
+      {
+        "text": "Confront it directly.",
+        "traits": { "Brave": 2, "Determined": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "Find a clever workaround.",
+        "traits": { "Clever": 2, "Sly": 1, "Mysterious": 1 }
+      },
+      {
+        "text": "Depends on the situation.",
+        "traits": { "Wise": 2, "Calm": 1, "Resourceful": 1 }
+      }
+    ]
+  },
+  {
+    "question": "When facing a moral dilemma, what guides your decision-making process?",
+    "options": [
+      {
+        "text": "Loyalty to principles or people involved.",
+        "traits": { "Loyal": 2, "Honorable": 1, "Noble": 1 }
+      },
+      {
+        "text": "Weighing the pros and cons with logic.",
+        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "Trusting your intuition or gut feeling.",
+        "traits": { "Mysterious": 2, "Charismatic": 1, "Brave": 1 }
+      }
+    ]
+  },
+  {
+    "question": "How do you approach unfamiliar challenges or situations?",
+    "options": [
+      {
+        "text": "Embrace them with enthusiasm and curiosity.",
+        "traits": { "Adventurous": 2, "Brave": 1, "Determined": 1 }
+      },
+      {
+        "text": "Analyze and strategize before taking action.",
+        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "Observe and assess before making any moves.",
+        "traits": { "Calm": 2, "Sly": 1, "Mysterious": 1 }
+      }
+    ]
+  },
+  {
+    "question": "In a group setting, what role do you naturally gravitate towards?",
+    "options": [
+      {
+        "text": "Leader or protector, taking charge when needed.",
+        "traits": { "Brave": 2, "Charismatic": 1, "Honorable": 1 }
+      },
+      {
+        "text": "Strategist or problem solver, offering solutions and ideas.",
+        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "Observer or advisor, providing insights from a different perspective.",
+        "traits": { "Calm": 2, "Mysterious": 1, "Sly": 1 }
+      }
+    ]
+  },
+  {
+    "question": "How do you handle setbacks or failures?",
+    "options": [
+      {
+        "text": "Take them as challenges to overcome, pushing forward with determination.",
+        "traits": { "Brave": 2, "Determined": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "Analyze the reasons behind the setback and learn from them.",
+        "traits": { "Clever": 2, "Wise": 1, "Calm": 1 }
+      },
+      {
+        "text": "Keep a calm demeanor and adapt to the new circumstances.",
+        "traits": { "Calm": 2, "Sly": 1, "Resourceful": 1 }
+      }
+    ]
+  },
+  {
+    "question": "When interacting with others, what trait do you prioritize?",
+    "options": [
+      {
+        "text": "Building trust and fostering loyalty.",
+        "traits": { "Loyal": 2, "Honorable": 1, "Charismatic": 1 }
+      },
+      {
+        "text": "Sharing knowledge and exchanging ideas.",
+        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "Maintaining an air of mystery and intrigue.",
+        "traits": { "Mysterious": 2, "Sly": 1, "Calm": 1 }
+      }
+    ]
+  },
+  {
+    "question": "How do you approach decision-making in high-pressure situations?",
+    "options": [
+      {
+        "text": "Trust your instincts and act swiftly.",
+        "traits": { "Brave": 2, "Determined": 1, "Charismatic": 1 }
+      },
+      {
+        "text": "Analyze the situation and weigh the options carefully.",
+        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "Maintain composure and gather information before making a move.",
+        "traits": { "Calm": 2, "Sly": 1, "Mysterious": 1 }
+      }
+    ]
+  },
+  {
+    "question": "What motivates you to embark on new adventures or challenges?",
+    "options": [
+      {
+        "text": "The thrill of the unknown and the desire for excitement.",
+        "traits": { "Adventurous": 2, "Brave": 1, "Determined": 1 }
+      },
+      {
+        "text": "The opportunity to learn and grow from new experiences.",
+        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "The intrigue of uncovering hidden truths or mysteries.",
+        "traits": { "Mysterious": 2, "Charismatic": 1, "Sly": 1 }
+      }
+    ]
+  },
+
+  {
+    "question": "When faced with a difficult decision, what do you prioritize?",
+    "options": [
+      {
+        "text": "Doing what's honorable or morally right.",
+        "traits": { "Honorable": 2, "Noble": 1, "Loyal": 1 }
+      },
+      {
+        "text": "Thinking strategically to achieve the best outcome.",
+        "traits": { "Clever": 2, "Resourceful": 1, "Sly": 1 }
+      },
+      {
+        "text": "Remaining calm and collected to make a rational choice.",
+        "traits": { "Calm": 2, "Wise": 1, "Mysterious": 1 }
+      }
+    ]
+  },
+  {
+    "question": "How do you handle conflicts or disagreements with others?",
+    "options": [
+      {
+        "text": "Confronting the issue directly and seeking resolution.",
+        "traits": { "Brave": 2, "Determined": 1, "Charismatic": 1 }
+      },
+      {
+        "text": "Finding compromises or alternative solutions.",
+        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
+      },
+      {
+        "text": "Maintaining a diplomatic or neutral stance.",
+        "traits": { "Calm": 2, "Sly": 1, "Mysterious": 1 }
+      }
+    ]
+  },
+  {
+    "question": "When presented with an opportunity for personal gain, what factors influence your decision?",
+    "options": [
+      {
+        "text": "Staying true to your principles and integrity.",
+        "traits": { "Honorable": 2, "Noble": 1, "Loyal": 1 }
+      },
+      {
+        "text": "Assessing the risks and benefits before making a choice.",
+        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
+      },
+      {
+        "text": "Exploring new possibilities and taking calculated risks.",
+        "traits": { "Adventurous": 2, "Determined": 1, "Charismatic": 1 }
+      }
+    ]
+  },
+  {
+    "question": "How do you respond to situations where you must act quickly and decisively?",
+    "options": [
+      {
+        "text": "Trust your instincts and take immediate action.",
+        "traits": { "Brave": 2, "Determined": 1, "Resourceful": 1 }
+      },
+      {
+        "text": "Evaluate the options swiftly and choose the most effective one.",
+        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
+      },
+      {
+        "text": "Maintain composure and assess the situation before making a move.",
+        "traits": { "Calm": 2, "Mysterious": 1, "Sly": 1 }
+      }
+    ]
+  },
+  {
+    "question": "When dealing with unknown or unpredictable situations, what is your usual approach?",
+    "options": [
+      {
+        "text": "Face them head-on with courage and determination.",
+        "traits": { "Brave": 2, "Adventurous": 1, "Determined": 1 }
+      },
+      {
+        "text": "Gather information and plan a calculated response.",
+        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
+      },
+      {
+        "text": "Observe and adapt to the changing circumstances.",
+        "traits": { "Calm": 2, "Mysterious": 1, "Sly": 1 }
+      }
+    ]
+  }
+]
