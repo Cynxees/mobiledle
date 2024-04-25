@@ -2,7 +2,7 @@ import React, { FormEventHandler, useEffect, useState } from 'react';
 import { generateClient } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom } from '../../graphql/subscriptions';
-import { Chatroom, ChatroomMessage, ChatroomUser } from '../../API';
+import { Chatroom, ChatroomMessage, ChatroomUser, ChatroomState } from '../../API';
 import getTtlFromMinutes from '../../utils/getTtlFromMinutes';
 import { listChatrooms, getChatroom, getChatroomByCode, getChatroomUser, listChatroomUsers } from '../../graphql/queries';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,6 +20,7 @@ export default function ArcadeRoomPage() {
 
     const [chatroomUser, setChatroomUser] = useState<ChatroomUser>()
     const [chatroom, setChatroom] = useState<Chatroom>()
+    const [chatroomState, setChatroomState] = useState<ChatroomState>()
     const [chatroomMessages, setChatroomMessages] = useState<Array<ChatroomMessage>>([])
     
     const [chatroomInit, setChatroomInit] = useState(false)
@@ -52,6 +53,7 @@ export default function ArcadeRoomPage() {
                 }).then(data => {
                     setChatroom(data.data.getChatroomByCode)
                     setChatroomInit(true)
+                    setChatroomState(data.data.getChatroomByCode.chatroomState)
                     console.log('chatroom Initialized: ', data)
                 })
         }
@@ -125,6 +127,25 @@ export default function ArcadeRoomPage() {
 
     }, [chatroomInit])
 
+    useEffect(() => {
+
+        if(!chatroomInit) return
+
+        console.log('updating room ttl by 5 min') 
+        client.graphql({
+            query: updateChatroom,
+            variables: {
+                input: {
+                    id: chatroom.id,
+                    ttl: getTtlFromMinutes(10)
+                }
+            }
+        }).then((data) => {
+            console.log('chatroom ttl updated [join room]: ', data)
+        })
+
+
+    }, [chatroomInit])
     useEffect(() => {
 
         if(!chatroomUserInit) return
@@ -221,7 +242,7 @@ export default function ArcadeRoomPage() {
                         chatroomId: chatroom.id,
                         createdAt: new Date().toISOString(),
                         content: chatInput,
-                        ownerId: chatroomUser.id,
+                        chatroomUserId: chatroomUser.id,
                         ttl: getTtlFromMinutes(60)
                     }
                 }
@@ -231,6 +252,8 @@ export default function ArcadeRoomPage() {
 
         }
     }
+
+    if(!chatroomInit) return <div>loading...</div>
 
     return(
         <div className='grid grid-cols-5 w-screen h-screen'>
@@ -246,7 +269,7 @@ export default function ArcadeRoomPage() {
 
                         return( 
                         <div key={message.id}>
-                            {message.owner.user.username}: {message.content}
+                            {message.chatroomUser.user.username}: {message.content}
                         </div>
                         )
                     })}

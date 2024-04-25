@@ -20,6 +20,20 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
+    },
+    "mobiledleAPI": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "gameStart"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     }
   },
   "auth": {
@@ -55,8 +69,30 @@
       "service": "Cognito"
     }
   },
-  "function": {},
+  "function": {
+    "gameStart": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
   "parameters": {
+    "AMPLIFY_function_gameStart_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "gameStart"
+        }
+      ]
+    },
+    "AMPLIFY_function_gameStart_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "gameStart"
+        }
+      ]
+    },
     "AMPLIFY_storage_ChatTable_arn": {
       "usedBy": [
         {

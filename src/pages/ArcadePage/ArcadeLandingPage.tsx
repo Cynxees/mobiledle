@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { generateClient } from 'aws-amplify/api';
-import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../../graphql/mutations';
+import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage, updateUser } from '../../graphql/mutations';
 import { onCreateChatroom, onUpdateChatroom, onDeleteChatroom } from '../../graphql/subscriptions';
 import { Chatroom, ChatroomMessage } from '../../API';
 import getTtlFromMinutes from '../../utils/getTtlFromMinutes';
@@ -15,6 +15,9 @@ const client = generateClient();
 export default function ArcadeLandingPage() {
 
     const [username, setUsername] = useState('')
+    const [usernameChanged, setUsernameChanged] = useState(false)
+    
+
     const [roomName, setRoomName] = useState('')
     const [roomCode, setRoomCode] = useState('')
     
@@ -50,7 +53,11 @@ export default function ArcadeLandingPage() {
 
     useEffect(()=> {
 
-        refetch()
+        refetch().then( (data) => {
+            if(!data.data) return
+            setUsername(data.data.username)
+        })
+            
         if(!userIsLoading) setUsername(user ? user.username : username)
 
     }, [userIsLoading])
@@ -164,6 +171,16 @@ export default function ArcadeLandingPage() {
 
     }
 
+    const handleUsernameInputChange = (e : React.FormEvent<HTMLInputElement>) => {
+
+        if(e.currentTarget.value.length > 16) return
+
+        setUsernameChanged(true)
+        setUsername(e.currentTarget.value)
+        console.log('username: ',username)
+
+    }
+
 
     const handleRefreshRoomClick = () => {
         setRefresh(false)
@@ -180,7 +197,7 @@ export default function ArcadeLandingPage() {
             </div>
             <div className='mt-10'>
 
-                <input className='p-2 rounded-lg mb-5' onChange={handleRoomNameInputChange} value={username} type="text" placeholder='Room Name'/>
+                <input className='p-2 rounded-lg mb-5' onChange={handleUsernameInputChange} value={username} type="text" placeholder='Room Name'/>
                 
                 <div className='flex flex-row gap-2'>
                     <input className='p-2 rounded-lg' onChange={handleRoomNameInputChange} value={roomName} type="text" placeholder='Room Name'/>
@@ -198,7 +215,7 @@ export default function ArcadeLandingPage() {
             <div className='mx-auto mt-10'>
                 {filteredChatrooms.map(room => 
                 
-                <RoomCard key={room.code} room={room}/>
+                <RoomCard key={room.code} room={room} username={username} client={client}  user={(user)? user : null} usernameChanged={usernameChanged} />
             )}
             </div>
 

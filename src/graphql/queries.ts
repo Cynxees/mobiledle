@@ -8,13 +8,6 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const generateUniqueChatroomCode = /* GraphQL */ `query GenerateUniqueChatroomCode {
-  generateUniqueChatroomCode
-}
-` as GeneratedQuery<
-  APITypes.GenerateUniqueChatroomCodeQueryVariables,
-  APITypes.GenerateUniqueChatroomCodeQuery
->;
 export const getMobileLegendsCharacter = /* GraphQL */ `query GetMobileLegendsCharacter($id: ID!) {
   getMobileLegendsCharacter(id: $id) {
     id
@@ -103,6 +96,8 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
     ttl
@@ -124,6 +119,8 @@ export const listUsers = /* GraphQL */ `query ListUsers(
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
       ttl
@@ -147,6 +144,8 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
       ttl
@@ -159,7 +158,7 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -170,12 +169,29 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
         chatroomId
         userId
         ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        promptId
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
         __typename
       }
       ttl
       __typename
     }
     ttl
+    points
+    state
     __typename
   }
 }
@@ -207,6 +223,8 @@ export const listChatroomUsers = /* GraphQL */ `query ListChatroomUsers(
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
     nextToken
@@ -221,7 +239,7 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
   getChatroomMessage(id: $id) {
     id
     content
-    owner {
+    chatroomUser {
       id
       chatroomId
       userId
@@ -239,9 +257,11 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
         __typename
       }
       ttl
+      points
+      state
       __typename
     }
-    ownerId
+    chatroomUserId
     chatroom {
       id
       name
@@ -249,7 +269,7 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -259,6 +279,21 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
         id
         chatroomId
         userId
+        ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        promptId
+        willEndAt
+        gameDuration
+        round
+        maxPoints
         ttl
         __typename
       }
@@ -284,14 +319,16 @@ export const listChatroomMessages = /* GraphQL */ `query ListChatroomMessages(
     items {
       id
       content
-      owner {
+      chatroomUser {
         id
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
-      ownerId
+      chatroomUserId
       chatroom {
         id
         name
@@ -320,14 +357,16 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
     messages {
       id
       content
-      owner {
+      chatroomUser {
         id
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
-      ownerId
+      chatroomUserId
       chatroom {
         id
         name
@@ -357,6 +396,48 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
         ttl
         __typename
       }
+      ttl
+      points
+      state
+      __typename
+    }
+    chatroomState {
+      id
+      chatroomId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      mode
+      currentState
+      prompt {
+        id
+        question
+        description
+        imageUrl
+        answer
+        type
+        timeLimit
+        ttl
+        __typename
+      }
+      promptId
+      willEndAt
+      gameDuration
+      round
+      maxPoints
       ttl
       __typename
     }
@@ -376,14 +457,16 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
     messages {
       id
       content
-      owner {
+      chatroomUser {
         id
         chatroomId
         userId
         ttl
+        points
+        state
         __typename
       }
-      ownerId
+      chatroomUserId
       chatroom {
         id
         name
@@ -413,6 +496,48 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
         ttl
         __typename
       }
+      ttl
+      points
+      state
+      __typename
+    }
+    chatroomState {
+      id
+      chatroomId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      mode
+      currentState
+      prompt {
+        id
+        question
+        description
+        imageUrl
+        answer
+        type
+        timeLimit
+        ttl
+        __typename
+      }
+      promptId
+      willEndAt
+      gameDuration
+      round
+      maxPoints
       ttl
       __typename
     }
@@ -437,7 +562,7 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
       messages {
         id
         content
-        ownerId
+        chatroomUserId
         chatroomId
         createdAt
         ttl
@@ -447,6 +572,21 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
         id
         chatroomId
         userId
+        ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        promptId
+        willEndAt
+        gameDuration
+        round
+        maxPoints
         ttl
         __typename
       }
@@ -460,4 +600,187 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
 ` as GeneratedQuery<
   APITypes.ListChatroomsQueryVariables,
   APITypes.ListChatroomsQuery
+>;
+export const getPrompt = /* GraphQL */ `query GetPrompt($id: ID!) {
+  getPrompt(id: $id) {
+    id
+    question
+    description
+    imageUrl
+    answer
+    type
+    timeLimit
+    ttl
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetPromptQueryVariables, APITypes.GetPromptQuery>;
+export const listPrompts = /* GraphQL */ `query ListPrompts(
+  $filter: TablePromptFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPrompts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      question
+      description
+      imageUrl
+      answer
+      type
+      timeLimit
+      ttl
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListPromptsQueryVariables,
+  APITypes.ListPromptsQuery
+>;
+export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) {
+  getChatroomState(id: $id) {
+    id
+    chatroomId
+    chatroom {
+      id
+      name
+      code
+      messages {
+        id
+        content
+        chatroomUserId
+        chatroomId
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        promptId
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        __typename
+      }
+      ttl
+      __typename
+    }
+    users {
+      id
+      chatroomId
+      userId
+      user {
+        id
+        username
+        ttl
+        __typename
+      }
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      ttl
+      points
+      state
+      __typename
+    }
+    mode
+    currentState
+    prompt {
+      id
+      question
+      description
+      imageUrl
+      answer
+      type
+      timeLimit
+      ttl
+      __typename
+    }
+    promptId
+    willEndAt
+    gameDuration
+    round
+    maxPoints
+    ttl
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetChatroomStateQueryVariables,
+  APITypes.GetChatroomStateQuery
+>;
+export const listChatroomStates = /* GraphQL */ `query ListChatroomStates(
+  $filter: TableChatroomStateFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listChatroomStates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      chatroomId
+      chatroom {
+        id
+        name
+        code
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      mode
+      currentState
+      prompt {
+        id
+        question
+        description
+        imageUrl
+        answer
+        type
+        timeLimit
+        ttl
+        __typename
+      }
+      promptId
+      willEndAt
+      gameDuration
+      round
+      maxPoints
+      ttl
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListChatroomStatesQueryVariables,
+  APITypes.ListChatroomStatesQuery
 >;

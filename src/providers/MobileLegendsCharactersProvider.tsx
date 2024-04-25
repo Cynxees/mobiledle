@@ -6,10 +6,13 @@ import { useUser } from './UserProvider';
 
 const fetchCharacters = async () => {
     const client = generateClient();
-    const response = await client.graphql({ query: listMobileLegendsCharacters });
+    const response = await client.graphql({ 
+        query: listMobileLegendsCharacters 
+    
+    
+    })
     const characterResults = response.data.listMobileLegendsCharacters.items;
     
-   
     
     console.log('fetching characters')
     const fetchImagePromises = characterResults.map(async character => {

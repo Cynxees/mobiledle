@@ -1,29 +1,14 @@
 {
-    "animals": [
-      "Lion", "Eagle", "Shark", "Elephant", "Frog", "Python", "Ant", "Penguin", "Whale", "Crocodile",
-      "Otter", "Butterfly", "Moose", "Flamingo", "Rabbit", "Salmon", "Owl", "Kangaroo", "Hippo", "Giraffe",
-      "Fox", "Bear", "Wolf", "Chameleon", "Coyote", "Deer", "Dolphin", "Sparrow", "Turkey", "Goose",
-      "Cheetah", "Jaguar", "Leopard", "Panda", "Hedgehog", "Iguana", "Falcon", "Parrot", "Vulture", "Tiger",
-      "Raccoon", "Squirrel", "Bat", "Hamster", "Skunk", "Llama", "Porcupine", "Aardvark", "Koala", "Wallaby",
-      "Marmot", "Beaver", "Badger", "Weasel", "Ermine", "Otter", "Bison", "Buffalo", "Caterpillar",
-      "Chinchilla", "Chipmunk", "Cicada", "Clam", "Cobra", "Cockroach", "Cod", "Condor", "Constrictor", "Coral",
-      "Crab", "Crane", "Crayfish", "Cricket", "Crow", "Cuckoo", "Dart Frog", "Deer Mouse", "Bimbo",
-      "Dingo", "Dodder", "Dogfish", "Dolphin", "Donkey", "Dormouse", "Dotterel", "Dove", "Dragonfly", "Drever",
-      "Drongo", "Duck", "Dugong", "Dunlin", "Earthworm", "Earwig", "Echidna", "Eel", "Eider"
-    ],
-
-    "colors": [
-        "Alabaster", "Amber", "Amethyst", "Apricot", "Aqua", "Aquamarine", "Azure", "Beige", "Bisque", "Black",
-        "Blue", "Blush", "Bronze", "Brown", "Burgundy", "Carmine", "Cerulean", "Charcoal", "Chartreuse", "Cherry",
-        "Chocolate", "Cinnamon", "Cobalt", "Coral", "Cream", "Crimson", "Cyan", "Denim", "Emerald", "Fawn",
-        "Fuchsia", "Gold", "Gray", "Green", "Harlequin", "Indigo", "Ivory", "Jade", "Jasmine", "Khaki",
-        "Lavender", "Lemon", "Lilac", "Lime", "Magenta", "Maroon", "Navy", "Ochre", "Olive",
-        "Orange", "Orchid", "Peach", "Pear", "Periwinkle", "Pink", "Platinum", "Plum", "Pumpkin", "Purple",
-        "Quartz", "Red", "Rose", "Ruby", "Salmon", "Sapphire", "Scarlet", "Silver", "Slate", "Snow",
-        "Tan", "Taupe", "Teal", "Thistle", "Tomato", "Topaz", "Turquoise", "Ultramarine", "Vermilion", "Violet",
-        "Viridian", "Wheat", "White", "Wisteria", "Yellow", "Zinc", "Iris", "Jungle", "Lava", "Linen",
-        "Mango", "Mint", "Onyx", "Papaya", "Peach", "Pearl", "Peridot", "Pine", "Rust", "Sand",
-        "Sangria", "Sapphire", "Seashell", "Sienna", "Sunset", "Tangerine", "Umber", "Vanilla", "Walnut", "Yolk"
-      ]
-  }
-  
+  "animals": [
+      "Lion", "Eagle", "Shark", "Frog", "Ant", "Whale", "Moose", "Owl", "Fox", "Bear", "Wolf", "Deer", 
+      "Swan", "Crow", "Dove", "Moth", "Wasp", "Quail", "Crab", "Boar", "Gecko", "Hawk", "Hyena", "Koala", 
+      "Llama", "Mink", "Newt", "Orca", "Puma", "Seal", "Sloth", "Snail", "Stork", "Swan", "Tapir", "Zebra", 
+      "Robin", "Skunk", "Squid", "Shrew", "Stoat", "Tern", "Viper", "Wombat", "Bat"
+  ],
+  "colors": [
+      "Red", "Blue", "Green", "Black", "White", "Brown", "Amber", "Cream", "Cyan", "Gold", "Gray", "Ivory", 
+      "Jade", "Khaki", "Lime", "Navy", "Olive", "Peach", "Pink", "Plum", "Ruby", "Rust", "Sand", "Teal", 
+      "Topaz", "Azure", "Beige", "Blush", "Coral", "Denim", "Indigo", 
+      "Maroon", "Orange", "Purple", "Silver", "Violet", "Yellow"
+  ]
+}
