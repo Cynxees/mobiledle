@@ -13,6 +13,7 @@ import { loadSlim } from "@tsparticles/slim";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 import ArcadeBox from "../components/navigation/ArcadeBox";
 import { useUser } from "../providers/UserProvider";
+import MirrorBox from "../components/navigation/MirrorBox";
 
 export default function LandingPage() {
 
@@ -113,6 +114,7 @@ export default function LandingPage() {
       <ClassicBox />
       <SurvivalBox />
       <ArcadeBox />
+      <MirrorBox />
     </div>
     </div>
   );
