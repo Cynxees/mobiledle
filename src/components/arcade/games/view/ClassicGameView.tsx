@@ -1,17 +1,21 @@
-import { useMobileLegendsCharacters } from "../../../providers/MobileLegendsCharactersProvider";
-import { ChatroomState, ChatroomUser, MobileLegendsCharacter, Prompt } from "../../../API"
-import { useEffect, useState } from "react";
-import { post } from "aws-amplify/api";
+import { useMobileLegendsCharacters } from "../../../../providers/MobileLegendsCharactersProvider";
+import { ChatroomState, ChatroomUser, MobileLegendsCharacter, Prompt } from "../../../../API"
+import { useEffect, useRef, useState } from "react";
+import { generateClient, post } from "aws-amplify/api";
+import { createChatroomMessage } from "../../../../graphql/mutations";
+import getTtlFromMinutes from "../../../../utils/getTtlFromMinutes";
+import ClassicHeroBox from "../ClassicHeroBox";
 
 function isAlphaNumeric(str : string) {
     var code, i, len;
 
     for (i = 0, len = str.length; i < len; i++) {
         code = str.charCodeAt(i)
+
         if (!(code > 44 && code < 58) && // 0-9
             !(code > 64 && code < 91) && // A-Z
             !(code > 96 && code < 123) && // a-z
-            !(code == 32) ){ 
+            !(code == 32) && !(code == 39) ){ 
                 return false;
             }
     }
@@ -28,11 +32,10 @@ interface LobbyViewInput {
 }
 
 
-
-
 export default function ClassicGameView({chatroomState, chatroomUser, prompt} : LobbyViewInput) {
 
 
+    const client = generateClient()
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
     const [ currentCharacter, setCurrentCharacter ] = useState<MobileLegendsCharacter>();
     const [ userInput, setUserInput ] = useState('') 
@@ -121,7 +124,23 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
                 rewardPoints()
                 handleClickStartGame()
             }
+
+            client.graphql({
+                query: createChatroomMessage,
+                variables: {
+                    input: {
+                        chatroomId: chatroomUser.chatroomId,
+                        createdAt: new Date().toISOString(),
+                        content: userInput,
+                        chatroomUserId: chatroomUser.id,
+                        ttl: getTtlFromMinutes(60),
+                        type: 'GUESS'
+                    }
+                }
+            })
+
             setUserInput('')
+            
 
 
         }
@@ -141,13 +160,15 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
         <div className="row-span-5 ">
             <div className="w-full h-full flex items-center">
+                <div className="mx-auto">
+                <ClassicHeroBox character={currentCharacter} answer={currentCharacter} showBooleans={[true,true]}/>
 
-                <img className="mx-auto" src={(currentCharacter)? currentCharacter.imageUrl[0] :''} />
+                </div>
             </div>
         </div>
         
         <div className="">
-            <input onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] bg-neutral-900 h-16 w-[30%] text-center uppercase text-white ps-5 text-2xl" />
+            <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem]  focus:outline-none bg-neutral-900 h-16 w-[30%] text-center uppercase text-white ps-5 text-2xl" />
         </div>
 
 

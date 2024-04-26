@@ -57,7 +57,7 @@ async function addUserPoints(userId, addedPoints) {
     console.log('Updating user, with points: ', newPoints)
 
     const query =  /* GraphQL */ `
-        mutation updateChatroomUser($input: UpdateChatroomUserInput!) {
+        mutation UpdateChatroomUser($input: UpdateChatroomUserInput!) {
           updateChatroomUser(input: $input) {
             id
             points

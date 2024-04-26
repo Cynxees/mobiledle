@@ -33,7 +33,13 @@ const RoomCard: React.FC<RoomCardProps> = ({
             <div className="border pl-5 border-y-transparent border-r-transparent border-l-gray-500 col-span-2">
             {room.name} 
             </div>
-            <div className="text-center text-orange-100 mr-5 ">
+            <div 
+            className={`text-center text-orange-100 mr-5 
+            ${(room.chatroomState) ? 
+            (room.chatroomState.currentState == "PLAYING")? "text-orange-300" : 
+            "text-green-300" : 'text-green-300'}`}>
+
+
             {(room.chatroomState) ? room.chatroomState.currentState: "LOBBY"}
             </div>
             <div>
@@ -41,7 +47,9 @@ const RoomCard: React.FC<RoomCardProps> = ({
 
             </div>
             <Link to={'/arcade/'+room.code}>
-                <button onClick={() =>{
+                <button 
+                className="h-[80%] flex items-center my-auto mx-auto text-orange-300"
+                onClick={() =>{
 
                     if(usernameChanged == null) return
                     if(!usernameChanged) return

@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { MobileLegendsCharacter } from "../../API";
+import { MobileLegendsCharacter } from "../../../API";
 
-interface ClassicSearchBarProps {
+interface ClassicHeroBox {
   character: MobileLegendsCharacter;
-  todayCharacter: MobileLegendsCharacter | undefined;
+  answer: MobileLegendsCharacter | undefined;
+  showBooleans?: boolean[]
 }
 
 interface TraitBoxProps {
@@ -33,17 +34,18 @@ function TraitBox({trait, state}: TraitBoxProps){
 
 }
 
-export default function HeroShowBar({
+export default function ClassicHeroBox({
   character,
-  todayCharacter
-}: ClassicSearchBarProps) {
+  answer,
+  showBooleans
+}: ClassicHeroBox) {
   const { t } = useTranslation();
 
 
-  if(!todayCharacter) return
+  if(!answer) return
 
   const characterLanes = character.lane.split('/')
-  const todayCharacterLanes = todayCharacter.lane.split('/')
+  const todayCharacterLanes = answer.lane.split('/')
   let laneIsPartial = false
   let laneIsCorrect = false
 
@@ -72,7 +74,7 @@ export default function HeroShowBar({
   if(characterLanes.length != todayCharacterLanes.length) laneIsCorrect = false
   
   const characterRoles = character.role.split('/')
-  const todayCharacterRoles = todayCharacter.role.split('/')
+  const todayCharacterRoles = answer.role.split('/')
   let roleIsPartial = false
   let roleIsCorrect = false
 
@@ -106,31 +108,21 @@ export default function HeroShowBar({
   return (
     <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg h-full w-full">
       
-      <div className="absolute w-28 h-28 overflow-hidden animate__animated animate__zoomInRight">
-      <img className="absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
-                    currentTarget.src="/noPicture.png";
-                    currentTarget.onerror = null
-              }}/>
-      </div>
 
       
-      <div className="py-4 w-28 h-28 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
-      
-        <img className="z-10" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
-                    currentTarget.src="/noPicture.png";
-                    currentTarget.onerror = null
-                }}/>
-      </div>
-
-      
-      <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === todayCharacter.gender ? 0 : 2} />
+      <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />
       
       <TraitBox trait={character.role?.replace("/", " , ")} state={roleIsCorrect?0:roleIsPartial? 1:2} />
       <TraitBox trait={character.lane?.replace("/", " , ")} state={laneIsCorrect?0:laneIsPartial? 1:2} />
       
-      <TraitBox trait={t(`${character.region}`)} state={character.region === todayCharacter.region ? 0 : 2} />
+      <TraitBox trait={t(`${character.region}`)} state={character.region === answer.region ? 0 : 2} />
       
-      <TraitBox trait={character.year.toString()} state={character.year === todayCharacter.year ? 0 : 2} />
+      <TraitBox trait={character.year.toString()} state={character.year === answer.year ? 0 : 2} />
+      <TraitBox trait={character.alias.toString()} state={character.year === answer.year ? 0 : 2} />
+      <TraitBox trait={character.rangeType.toString()} state={character.year === answer.year ? 0 : 2} />
+      <TraitBox trait={character.resource.toString()} state={character.year === answer.year ? 0 : 2} />
+      <TraitBox trait={character.species.toString()} state={character.year === answer.year ? 0 : 2} />
+      <TraitBox trait={character.specialty.toString()} state={character.year === answer.year ? 0 : 2} />
 
     </div>
   );
