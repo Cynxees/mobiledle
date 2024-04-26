@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import questions from "../constant/mirror/questions.json";
 import identity from "../constant/mirror/identity.json";
 import Navbar from "../components/navigation/Navbar";
+import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
+import { MobileLegendsCharacter } from "../API";
+import { useTranslation } from "react-i18next";
 
 const getFiveRandomQuestions = () => {
   const randomQuestions = [];
@@ -16,6 +19,12 @@ const getFiveRandomQuestions = () => {
 };
 
 const MirrorPage = () => {
+  const { t } = useTranslation();
+
+  const { data: characters, isLoading, error } = useMobileLegendsCharacters();
+
+  const [userHighestTrait, setUserHighestTrait] = useState()
+  const [userHero, setUserHero] = useState<MobileLegendsCharacter>();
   const [questions, setQuestions] = useState(getFiveRandomQuestions());
   const [userTraits, setUserTraits] = useState({
     Brave: 0,
@@ -63,43 +72,65 @@ const MirrorPage = () => {
   };
 
   const getRandomHeroBasedOnHighestTotalTrait = () => {
-
     const highestTrait = findHighestTrait();
 
-    const identityEntries = Object.entries(identity)
-    
+    const identityEntries = Object.entries(identity);
+
     var highestTraitIndex = 0;
     for (let index = 0; index < identityEntries.length; index++) {
-    
-        if(highestTrait == identityEntries[index][0]) {
-          highestTraitIndex = index;
-          break;
-        }
-
+      if (highestTrait == identityEntries[index][0]) {
+        highestTraitIndex = index;
+        break;
+      }
     }
 
-    const randomHeroIndex = Math.floor(Math.random() * identityEntries[highestTraitIndex][1].length);
+    const randomHeroIndex = Math.floor(
+      Math.random() * identityEntries[highestTraitIndex][1].length
+    );
 
-    const randomHero = identityEntries[highestTraitIndex][1][randomHeroIndex]
+    const randomHero = identityEntries[highestTraitIndex][1][randomHeroIndex];
 
     // console.log(randomHero, identityEntries[highestTraitIndex][1][randomHero])
-    return [highestTrait, randomHero]
-  }
 
+    for (let index = 0; index < characters.length; index++) {
+      console.log(characters[index]);
+      if (characters[index].name === randomHero) {
+        setUserHero(characters[index]);
+      }
+    }
+    setUserHighestTrait(highestTrait)
+    return randomHero;
+  };
+
+  useEffect(() => {
+    if (currentQuestionIndex == questions.length - 1) {
+      getRandomHeroBasedOnHighestTotalTrait();
+    }
+  }, [currentQuestionIndex]);
+
+  // console.log(characters)
+  console.log(userHero);
   return (
     <div className="flex flex-col gap-5 items-center mx-10">
       <Navbar />
-      <h2 className="text-lg">What Hero Would You Be?</h2>
+      
 
       {currentQuestionIndex == questions.length ? (
-        <div>{getRandomHeroBasedOnHighestTotalTrait()}</div>
+        <div className="flex flex-col gap-5 items-center">
+          <h2 className="text-lg">{t`Your hero is :`}</h2>
+          
+          <img src={`${userHero.imageUrl[0]}`}></img>
+          
+          <span>{t(`${userHighestTrait}`)} {userHero.name}</span>
+          
+        </div>
       ) : (
-        <div></div>
+        <h2 className="text-lg">{t`What Hero Would You Be?`}</h2>
       )}
 
       {currentQuestionIndex < questions.length ? (
         <div key={currentQuestionIndex} className=" w-full md:w-[500px]">
-          <p>{questions[currentQuestionIndex].question}</p>
+          <p>{t(`${questions[currentQuestionIndex].question}`)}</p>
           <br />
           <ul>
             {questions[currentQuestionIndex].options.map(
@@ -109,7 +140,7 @@ const MirrorPage = () => {
                   onClick={() => handleOption(option.traits)}
                   className="border-2 p-2 mb-4 rounded-lg hover:bg-[#CB812D] transition duration-300 ease-in-out cursor-pointer py-4 hover:animate__animated animate__flash"
                 >
-                  {option.text}
+                  {t(`${option.text}`)}
                 </li>
               )
             )}

@@ -17,7 +17,7 @@ export default function MirrorBox() {
           <GiMirrorMirror className="text-5xl text-[#b7fffa] group-hover:text-white" />
           <p className="text-left text-white">
             MIRROR <br />{" "}
-            <span className="text-[#b7fffa] group-hover:text-white">{t`Get Clues On Every Try`}</span>
+            <span className="text-[#b7fffa] group-hover:text-white">{t`What Hero Would You Be?`}</span>
           </p>
         </div>
       </Link>
