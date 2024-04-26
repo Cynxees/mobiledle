@@ -1,223 +1,121 @@
 [
   {
-    "question": "In a difficult situation, do you prefer to confront the problem head-on or find a clever workaround?",
+    "question": "Your friend has forgotten their wallet and needs money urgently. How do you handle this situation?",
     "options": [
       {
-        "text": "Confront it directly.",
-        "traits": { "Brave": 2, "Determined": 1, "Resourceful": 1 }
+        "text": "Offer to lend them the money without hesitation.",
+        "traits": { "Loyal": 2, "Honorable": 1, "Brave": 1 }
       },
       {
-        "text": "Find a clever workaround.",
-        "traits": { "Clever": 2, "Sly": 1, "Mysterious": 1 }
+        "text": "Ask them about their backup plan and suggest alternative solutions.",
+        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
       },
       {
-        "text": "Depends on the situation.",
-        "traits": { "Wise": 2, "Calm": 1, "Resourceful": 1 }
+        "text": "Assess their situation discreetly and then decide on the best course of action.",
+        "traits": { "Mysterious": 2, "Calm": 1, "Sly": 1 }
       }
     ]
   },
   {
-    "question": "When facing a moral dilemma, what guides your decision-making process?",
+    "question": "You're hiking with friends, and you discover a hidden path that looks dangerous but intriguing. What's your approach?",
     "options": [
       {
-        "text": "Loyalty to principles or people involved.",
-        "traits": { "Loyal": 2, "Honorable": 1, "Noble": 1 }
+        "text": "Immediately suggest exploring the path to satisfy your curiosity.",
+        "traits": { "Adventurous": 2, "Resourceful": 1, "Determined": 1 }
       },
       {
-        "text": "Weighing the pros and cons with logic.",
-        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+        "text": "Analyze the potential risks and benefits of taking that path before making a decision.",
+        "traits": { "Wise": 2, "Loyal": 1, "Resourceful": 1 }
       },
       {
-        "text": "Trusting your intuition or gut feeling.",
-        "traits": { "Mysterious": 2, "Charismatic": 1, "Brave": 1 }
+        "text": "Keep the discovery to yourself and observe quietly to gather more information.",
+        "traits": { "Mysterious": 2, "Calm": 1, "Sly": 1 }
       }
     ]
   },
   {
-    "question": "How do you approach unfamiliar challenges or situations?",
+    "question": "Your classmate is being unfairly blamed for something they didn't do. How do you intervene?",
     "options": [
       {
-        "text": "Embrace them with enthusiasm and curiosity.",
-        "traits": { "Adventurous": 2, "Brave": 1, "Determined": 1 }
+        "text": "Speak up immediately to defend your classmate, regardless of consequences.",
+        "traits": { "Noble": 2, "Charismatic": 1, "Honorable": 1 }
       },
       {
-        "text": "Analyze and strategize before taking action.",
-        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+        "text": "Gather evidence discreetly to prove your classmate's innocence before confronting anyone.",
+        "traits": { "Resourceful": 2, "Determined": 1, "Mysterious": 1 }
       },
       {
-        "text": "Observe and assess before making any moves.",
-        "traits": { "Calm": 2, "Sly": 1, "Mysterious": 1 }
+        "text": "Observe the situation from a distance and devise a plan to subtly shift the blame away from your classmate.",
+        "traits": { "Sly": 2, "Adventurous": 1, "Clever": 1 }
       }
     ]
   },
   {
-    "question": "In a group setting, what role do you naturally gravitate towards?",
+    "question": "You're part of a group project, and a team member is not pulling their weight. How do you address this issue?",
     "options": [
       {
-        "text": "Leader or protector, taking charge when needed.",
-        "traits": { "Brave": 2, "Charismatic": 1, "Honorable": 1 }
+        "text": "Confront the team member directly and discuss the problem openly.",
+        "traits": { "Brave": 2, "Wise": 1, "Loyal": 1 }
       },
       {
-        "text": "Strategist or problem solver, offering solutions and ideas.",
-        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
+        "text": "Strategize a plan to motivate the team member without causing conflict.",
+        "traits": { "Honorable": 2, "Sly": 1, "Adventurous": 1 }
       },
       {
-        "text": "Observer or advisor, providing insights from a different perspective.",
-        "traits": { "Calm": 2, "Mysterious": 1, "Sly": 1 }
-      }
-    ]
-  },
-  {
-    "question": "How do you handle setbacks or failures?",
-    "options": [
-      {
-        "text": "Take them as challenges to overcome, pushing forward with determination.",
-        "traits": { "Brave": 2, "Determined": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "Analyze the reasons behind the setback and learn from them.",
-        "traits": { "Clever": 2, "Wise": 1, "Calm": 1 }
-      },
-      {
-        "text": "Keep a calm demeanor and adapt to the new circumstances.",
-        "traits": { "Calm": 2, "Sly": 1, "Resourceful": 1 }
-      }
-    ]
-  },
-  {
-    "question": "When interacting with others, what trait do you prioritize?",
-    "options": [
-      {
-        "text": "Building trust and fostering loyalty.",
-        "traits": { "Loyal": 2, "Honorable": 1, "Charismatic": 1 }
-      },
-      {
-        "text": "Sharing knowledge and exchanging ideas.",
-        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "Maintaining an air of mystery and intrigue.",
-        "traits": { "Mysterious": 2, "Sly": 1, "Calm": 1 }
-      }
-    ]
-  },
-  {
-    "question": "How do you approach decision-making in high-pressure situations?",
-    "options": [
-      {
-        "text": "Trust your instincts and act swiftly.",
-        "traits": { "Brave": 2, "Determined": 1, "Charismatic": 1 }
-      },
-      {
-        "text": "Analyze the situation and weigh the options carefully.",
-        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "Maintain composure and gather information before making a move.",
-        "traits": { "Calm": 2, "Sly": 1, "Mysterious": 1 }
-      }
-    ]
-  },
-  {
-    "question": "What motivates you to embark on new adventures or challenges?",
-    "options": [
-      {
-        "text": "The thrill of the unknown and the desire for excitement.",
-        "traits": { "Adventurous": 2, "Brave": 1, "Determined": 1 }
-      },
-      {
-        "text": "The opportunity to learn and grow from new experiences.",
-        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "The intrigue of uncovering hidden truths or mysteries.",
-        "traits": { "Mysterious": 2, "Charismatic": 1, "Sly": 1 }
+        "text": "Quietly take on extra tasks to compensate for their lack of effort without making it a big issue.",
+        "traits": { "Loyal": 2, "Calm": 1, "Mysterious": 1 }
       }
     ]
   },
 
   {
-    "question": "When faced with a difficult decision, what do you prioritize?",
+    "question": "You're at a social gathering, and someone makes a disrespectful comment about a close friend. How do you react?",
     "options": [
       {
-        "text": "Doing what's honorable or morally right.",
-        "traits": { "Honorable": 2, "Noble": 1, "Loyal": 1 }
+        "text": "Immediately confront the person and defend your friend.",
+        "traits": { "Determined": 2, "Loyal": 1, "Honorable": 1 }
       },
       {
-        "text": "Thinking strategically to achieve the best outcome.",
-        "traits": { "Clever": 2, "Resourceful": 1, "Sly": 1 }
+        "text": "Use humor or wit to defuse the situation and indirectly defend your friend.",
+        "traits": { "Charismatic": 2, "Calm": 1, "Resourceful": 1 }
       },
       {
-        "text": "Remaining calm and collected to make a rational choice.",
-        "traits": { "Calm": 2, "Wise": 1, "Mysterious": 1 }
+        "text": "Do nothing",
+        "traits": { "Sly": 2, "Calm": 1, "Wise": 1 }
       }
     ]
   },
   {
-    "question": "How do you handle conflicts or disagreements with others?",
+    "question": "You're offered an opportunity that requires bending the rules slightly. How do you approach this situation?",
     "options": [
       {
-        "text": "Confronting the issue directly and seeking resolution.",
-        "traits": { "Brave": 2, "Determined": 1, "Charismatic": 1 }
+        "text": "Decline the opportunity as it goes against your principles.",
+        "traits": { "Honorable": 2, "Determined": 1, "Noble": 1 }
       },
       {
-        "text": "Finding compromises or alternative solutions.",
-        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
+        "text": "Explore the potential benefits and risks before making a decision.",
+        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
       },
       {
-        "text": "Maintaining a diplomatic or neutral stance.",
-        "traits": { "Calm": 2, "Sly": 1, "Mysterious": 1 }
+        "text": "Accept the opportunity but find a creative and ethical way to navigate the situation.",
+        "traits": { "Resourceful": 2, "Charismatic": 1, "Sly": 1 }
       }
     ]
   },
   {
-    "question": "When presented with an opportunity for personal gain, what factors influence your decision?",
+    "question": "You're in a group discussion where opinions are divided and tensions are rising. How do you help diffuse the situation?",
     "options": [
       {
-        "text": "Staying true to your principles and integrity.",
-        "traits": { "Honorable": 2, "Noble": 1, "Loyal": 1 }
+        "text": "Act as a mediator, encouraging everyone to listen and find common ground.",
+        "traits": { "Charismatic": 2, "Calm": 1, "Determined": 1 }
       },
       {
-        "text": "Assessing the risks and benefits before making a choice.",
-        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
+        "text": "Present logical arguments and facts to steer the discussion towards a constructive resolution.",
+        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
       },
       {
-        "text": "Exploring new possibilities and taking calculated risks.",
-        "traits": { "Adventurous": 2, "Determined": 1, "Charismatic": 1 }
-      }
-    ]
-  },
-  {
-    "question": "How do you respond to situations where you must act quickly and decisively?",
-    "options": [
-      {
-        "text": "Trust your instincts and take immediate action.",
-        "traits": { "Brave": 2, "Determined": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "Evaluate the options swiftly and choose the most effective one.",
-        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
-      },
-      {
-        "text": "Maintain composure and assess the situation before making a move.",
-        "traits": { "Calm": 2, "Mysterious": 1, "Sly": 1 }
-      }
-    ]
-  },
-  {
-    "question": "When dealing with unknown or unpredictable situations, what is your usual approach?",
-    "options": [
-      {
-        "text": "Face them head-on with courage and determination.",
-        "traits": { "Brave": 2, "Adventurous": 1, "Determined": 1 }
-      },
-      {
-        "text": "Gather information and plan a calculated response.",
-        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
-      },
-      {
-        "text": "Observe and adapt to the changing circumstances.",
-        "traits": { "Calm": 2, "Mysterious": 1, "Sly": 1 }
+        "text": "Use humor or a light-hearted approach to ease tensions and shift the focus to positive aspects.",
+        "traits": { "Charismatic": 2, "Resourceful": 1, "Mysterious": 1 }
       }
     ]
   }
