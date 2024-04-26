@@ -22,9 +22,12 @@ async function sendGraphQLRequest(query, variables) {
     };
 
     try {
+        console.log('sending graphql : ', options);
         const request = new Request(GRAPHQL_ENDPOINT, options);
+        console.log('request: ', request);
         const response = await fetch(request);
-        return response.json(); // Return the parsed JSON response
+        console.log('response: ', response);
+        return response.json();
     } catch (error) {
         console.error('Network or other error:', error);
         return { errors: [error] };
@@ -34,48 +37,76 @@ async function sendGraphQLRequest(query, variables) {
 async function updateRoomState(stateId) {
     
     
-    const fetchQuery = /* GraphQL */ `
+    let query = /* GraphQL */ `
         query GetChatroomState($id: ID!) {
           getChatroomState(id: $id) {
             id
-            users
+            users{
+                id
+            }
           }
         }
     `;
 
-    const fetchVariables = { id: stateId };
+    let variables = { id: stateId };
 
-    let response = await sendGraphQLRequest(fetchQuery, fetchVariables);
+    let response = await sendGraphQLRequest(query, variables);
     if (response.errors) {
         console.error('Error fetching chatroom state:', response.errors);
         return;
     }
 
     const users = response.data.getChatroomState.users;
-    
     console.log('users: ', users)
 
-    const query =  /* GraphQL */ `
-        mutation updateChatroomUser($input: UpdateChatroomStateInput!) {
-          updateChatroomState(input: $input) {
-            id
-            round
-          }
-        }
+    query =  /* GraphQL */ `
+            mutation updateChatroomUser($input: UpdateChatroomUserInput!) {
+              updateChatroomUser(input: $input) {
+                id
+                state
+              }
+            }
       `
-
-    const variables = {
-      input: {
-        id: stateId,
-        round: newRound,
-      }
-    };
+      
     
-    let updateResponse = await sendGraphQLRequest(query, variables);
-    if (updateResponse.errors) {
-        console.error('Error updating chatroom state:', response.errors);
-        return;
+    
+    for(var i = 0; i < users.length; i++){
+        
+        
+        const user = users[i]
+        console.log('user: ', user.id)
+        
+        
+        variables = {
+          input: {
+            id: user.id,
+            state: "PLAYING",
+          }
+        };
+        
+        
+        let updateResponse = await sendGraphQLRequest(query, variables);
+        if (updateResponse.errors) {
+            console.error('Error updating chatroomUser state:', response.errors);
+            return;
+        }
+        
+        
+        
     }
+    
+    
+    
+        
+    
+    
+        
+        
+        
+        
+        
+    
+    
 }
 
 

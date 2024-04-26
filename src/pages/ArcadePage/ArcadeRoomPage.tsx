@@ -12,6 +12,7 @@ import { Tooltip } from 'react-tooltip'
 import { PiPersonFill } from 'react-icons/pi';
 import { IoPersonSharp } from 'react-icons/io5';
 import { useMobileLegendsCharacters } from '../../providers/MobileLegendsCharactersProvider';
+import GameArea from '../../components/arcade/GameArea';
 
 
 
@@ -34,6 +35,7 @@ export default function ArcadeRoomPage() {
     const [chatroom, setChatroom] = useState<Chatroom>()
     const [chatroomState, setChatroomState] = useState<ChatroomState>()
     const [prompt, setPrompt] = useState<Prompt>()
+    const [round, setRound] = useState(0)
     const [chatroomMessages, setChatroomMessages] = useState<Array<ChatroomMessage>>([])
     
     const [chatroomInit, setChatroomInit] = useState(false)
@@ -101,9 +103,17 @@ export default function ArcadeRoomPage() {
                     setChatroom(data.data.getChatroomByCode)
                     setChatroomInit(true)
                     console.log('chatroom Initialized: ', data)
-                    setChatroomState(data.data.getChatroomByCode.chatroomState)
-                    console.log('chatroomState Initialized: ', data.data.getChatroomByCode.chatroomState)
-                    if(data.data.getChatroomByCode.chatroomState.promptId) fetchPrompt(data.data.getChatroomByCode.chatroomState.promptId)
+
+                    const tempState = data.data.getChatroomByCode.chatroomState
+                    if(tempState){
+
+                        setChatroomState(tempState)
+                        console.log('chatroomState Initialized: ', tempState)
+                        if(tempState.round) setRound(tempState.round)
+                        if(tempState.promptId) fetchPrompt(tempState.promptId)
+                    }else{
+                        throw "CHATROOM STATE NOT FOUND"
+                    }
                 }).catch(err => {
                     console.error('initalize chatroom error: ', err)
                     navigate("/error/1")
@@ -129,7 +139,8 @@ export default function ArcadeRoomPage() {
                         input: {
                             chatroomId: chatroom.id,
                             ttl: getTtlFromMinutes(60*24),
-                            userId: user.id
+                            userId: user.id,
+                            points: 0
                         }
                     }
                 }).then(data => {
@@ -257,7 +268,8 @@ export default function ArcadeRoomPage() {
             }
         }).subscribe(data => {
             console.log('got message: ', data)
-            if(onCreateChatroomMessage != null){
+            console.log('filtering user: ' , chatroomUser)
+            if(onCreateChatroomMessage != null && data.data.onCreateChatroomMessage.chatroomUser.id != chatroomUser.id){
                 setChatroomMessages((oldMessages) => ([
                     
                     ...oldMessages,
@@ -280,7 +292,6 @@ export default function ArcadeRoomPage() {
             setChatroom(data.data.onUpdateChatroom)
         })
     }
-
     const onUpdateChatroomStateSubscription = () => {
 
         console.log('subscribing to chatroomState with id: ', chatroomState.id)
@@ -293,7 +304,16 @@ export default function ArcadeRoomPage() {
             }
         }).subscribe(data => {
             console.log('got updateChatroomState: ', data)
-            setChatroomState(data.data.onUpdateChatroomState)
+            const oldState = chatroomState
+            const newState = data.data.onUpdateChatroomState
+
+            if(newState.round != null){
+                setRound(newState.round)
+                setChatroomState((oldState) => {oldState.round = newState.round;console.log('oldState : ',oldState); return oldState})
+            }else{
+                newState.round = oldState.round
+                setChatroomState(newState)
+            }
             if(data.data.onUpdateChatroomState.promptId) fetchPrompt(data.data.onUpdateChatroomState.promptId)
         })
     }
@@ -325,34 +345,23 @@ export default function ArcadeRoomPage() {
 
             setChatInput('')
 
+            const newMessage: ChatroomMessage = {
+                __typename: 'ChatroomMessage',
+                id: new Date().getTime().toLocaleString(),
+                content: chatInput,
+                chatroomUserId: chatroomUser.id,
+                chatroomId: chatroom.id,
+                createdAt: new Date().toISOString(),
+                ttl: 0,
+                chatroomUser: chatroomUser
+            }
+            setChatroomMessages((oldMessages) => [...oldMessages, newMessage])
+
         }
     }
 
  
-    const handleClickStartGame = async () => {
-
-        
-        console.log('button click: ', chatroomState)
-
-        const callAPI  = post({
-            apiName: 'mobiledleapi',
-            path: '/functions',
-            options: {
-                body: {
-                    chatroomStateId: chatroomState.id
-                }
-            }
     
-        })
-        const {body} = await callAPI.response
-        const response = await body.json();
-        console.log('POST call succeeded');
-        console.log(response);
-
-        
-    }
-
-
     
     if(!chatroomInit) return <div>loading...</div>
 
@@ -365,7 +374,7 @@ export default function ArcadeRoomPage() {
                 <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row'>
                     
                     
-                    <img src="/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => navigate('/')} />
+                    <img src="/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => navigate('/arcade')} />
                 
                     <div 
                     className='text-[2vh] align-middle text-start my-auto font-modesto pr-5 cursor-pointer'  
@@ -389,7 +398,7 @@ export default function ArcadeRoomPage() {
                     
                     >
 
-                        <span className='my-auto ps-5'>Round <span>{chatroomState.round}</span></span>
+                        <span className='my-auto ps-5'>Round <span>{round}</span></span>
                         <span className='my-auto flex flex-row cursor-default' onMouseEnter={() => {
                         setUsersTooltip((chatroom.users.map((user) => user.user.username.toString()).join("\n")))
                     }}
@@ -406,32 +415,23 @@ export default function ArcadeRoomPage() {
 
                 </div>
 
-                <div>
+                <div className='h-full w-full relative '>
                     
-                    {
-                        (prompt) ?
-                            
-                            <div>
 
-                                {prompt.question}
-                                <img className='mx-auto' src={characters[prompt.mobileLegendsCharacterId].imageUrl[0]} alt="" />
+                    <div className='absolute top-0 left-0 h-full -z-10 p-5 text-3xl '>
 
-
-
-                            </div>
-                        
-                        
-                        
-                        : ""
+                        {chatroom.users.map((user) => {
+                            return <div>{user.user.username}:   {user.points}</div>
+                        })}
                     
-                    
-                    }
+                    </div>
+
+                    <GameArea chatroom={chatroom} chatroomState={chatroomState} chatroomUser={chatroomUser} prompt={prompt} />
                     
 
 
 
                 </div>
-                <button className='w-52 align-bottom mb-[5%] border-1 border-white mx-auto' onClick={handleClickStartGame}>Start Game</button>
             </div>
 
             <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full h-screen overflow-hidden flex flex-col justify-between'>

@@ -6,37 +6,101 @@ interface ClassicSearchBarProps {
   todayCharacter: MobileLegendsCharacter | undefined;
 }
 
+interface TraitBoxProps {
+  trait: string,
+  state: number,
+}
+
+function TraitBox({trait, state}: TraitBoxProps){
+
+
+  const wrongColor = "bg-red-900 text-shadow shadow-gray-700 w-28 h-28"
+  const partialColor = "bg-orange-700 text-shadow shadow-gray-700 w-28 h-28"
+  const correctColor = "bg-green-700 text-shadow shadow-gray-700 w-28 h-28"
+
+  return <div
+  className={`py-4  border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/agelta.jpg')] bg-blend-darken ${
+      state == 0 ? correctColor
+        : state == 1 ? partialColor
+        : wrongColor 
+    } `}
+  >
+
+  {trait}
+
+
+</div>
+
+}
+
 export default function HeroShowBar({
   character,
   todayCharacter,
 }: ClassicSearchBarProps) {
   const { t } = useTranslation();
 
-  const wrongColor = "bg-red-700 text-shadow shadow-gray-700 w-28 h-28"
-  const partialColor = "bg-orange-600 text-shadow shadow-gray-700 w-28 h-28"
-  const correctColor = "bg-green-600 text-shadow shadow-gray-700 w-28 h-28"
 
   if(!todayCharacter) return
 
   const characterLanes = character.lane.split('/')
   const todayCharacterLanes = todayCharacter.lane.split('/')
   let laneIsPartial = false
+  let laneIsCorrect = false
 
   characterLanes.forEach(lane => {
     
+    var temp = false
 
     todayCharacterLanes.forEach(todayLane => {
 
       if(lane == todayLane){
 
         laneIsPartial = true
+        temp = true
+        
+      }else{
         
       }
 
     })
-  
+
+
+    if(temp) laneIsCorrect = true
+
   })
 
+  if(characterLanes.length != todayCharacterLanes.length) laneIsCorrect = false
+  
+  const characterRoles = character.role.split('/')
+  const todayCharacterRoles = todayCharacter.role.split('/')
+  let roleIsPartial = false
+  let roleIsCorrect = false
+
+  characterRoles.forEach(role => {
+    
+    var temp = false
+
+    todayCharacterRoles.forEach(todayRole => {
+
+      if(role == todayRole){
+
+        roleIsPartial = true
+        temp = true
+        
+      }else{
+        
+      }
+
+    })
+
+
+    if(temp) roleIsCorrect = true
+
+  })
+
+  if(characterRoles.length != todayCharacterLanes.length) roleIsCorrect = false
+
+  
   
 
   return (
@@ -48,6 +112,8 @@ export default function HeroShowBar({
                     currentTarget.onerror = null
               }}/>
       </div>
+
+      
       <div className="py-4 w-28 h-28 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
       
         <img className="z-10" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
@@ -55,57 +121,17 @@ export default function HeroShowBar({
                     currentTarget.onerror = null
                 }}/>
       </div>
-      <div
-        className={`py-4  border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/classic-bg.png')] bg-blend-multiply ${
-          character.gender === todayCharacter?.gender
-            ? correctColor
-            : wrongColor
-        } `}
-      >
-      {character.gender === "Male" ? t("Male") : t("Female")}
 
-      </div>
-      <div
-        className={`py-4  font-extrabold border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-2s ${
-          character.role === todayCharacter?.role
-            ? correctColor
-            : character?.role?.includes(todayCharacter?.role || "")
-              ? partialColor
-              : wrongColor
-        }`}
-      >
-        {character.role?.replace("/", " , ")}
-      </div>
-      <div
-        className={`py-4 border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-3s ${
-          (todayCharacterLanes.sort((a,b) => a>b ? 1 : -1).every(e => characterLanes.includes(e) ) && todayCharacterLanes.length == characterLanes.length)
-            ? correctColor
-            : laneIsPartial
-              ? partialColor
-              : wrongColor
-        }`}
-      >
-        {character.lane?.replace("/", " , ")}
-      </div>
+      
+      <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === todayCharacter.gender ? 0 : 2} />
+      
+      <TraitBox trait={character.role?.replace("/", " , ")} state={roleIsCorrect?0:roleIsPartial? 1:2} />
+      <TraitBox trait={character.lane?.replace("/", " , ")} state={laneIsCorrect?0:laneIsPartial? 1:2} />
+      
+      <TraitBox trait={t(`${character.region}`)} state={character.region === todayCharacter.region ? 0 : 2} />
+      
+      <TraitBox trait={character.year.toString()} state={character.year === todayCharacter.year ? 0 : 2} />
 
-      <div
-        className={`py-4  border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-4s ${
-          character.region === todayCharacter?.region
-            ? correctColor
-            : wrongColor
-        }`}
-      >
-        {t(`${character.region}`)}
-      </div>
-      <div
-        className={`py-4  border-white border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-5s ${
-          character.year === todayCharacter?.year
-            ? correctColor
-            : wrongColor
-        }`}
-      >
-        {character.year}
-      </div>
     </div>
   );
 }

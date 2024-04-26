@@ -25,13 +25,16 @@ const RoomCard: React.FC<RoomCardProps> = ({
 
     <div className="text-left">
 
-        <div className="grid grid-cols-5 gap-5">
+        <div className="grid grid-cols-6">
 
             <div>
             {room.code} 
             </div>
             <div className="border pl-5 border-y-transparent border-r-transparent border-l-gray-500 col-span-2">
-            {room.name}
+            {room.name} 
+            </div>
+            <div className="text-center text-orange-100 mr-5 ">
+            {(room.chatroomState) ? room.chatroomState.currentState: "LOBBY"}
             </div>
             <div>
             {room.users ? room.users.length.toString() + ((room.users.length > 1) ? " users" : " user") : "empty"}    

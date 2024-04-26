@@ -30,6 +30,14 @@
           ],
           "category": "function",
           "resourceName": "launchGame"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "rewardUser"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -102,6 +110,22 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "rewardUser": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "setUserStates": {
       "build": true,
       "dependsOn": [
@@ -149,6 +173,38 @@
         {
           "category": "function",
           "resourceName": "launchGame"
+        }
+      ]
+    },
+    "AMPLIFY_function_rewardUser_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rewardUser"
+        }
+      ]
+    },
+    "AMPLIFY_function_rewardUser_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rewardUser"
+        }
+      ]
+    },
+    "AMPLIFY_function_setUserStates_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "setUserStates"
+        }
+      ]
+    },
+    "AMPLIFY_function_setUserStates_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "setUserStates"
         }
       ]
     },

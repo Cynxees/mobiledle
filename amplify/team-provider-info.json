@@ -34,13 +34,20 @@
       "function": {
         "launchGame": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/launchGame-377779326a452f415748-build.zip"
+          "s3Key": "amplify-builds/launchGame-61727061766b6e552f76-build.zip"
         },
         "incrementRound": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
           "s3Key": "amplify-builds/incrementRound-6d554c4d5a6e6853617a-build.zip"
         },
-        "setUserStates": {}
+        "setUserStates": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/setUserStates-7a2f683750354a6e6a4c-build.zip"
+        },
+        "rewardUser": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/rewardUser-4a6478514961654a4530-build.zip"
+        }
       }
     }
   },

@@ -74,7 +74,7 @@ export default function ClassicPage() {
     isCorrect: false,
   });
 
-  const [showBank, setShowBank] = useState(true);
+  const [showBank, setShowBank] = useState(false);
 
   const winCardRef = useRef<HTMLDivElement>(null);
 
@@ -121,6 +121,8 @@ export default function ClassicPage() {
 
   return (
     <>
+
+    
       <aside
         className={`${
           showBank ? "xl:block" : "hidden"
@@ -130,7 +132,7 @@ export default function ClassicPage() {
       >
         <HeroBank />
       </aside>
-      <section className={`flex flex-col gap-5 items-center md:mt-[20vh] mt-[25vh]`}>
+      <section className={`flex flex-col gap-5 items-center md:mt-[20vh] mt-[25vh] mb-32`}>
         
         
 
@@ -152,9 +154,9 @@ export default function ClassicPage() {
             className="sr-only peer"
             onChange={handleShowBank}
           />
-          <div className="relative w-11 h-6 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600"></div>
-          <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-            Mythical IMMORTAL 😎 Mode
+          <div className="relative w-9 h-5 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-orange-900"></div>
+          <span className="ms-3 my-auto text-sm font-medium text-gray-900 dark:text-gray-300">
+            NOOB MODE
           </span>
         </label>
           <ClassicTableTitle />

@@ -7,6 +7,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/reward": {
+      "name": "/reward",
+      "lambdaFunction": "rewardUser",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }
