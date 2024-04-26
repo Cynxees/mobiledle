@@ -70,7 +70,39 @@
     }
   },
   "function": {
+    "incrementRound": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "launchGame": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "setUserStates": {
       "build": true,
       "dependsOn": [
         {
@@ -88,6 +120,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_incrementRound_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "incrementRound"
+        }
+      ]
+    },
+    "AMPLIFY_function_incrementRound_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "incrementRound"
+        }
+      ]
+    },
     "AMPLIFY_function_launchGame_deploymentBucketName": {
       "usedBy": [
         {

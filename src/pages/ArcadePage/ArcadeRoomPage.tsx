@@ -294,7 +294,7 @@ export default function ArcadeRoomPage() {
         }).subscribe(data => {
             console.log('got updateChatroomState: ', data)
             setChatroomState(data.data.onUpdateChatroomState)
-            fetchPrompt(data.data.onUpdateChatroomState.promptId)
+            if(data.data.onUpdateChatroomState.promptId) fetchPrompt(data.data.onUpdateChatroomState.promptId)
         })
     }
     
@@ -388,7 +388,8 @@ export default function ArcadeRoomPage() {
                     
                     
                     >
-                        <span></span>
+
+                        <span className='my-auto ps-5'>Round <span>{chatroomState.round}</span></span>
                         <span className='my-auto flex flex-row cursor-default' onMouseEnter={() => {
                         setUsersTooltip((chatroom.users.map((user) => user.user.username.toString()).join("\n")))
                     }}

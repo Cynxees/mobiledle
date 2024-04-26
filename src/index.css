@@ -15,8 +15,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --animate-duration: 0.7s;
-  --animate-delay: 0.5s;
+  --animate-duration: 0.6s;
+  --animate-delay: 0.2s;
 }
 
 @layer base {

@@ -34,8 +34,13 @@
       "function": {
         "launchGame": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/launchGame-4476304f384a52374b72-build.zip"
-        }
+          "s3Key": "amplify-builds/launchGame-377779326a452f415748-build.zip"
+        },
+        "incrementRound": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/incrementRound-6d554c4d5a6e6853617a-build.zip"
+        },
+        "setUserStates": {}
       }
     }
   },

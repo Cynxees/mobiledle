@@ -24,6 +24,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "incrementRound": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "launchGame": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
