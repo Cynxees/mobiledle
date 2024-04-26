@@ -95,20 +95,18 @@ export default function LandingPage() {
   );
 
 
-  if (isLoading || !init) return <div>Loading...</div>;
+  if (false) return <div>Loading...</div>;
 
   return (
     <div>
     <img className="w-screen h-screen object-cover absolute -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-30" src="/landing-bg.jpg"/>
-    <div className="flex flex-col gap-10">
-
-        <Particles
+    <Particles
           id="tsparticles"
           particlesLoaded={particlesLoaded}
           options={options}
           className="absolute -z-10" 
         />
-        
+    <div className="flex flex-col gap-10 w-[400px] md:w-[500px]">
       
       <Navbar />
       <ClassicBox />

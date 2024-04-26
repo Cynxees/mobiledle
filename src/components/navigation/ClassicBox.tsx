@@ -12,9 +12,9 @@ export default function ClassicBox() {
         className="p-8 border-2 group rounded-lg cursor-pointer border-[#CB812D]  hover:bg-[#CB812D] hover:border-[#e8dca4] transition duration-500 bg-[#101010] shadow-lg shadow-black w-full"
         to="/classic"
       >
-        <div className="flex justify-center items-center gap-4">
-          <BsFillQuestionSquareFill className="text-5xl text-[#e8dca4]" />
-          <p className="text-left text-white">
+        <div className="grid grid-cols-3 w-full justify-center items-center gap-4">
+          <BsFillQuestionSquareFill className="text-5xl text-[#e8dca4] ms-auto" />
+          <p className="text-left text-white col-span-2">
             CLASSIC <br />{" "}
             <span className="text-[#e8dca4] group-hover:text-white">{t`Get Clues On Every Try`}</span>
           </p>
