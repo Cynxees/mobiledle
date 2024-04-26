@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import questions from "../constant/mirror/questions.json";
 import identity from "../constant/mirror/identity.json";
+import Navbar from "../components/navigation/Navbar";
 
 const getFiveRandomQuestions = () => {
   const randomQuestions = [];
@@ -41,7 +42,7 @@ const MirrorPage = () => {
       }
     }
     setUserTraits(updatedTraits);
-    if (currentQuestionIndex < questions.length ) {
+    if (currentQuestionIndex < questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
@@ -61,27 +62,52 @@ const MirrorPage = () => {
     return highestTrait;
   };
 
-  return (
-    <div className="flex flex-col gap-5">
-      <h2>Title</h2>
+  const getRandomHeroBasedOnHighestTotalTrait = () => {
 
-      {currentQuestionIndex == questions.length  ? (
-        <div>Congrats : {findHighestTrait()}</div>
+    const highestTrait = findHighestTrait();
+
+    const identityEntries = Object.entries(identity)
+    
+    var highestTraitIndex = 0;
+    for (let index = 0; index < identityEntries.length; index++) {
+    
+        if(highestTrait == identityEntries[index][0]) {
+          highestTraitIndex = index;
+          break;
+        }
+
+    }
+
+    const randomHeroIndex = Math.floor(Math.random() * identityEntries[highestTraitIndex][1].length);
+
+    const randomHero = identityEntries[highestTraitIndex][1][randomHeroIndex]
+
+    // console.log(randomHero, identityEntries[highestTraitIndex][1][randomHero])
+    return [highestTrait, randomHero]
+  }
+
+  return (
+    <div className="flex flex-col gap-5 items-center mx-10">
+      <Navbar />
+      <h2 className="text-lg">What Hero Would You Be?</h2>
+
+      {currentQuestionIndex == questions.length ? (
+        <div>{getRandomHeroBasedOnHighestTotalTrait()}</div>
       ) : (
         <div></div>
       )}
 
       {currentQuestionIndex < questions.length ? (
-        <div key={currentQuestionIndex} className="mx-5">
-          <h3>Question {currentQuestionIndex + 1}:</h3>
+        <div key={currentQuestionIndex} className=" w-full md:w-[500px]">
           <p>{questions[currentQuestionIndex].question}</p>
+          <br />
           <ul>
             {questions[currentQuestionIndex].options.map(
               (option, optionIndex) => (
                 <li
                   key={optionIndex}
                   onClick={() => handleOption(option.traits)}
-                  className="border-2 p-2"
+                  className="border-2 p-2 mb-4 rounded-lg hover:bg-[#CB812D] transition duration-300 ease-in-out cursor-pointer py-4 hover:animate__animated animate__flash"
                 >
                   {option.text}
                 </li>
@@ -89,7 +115,9 @@ const MirrorPage = () => {
             )}
           </ul>
         </div>
-      ) : <div></div>}
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
