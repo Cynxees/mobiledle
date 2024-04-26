@@ -705,6 +705,7 @@ export const createChatroom = /* GraphQL */ `mutation CreateChatroom($input: Cre
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
@@ -805,6 +806,7 @@ export const updateChatroom = /* GraphQL */ `mutation UpdateChatroom($input: Upd
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
@@ -905,6 +907,7 @@ export const deleteChatroom = /* GraphQL */ `mutation DeleteChatroom($input: Del
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
@@ -933,6 +936,28 @@ export const createPrompt = /* GraphQL */ `mutation CreatePrompt($input: CreateP
   createPrompt(input: $input) {
     id
     question
+    mobileLegendsCharacter {
+      id
+      name
+      alias
+      gender
+      role
+      specialty
+      lane
+      region
+      goldPrice
+      ticketPrice
+      diamondPrice
+      year
+      rangeType
+      damageType
+      resource
+      hairColor
+      species
+      imageUrl
+      __typename
+    }
+    mobileLegendsCharacterId
     description
     imageUrl
     answer
@@ -950,6 +975,28 @@ export const updatePrompt = /* GraphQL */ `mutation UpdatePrompt($input: UpdateP
   updatePrompt(input: $input) {
     id
     question
+    mobileLegendsCharacter {
+      id
+      name
+      alias
+      gender
+      role
+      specialty
+      lane
+      region
+      goldPrice
+      ticketPrice
+      diamondPrice
+      year
+      rangeType
+      damageType
+      resource
+      hairColor
+      species
+      imageUrl
+      __typename
+    }
+    mobileLegendsCharacterId
     description
     imageUrl
     answer
@@ -967,6 +1014,28 @@ export const deletePrompt = /* GraphQL */ `mutation DeletePrompt($input: DeleteP
   deletePrompt(input: $input) {
     id
     question
+    mobileLegendsCharacter {
+      id
+      name
+      alias
+      gender
+      role
+      specialty
+      lane
+      region
+      goldPrice
+      ticketPrice
+      diamondPrice
+      year
+      rangeType
+      damageType
+      resource
+      hairColor
+      species
+      imageUrl
+      __typename
+    }
+    mobileLegendsCharacterId
     description
     imageUrl
     answer
@@ -1049,6 +1118,28 @@ export const createChatroomState = /* GraphQL */ `mutation CreateChatroomState($
     prompt {
       id
       question
+      mobileLegendsCharacter {
+        id
+        name
+        alias
+        gender
+        role
+        specialty
+        lane
+        region
+        goldPrice
+        ticketPrice
+        diamondPrice
+        year
+        rangeType
+        damageType
+        resource
+        hairColor
+        species
+        imageUrl
+        __typename
+      }
+      mobileLegendsCharacterId
       description
       imageUrl
       answer
@@ -1139,6 +1230,28 @@ export const updateChatroomState = /* GraphQL */ `mutation UpdateChatroomState($
     prompt {
       id
       question
+      mobileLegendsCharacter {
+        id
+        name
+        alias
+        gender
+        role
+        specialty
+        lane
+        region
+        goldPrice
+        ticketPrice
+        diamondPrice
+        year
+        rangeType
+        damageType
+        resource
+        hairColor
+        species
+        imageUrl
+        __typename
+      }
+      mobileLegendsCharacterId
       description
       imageUrl
       answer
@@ -1229,6 +1342,28 @@ export const deleteChatroomState = /* GraphQL */ `mutation DeleteChatroomState($
     prompt {
       id
       question
+      mobileLegendsCharacter {
+        id
+        name
+        alias
+        gender
+        role
+        specialty
+        lane
+        region
+        goldPrice
+        ticketPrice
+        diamondPrice
+        year
+        rangeType
+        damageType
+        resource
+        hairColor
+        species
+        imageUrl
+        __typename
+      }
+      mobileLegendsCharacterId
       description
       imageUrl
       answer

@@ -742,6 +742,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
@@ -842,6 +843,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
@@ -942,6 +944,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
       prompt {
         id
         question
+        mobileLegendsCharacterId
         description
         imageUrl
         answer
@@ -982,6 +985,28 @@ export const onCreatePrompt = /* GraphQL */ `subscription OnCreatePrompt(
   ) {
     id
     question
+    mobileLegendsCharacter {
+      id
+      name
+      alias
+      gender
+      role
+      specialty
+      lane
+      region
+      goldPrice
+      ticketPrice
+      diamondPrice
+      year
+      rangeType
+      damageType
+      resource
+      hairColor
+      species
+      imageUrl
+      __typename
+    }
+    mobileLegendsCharacterId
     description
     imageUrl
     answer
@@ -1011,6 +1036,28 @@ export const onUpdatePrompt = /* GraphQL */ `subscription OnUpdatePrompt(
   ) {
     id
     question
+    mobileLegendsCharacter {
+      id
+      name
+      alias
+      gender
+      role
+      specialty
+      lane
+      region
+      goldPrice
+      ticketPrice
+      diamondPrice
+      year
+      rangeType
+      damageType
+      resource
+      hairColor
+      species
+      imageUrl
+      __typename
+    }
+    mobileLegendsCharacterId
     description
     imageUrl
     answer
@@ -1040,6 +1087,28 @@ export const onDeletePrompt = /* GraphQL */ `subscription OnDeletePrompt(
   ) {
     id
     question
+    mobileLegendsCharacter {
+      id
+      name
+      alias
+      gender
+      role
+      specialty
+      lane
+      region
+      goldPrice
+      ticketPrice
+      diamondPrice
+      year
+      rangeType
+      damageType
+      resource
+      hairColor
+      species
+      imageUrl
+      __typename
+    }
+    mobileLegendsCharacterId
     description
     imageUrl
     answer
@@ -1053,20 +1122,8 @@ export const onDeletePrompt = /* GraphQL */ `subscription OnDeletePrompt(
   APITypes.OnDeletePromptSubscriptionVariables,
   APITypes.OnDeletePromptSubscription
 >;
-export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroomState(
-  $id: ID
-  $chatroomId: ID
-  $mode: String
-  $currentState: String
-  $willEndAt: AWSDateTime
-) {
-  onCreateChatroomState(
-    id: $id
-    chatroomId: $chatroomId
-    mode: $mode
-    currentState: $currentState
-    willEndAt: $willEndAt
-  ) {
+export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroomState($id: ID!) {
+  onCreateChatroomState(id: $id) {
     id
     chatroomId
     chatroom {
@@ -1134,6 +1191,28 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
     prompt {
       id
       question
+      mobileLegendsCharacter {
+        id
+        name
+        alias
+        gender
+        role
+        specialty
+        lane
+        region
+        goldPrice
+        ticketPrice
+        diamondPrice
+        year
+        rangeType
+        damageType
+        resource
+        hairColor
+        species
+        imageUrl
+        __typename
+      }
+      mobileLegendsCharacterId
       description
       imageUrl
       answer
@@ -1155,20 +1234,8 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
   APITypes.OnCreateChatroomStateSubscriptionVariables,
   APITypes.OnCreateChatroomStateSubscription
 >;
-export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroomState(
-  $id: ID
-  $promptId: ID
-  $round: Int
-  $mode: String
-  $currentState: String
-) {
-  onUpdateChatroomState(
-    id: $id
-    promptId: $promptId
-    round: $round
-    mode: $mode
-    currentState: $currentState
-  ) {
+export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroomState($id: ID!) {
+  onUpdateChatroomState(id: $id) {
     id
     chatroomId
     chatroom {
@@ -1236,6 +1303,28 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
     prompt {
       id
       question
+      mobileLegendsCharacter {
+        id
+        name
+        alias
+        gender
+        role
+        specialty
+        lane
+        region
+        goldPrice
+        ticketPrice
+        diamondPrice
+        year
+        rangeType
+        damageType
+        resource
+        hairColor
+        species
+        imageUrl
+        __typename
+      }
+      mobileLegendsCharacterId
       description
       imageUrl
       answer
@@ -1257,20 +1346,8 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
   APITypes.OnUpdateChatroomStateSubscriptionVariables,
   APITypes.OnUpdateChatroomStateSubscription
 >;
-export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroomState(
-  $id: ID
-  $chatroomId: ID
-  $mode: String
-  $currentState: String
-  $willEndAt: AWSDateTime
-) {
-  onDeleteChatroomState(
-    id: $id
-    chatroomId: $chatroomId
-    mode: $mode
-    currentState: $currentState
-    willEndAt: $willEndAt
-  ) {
+export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroomState($id: ID!) {
+  onDeleteChatroomState(id: $id) {
     id
     chatroomId
     chatroom {
@@ -1338,6 +1415,28 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
     prompt {
       id
       question
+      mobileLegendsCharacter {
+        id
+        name
+        alias
+        gender
+        role
+        specialty
+        lane
+        region
+        goldPrice
+        ticketPrice
+        diamondPrice
+        year
+        rangeType
+        damageType
+        resource
+        hairColor
+        species
+        imageUrl
+        __typename
+      }
+      mobileLegendsCharacterId
       description
       imageUrl
       answer

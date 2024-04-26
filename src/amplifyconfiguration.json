@@ -6,8 +6,8 @@
   "aws_appsync_apiKey": "da2-rsvwbilhmndjxnkfvz74pogfme",
   "aws_cloud_logic_custom": [
     {
-      "name": "mobiledleAPI",
-      "endpoint": "https://rwtjw2qmuh.execute-api.ap-southeast-1.amazonaws.com/staging",
+      "name": "mobiledleapi",
+      "endpoint": "https://tj9rdehsbh.execute-api.ap-southeast-1.amazonaws.com/staging",
       "region": "ap-southeast-1"
     }
   ],
