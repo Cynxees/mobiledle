@@ -22,6 +22,19 @@ function isAlphaNumeric(str : string) {
     return true;
 };
 
+const randomizeHero = (index : number, max: number) => {
+
+    const date = new Date().getUTCDay();
+    const month = new Date().getUTCMonth();
+    const year = new Date().getUTCFullYear();
+    
+
+    return Math.floor(index * date * month * year) % max
+
+
+
+}
+
 
 interface LobbyViewInput {
 
@@ -37,10 +50,12 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
     const client = generateClient()
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
-    const [ currentCharacter, setCurrentCharacter ] = useState<MobileLegendsCharacter>();
-    const [ userInput, setUserInput ] = useState('') 
+    const [ character1, setCharacter1 ] = useState<MobileLegendsCharacter>();
+    const [ character2, setCharacter2 ] = useState<MobileLegendsCharacter>();
+    const [ character3, setCharacter3 ] = useState<MobileLegendsCharacter>();
+    const [ userInput, setUserInput ] = useState('') ;
     
-    const [ answer, setAnswer ] = useState('')
+    const [ answer, setAnswer ] = useState<MobileLegendsCharacter>();
 
 
 
@@ -50,7 +65,17 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
         if(!prompt.mobileLegendsCharacterId) return
 
-        setCurrentCharacter(characters[prompt.mobileLegendsCharacterId])
+        setAnswer(characters[prompt.mobileLegendsCharacterId])
+        console.log('answer: ', characters[prompt.mobileLegendsCharacterId])
+
+        const index1 = randomizeHero(parseInt(prompt.mobileLegendsCharacterId), 100)
+        const index2 = randomizeHero(index1, 100)
+        const index3 = randomizeHero(index2, 100)
+
+        setCharacter1(characters[index1])
+        setCharacter2(characters[index2])
+        setCharacter3(characters[index3])
+
 
     }, [prompt])
 
@@ -105,7 +130,10 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
             path: '/reward',
             options: {
                 body: {
-                    chatroomUserId: chatroomUser.id,
+                    id: chatroomUser.id,
+                    userId: chatroomUser.userId,
+                    chatroomId: chatroomUser.chatroomId,
+                    ttl: chatroomUser.ttl,
                     points: 100
                 }
             }
@@ -119,10 +147,14 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
     const handleChatKeyDown = (e : React.KeyboardEvent) => {
         
+
+        var type = 'GUESS'
+
         if(e.key === 'Enter') {
             if(validateAnswer(userInput)){
                 rewardPoints()
                 handleClickStartGame()
+                type = 'GUESS-CORRECT'
             }
 
             client.graphql({
@@ -134,7 +166,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
                         content: userInput,
                         chatroomUserId: chatroomUser.id,
                         ttl: getTtlFromMinutes(60),
-                        type: 'GUESS'
+                        type: type
                     }
                 }
             })
@@ -160,8 +192,10 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
         <div className="row-span-5 ">
             <div className="w-full h-full flex items-center">
-                <div className="mx-auto">
-                <ClassicHeroBox character={currentCharacter} answer={currentCharacter} showBooleans={[true,true]}/>
+                <div className="mx-auto flex flex-col gap-5">
+                <ClassicHeroBox character={character1} answer={answer} showBooleans={[true,true]}/>
+                <ClassicHeroBox character={character2} answer={answer} showBooleans={[true,true]}/>
+                <ClassicHeroBox character={character3} answer={answer} showBooleans={[true,true]}/>
 
                 </div>
             </div>

@@ -3,7 +3,8 @@
     "api": {
       "mobiledle": [
         "Query",
-        "Mutation"
+        "Mutation",
+        "Subscription"
       ]
     }
   },

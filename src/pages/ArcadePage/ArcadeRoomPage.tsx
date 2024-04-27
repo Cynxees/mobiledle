@@ -1,7 +1,7 @@
 import React, { FormEventHandler, useEffect, useState } from 'react';
 import { generateClient, post } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../../graphql/mutations';
-import { onCreateChatroom, onCreateChatroomMessage, onUpdateChatroom, onUpdateChatroomState, onUpdateChatroomUser } from '../../graphql/subscriptions';
+import { onCreateChatroom, onCreateChatroomMessage, onCreateChatroomUser, onUpdateChatroom, onUpdateChatroomState, onUpdateChatroomUser, onUpdateChatroomUserByChatroom } from '../../graphql/subscriptions';
 import { Chatroom, ChatroomMessage, ChatroomUser, ChatroomState, Prompt, MobileLegendsCharacter } from '../../API';
 import getTtlFromMinutes from '../../utils/getTtlFromMinutes';
 import { listChatrooms, getChatroom, getChatroomByCode, getChatroomUser, listChatroomUsers, getPrompt, getMobileLegendsCharacter } from '../../graphql/queries';
@@ -13,11 +13,14 @@ import { PiPersonFill } from 'react-icons/pi';
 import { IoPersonSharp } from 'react-icons/io5';
 import { useMobileLegendsCharacters } from '../../providers/MobileLegendsCharactersProvider';
 import GameArea from '../../components/arcade/GameArea';
+import { Amplify } from 'aws-amplify';
+import amplifyconfig from '../../amplifyconfiguration.json'
+
 
 
 
 export default function ArcadeRoomPage() {
-
+    Amplify.configure(amplifyconfig)
     const navigate = useNavigate()
     let params = useParams()
     const client = generateClient()
@@ -34,12 +37,14 @@ export default function ArcadeRoomPage() {
 
     const [chatroomUser, setChatroomUser] = useState<ChatroomUser>()
     const [chatroomUserId, setChatroomUserId] = useState('')
+    const [chatroomUsers, setChatroomUsers] = useState<ChatroomUser[]>([])
     const [chatroom, setChatroom] = useState<Chatroom>()
     const [chatroomState, setChatroomState] = useState<ChatroomState>()
     const [prompt, setPrompt] = useState<Prompt>()
     const [round, setRound] = useState(0)
     const [userCount, setUserCount] = useState(0) 
     const [chatroomMessages, setChatroomMessages] = useState<Array<ChatroomMessage>>([])
+    const [chatroomReinit, setChatroomReinit] = useState('')
     
     const [chatroomInit, setChatroomInit] = useState(false)
     const [chatroomMessageInit, setChatroomMessageInit] = useState(false)
@@ -57,7 +62,7 @@ export default function ArcadeRoomPage() {
 
         console.log('promptId: ', promptId)
         if(!promptId){
-            console.warn('no promptId: ', promptId , 'state: ', chatroomState)
+            console.log('no promptId: ', promptId , 'state: ', chatroomState)
             return
         }
         
@@ -104,6 +109,7 @@ export default function ArcadeRoomPage() {
                     }
                 }).then(data => {
                     setChatroom(data.data.getChatroomByCode)
+                    setChatroomUsers(data.data.getChatroomByCode.users)
                     setChatroomInit(true)
                     console.log('chatroom Initialized: ', data)
 
@@ -124,7 +130,7 @@ export default function ArcadeRoomPage() {
         }
         initializeChatroom()
 
-    }, [userIsLoading, paramsVerified])
+    }, [userIsLoading, paramsVerified, chatroomReinit])
 
 
     useEffect(()=> {
@@ -150,6 +156,7 @@ export default function ArcadeRoomPage() {
                     setChatroomUser(data.data.createChatroomUser)
                     setChatroomUserInit(true)
                     setChatroomUserId(data.data.createChatroomUser.id)
+                    setChatroomUsers((oldData) => [...oldData, data.data.createChatroomUser])
                     console.log('chatroomUser Initialized: ', data)
                 })
         }
@@ -182,6 +189,8 @@ export default function ArcadeRoomPage() {
     useEffect(() => {
 
         if(!chatroomInit || !chatroomUserInit) return
+        const onCreateChatroomUserSub = onCreateChatroomUserSubscription()
+        console.log('subscribed to onUpdateChatroomUser')
         const onCreateMessageSub = onCreateMessageSubscription()
         console.log('subscribed to onCreateMessage')
         const onUpdateChatroomSub = onUpdateChatroomSubscription()
@@ -192,11 +201,11 @@ export default function ArcadeRoomPage() {
         console.log('subscribed to onUpdateChatroomUser')
         
         return(() => {
-            console.log('unsubscribing from onCreateMessage/onUpdateChatroom ...', onCreateMessageSub, onUpdateChatroomSub, onUpdateChatroomStateSub, onUpdateChatroomUserSub)
+            console.log('unsubscribing from onCreateMessage/onUpdateChatroom ...', onCreateMessageSub, onUpdateChatroomSub, onCreateChatroomUserSub, onUpdateChatroomStateSub)
             onCreateMessageSub.unsubscribe()
             onUpdateChatroomSub.unsubscribe()
+            onCreateChatroomUserSub.unsubscribe()
             onUpdateChatroomStateSub.unsubscribe()
-            onUpdateChatroomUserSub.unsubscribe()
 
         })
 
@@ -264,27 +273,61 @@ export default function ArcadeRoomPage() {
 
 
     }, [chatroomUserInit])
+
     
-    const onUpdateChatroomUserSubscription = () => {
-        return client
+    const onCreateChatroomUserSubscription = () => {
+        
+        const sub = client
         .graphql({
-            query: onUpdateChatroomUser,
+            query: onCreateChatroomUser,
             variables: {
                 chatroomId: chatroom.id
             }
         }).subscribe(data => {
-            console.log('got user update: ', data)
+            console.log('USER JOINED: ', data)
             if(!chatroom) return
-            if(!chatroom.users) return
 
-            chatroom.users.map((user) => {
+            if(chatroomUsers.findIndex(user => user.id == data.data.onCreateChatroomUser.id) == -1){
 
-                if(user.id == data.data.onUpdateChatroomUser.id){
-                    user.points = data.data.onUpdateChatroomUser.points
+                console.log('adding user')
+                setChatroomUsers((oldData) => [...oldData, (data.data.onCreateChatroomUser)])
+                
+            }
+            
+
+        })
+        console.log('onUpdateUserSub: ', sub)
+        return sub;
+    }
+
+    const onUpdateChatroomUserSubscription = () => {
+
+        const sub = client
+            .graphql({
+                query: onUpdateChatroomUser,
+                variables: {
+                    chatroomId: chatroom.id
                 }
+            }).subscribe((data) => {
+
+                console.log('UPDATE: ', data)
+
+                setChatroomUsers((oldData) => {
+                    
+                    const temp = oldData
+                    const changedIndex = temp.findIndex((user) => user.id != data.data.onUpdateChatroomUser.id)
+
+                    if(!temp[changedIndex]) return oldData
+                    temp[changedIndex].points = data.data.onUpdateChatroomUser.points
+                    temp[changedIndex].state = data.data.onUpdateChatroomUser.state
+
+                    return temp
+                    
+
+
+                })
 
             })
-        })
     }
     
     const onCreateMessageSubscription = () => {
@@ -304,19 +347,26 @@ export default function ArcadeRoomPage() {
                     data.data.onCreateChatroomMessage
 
                 ]))
+
             }else if(data.data.onCreateChatroomMessage.type == 'GUESS'){
                 setChatroomMessages((oldMessages) => ([
                     
                     ...oldMessages,
                     data.data.onCreateChatroomMessage
 
-                ]))
-            }
+                ]))   
 
+            }else if(data.data.onCreateChatroomMessage.type == 'GUESS-CORRECT'){
+                setChatroomMessages((oldMessages) => ([
+                    
+                    ...oldMessages,
+                    data.data.onCreateChatroomMessage
 
+                ]))   
 
-        })
+        }})
     }
+
     const onUpdateChatroomSubscription = () => {
 
         return client
@@ -454,7 +504,7 @@ export default function ArcadeRoomPage() {
 
                         <span className='my-auto ps-5'><span>{(round == 0)? "LOBBY": "Round " + round}</span></span>
                         <span className='my-auto flex flex-row cursor-default' onMouseEnter={() => {
-                        setUsersTooltip((chatroom.users.map((user) => user.user.username.toString()).join("\n")))
+                        setUsersTooltip((chatroomUsers.map((user) => user.user.username.toString()).join("\n")))
                     }}
                         data-tooltip-id="users-tooltip"
                         data-tooltip-content={usersTooltip}
@@ -462,7 +512,7 @@ export default function ArcadeRoomPage() {
                         data-tooltip-float={true}
                         data-tooltip-offset={30}
                         data-tooltip-variant='light'
-                        data-tooltip-place="bottom">{chatroom.users.length} <IoPersonSharp className='my-auto ms-2' /></span>
+                        data-tooltip-place="bottom">{(chatroomUsers) ? chatroomUsers.length: 0} <IoPersonSharp className='my-auto ms-2' /></span>
                         <Tooltip id='users-tooltip'></Tooltip>
                     </div>
 
@@ -474,13 +524,14 @@ export default function ArcadeRoomPage() {
 
                     <div className='top-0 left-0 h-full -z-10 ps-5 text-xl text-nowrap '>
 
-                        {chatroom.users.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
+                        {(chatroomUsers == null)? '' :chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
+
                             return <div key={user.id}>{user.user.username}:   {user.points}</div>
                         })}
                     
                     </div>
 
-                    <GameArea chatroom={chatroom} chatroomState={chatroomState} chatroomUser={chatroomUser} prompt={prompt} />
+                    <GameArea chatroom={chatroom} chatroomState={chatroomState} chatroomUser={chatroomUser} chatroomUsers={chatroomUsers} prompt={prompt} />
                     
 
 
@@ -488,17 +539,27 @@ export default function ArcadeRoomPage() {
                 </div>
             </div>
 
-            <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full h-screen overflow-hidden flex flex-col justify-between'>
-                <div className='flex flex-col mt-auto w-full text-start ps-5 align-bottom overflowy-scroll overflow-x-hidden max-h-full'>
+            <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full h-screen flex flex-col justify-between'>
+                <div className='flex flex-col justify-end w-full text-start ps-5 align-bottom overflow-x-hidden'>
 
                     {chatroomMessages.map((message) => {
 
+                        if(message.type == 'GUESS-CORRECT' ){
+
+                            return <div key={message.id} className='text-lg leading-5 text-orange-300 mb-3'>
+                                <span className='font-nova-bold text-neutral-300'>{message.chatroomUser.user.username}</span> guessed it!
+
+
+                            </div>
+
+                        }
+
                         return( 
-                        <div key={message.id} className={`${message.type == 'GUESS'?'text-neutral-500':'text-white'} text-2xl flex flex-col leading-5`}>
+                        <div key={message.id} className={`${message.type == 'GUESS'?'text-neutral-500': 'text-neutral-200'} text-2xl flex flex-col leading-5`}>
                             <div className='text-sm'>
                                 {(message.chatroomUser) ? message.chatroomUser.user.username: ''}
                             </div>
-                            <div className='text-2xl mb-3'>
+                            <div className={`text-2xl mb-3 break-all`}>
                                 {message.content}
                             </div>
                         </div>

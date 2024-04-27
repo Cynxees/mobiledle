@@ -59,12 +59,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "rewardUser",
+            "executeLaunchGameStep",
             {
               "Fn::Join": [
                 "",
                 [
-                  "rewardUser",
+                  "executeLaunchGameStep",
                   "-",
                   {
                     "Ref": "env"
@@ -100,9 +100,7 @@
           ]
         },
         "Runtime": "nodejs18.x",
-        "Layers": [
-          "arn:aws:lambda:ap-southeast-1:881734199479:layer:aws-sdk-layer:5"
-        ],
+        "Layers": [],
         "Timeout": 25
       }
     },
@@ -112,12 +110,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "mobiledleLambdaRole05237517",
+            "mobiledleLambdaRole7248643d",
             {
               "Fn::Join": [
                 "",
                 [
-                  "mobiledleLambdaRole05237517",
+                  "mobiledleLambdaRole7248643d",
                   "-",
                   {
                     "Ref": "env"

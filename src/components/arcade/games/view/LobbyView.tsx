@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { Chatroom, ChatroomState } from "../../../../API"
+import { Chatroom, ChatroomState, ChatroomUser } from "../../../../API"
 import { post } from 'aws-amplify/api';
 
 interface LobbyViewInput {
 
     chatroomState : ChatroomState,
-    chatroom: Chatroom
+    chatroomUsers: ChatroomUser[]
     
 }
 
 
 
 
-export default function LobbyView({chatroomState, chatroom}: LobbyViewInput){
+export default function LobbyView({chatroomState, chatroomUsers}: LobbyViewInput){
 
 
 
@@ -45,7 +45,7 @@ export default function LobbyView({chatroomState, chatroom}: LobbyViewInput){
 
 
         <div className="my-auto flex flex-row flex-wrap justify-center gap-5">
-            {chatroom.users.map(user => {
+            {chatroomUsers.map(user => {
                 return <div className="py-5 px-14 border border-neutral-700 rounded-md bg-white bg-opacity-5">
 
                     {user.user.username}

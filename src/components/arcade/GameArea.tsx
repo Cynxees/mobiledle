@@ -8,18 +8,19 @@ interface GameAreaInput {
     chatroom: Chatroom
     chatroomState : ChatroomState,
     chatroomUser: ChatroomUser,
+    chatroomUsers: ChatroomUser[],
     prompt: Prompt
     
 }
 
-export default function GameArea(  {chatroom, chatroomState, chatroomUser, prompt} : GameAreaInput){
+export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatroomUsers, prompt} : GameAreaInput){
 
 
     
 
     return <div className="h-full w-full">
 
-        {(chatroomState.currentState == "PLAYING") ? <ClassicGameView chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser}/> : <LobbyView chatroom={chatroom} chatroomState={chatroomState}/>}
+        {(chatroomState.currentState == "PLAYING") ? <ClassicGameView chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser}/> : <LobbyView chatroomUsers={chatroomUsers} chatroomState={chatroomState}/>}
 
 
 

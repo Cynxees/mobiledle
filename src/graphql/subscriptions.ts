@@ -278,8 +278,8 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
   APITypes.OnCreateChatroomUserSubscriptionVariables,
   APITypes.OnCreateChatroomUserSubscription
 >;
-export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroomUser($id: ID, $chatroomId: ID, $userId: ID) {
-  onUpdateChatroomUser(id: $id, chatroomId: $chatroomId, userId: $userId) {
+export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroomUser($id: ID, $chatroomId: ID, $points: Int) {
+  onUpdateChatroomUser(id: $id, chatroomId: $chatroomId, points: $points) {
     id
     chatroomId
     userId
@@ -346,6 +346,75 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
 ` as GeneratedSubscription<
   APITypes.OnUpdateChatroomUserSubscriptionVariables,
   APITypes.OnUpdateChatroomUserSubscription
+>;
+export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpdateChatroomUserByChatroom($chatroomId: ID) {
+  onUpdateChatroomUserByChatroom(chatroomId: $chatroomId) {
+    id
+    chatroomId
+    userId
+    user {
+      id
+      username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      ttl
+      __typename
+    }
+    chatroom {
+      id
+      name
+      code
+      messages {
+        id
+        content
+        chatroomUserId
+        chatroomId
+        type
+        createdAt
+        ttl
+        __typename
+      }
+      users {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        __typename
+      }
+      chatroomState {
+        id
+        chatroomId
+        mode
+        currentState
+        promptId
+        willEndAt
+        gameDuration
+        round
+        maxPoints
+        ttl
+        __typename
+      }
+      ttl
+      __typename
+    }
+    ttl
+    points
+    state
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateChatroomUserByChatroomSubscriptionVariables,
+  APITypes.OnUpdateChatroomUserByChatroomSubscription
 >;
 export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroomUser($id: ID) {
   onDeleteChatroomUser(id: $id) {

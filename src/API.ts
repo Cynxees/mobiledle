@@ -3118,11 +3118,81 @@ export type OnCreateChatroomUserSubscription = {
 export type OnUpdateChatroomUserSubscriptionVariables = {
   id?: string | null,
   chatroomId?: string | null,
-  userId?: string | null,
+  points?: number | null,
 };
 
 export type OnUpdateChatroomUserSubscription = {
   onUpdateChatroomUser?:  {
+    __typename: "ChatroomUser",
+    id: string,
+    chatroomId: string,
+    userId: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      username?: string | null,
+      chatrooms?:  Array< {
+        __typename: "ChatroomUser",
+        id: string,
+        chatroomId: string,
+        userId: string,
+        ttl: number,
+        points?: number | null,
+        state?: string | null,
+      } | null > | null,
+      ttl: number,
+    } | null,
+    chatroom?:  {
+      __typename: "Chatroom",
+      id: string,
+      name: string,
+      code: string,
+      messages?:  Array< {
+        __typename: "ChatroomMessage",
+        id: string,
+        content: string,
+        chatroomUserId: string,
+        chatroomId: string,
+        type?: string | null,
+        createdAt: string,
+        ttl: number,
+      } | null > | null,
+      users?:  Array< {
+        __typename: "ChatroomUser",
+        id: string,
+        chatroomId: string,
+        userId: string,
+        ttl: number,
+        points?: number | null,
+        state?: string | null,
+      } | null > | null,
+      chatroomState?:  {
+        __typename: "ChatroomState",
+        id: string,
+        chatroomId?: string | null,
+        mode?: string | null,
+        currentState?: string | null,
+        promptId?: string | null,
+        willEndAt?: string | null,
+        gameDuration?: number | null,
+        round?: number | null,
+        maxPoints?: number | null,
+        ttl?: number | null,
+      } | null,
+      ttl: number,
+    } | null,
+    ttl: number,
+    points?: number | null,
+    state?: string | null,
+  } | null,
+};
+
+export type OnUpdateChatroomUserByChatroomSubscriptionVariables = {
+  chatroomId?: string | null,
+};
+
+export type OnUpdateChatroomUserByChatroomSubscription = {
+  onUpdateChatroomUserByChatroom?:  {
     __typename: "ChatroomUser",
     id: string,
     chatroomId: string,

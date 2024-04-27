@@ -78,6 +78,22 @@
     }
   },
   "function": {
+    "executeLaunchGameStep": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "incrementRound": {
       "build": true,
       "dependsOn": [
@@ -144,6 +160,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_executeLaunchGameStep_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "executeLaunchGameStep"
+        }
+      ]
+    },
+    "AMPLIFY_function_executeLaunchGameStep_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "executeLaunchGameStep"
+        }
+      ]
+    },
     "AMPLIFY_function_incrementRound_deploymentBucketName": {
       "usedBy": [
         {

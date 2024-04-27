@@ -34,6 +34,28 @@ function TraitBox({trait, state}: TraitBoxProps){
 
 }
 
+
+const compareTrait = (trait: string, trait2: string): number => {
+
+  const traits = trait.split('/')
+  const traits2 = trait2.split('/')
+
+  const check = traits.every((data) => traits2.includes(data))
+  const check2 = traits2.every((data) => traits.includes(data))
+  
+  if(check && check2){
+    return 0
+  } else if(check || check2){
+    return 1
+  }
+
+
+
+  return 2
+
+
+}
+
 export default function ClassicHeroBox({
   character,
   answer,
@@ -44,85 +66,40 @@ export default function ClassicHeroBox({
 
   if(!answer) return
 
-  const characterLanes = character.lane.split('/')
-  const todayCharacterLanes = answer.lane.split('/')
-  let laneIsPartial = false
-  let laneIsCorrect = false
-
-  characterLanes.forEach(lane => {
-    
-    var temp = false
-
-    todayCharacterLanes.forEach(todayLane => {
-
-      if(lane == todayLane){
-
-        laneIsPartial = true
-        temp = true
-        
-      }else{
-        
-      }
-
-    })
-
-
-    if(temp) laneIsCorrect = true
-
-  })
-
-  if(characterLanes.length != todayCharacterLanes.length) laneIsCorrect = false
-  
-  const characterRoles = character.role.split('/')
-  const todayCharacterRoles = answer.role.split('/')
-  let roleIsPartial = false
-  let roleIsCorrect = false
-
-  characterRoles.forEach(role => {
-    
-    var temp = false
-
-    todayCharacterRoles.forEach(todayRole => {
-
-      if(role == todayRole){
-
-        roleIsPartial = true
-        temp = true
-        
-      }else{
-        
-      }
-
-    })
-
-
-    if(temp) roleIsCorrect = true
-
-  })
-
-  if(characterRoles.length != todayCharacterLanes.length) roleIsCorrect = false
-
-  
   
 
   return (
     <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg h-full w-full">
       
 
+      <div className="absolute w-28 h-28 overflow-hidden animate__animated animate__zoomInRight">
+      <img className="absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
+                    currentTarget.src="/noPicture.png";
+                    currentTarget.onerror = null
+              }}/>
+      </div>
+
       
+      <div className="py-4 w-28 h-28 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
+      
+        <img className="z-10" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
+                    currentTarget.src="/noPicture.png";
+                    currentTarget.onerror = null
+                }}/>
+      </div>
       <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />
       
-      <TraitBox trait={character.role?.replace("/", " , ")} state={roleIsCorrect?0:roleIsPartial? 1:2} />
-      <TraitBox trait={character.lane?.replace("/", " , ")} state={laneIsCorrect?0:laneIsPartial? 1:2} />
+      <TraitBox trait={character.role?.replace("/", " , ")} state={compareTrait(character.role, answer.role)} />
+      <TraitBox trait={character.lane?.replace("/", " , ")} state={compareTrait(character.lane, answer.lane)} />
       
-      <TraitBox trait={t(`${character.region}`)} state={character.region === answer.region ? 0 : 2} />
+      <TraitBox trait={t(`${character.region}`)} state={compareTrait(character.region, answer.region)} />
       
-      <TraitBox trait={character.year.toString()} state={character.year === answer.year ? 0 : 2} />
-      <TraitBox trait={character.alias.toString()} state={character.year === answer.year ? 0 : 2} />
-      <TraitBox trait={character.rangeType.toString()} state={character.year === answer.year ? 0 : 2} />
-      <TraitBox trait={character.resource.toString()} state={character.year === answer.year ? 0 : 2} />
-      <TraitBox trait={character.species.toString()} state={character.year === answer.year ? 0 : 2} />
-      <TraitBox trait={character.specialty.toString()} state={character.year === answer.year ? 0 : 2} />
+      <TraitBox trait={character.year.toString()} state={compareTrait(character.year.toString(), answer.year.toString())} />
+      <TraitBox trait={character.rangeType.toString()} state={compareTrait(character.rangeType, answer.rangeType)} />
+      <TraitBox trait={character.resource.toString()} state={compareTrait(character.resource, answer.resource)} />
+      <TraitBox trait={character.species.toString()} state={compareTrait(character.species, answer.species)} />
+      <TraitBox trait={character.specialty.toString()} state={compareTrait(character.specialty, answer.specialty)} />
+      <TraitBox trait={character.damageType.toString()} state={compareTrait(character.damageType, answer.damageType)} />
 
     </div>
   );

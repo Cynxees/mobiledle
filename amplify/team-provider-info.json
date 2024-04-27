@@ -46,7 +46,11 @@
         },
         "rewardUser": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/rewardUser-4a6478514961654a4530-build.zip"
+          "s3Key": "amplify-builds/rewardUser-3068305043434c5a684a-build.zip"
+        },
+        "executeLaunchGameStep": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/executeLaunchGameStep-4738733635764f6c7032-build.zip"
         }
       }
     }
