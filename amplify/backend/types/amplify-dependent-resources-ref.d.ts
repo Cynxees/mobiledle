@@ -24,6 +24,13 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "checkChatroomState": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "executeLaunchGameStep": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

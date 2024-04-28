@@ -1,6 +1,6 @@
 import React, { FormEventHandler, useEffect, useState } from 'react';
 import { generateClient, post } from 'aws-amplify/api';
-import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage } from '../../graphql/mutations';
+import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage, executeLaunchGame, executeLaunchGame2 } from '../../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onCreateChatroomUser, onUpdateChatroom, onUpdateChatroomState, onUpdateChatroomUser, onUpdateChatroomUserByChatroom } from '../../graphql/subscriptions';
 import { Chatroom, ChatroomMessage, ChatroomUser, ChatroomState, Prompt, MobileLegendsCharacter } from '../../API';
 import getTtlFromMinutes from '../../utils/getTtlFromMinutes';
@@ -15,6 +15,7 @@ import { useMobileLegendsCharacters } from '../../providers/MobileLegendsCharact
 import GameArea from '../../components/arcade/GameArea';
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from '../../amplifyconfiguration.json'
+
 
 
 
@@ -51,6 +52,54 @@ export default function ArcadeRoomPage() {
     const [chatroomUserInit, setChatroomUserInit] = useState(false)
 
     const [chatInput, setChatInput] = useState('')
+    const [isFocused, setFocused] = useState(false)
+    const [inactivityTimeout, setInactivityTimeout] = useState(0);
+
+    const onFocus = () => {
+        setFocused(true)
+        console.log("Tab is in focus");
+    };
+    const onBlur = () => {
+        setFocused(false)
+        console.log("Tab is blurred");
+    };
+
+
+
+
+    useEffect(() => {
+
+        if (inactivityTimeout) {
+            clearTimeout(inactivityTimeout);
+        }
+
+        
+        if(isFocused){
+            clearTimeout(inactivityTimeout)
+        }else{
+            setInactivityTimeout(setTimeout(() => {
+                console.warn("USER IS INACTIVE")
+                navigate('/arcade')
+                
+            }, 5*60*1000));
+        }
+
+
+    }, [isFocused])
+
+    useEffect(() => {
+        window.addEventListener("focus", onFocus);
+        window.addEventListener("blur", onBlur);
+        onFocus();
+
+
+
+        return () => {
+            window.removeEventListener("focus", onFocus);
+            window.removeEventListener("blur", onBlur);
+        };
+    }, []);
+    
 
 
     const fetchPrompt = (inputPromptId?: string) => {
@@ -314,13 +363,17 @@ export default function ArcadeRoomPage() {
 
                 setChatroomUsers((oldData) => {
                     
+                    console.log('oldData: ',oldData)
                     const temp = oldData
-                    const changedIndex = temp.findIndex((user) => user.id != data.data.onUpdateChatroomUser.id)
-
-                    if(!temp[changedIndex]) return oldData
+                    var changedIndex = temp.findIndex((user) => user.id != data.data.onUpdateChatroomUser.id)
+                    console.log('Update user index: ', changedIndex)
+                    if(oldData[0].id == data.data.onUpdateChatroomUser.id) changedIndex = 0;
+                    if(changedIndex == -1) return [...oldData]
+                    console.log('user before: ', temp[changedIndex])
                     temp[changedIndex].points = data.data.onUpdateChatroomUser.points
                     temp[changedIndex].state = data.data.onUpdateChatroomUser.state
 
+                    console.log('user after: ', temp[changedIndex])
                     return temp
                     
 
@@ -467,6 +520,24 @@ export default function ArcadeRoomPage() {
         setUserCount(chatroom.users.length)
     }, [chatroom])
     
+
+    const devButton = () => {
+        console.log('dev button clicked')
+
+        const temp = client.graphql({
+            query: executeLaunchGame,
+            variables: {
+                input: {
+                    chatroomStateId: chatroomState.id
+                }
+            }
+        }).then((result) => {
+            console.log(result)
+        }).catch((err) => {
+            console.error('dev button error: ',err)
+        })
+    }
+
     if(!chatroomInit) return <div>loading...</div>
 
     return(
@@ -517,6 +588,12 @@ export default function ArcadeRoomPage() {
                     </div>
 
 
+                </div>
+                <div className='bg-neutral-400 p-5 gap-5 flex flex-row'>
+                    <span className='text-xl my-auto text-black font-nova-bold'>Dev Mode: </span>
+                    <button onClick={
+                        devButton
+                    }>DEV BUTTON</button>
                 </div>
 
                 <div className='h-full w-full flex flex-row p-5'>

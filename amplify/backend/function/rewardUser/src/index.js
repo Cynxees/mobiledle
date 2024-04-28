@@ -31,7 +31,7 @@ async function sendGraphQLRequest(query, variables) {
     }
 }
 
-async function addUserPoints(userId, addedPoints) {
+async function addUserPoints(id, chatroomId, userId, ttl, addedPoints) {
     
     
     const fetchQuery = /* GraphQL */ `
@@ -43,7 +43,7 @@ async function addUserPoints(userId, addedPoints) {
         }
     `;
 
-    const fetchVariables = { id: userId };
+    const fetchVariables = { id: id };
 
     let response = await sendGraphQLRequest(fetchQuery, fetchVariables);
     if (response.errors) {
@@ -60,14 +60,21 @@ async function addUserPoints(userId, addedPoints) {
         mutation UpdateChatroomUser($input: UpdateChatroomUserInput!) {
           updateChatroomUser(input: $input) {
             id
+            chatroomId
+            userId
+            ttl
             points
+            
           }
         }
       `
 
     const variables = {
       input: {
-        id: userId,
+        id: id,
+        chatroomId: chatroomId,
+        userId: userId,
+        ttl: ttl,
         points: newPoints,
       }
     };
@@ -98,14 +105,14 @@ exports.handler = async (event) => {
     let response;
 
     if (httpMethod === "POST" && path === "/reward") {
-    const { chatroomUserId, points } = JSON.parse(body);
+    const { id, chatroomId, userId, ttl, points } = JSON.parse(body);
     console.log('body: ', body)
-    console.log('chatroomuserid: ', chatroomUserId)
+    console.log('chatroomuserid: ', id)
     console.log('points: ', points)
     
 
         try {
-            const temp = await addUserPoints(chatroomUserId, points);
+            const temp = await addUserPoints(id, chatroomId, userId, ttl, points);
             response = {
                 statusCode: 200,
                 headers: {

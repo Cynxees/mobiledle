@@ -46,7 +46,7 @@ export default function LobbyView({chatroomState, chatroomUsers}: LobbyViewInput
 
         <div className="my-auto flex flex-row flex-wrap justify-center gap-5">
             {chatroomUsers.map(user => {
-                return <div className="py-5 px-14 border border-neutral-700 rounded-md bg-white bg-opacity-5">
+                return <div key={user.id} className="py-5 px-14 border border-neutral-700 rounded-md bg-white bg-opacity-5">
 
                     {user.user.username}
 

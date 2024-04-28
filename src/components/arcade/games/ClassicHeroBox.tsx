@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { MobileLegendsCharacter } from "../../../API";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 interface ClassicHeroBox {
   character: MobileLegendsCharacter;
@@ -10,14 +11,17 @@ interface ClassicHeroBox {
 interface TraitBoxProps {
   trait: string,
   state: number,
+  isYear?: boolean,
+  answerYear?: string
 }
 
-function TraitBox({trait, state}: TraitBoxProps){
+function TraitBox({trait, state, isYear = false, answerYear='0'}: TraitBoxProps){
 
 
   const wrongColor = "bg-red-900 text-shadow shadow-gray-700 w-28 h-28"
   const partialColor = "bg-orange-700 text-shadow shadow-gray-700 w-28 h-28"
   const correctColor = "bg-green-700 text-shadow shadow-gray-700 w-28 h-28"
+
 
   return <div
   className={`py-4  border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/agelta.jpg')] bg-blend-darken ${
@@ -27,7 +31,23 @@ function TraitBox({trait, state}: TraitBoxProps){
     } `}
   >
 
-  {trait}
+  {(!isYear)? trait : 
+  
+    <div className="flex flex-row align-middle">
+      {trait}
+      {answerYear > trait ? 
+      <FaAngleUp className="my-auto" />
+      :
+      answerYear < trait ?
+      <FaAngleDown className={`my-auto` } />
+      :
+      ''
+      }
+    
+      </div>
+  
+  }
+
 
 
 </div>
@@ -94,7 +114,7 @@ export default function ClassicHeroBox({
       
       <TraitBox trait={t(`${character.region}`)} state={compareTrait(character.region, answer.region)} />
       
-      <TraitBox trait={character.year.toString()} state={compareTrait(character.year.toString(), answer.year.toString())} />
+      <TraitBox trait={character.year.toString()} state={compareTrait(character.year.toString(), answer.year.toString())} isYear={true} answerYear={answer.year.toString()} />
       <TraitBox trait={character.rangeType.toString()} state={compareTrait(character.rangeType, answer.rangeType)} />
       <TraitBox trait={character.resource.toString()} state={compareTrait(character.resource, answer.resource)} />
       <TraitBox trait={character.species.toString()} state={compareTrait(character.species, answer.species)} />

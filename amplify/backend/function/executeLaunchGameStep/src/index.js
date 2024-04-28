@@ -5,19 +5,27 @@
 	ENV
 	REGION
 Amplify Params - DO NOT EDIT */
+const AWS = require('aws-sdk');
+const stepfunctions = new AWS.StepFunctions();
 
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 exports.handler = async (event) => {
-    console.log(`EVENT: ${JSON.stringify(event)}`);
-    return {
-        statusCode: 200,
-    //  Uncomment below to enable CORS requests
-    //  headers: {
-    //      "Access-Control-Allow-Origin": "*",
-    //      "Access-Control-Allow-Headers": "*"
-    //  },
-        body: JSON.stringify('Hello from Lambda!'),
+    
+    const stepArn = "arn:aws:states:ap-southeast-1:881734199479:stateMachine:GameLoopState"
+    const params = {
+        stateMachineArn: stepArn,
+        input: JSON.stringify(event),
+        name: 'Execution-' + Date.now()
     };
+    
+    try {
+        const data = await stepfunctions.startExecution(params).promise();
+        return { executionArn: data.executionArn, startDate: data.startDate };
+    } catch (error) {
+        console.error('Error starting step function:', error);
+        throw error;
+    }
+    
 };

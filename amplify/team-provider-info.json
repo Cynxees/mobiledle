@@ -34,23 +34,27 @@
       "function": {
         "launchGame": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/launchGame-61727061766b6e552f76-build.zip"
+          "s3Key": "amplify-builds/launchGame-54364a5278376856475a-build.zip"
         },
         "incrementRound": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/incrementRound-6d554c4d5a6e6853617a-build.zip"
+          "s3Key": "amplify-builds/incrementRound-39626231756b316f4f50-build.zip"
         },
         "setUserStates": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/setUserStates-7a2f683750354a6e6a4c-build.zip"
+          "s3Key": "amplify-builds/setUserStates-35346e6363574a486150-build.zip"
         },
         "rewardUser": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/rewardUser-3068305043434c5a684a-build.zip"
+          "s3Key": "amplify-builds/rewardUser-786769576b7455675867-build.zip"
         },
         "executeLaunchGameStep": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/executeLaunchGameStep-4738733635764f6c7032-build.zip"
+          "s3Key": "amplify-builds/executeLaunchGameStep-637461567645484e4272-build.zip"
+        },
+        "checkChatroomState": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/checkChatroomState-314e464348726d357063-build.zip"
         }
       }
     }

@@ -98,6 +98,20 @@ export const deleteMobileLegendsCharacter = /* GraphQL */ `mutation DeleteMobile
   APITypes.DeleteMobileLegendsCharacterMutationVariables,
   APITypes.DeleteMobileLegendsCharacterMutation
 >;
+export const executeLaunchGame = /* GraphQL */ `mutation ExecuteLaunchGame($input: ExecuteLaunchGameInput!) {
+  executeLaunchGame(input: $input)
+}
+` as GeneratedMutation<
+  APITypes.ExecuteLaunchGameMutationVariables,
+  APITypes.ExecuteLaunchGameMutation
+>;
+export const executeLaunchGame2 = /* GraphQL */ `mutation ExecuteLaunchGame2($input: ExecuteLaunchGameInput!) {
+  executeLaunchGame2(input: $input)
+}
+` as GeneratedMutation<
+  APITypes.ExecuteLaunchGame2MutationVariables,
+  APITypes.ExecuteLaunchGame2Mutation
+>;
 export const createUser = /* GraphQL */ `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
     id

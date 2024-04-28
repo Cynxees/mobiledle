@@ -5,6 +5,7 @@ import { generateClient, post } from "aws-amplify/api";
 import { createChatroomMessage } from "../../../../graphql/mutations";
 import getTtlFromMinutes from "../../../../utils/getTtlFromMinutes";
 import ClassicHeroBox from "../ClassicHeroBox";
+import { GiSilverBullet } from "react-icons/gi";
 
 function isAlphaNumeric(str : string) {
     var code, i, len;
@@ -28,8 +29,7 @@ const randomizeHero = (index : number, max: number) => {
     const month = new Date().getUTCMonth();
     const year = new Date().getUTCFullYear();
     
-
-    return Math.floor(index * date * month * year) % max
+    return Math.floor(index+5 * date+5 * month+5 * year+5) % max
 
 
 
@@ -50,6 +50,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
     const client = generateClient()
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
+    const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsCharacter[]>([])
     const [ character1, setCharacter1 ] = useState<MobileLegendsCharacter>();
     const [ character2, setCharacter2 ] = useState<MobileLegendsCharacter>();
     const [ character3, setCharacter3 ] = useState<MobileLegendsCharacter>();
@@ -68,14 +69,11 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
         setAnswer(characters[prompt.mobileLegendsCharacterId])
         console.log('answer: ', characters[prompt.mobileLegendsCharacterId])
 
-        const index1 = randomizeHero(parseInt(prompt.mobileLegendsCharacterId), 100)
-        const index2 = randomizeHero(index1, 100)
-        const index3 = randomizeHero(index2, 100)
+        const index1 = randomizeHero(parseInt(prompt.mobileLegendsCharacterId), 124)
+        const index2 = randomizeHero(index1, 124)
+        const index3 = randomizeHero(index2, 124)
 
-        setCharacter1(characters[index1])
-        setCharacter2(characters[index2])
-        setCharacter3(characters[index3])
-
+        setCharacterGuesses([characters[index1], characters[index2], characters[index3]])
 
     }, [prompt])
 
@@ -193,16 +191,25 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
         <div className="row-span-5 ">
             <div className="w-full h-full flex items-center">
                 <div className="mx-auto flex flex-col gap-5">
-                <ClassicHeroBox character={character1} answer={answer} showBooleans={[true,true]}/>
-                <ClassicHeroBox character={character2} answer={answer} showBooleans={[true,true]}/>
-                <ClassicHeroBox character={character3} answer={answer} showBooleans={[true,true]}/>
 
+                {characterGuesses.map(guess => {
+
+                    return <ClassicHeroBox character={guess} answer={answer} showBooleans={[true,true]} />
+
+                })}
+    
                 </div>
             </div>
         </div>
         
-        <div className="">
-            <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem]  focus:outline-none bg-neutral-900 h-16 w-[30%] text-center uppercase text-white ps-5 text-2xl" />
+        <div className="flex flex-col mx-auto">
+            <div className="flex flex-row justify-center [&>*]:text-3xl mb-5 gap-10">
+                <GiSilverBullet />
+                <GiSilverBullet />
+                <GiSilverBullet />
+
+            </div>
+            <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[20vw] border-orange-200 border-2  focus:outline-none bg-neutral-900 h-16 text-center uppercase text-white ps-5 text-2xl" />
         </div>
 
 

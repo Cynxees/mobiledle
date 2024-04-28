@@ -78,6 +78,22 @@
     }
   },
   "function": {
+    "checkChatroomState": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "executeLaunchGameStep": {
       "build": true,
       "dependsOn": [
@@ -160,6 +176,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_checkChatroomState_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkChatroomState"
+        }
+      ]
+    },
+    "AMPLIFY_function_checkChatroomState_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkChatroomState"
+        }
+      ]
+    },
     "AMPLIFY_function_executeLaunchGameStep_deploymentBucketName": {
       "usedBy": [
         {

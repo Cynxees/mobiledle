@@ -115,13 +115,19 @@ async function updateRoomState(stateId) {
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 exports.handler = async (event) => {
-    console.log(`EVENT: ${JSON.stringify(event)}`);
-    const message = JSON.parse(event.Records[0].Sns.Message);
-    console.log('event message: ', message)
     
-    await updateRoomState(message.stateId)
+    const chatroomStateId = event.variables.input.chatroomStateId
+    await updateRoomState(chatroomStateId)
     
-    return;
+    return {
+            statusCode: 200,
+            variables: {
+                input: {
+                    chatroomStateId: chatroomStateId
+                }
+                    
+            }
+        }
     
     
     

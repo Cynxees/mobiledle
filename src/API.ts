@@ -142,6 +142,10 @@ export type DeleteMobileLegendsCharacterInput = {
   id: string,
 };
 
+export type ExecuteLaunchGameInput = {
+  chatroomStateId: string,
+};
+
 export type CreateUserInput = {
   username?: string | null,
   ttl: number,
@@ -668,6 +672,22 @@ export type DeleteMobileLegendsCharacterMutation = {
     species?: string | null,
     imageUrl?: Array< string | null > | null,
   } | null,
+};
+
+export type ExecuteLaunchGameMutationVariables = {
+  input: ExecuteLaunchGameInput,
+};
+
+export type ExecuteLaunchGameMutation = {
+  executeLaunchGame?: string | null,
+};
+
+export type ExecuteLaunchGame2MutationVariables = {
+  input: ExecuteLaunchGameInput,
+};
+
+export type ExecuteLaunchGame2Mutation = {
+  executeLaunchGame2?: string | null,
 };
 
 export type CreateUserMutationVariables = {

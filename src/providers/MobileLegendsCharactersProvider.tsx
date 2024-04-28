@@ -7,7 +7,10 @@ import { useUser } from './UserProvider';
 const fetchCharacters = async () => {
     const client = generateClient();
     const response = await client.graphql({ 
-        query: listMobileLegendsCharacters 
+        query: listMobileLegendsCharacters,
+        variables: {
+            limit: 150
+        }
     
     
     })
@@ -28,6 +31,7 @@ const fetchCharacters = async () => {
     let updatedCharacterResults = await Promise.all(fetchImagePromises);
     updatedCharacterResults = updatedCharacterResults.sort((a, b) => parseInt(a.id) - parseInt(b.id));
 
+    console.log(updatedCharacterResults)
     console.log('characters fetched')
     return updatedCharacterResults;
 };
