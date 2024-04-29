@@ -85,7 +85,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
                 
                 const character = characters[parseInt(message.type.split('-')[2])-1]
 
-                if(message.type.split('-')[3] != null) return
+                if(message.type.split('-')[3] != round.toString()) return
                 
 
                 if(!characterGuesses.includes(character)){
@@ -98,7 +98,6 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
                     })
                 }
 
-                message.type = message.type + '-DONE'
 
 
                 
@@ -193,7 +192,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
             
             if(heroId != '-1'){
 
-                type = 'GUESS-HERO-'+heroId
+                type = 'GUESS-HERO-'+heroId+'-'+round
 
                 if(validateAnswer(userInput)){
 
