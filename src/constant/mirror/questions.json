@@ -118,5 +118,74 @@
         "traits": { "Charismatic": 2, "Resourceful": 1, "Mysterious": 1 }
       }
     ]
+  },
+
+  {
+    "question": "Your colleague takes credit for your idea during a meeting. How do you handle this situation?",
+    "options": [
+      {
+        "text": "Address the situation calmly, explaining to your colleague and the team that the idea originated from you.",
+        "traits": { "Calm": 2, "Determined": 1, "Brave": 1 }
+      },
+      {
+        "text": "Talk to your colleague privately, expressing your concerns and seeking a fair resolution.",
+        "traits": { "Determined": 2, "Wise": 1, "Loyal": 1 }
+      },
+      {
+        "text": "Let it go for now but ensure to document your contributions in the future to avoid similar issues.",
+        "traits": { "Noble": 2, "Resourceful": 1, "Clever": 1 }
+      }
+    ]
+  },
+  {
+    "question": "You're at a family gathering, and a heated political debate breaks out. How do you contribute to a constructive conversation?",
+    "options": [
+      {
+        "text": "Listen actively to everyone's viewpoints, showing empathy and understanding even if you disagree.",
+        "traits": { "Wise": 2, "Charismatic": 1, "Sly": 1 }
+      },
+      {
+        "text": "Ask questions to delve deeper into each perspective, encouraging thoughtful dialogue.",
+        "traits": { "Honorable": 2, "Determined": 1, "Mysterious": 1 }
+      },
+      {
+        "text": "Share personal experiences or anecdotes that relate to the topic, aiming to find common ground.",
+        "traits": { "Charismatic": 2, "Resourceful": 1, "Wise": 1 }
+      }
+    ]
+  },
+  {
+    "question": "You witness a friend being bullied by a group of peers. How do you intervene?",
+    "options": [
+      {
+        "text": "Stand up to the bullies directly, firmly expressing that their behavior is unacceptable.",
+        "traits": { "Brave": 2, "Honorable": 1, "Adventurous": 1 }
+      },
+      {
+        "text": "Distract the bullies by starting a different conversation or activity to remove the focus from your friend.",
+        "traits": { "Sly": 2, "Adventurous": 1, "Noble": 1 }
+      },
+      {
+        "text": "Report the bullying to a trusted authority figure while ensuring your friend feels supported and safe.",
+        "traits": { "Resourceful": 2, "Loyal": 1, "Wise": 1 }
+      }
+    ]
+  },
+  {
+    "question": "You've planned a hiking trip with friends, but the weather forecast predicts heavy rain. What's your approach?",
+    "options": [
+      {
+        "text": "Suggest alternative indoor activities or locations that can still provide a fun experience.",
+        "traits": { "Resourceful": 2, "Clever": 1, "Calm": 1 }
+      },
+      {
+        "text": "Encourage everyone to pack appropriate gear for rain and embrace the adventure despite the weather.",
+        "traits": { "Brave": 2, "Mysterious": 1, "Sly": 1 }
+      },
+      {
+        "text": "Postpone the trip to a better weather window to ensure everyone's safety and enjoyment.",
+        "traits": { "Calm": 2, "Determined": 1, "Honorable": 1 }
+      }
+    ]
   }
 ]
