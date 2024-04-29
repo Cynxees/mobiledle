@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { MobileLegendsCharacter } from "../../API";
 
-interface ClassicSearchBarProps {
+interface HeroShowBar {
   character: MobileLegendsCharacter;
-  todayCharacter: MobileLegendsCharacter | undefined;
+  answer: MobileLegendsCharacter | undefined;
+  showBooleans?: boolean[]
 }
 
 interface TraitBoxProps {
@@ -33,74 +34,38 @@ function TraitBox({trait, state}: TraitBoxProps){
 
 }
 
+
+const compareTrait = (trait: string, trait2: string): number => {
+
+  const traits = trait.split('/')
+  const traits2 = trait2.split('/')
+
+  const check = traits.every((data) => traits2.includes(data))
+  const check2 = traits2.every((data) => traits.includes(data))
+  
+  if(check && check2){
+    return 0
+  } else if(check || check2){
+    return 1
+  }
+
+
+
+  return 2
+
+
+}
+
 export default function HeroShowBar({
   character,
-  todayCharacter,
-}: ClassicSearchBarProps) {
+  answer,
+  showBooleans
+}: HeroShowBar) {
   const { t } = useTranslation();
 
 
-  if(!todayCharacter) return
+  if(!answer) return
 
-  const characterLanes = character.lane.split('/')
-  const todayCharacterLanes = todayCharacter.lane.split('/')
-  let laneIsPartial = false
-  let laneIsCorrect = false
-
-  characterLanes.forEach(lane => {
-    
-    var temp = false
-
-    todayCharacterLanes.forEach(todayLane => {
-
-      if(lane == todayLane){
-
-        laneIsPartial = true
-        temp = true
-        
-      }else{
-        
-      }
-
-    })
-
-
-    if(temp) laneIsCorrect = true
-
-  })
-
-  if(characterLanes.length != todayCharacterLanes.length) laneIsCorrect = false
-  
-  const characterRoles = character.role.split('/')
-  const todayCharacterRoles = todayCharacter.role.split('/')
-  let roleIsPartial = false
-  let roleIsCorrect = false
-
-  characterRoles.forEach(role => {
-    
-    var temp = false
-
-    todayCharacterRoles.forEach(todayRole => {
-
-      if(role == todayRole){
-
-        roleIsPartial = true
-        temp = true
-        
-      }else{
-        
-      }
-
-    })
-
-
-    if(temp) roleIsCorrect = true
-
-  })
-
-  if(characterRoles.length != todayCharacterLanes.length) roleIsCorrect = false
-
-  
   
 
   return (
@@ -121,16 +86,20 @@ export default function HeroShowBar({
                     currentTarget.onerror = null
                 }}/>
       </div>
-
       
-      <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === todayCharacter.gender ? 0 : 2} />
+      <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />
       
-      <TraitBox trait={character.role?.replace("/", " , ")} state={roleIsCorrect?0:roleIsPartial? 1:2} />
-      <TraitBox trait={character.lane?.replace("/", " , ")} state={laneIsCorrect?0:laneIsPartial? 1:2} />
+      <TraitBox trait={character.role?.replace("/", " , ")} state={compareTrait(character.role, answer.role)} />
+      <TraitBox trait={character.lane?.replace("/", " , ")} state={compareTrait(character.lane, answer.lane)} />
       
-      <TraitBox trait={t(`${character.region}`)} state={character.region === todayCharacter.region ? 0 : 2} />
+      <TraitBox trait={t(`${character.region}`)} state={compareTrait(character.region, answer.region)} />
       
-      <TraitBox trait={character.year.toString()} state={character.year === todayCharacter.year ? 0 : 2} />
+      <TraitBox trait={character.year.toString()} state={compareTrait(character.year.toString(), answer.year.toString())} />
+      {/* <TraitBox trait={character.rangeType.toString()} state={compareTrait(character.rangeType, answer.rangeType)} />
+      <TraitBox trait={character.resource.toString()} state={compareTrait(character.resource, answer.resource)} />
+      <TraitBox trait={character.species.toString()} state={compareTrait(character.species, answer.species)} />
+      <TraitBox trait={character.specialty.toString()} state={compareTrait(character.specialty, answer.specialty)} />
+      <TraitBox trait={character.damageType.toString()} state={compareTrait(character.damageType, answer.damageType)} /> */}
 
     </div>
   );

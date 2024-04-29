@@ -78,6 +78,60 @@
     }
   },
   "function": {
+    "checkChatroomState": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "checkUserStates": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "executeLaunchGameStep": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "executeUserAnswer": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "incrementRound": {
       "build": true,
       "dependsOn": [
@@ -126,6 +180,22 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "setChatroomStateState": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "setUserStates": {
       "build": true,
       "dependsOn": [
@@ -144,6 +214,70 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_checkChatroomState_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkChatroomState"
+        }
+      ]
+    },
+    "AMPLIFY_function_checkChatroomState_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkChatroomState"
+        }
+      ]
+    },
+    "AMPLIFY_function_checkUserStates_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkUserStates"
+        }
+      ]
+    },
+    "AMPLIFY_function_checkUserStates_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkUserStates"
+        }
+      ]
+    },
+    "AMPLIFY_function_executeLaunchGameStep_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "executeLaunchGameStep"
+        }
+      ]
+    },
+    "AMPLIFY_function_executeLaunchGameStep_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "executeLaunchGameStep"
+        }
+      ]
+    },
+    "AMPLIFY_function_executeUserAnswer_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "executeUserAnswer"
+        }
+      ]
+    },
+    "AMPLIFY_function_executeUserAnswer_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "executeUserAnswer"
+        }
+      ]
+    },
     "AMPLIFY_function_incrementRound_deploymentBucketName": {
       "usedBy": [
         {
@@ -189,6 +323,22 @@
         {
           "category": "function",
           "resourceName": "rewardUser"
+        }
+      ]
+    },
+    "AMPLIFY_function_setChatroomStateState_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "setChatroomStateState"
+        }
+      ]
+    },
+    "AMPLIFY_function_setChatroomStateState_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "setChatroomStateState"
         }
       ]
     },

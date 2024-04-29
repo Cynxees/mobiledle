@@ -48,7 +48,7 @@ async function updateRoomState(stateId) {
     let response = await sendGraphQLRequest(fetchQuery, fetchVariables);
     if (response.errors) {
         console.error('Error fetching chatroom state:', response.errors);
-        return;
+        return 0;
     }
 
     const currentRound = response.data.getChatroomState.round;
@@ -75,8 +75,8 @@ async function updateRoomState(stateId) {
     let updateResponse = await sendGraphQLRequest(query, variables);
     if (updateResponse.errors) {
         console.error('Error updating chatroom state:', response.errors);
-        return;
     }
+    return newRound
 }
 
 
@@ -86,12 +86,23 @@ async function updateRoomState(stateId) {
  */
 exports.handler = async (event) => {
     console.log(`EVENT: ${JSON.stringify(event)}`);
-    const message = JSON.parse(event.Records[0].Sns.Message);
-    console.log('event message: ', message)
     
-    await updateRoomState(message.stateId)
     
-    return;
+    
+    const chatroomStateId = event.variables.input.chatroomStateId;
+    
+    const lastRound = await updateRoomState(chatroomStateId)
+    
+    return {
+            statusCode: 200,
+            variables: {
+                input: {
+                    chatroomStateId: chatroomStateId,
+                    lastRound: lastRound
+                }
+                    
+            }
+        }
     
     
     

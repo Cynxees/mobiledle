@@ -164,7 +164,7 @@ export default function ClassicPage() {
             <div key={index} className="" style={{ order: userAnswers.length - index }}>
               <HeroShowBar
                 character={character}
-                todayCharacter={todayCharacter}
+                answer={todayCharacter}
               />
             </div>
           ))}

@@ -99,7 +99,7 @@ export default function LandingPage() {
 
   return (
     <div>
-    <img className="w-screen h-screen object-cover absolute -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-30" src="/landing-bg.jpg"/>
+    <img className="w-screen h-screen object-cover absolute -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-40" src="/landing-bg.jpg"/>
     <Particles
           id="tsparticles"
           particlesLoaded={particlesLoaded}

@@ -15,15 +15,6 @@ const GRAPHQL_ENDPOINT = process.env.API_MOBILEDLE_GRAPHQLAPIENDPOINTOUTPUT;
 const GRAPHQL_API_KEY = process.env.API_MOBILEDLE_GRAPHQLAPIKEYOUTPUT;
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
-const sns = new AWS.SNS();
-
-async function publishToSNS(topicArn, message) {
-    const params = {
-        Message: JSON.stringify(message),
-        TopicArn: topicArn
-    };
-    return sns.publish(params).promise();
-}
 
 
 function randomizeGamemode() {
@@ -138,12 +129,6 @@ async function initalizeClassicGamemode(stateId){
     try{
         
         await updateRoomState(stateId, "CLASSIC", "PLAYING", prompt.id, null)
-
-        
-        console.log('Room State Updated, sending SNS...');
-        const message = { stateId, status: 'Game Started' };
-        await publishToSNS("arn:aws:sns:ap-southeast-1:881734199479:launchGameSNS", message);
-        console.log('Published to SNS successfully');
         
         
         
@@ -171,48 +156,41 @@ async function startGameEvent(gamemode, stateId){
 }
 
 exports.handler = async (event, context, callback) => {
-    // Parse the incoming event
-    const { httpMethod, path, body } = event;
+    
     let response;
+    console.log('event : ', event)
+    
 
-    if (httpMethod === "POST" && path === "/functions") {
-        // Handle the POST request to /functions
-        const { chatroomStateId } = JSON.parse(body);
+    const chatroomStateId = event.variables.input.chatroomStateId;
 
-        try {
-            const game = await startGameEvent("CLASSIC", chatroomStateId);
-            response = {
-                statusCode: 200,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ success: 'Game started successfully!', game })
-            };
-            
-            
-        } catch (error) {
-            console.error("Error starting game:", error);
-            response = {
-                statusCode: 500,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ error: 'Failed to start game.' })
-            };
-        }
-    } else {
-        // Default response for other methods or paths
+    console.log(chatroomStateId)
+    try {
+        const game = await startGameEvent("CLASSIC", chatroomStateId);
         response = {
-            statusCode: 400,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message: "Unsupported method or path." })
+            statusCode: 200,
+            variables: {
+                input: {
+                    chatroomStateId: chatroomStateId,
+                    waitTime: 10
+                }
+                    
+            }
         };
+        
+        
+    } catch (error) {
+        console.error("Error starting game:", error);
+        response = {
+            statusCode: 500,
+            variables: {
+                input: {
+                    chatroomStateId: chatroomStateId
+                }
+                    
+            }
+        }
     }
+    
 
     return response;
 };
