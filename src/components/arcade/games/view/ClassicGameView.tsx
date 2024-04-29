@@ -1,8 +1,8 @@
 import { useMobileLegendsCharacters } from "../../../../providers/MobileLegendsCharactersProvider";
-import { ChatroomState, ChatroomUser, MobileLegendsCharacter, Prompt } from "../../../../API"
+import { ChatroomMessage, ChatroomState, ChatroomUser, MobileLegendsCharacter, Prompt } from "../../../../API"
 import { useEffect, useRef, useState } from "react";
 import { generateClient, post } from "aws-amplify/api";
-import { createChatroomMessage } from "../../../../graphql/mutations";
+import { createChatroomMessage, executeUserAnswer } from "../../../../graphql/mutations";
 import getTtlFromMinutes from "../../../../utils/getTtlFromMinutes";
 import ClassicHeroBox from "../ClassicHeroBox";
 import { GiSilverBullet } from "react-icons/gi";
@@ -40,25 +40,24 @@ interface LobbyViewInput {
 
     chatroomState : ChatroomState,
     chatroomUser : ChatroomUser,
-    prompt: Prompt
+    chatroomMessages: ChatroomMessage[],
+    prompt: Prompt,
+    round: number
     
 }
 
 
-export default function ClassicGameView({chatroomState, chatroomUser, prompt} : LobbyViewInput) {
+export default function ClassicGameView({chatroomState, chatroomUser, chatroomMessages, prompt, round} : LobbyViewInput) {
 
 
     const client = generateClient()
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
     const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsCharacter[]>([])
-    const [ character1, setCharacter1 ] = useState<MobileLegendsCharacter>();
-    const [ character2, setCharacter2 ] = useState<MobileLegendsCharacter>();
-    const [ character3, setCharacter3 ] = useState<MobileLegendsCharacter>();
     const [ userInput, setUserInput ] = useState('') ;
     
     const [ answer, setAnswer ] = useState<MobileLegendsCharacter>();
-
-
+    const [ messagesInit, setMessagesInit ] = useState(false);
+    
 
     useEffect(() => {
 
@@ -77,10 +76,55 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
     }, [prompt])
 
+    useEffect(() => {
+
+        if(messagesInit) chatroomMessages.map((message) => {
+
+            if(message.type.startsWith('GUESS-HERO')){
+
+                
+                const character = characters[parseInt(message.type.split('-')[2])-1]
+
+                if(message.type.split('-')[3] != null) return
+                
+
+                if(!characterGuesses.includes(character)){
+
+                    setCharacterGuesses((oldGuess) => {
+                    
+                        return [...oldGuess, characters[parseInt(message.type.split('-')[2])-1]]
+    
+    
+                    })
+                }
+
+                message.type = message.type + '-DONE'
+
+
+                
+
+            }
+
+        })
+
+        setMessagesInit(true)
+        
+    }, [chatroomMessages])
+
+    useEffect(() => {
+
+        
+
+
+
+
+    }, [chatroomMessages])
+
 
     const validateAnswer = (ans: string): boolean => {
         
         console.log('checking ', ans)
+        console.log(ans ,', answer is ', characters[prompt.mobileLegendsCharacterId].name.toUpperCase())
         
         if(ans == characters[prompt.mobileLegendsCharacterId].name.toUpperCase()) return true
 
@@ -88,6 +132,25 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
     }
 
+    const validateHero = (ans : string): string => {
+
+
+        if(ans.length < 3) return '-1';
+
+        var id = '-1'
+        
+        characters.map((char) => {
+
+            if(char.name.toUpperCase() == ans) {
+                id = char.id
+            }
+        })
+
+        return id
+
+
+
+    }
 
     const handleUserInput = (e: React.FormEvent<HTMLInputElement>) => {
 
@@ -97,64 +160,50 @@ export default function ClassicGameView({chatroomState, chatroomUser, prompt} : 
 
     }
 
-    const handleClickStartGame = async () => {
+    const handleUserAnswer = async () => {
 
-        
-        console.log('launch game: ', chatroomState)
+        console.log('executing user answer at round ', round)
 
-        const callAPI  = post({
-            apiName: 'mobiledleapi',
-            path: '/functions',
-            options: {
-                body: {
-                    chatroomStateId: chatroomState.id
-                }
-            }
-    
-        })
-        const {body} = await callAPI.response
-        const response = await body.json();
-        console.log('next game POST call succeeded');
-        console.log(response);
-
-        
-    }
-
-    const rewardPoints = async()=> {
-        
-        console.log('rewarding: ', chatroomUser)
-        const callAPI  = post({
-            apiName: 'mobiledleapi',
-            path: '/reward',
-            options: {
-                body: {
-                    id: chatroomUser.id,
+        client.graphql({
+            query: executeUserAnswer,
+            variables: {
+                input: {
+                    chatroomUserId: chatroomUser.id,
                     userId: chatroomUser.userId,
                     chatroomId: chatroomUser.chatroomId,
-                    ttl: chatroomUser.ttl,
-                    points: 100
+                    chatroomUserTtl: chatroomUser.ttl,
+                    points: 100,
+                    chatroomStateId: chatroomState.id,
+                    lastRound: round
                 }
             }
-    
         })
-        const {body} = await callAPI.response
-        const response = await body.json();
-        console.log('reward POST call succeeded');
-        console.log(response);
-    }
 
+
+    }
+ 
     const handleChatKeyDown = (e : React.KeyboardEvent) => {
         
 
         var type = 'GUESS'
 
-        if(e.key === 'Enter') {
-            if(validateAnswer(userInput)){
-                rewardPoints()
-                handleClickStartGame()
-                type = 'GUESS-CORRECT'
+        if(e.key === 'Enter' && userInput.length > 0) {
+
+            const heroId = validateHero(userInput)
+            
+            if(heroId != '-1'){
+
+                type = 'GUESS-HERO-'+heroId
+
+                if(validateAnswer(userInput)){
+
+                    handleUserAnswer()
+
+                    type = 'GUESS-CORRECT'
+                }
             }
 
+            console.log(type)
             client.graphql({
                 query: createChatroomMessage,
                 variables: {

@@ -92,61 +92,43 @@ async function addUserPoints(id, chatroomId, userId, ttl, addedPoints) {
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
 exports.handler = async (event) => {
-    //console.log(`EVENT: ${JSON.stringify(event)}`);
-    //const message = JSON.parse(event.Records[0].Sns.Message);
-    //console.log('event message: ', message)
-    //
-    //await updateRoomState(message.stateId)
-    //
-    //return;
-    
-    
-    const { httpMethod, path, body } = event;
-    let response;
 
-    if (httpMethod === "POST" && path === "/reward") {
-    const { id, chatroomId, userId, ttl, points } = JSON.parse(body);
-    console.log('body: ', body)
-    console.log('chatroomuserid: ', id)
-    console.log('points: ', points)
+    const chatroomStateId = event.variables.input.chatroomStateId
+    const chatroomId = event.variables.input.chatroomId
+    const chatroomUserId = event.variables.input.chatroomUserId
+    const userId = event.variables.input.userId
+    const chatroomUserTtl = event.variables.input.chatroomUserTtl
+    const points = event.variables.input.points
+
+    console.log(chatroomStateId, chatroomId, chatroomUserId, userId, chatroomUserTtl, points)
     
 
-        try {
-            const temp = await addUserPoints(id, chatroomId, userId, ttl, points);
-            response = {
-                statusCode: 200,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ success: 'Points added successfully!', temp })
-            };
-            
-            
-        } catch (error) {
-            console.error("Error adding points:", error);
-            response = {
-                statusCode: 500,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ error: 'Failed to add ponts: '+error })
-            };
+    try {
+        const temp = await addUserPoints(chatroomUserId, chatroomId, userId, chatroomUserTtl, points);
+        return {
+            statusCode: 200,
+            variables: {
+                input: {
+                    chatroomStateId: chatroomStateId
+                }
+                    
+            }
         }
-    } else {
-        // Default response for other methods or paths
-        response = {
-            statusCode: 400,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ message: "Unsupported method or path." })
-        };
+        
+        
+    } catch (error) {
+        console.error("Error adding points:", error);
+        return {
+            statusCode: 500,
+            variables: {
+                input: {
+                    chatroomStateId: chatroomStateId
+                }
+                    
+            }
+        }
     }
 
-    return response;
     
     
 };

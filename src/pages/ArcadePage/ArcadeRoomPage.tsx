@@ -1,6 +1,6 @@
 import React, { FormEventHandler, useEffect, useState } from 'react';
 import { generateClient, post } from 'aws-amplify/api';
-import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage, executeLaunchGame, executeLaunchGame2 } from '../../graphql/mutations';
+import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage, executeLaunchGame, executeUserAnswer } from '../../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onCreateChatroomUser, onUpdateChatroom, onUpdateChatroomState, onUpdateChatroomUser, onUpdateChatroomUserByChatroom } from '../../graphql/subscriptions';
 import { Chatroom, ChatroomMessage, ChatroomUser, ChatroomState, Prompt, MobileLegendsCharacter } from '../../API';
 import getTtlFromMinutes from '../../utils/getTtlFromMinutes';
@@ -370,8 +370,9 @@ export default function ArcadeRoomPage() {
                     if(oldData[0].id == data.data.onUpdateChatroomUser.id) changedIndex = 0;
                     if(changedIndex == -1) return [...oldData]
                     console.log('user before: ', temp[changedIndex])
-                    temp[changedIndex].points = data.data.onUpdateChatroomUser.points
-                    temp[changedIndex].state = data.data.onUpdateChatroomUser.state
+
+                    if(data.data.onUpdateChatroomUser.points) temp[changedIndex].points = data.data.onUpdateChatroomUser.points
+                    if(data.data.onUpdateChatroomUser.state) temp[changedIndex].state = data.data.onUpdateChatroomUser.state
 
                     console.log('user after: ', temp[changedIndex])
                     return temp
@@ -401,7 +402,7 @@ export default function ArcadeRoomPage() {
 
                 ]))
 
-            }else if(data.data.onCreateChatroomMessage.type == 'GUESS'){
+            }else if(data.data.onCreateChatroomMessage.type.startsWith('GUESS')){
                 setChatroomMessages((oldMessages) => ([
                     
                     ...oldMessages,
@@ -494,6 +495,7 @@ export default function ArcadeRoomPage() {
                 chatroomUserId: chatroomUser.id,
                 chatroomId: chatroom.id,
                 createdAt: new Date().toISOString(),
+                type: 'CHAT',
                 ttl: 0,
                 chatroomUser: chatroomUser
             }
@@ -538,6 +540,29 @@ export default function ArcadeRoomPage() {
         })
     }
 
+    const devButton2 = () => {
+        console.log('dev button 2 clicked')
+
+        const temp = client.graphql({
+            query: executeUserAnswer,
+            variables: {
+                input: {
+                    chatroomId: chatroom.id,
+                    chatroomUserId: chatroomUser.id,
+                    chatroomUserTtl: chatroomUser.ttl,
+                    points: 1000,
+                    userId: chatroomUser.userId,
+                    chatroomStateId: chatroomState.id,
+                    lastRound: chatroomState.round
+                }
+            }
+        }).then((result) => {
+            console.log(result)
+        }).catch((err) => {
+            console.error('dev button error: ',err)
+        })
+    }
+
     if(!chatroomInit) return <div>loading...</div>
 
     return(
@@ -573,7 +598,7 @@ export default function ArcadeRoomPage() {
                     
                     >
 
-                        <span className='my-auto ps-5'><span>{(round == 0)? "LOBBY": "Round " + round}</span></span>
+                        <span className='my-auto ps-5'><span>{(round == 0)? "LOBBY": "Round " + round}:  {chatroomState.currentState}</span></span>
                         <span className='my-auto flex flex-row cursor-default' onMouseEnter={() => {
                         setUsersTooltip((chatroomUsers.map((user) => user.user.username.toString()).join("\n")))
                     }}
@@ -593,7 +618,10 @@ export default function ArcadeRoomPage() {
                     <span className='text-xl my-auto text-black font-nova-bold'>Dev Mode: </span>
                     <button onClick={
                         devButton
-                    }>DEV BUTTON</button>
+                    }>1: LAUNCH GAME</button>
+                    <button onClick={
+                        devButton2
+                    }>2: ADD POINTS</button>
                 </div>
 
                 <div className='h-full w-full flex flex-row p-5'>
@@ -608,7 +636,7 @@ export default function ArcadeRoomPage() {
                     
                     </div>
 
-                    <GameArea chatroom={chatroom} chatroomState={chatroomState} chatroomUser={chatroomUser} chatroomUsers={chatroomUsers} prompt={prompt} />
+                    <GameArea chatroom={chatroom} chatroomMessages={chatroomMessages} chatroomState={chatroomState} chatroomUser={chatroomUser} chatroomUsers={chatroomUsers} prompt={prompt} round={round} />
                     
 
 
@@ -632,12 +660,24 @@ export default function ArcadeRoomPage() {
                         }
 
                         return( 
-                        <div key={message.id} className={`${message.type == 'GUESS'?'text-neutral-500': 'text-neutral-200'} text-2xl flex flex-col leading-5`}>
+                        <div key={message.id} className={`${message.type.startsWith("GUESS")?'text-neutral-500': 'text-neutral-200'} text-2xl flex flex-col leading-5`}>
                             <div className='text-sm'>
                                 {(message.chatroomUser) ? message.chatroomUser.user.username: ''}
                             </div>
-                            <div className={`text-2xl mb-3 break-all`}>
+                            <div className={`text-2xl mb-3 break-all flex h-6`}>
+                                {(message.type.split('-')[2]) == null ?'' :
+
+                                    <div className='px-1 '>
+                                        <img src={characters[parseInt((message.type.split('-')[2]))-1].imageUrl[0]} alt="" className='max-h-full' />
+                                    </div>
+
+                                
+                                
+                                }
+                                <div className='my-auto'>
                                 {message.content}
+
+                                </div>
                             </div>
                         </div>
                         )

@@ -105,12 +105,12 @@ export const executeLaunchGame = /* GraphQL */ `mutation ExecuteLaunchGame($inpu
   APITypes.ExecuteLaunchGameMutationVariables,
   APITypes.ExecuteLaunchGameMutation
 >;
-export const executeLaunchGame2 = /* GraphQL */ `mutation ExecuteLaunchGame2($input: ExecuteLaunchGameInput!) {
-  executeLaunchGame2(input: $input)
+export const executeUserAnswer = /* GraphQL */ `mutation ExecuteUserAnswer($input: ExecuteUserAnswerInput!) {
+  executeUserAnswer(input: $input)
 }
 ` as GeneratedMutation<
-  APITypes.ExecuteLaunchGame2MutationVariables,
-  APITypes.ExecuteLaunchGame2Mutation
+  APITypes.ExecuteUserAnswerMutationVariables,
+  APITypes.ExecuteUserAnswerMutation
 >;
 export const createUser = /* GraphQL */ `mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {

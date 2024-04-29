@@ -15,15 +15,6 @@ const GRAPHQL_ENDPOINT = process.env.API_MOBILEDLE_GRAPHQLAPIENDPOINTOUTPUT;
 const GRAPHQL_API_KEY = process.env.API_MOBILEDLE_GRAPHQLAPIKEYOUTPUT;
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
-const sns = new AWS.SNS();
-
-async function publishToSNS(topicArn, message) {
-    const params = {
-        Message: JSON.stringify(message),
-        TopicArn: topicArn
-    };
-    return sns.publish(params).promise();
-}
 
 
 function randomizeGamemode() {
@@ -138,12 +129,6 @@ async function initalizeClassicGamemode(stateId){
     try{
         
         await updateRoomState(stateId, "CLASSIC", "PLAYING", prompt.id, null)
-
-        
-        console.log('Room State Updated, sending SNS...');
-        const message = { stateId, status: 'Game Started' };
-        await publishToSNS("arn:aws:sns:ap-southeast-1:881734199479:launchGameSNS", message);
-        console.log('Published to SNS successfully');
         
         
         

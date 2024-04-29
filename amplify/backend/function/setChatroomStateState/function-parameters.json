@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "api": {
+      "mobiledle": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ExternalLayer",
+      "arn": "arn:aws:lambda:ap-southeast-1:881734199479:layer:aws-sdk-layer:5"
+    }
+  ]
+}

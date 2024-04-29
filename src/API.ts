@@ -146,6 +146,16 @@ export type ExecuteLaunchGameInput = {
   chatroomStateId: string,
 };
 
+export type ExecuteUserAnswerInput = {
+  chatroomId: string,
+  chatroomUserId: string,
+  chatroomStateId: string,
+  userId: string,
+  chatroomUserTtl: number,
+  points: number,
+  lastRound: number,
+};
+
 export type CreateUserInput = {
   username?: string | null,
   ttl: number,
@@ -682,12 +692,12 @@ export type ExecuteLaunchGameMutation = {
   executeLaunchGame?: string | null,
 };
 
-export type ExecuteLaunchGame2MutationVariables = {
-  input: ExecuteLaunchGameInput,
+export type ExecuteUserAnswerMutationVariables = {
+  input: ExecuteUserAnswerInput,
 };
 
-export type ExecuteLaunchGame2Mutation = {
-  executeLaunchGame2?: string | null,
+export type ExecuteUserAnswerMutation = {
+  executeUserAnswer?: string | null,
 };
 
 export type CreateUserMutationVariables = {

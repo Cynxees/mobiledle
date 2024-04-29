@@ -34,7 +34,7 @@
       "function": {
         "launchGame": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/launchGame-54364a5278376856475a-build.zip"
+          "s3Key": "amplify-builds/launchGame-456f6a632b7661463374-build.zip"
         },
         "incrementRound": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
@@ -46,7 +46,7 @@
         },
         "rewardUser": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/rewardUser-786769576b7455675867-build.zip"
+          "s3Key": "amplify-builds/rewardUser-395469794f4e77324e75-build.zip"
         },
         "executeLaunchGameStep": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
@@ -55,6 +55,18 @@
         "checkChatroomState": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
           "s3Key": "amplify-builds/checkChatroomState-314e464348726d357063-build.zip"
+        },
+        "checkUserStates": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/checkUserStates-6c7838573077554a6d74-build.zip"
+        },
+        "executeUserAnswer": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/executeUserAnswer-42714f42556437323745-build.zip"
+        },
+        "setChatroomStateState": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/setChatroomStateState-54643659737757665847-build.zip"
         }
       }
     }
