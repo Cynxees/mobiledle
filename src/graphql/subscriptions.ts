@@ -113,12 +113,14 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($id: ID, $u
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     ttl
@@ -147,12 +149,14 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($id: ID, $u
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     ttl
@@ -181,12 +185,14 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($id: ID, $u
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     ttl
@@ -224,6 +230,7 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
         ttl
         points
         state
+        activeState
         __typename
       }
       ttl
@@ -250,8 +257,16 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -271,6 +286,7 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
     ttl
     points
     state
+    activeState
     __typename
   }
 }
@@ -293,6 +309,7 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
         ttl
         points
         state
+        activeState
         __typename
       }
       ttl
@@ -319,8 +336,16 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -340,6 +365,7 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
     ttl
     points
     state
+    activeState
     __typename
   }
 }
@@ -362,6 +388,7 @@ export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpda
         ttl
         points
         state
+        activeState
         __typename
       }
       ttl
@@ -388,8 +415,16 @@ export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpda
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -409,6 +444,7 @@ export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpda
     ttl
     points
     state
+    activeState
     __typename
   }
 }
@@ -431,6 +467,7 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
         ttl
         points
         state
+        activeState
         __typename
       }
       ttl
@@ -457,8 +494,16 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -478,6 +523,7 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
     ttl
     points
     state
+    activeState
     __typename
   }
 }
@@ -513,12 +559,14 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     chatroomUserId
@@ -543,8 +591,16 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -594,12 +650,14 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     chatroomUserId
@@ -624,8 +682,16 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -671,12 +737,14 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     chatroomUserId
@@ -701,8 +769,16 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -745,6 +821,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         ttl
         points
         state
+        activeState
         __typename
       }
       chatroomUserId
@@ -752,6 +829,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -775,14 +853,33 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
+    host {
+      id
+      username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        activeState
+        __typename
+      }
+      ttl
+      __typename
+    }
+    hostId
     chatroomState {
       id
       chatroomId
@@ -790,6 +887,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -800,6 +898,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         ttl
         points
         state
+        activeState
         __typename
       }
       mode
@@ -847,6 +946,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         ttl
         points
         state
+        activeState
         __typename
       }
       chatroomUserId
@@ -854,6 +954,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -877,14 +978,33 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
+    host {
+      id
+      username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        activeState
+        __typename
+      }
+      ttl
+      __typename
+    }
+    hostId
     chatroomState {
       id
       chatroomId
@@ -892,6 +1012,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -902,6 +1023,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         ttl
         points
         state
+        activeState
         __typename
       }
       mode
@@ -949,6 +1071,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         ttl
         points
         state
+        activeState
         __typename
       }
       chatroomUserId
@@ -956,6 +1079,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -979,14 +1103,33 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
+    host {
+      id
+      username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        activeState
+        __typename
+      }
+      ttl
+      __typename
+    }
+    hostId
     chatroomState {
       id
       chatroomId
@@ -994,6 +1137,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -1004,6 +1148,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         ttl
         points
         state
+        activeState
         __typename
       }
       mode
@@ -1214,8 +1359,16 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -1246,12 +1399,14 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     mode
@@ -1327,8 +1482,16 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -1359,12 +1522,14 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     mode
@@ -1440,8 +1605,16 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -1472,12 +1645,14 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     mode

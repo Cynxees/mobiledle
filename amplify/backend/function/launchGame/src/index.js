@@ -33,6 +33,7 @@ async function updateRoomState(stateId, gamemode, currentState, promptId, willEn
         currentState
         mode
         promptId
+        willEndAt
       }
     }
   `
@@ -42,7 +43,8 @@ async function updateRoomState(stateId, gamemode, currentState, promptId, willEn
         id: stateId,
         currentState: currentState,
         mode: gamemode,
-        promptId: promptId
+        promptId: promptId,
+        willEndAt: willEndAt
       }
     };
 
@@ -106,7 +108,7 @@ function createPrompt(heroIndex, gameMode) {
 }
 
 
-async function initalizeClassicGamemode(stateId){
+async function initalizeClassicGamemode(stateId, waitTime, event){
     
     console.log('starting classic gamemode')
     
@@ -119,6 +121,11 @@ async function initalizeClassicGamemode(stateId){
         Item: prompt
     }
     
+    const currentEpoch = Math.floor(new Date().getTime() / 1000)
+    const willEndAt = currentEpoch + waitTime  
+    
+    console.log('start: ', currentEpoch, ' end: ', willEndAt)
+    
     try{
         await dynamoDB.put(params).promise();
     } catch (err) {
@@ -128,7 +135,7 @@ async function initalizeClassicGamemode(stateId){
     
     try{
         
-        await updateRoomState(stateId, "CLASSIC", "PLAYING", prompt.id, null)
+        await updateRoomState(stateId, "CLASSIC", "PLAYING", prompt.id, willEndAt)
         
         
         
@@ -143,12 +150,13 @@ async function initalizeClassicGamemode(stateId){
     
 }
 
-async function startGameEvent(gamemode, stateId){
+async function startGameEvent(gamemode, stateId, waitTime, event){
     
     console.log('starting game')
     
+    
     if(gamemode == "CLASSIC"){
-        const game  = await initalizeClassicGamemode(stateId)
+        const game  = await initalizeClassicGamemode(stateId, waitTime, event)
         return game
     }
     
@@ -158,6 +166,7 @@ async function startGameEvent(gamemode, stateId){
 exports.handler = async (event, context, callback) => {
     
     let response;
+    const waitTime = 120
     console.log('event : ', event)
     
 
@@ -165,13 +174,13 @@ exports.handler = async (event, context, callback) => {
 
     console.log(chatroomStateId)
     try {
-        const game = await startGameEvent("CLASSIC", chatroomStateId);
+        const game = await startGameEvent("CLASSIC", chatroomStateId, waitTime, event);
         response = {
             statusCode: 200,
             variables: {
                 input: {
                     chatroomStateId: chatroomStateId,
-                    waitTime: 10
+                    waitTime: waitTime
                 }
                     
             }

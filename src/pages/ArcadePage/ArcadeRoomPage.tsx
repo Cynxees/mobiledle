@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useEffect, useState } from 'react';
+import React, { FormEventHandler, useEffect, useRef, useState } from 'react';
 import { generateClient, post } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage, executeLaunchGame, executeUserAnswer } from '../../graphql/mutations';
 import { onCreateChatroom, onCreateChatroomMessage, onCreateChatroomUser, onUpdateChatroom, onUpdateChatroomState, onUpdateChatroomUser, onUpdateChatroomUserByChatroom } from '../../graphql/subscriptions';
@@ -15,6 +15,8 @@ import { useMobileLegendsCharacters } from '../../providers/MobileLegendsCharact
 import GameArea from '../../components/arcade/GameArea';
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from '../../amplifyconfiguration.json'
+import { FaCrown } from 'react-icons/fa6';
+import ProgressBar from '../../components/arcade/ProgressBar';
 
 
 
@@ -43,49 +45,134 @@ export default function ArcadeRoomPage() {
     const [chatroomState, setChatroomState] = useState<ChatroomState>()
     const [prompt, setPrompt] = useState<Prompt>()
     const [round, setRound] = useState(0)
+    const [activeRound, setActiveRound] = useState(0)
     const [userCount, setUserCount] = useState(0) 
     const [chatroomMessages, setChatroomMessages] = useState<Array<ChatroomMessage>>([])
     const [chatroomReinit, setChatroomReinit] = useState('')
+    const [timer, setTimer] = useState(-1)
     
     const [chatroomInit, setChatroomInit] = useState(false)
     const [chatroomMessageInit, setChatroomMessageInit] = useState(false)
     const [chatroomUserInit, setChatroomUserInit] = useState(false)
 
     const [chatInput, setChatInput] = useState('')
-    const [isFocused, setFocused] = useState(false)
-    const [inactivityTimeout, setInactivityTimeout] = useState(0);
+    const inactivityTimeout = useRef(null);
+    const isFocused = useRef(true);
+    
+    useEffect(() => {
+        if(paramsVerified) return
+        if(!params.code || params.code.length != 4 || !/^[A-Z0-9]+$/gm.test(params.code)){
+            navigate("/error/1")
+        }
+        if(params.code.toString().toUpperCase() != params.code.toString()){
+            navigate("/arcade/"+params.code.toUpperCase() )
+        }
+        setParamsVerified(true)
+    }, [])
+    
+    const setUserInactive = () => {
+
+        if(!chatroomUserInit) return
+
+        client.graphql({
+            query: updateChatroomUser,
+            variables: {
+                input: {
+                    id: chatroomUser.id,
+                    activeState: "INACTIVE"
+                }
+            }
+        }).then(data => {
+            console.log('Changed to Inactive: ', data)
+        })
+
+    }
 
     const onFocus = () => {
-        setFocused(true)
-        console.log("Tab is in focus");
+        isFocused.current = true;
+        clearTimeout(inactivityTimeout.current);
     };
     const onBlur = () => {
-        setFocused(false)
-        console.log("Tab is blurred");
+        if(!chatroomUserInit) return
+        isFocused.current = false;
+        inactivityTimeout.current = setTimeout(() => {
+            console.warn("USER IS INACTIVE: ", chatroomUser);
+            setUserInactive()
+            navigate('/arcade');
+        },  5*60 * 1000);
     };
 
+    useEffect(() => {
+        if(!chatroomUserInit) return
+        window.addEventListener("focus", onFocus);
+        window.addEventListener("blur", onBlur);
+        onFocus();
 
-
+        return () => {
+            clearTimeout(inactivityTimeout.current);
+            window.removeEventListener("focus", onFocus);
+            window.removeEventListener("blur", onBlur);
+        };
+    }, [chatroomUserInit]);
 
     useEffect(() => {
 
-        if (inactivityTimeout) {
-            clearTimeout(inactivityTimeout);
-        }
+        if(!chatroomUserInit) return
+
+        if(round == 0) return
+
+        if(!isFocused.current) return
+
+        if(round == activeRound) return
 
         
-        if(isFocused){
-            clearTimeout(inactivityTimeout)
-        }else{
-            setInactivityTimeout(setTimeout(() => {
-                console.warn("USER IS INACTIVE")
-                navigate('/arcade')
-                
-            }, 5*60*1000));
+        setActiveRound(round)
+
+        client.graphql({
+            query: updateChatroomUser,
+            variables: {
+                input: {
+                    id: chatroomUser.id,
+                    activeState: "ACTIVE-" + round
+                }
+            }
+        }).then(data => {
+            console.log('Changed to Active: ', data)
+        })
+
+
+
+    }, [round])
+
+    useEffect(() => {
+
+        if(!chatroomState) return
+        
+        const interval = setInterval(() => {
+            
+            if(chatroomState.willEndAt != null) setTimer(chatroomState.willEndAt*1000 - (new Date().getTime()))
+
+        }, 100);
+
+
+
+
+        return () => {
+            clearInterval(interval)
+
+        };
+
+
+    }, [])
+
+    useEffect(() => {
+        
+        return () => {
+            setUserInactive()
+        
         }
+    }, [])
 
-
-    }, [isFocused])
 
     useEffect(() => {
         window.addEventListener("focus", onFocus);
@@ -105,6 +192,7 @@ export default function ArcadeRoomPage() {
     const fetchPrompt = (inputPromptId?: string) => {
 
         console.log('fetching prompt')
+
 
 
         const promptId = inputPromptId ? inputPromptId : chatroomState.promptId
@@ -135,16 +223,7 @@ export default function ArcadeRoomPage() {
 
     }
 
-    useEffect(() => {
-        if(paramsVerified) return
-        if(!params.code || params.code.length != 4 || !/^[A-Z0-9]+$/gm.test(params.code)){
-            navigate("/error/1")
-        }
-        if(params.code.toString().toUpperCase() != params.code.toString()){
-            navigate("/arcade/"+params.code.toUpperCase() )
-        }
-        setParamsVerified(true)
-    }, [])
+    
 
     useEffect(() => {
         if(userIsLoading || !paramsVerified) return
@@ -186,6 +265,7 @@ export default function ArcadeRoomPage() {
 
         if(!chatroomInit || !user) return
         
+        
         const initializeChatroomUser = async ()=> {
 
             if(!user) return
@@ -198,7 +278,9 @@ export default function ArcadeRoomPage() {
                             chatroomId: chatroom.id,
                             ttl: getTtlFromMinutes(60*24),
                             userId: user.id,
-                            points: 0
+                            points: 0,
+                            state: "PLAYING",
+                            activeState: "ACTIVE-0"
                         }
                     }
                 }).then(data => {
@@ -209,7 +291,9 @@ export default function ArcadeRoomPage() {
                     console.log('chatroomUser Initialized: ', data)
                 })
         }
+
         var userExist = false
+        var userId = ''
         
         user.chatrooms.map((chatroomUser) => {
 
@@ -221,12 +305,28 @@ export default function ArcadeRoomPage() {
                 setChatroomUser(chatroomUser)
                 setChatroomUserInit(true)
                 userExist = true
+                userId = chatroomUser.id
                 console.log('chatroomUser Fetched: ', chatroomUser)
                 setChatroomUserId(chatroomUser.id)
-                return
+                return 
                 
             }
         })
+
+        if(userExist){
+            client.graphql({
+                query: updateChatroomUser,
+                variables: {
+                    input: {
+                        id: userId,
+                        state: "PLAYING",
+                        activeState: "ACTIVE-0"
+                    }
+                }
+            }).then(data => {
+                console.log('chatroomUser state updated: ', data)
+            })
+        }
         
 
         if(!userExist) {
@@ -471,6 +571,20 @@ export default function ArcadeRoomPage() {
         
         if(e.key === 'Enter') {
 
+            var input = chatInput
+
+            // DEV ONLY
+            if(chatInput == '/help'){
+                input = "/launch /points"
+            }
+            if(chatInput == '/launch'){
+                devLaunchStepFunction()
+                input = 'Game Launched'
+            }
+            if(chatInput == '/points'){
+                devAddPoints()
+                input = 'Points Added'
+            }
             
             client.graphql({
                 query: createChatroomMessage,
@@ -478,7 +592,7 @@ export default function ArcadeRoomPage() {
                     input: {
                         chatroomId: chatroom.id,
                         createdAt: new Date().toISOString(),
-                        content: chatInput,
+                        content: input,
                         chatroomUserId: chatroomUser.id,
                         ttl: getTtlFromMinutes(60),
                         type: 'CHAT'
@@ -486,12 +600,11 @@ export default function ArcadeRoomPage() {
                 }
             })
 
-            setChatInput('')
 
             const newMessage: ChatroomMessage = {
                 __typename: 'ChatroomMessage',
                 id: new Date().getTime().toLocaleString(),
-                content: chatInput,
+                content: input,
                 chatroomUserId: chatroomUser.id,
                 chatroomId: chatroom.id,
                 createdAt: new Date().toISOString(),
@@ -501,6 +614,11 @@ export default function ArcadeRoomPage() {
             }
             setChatroomMessages((oldMessages) => [...oldMessages, newMessage])
 
+
+            
+
+
+            setChatInput('')
         }
     }
 
@@ -523,7 +641,7 @@ export default function ArcadeRoomPage() {
     }, [chatroom])
     
 
-    const devButton = () => {
+    const devLaunchStepFunction = () => {
         console.log('dev button clicked')
 
         const temp = client.graphql({
@@ -540,7 +658,7 @@ export default function ArcadeRoomPage() {
         })
     }
 
-    const devButton2 = () => {
+    const devAddPoints = () => {
         console.log('dev button 2 clicked')
 
         const temp = client.graphql({
@@ -563,7 +681,7 @@ export default function ArcadeRoomPage() {
         })
     }
 
-    if(!chatroomInit) return <div>loading...</div>
+    if(!chatroomInit || isLoading) return <div>loading...</div>
 
     return(
         <div className='grid grid-cols-5 w-screen h-screen'>
@@ -574,7 +692,7 @@ export default function ArcadeRoomPage() {
                 <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row'>
                     
                     
-                    <img src="/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => navigate('/arcade')} />
+                    <img src="/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => {setUserInactive(); navigate('/arcade'); }} />
                 
                     <div 
                     className='text-[2vh] align-middle text-start my-auto font-modesto pr-5 cursor-pointer'  
@@ -582,13 +700,12 @@ export default function ArcadeRoomPage() {
                     onMouseLeave={() => setLinkTooltip('Copy to Clipboard')}
                     data-tooltip-id="link-tooltip"
                     data-tooltip-content={linkTooltip}
-                    data-tooltip-delay-show={100}
                     data-tooltip-float={true}
                     data-tooltip-offset={30}
                     data-tooltip-variant='light'
                     data-tooltip-place="bottom">
                     
-                        <Tooltip id='link-tooltip'></Tooltip>
+                        <Tooltip id='link-tooltip' className='z-10'></Tooltip>
                         MOBILEDLE.COM/ARCADE/<span className='text-orange-200'>{params.code}</span>
                     </div>
 
@@ -603,18 +720,39 @@ export default function ArcadeRoomPage() {
                         setUsersTooltip((chatroomUsers.map((user) => user.user.username.toString()).join("\n")))
                     }}
                         data-tooltip-id="users-tooltip"
-                        data-tooltip-content={usersTooltip}
                         data-tooltip-delay-show={100}
                         data-tooltip-float={true}
                         data-tooltip-offset={30}
                         data-tooltip-variant='light'
-                        data-tooltip-place="bottom">{(chatroomUsers) ? chatroomUsers.length: 0} <IoPersonSharp className='my-auto ms-2' /></span>
-                        <Tooltip id='users-tooltip'></Tooltip>
+                        data-tooltip-place="bottom">{(chatroomUsers) ? chatroomUsers.length: 0} 
+                        
+                        <IoPersonSharp className='my-auto ms-2' />
+                        
+                        </span>
+                        <Tooltip id='users-tooltip' className='z-10 flex flex-col'>{chatroomUsers.map((user) => {
+
+                            return <div>{user.user.username}</div>
+
+                        })}</Tooltip>
                     </div>
 
 
                 </div>
-                <div className='bg-neutral-400 p-5 gap-5 flex flex-row'>
+                <div 
+                className='h-1 w-full'
+                
+                data-tooltip-id="timer-tooltip"
+                data-tooltip-delay-show={100}
+                data-tooltip-float={true}
+                data-tooltip-offset={30}
+                data-tooltip-variant='light'
+                data-tooltip-place="bottom"
+                
+                >
+                    <ProgressBar value={timer} maxValue={120000} />
+                    <Tooltip id='timer-tooltip' className='z-10 text-xl font-nova-bold'>{Math.floor(timer/1000).toString()}</Tooltip>
+                </div>
+                {/* <div className='bg-neutral-400 p-5 gap-5 flex flex-row'>
                     <span className='text-xl my-auto text-black font-nova-bold'>Dev Mode: </span>
                     <button onClick={
                         devButton
@@ -622,7 +760,7 @@ export default function ArcadeRoomPage() {
                     <button onClick={
                         devButton2
                     }>2: ADD POINTS</button>
-                </div>
+                </div> */}
 
                 <div className='h-full w-full flex flex-row p-5'>
                     
@@ -631,12 +769,22 @@ export default function ArcadeRoomPage() {
 
                         {(chatroomUsers == null)? '' :chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
 
-                            return <div key={user.id}>{user.user.username}:   {user.points}</div>
+                            return (
+                            
+                            <div key={user.id} className='flex'>
+
+                                {user.user.username}:   {user.points}
+                                
+                            </div>
+                        
+                        )
                         })}
                     
                     </div>
 
-                    <GameArea chatroom={chatroom} chatroomMessages={chatroomMessages} chatroomState={chatroomState} chatroomUser={chatroomUser} chatroomUsers={chatroomUsers} prompt={prompt} round={round} />
+                    <GameArea 
+                    chatroom={chatroom} chatroomMessages={chatroomMessages} chatroomState={chatroomState} chatroomUser={chatroomUser} 
+                    chatroomUsers={chatroomUsers} prompt={prompt} setPrompt={setPrompt} round={round} />
                     
 
 

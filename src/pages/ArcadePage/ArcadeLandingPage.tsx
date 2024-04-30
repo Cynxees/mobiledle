@@ -30,6 +30,7 @@ export default function ArcadeLandingPage() {
     const [init, setInit] = useState(false)
     
     
+    
 
     useEffect(() => {
 
@@ -120,7 +121,7 @@ export default function ArcadeLandingPage() {
             next: ({data}) => {
                 
                 console.log('got chats: ', data)
-                setChatrooms((currentChatroom) => currentChatroom.filter(chatroom => chatroom.id != data.onDeleteChatroom.id))
+                setChatrooms((currentChatroom) => currentChatroom.filter(chatroom => {(chatroom)?chatroom.id != data.onDeleteChatroom.id:''}))
                 
             },error: error => console.error(error)})
 
@@ -154,12 +155,16 @@ export default function ArcadeLandingPage() {
         console.log('creating room')
         setIsCreatingRoom(true)
 
+        if(!user) return
+        if(!user.id) return
+        console.log('user: ', user)
         const createRoomQL = client.graphql({
             query: createChatroom,
             variables: {
                 input: {
                     name: roomName,
-                    ttl: getTtlFromMinutes(10)
+                    ttl: getTtlFromMinutes(10),
+                    hostId: user.id
                 }
             }
         }).then((result) => {

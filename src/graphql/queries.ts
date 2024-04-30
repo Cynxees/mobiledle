@@ -92,12 +92,14 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     ttl
@@ -121,6 +123,7 @@ export const listUsers = /* GraphQL */ `query ListUsers(
         ttl
         points
         state
+        activeState
         __typename
       }
       ttl
@@ -146,6 +149,7 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
         ttl
         points
         state
+        activeState
         __typename
       }
       ttl
@@ -172,8 +176,16 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -193,6 +205,7 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
     ttl
     points
     state
+    activeState
     __typename
   }
 }
@@ -220,12 +233,14 @@ export const listChatroomUsers = /* GraphQL */ `query ListChatroomUsers(
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     nextToken
@@ -254,12 +269,14 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     chatroomUserId
@@ -284,8 +301,16 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -329,6 +354,7 @@ export const listChatroomMessages = /* GraphQL */ `query ListChatroomMessages(
         ttl
         points
         state
+        activeState
         __typename
       }
       chatroomUserId
@@ -336,6 +362,7 @@ export const listChatroomMessages = /* GraphQL */ `query ListChatroomMessages(
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -368,6 +395,7 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
         ttl
         points
         state
+        activeState
         __typename
       }
       chatroomUserId
@@ -375,6 +403,7 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -398,14 +427,33 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
+    host {
+      id
+      username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        activeState
+        __typename
+      }
+      ttl
+      __typename
+    }
+    hostId
     chatroomState {
       id
       chatroomId
@@ -413,6 +461,7 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -423,6 +472,7 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
         ttl
         points
         state
+        activeState
         __typename
       }
       mode
@@ -470,6 +520,7 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
         ttl
         points
         state
+        activeState
         __typename
       }
       chatroomUserId
@@ -477,6 +528,7 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -500,14 +552,33 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
+    host {
+      id
+      username
+      chatrooms {
+        id
+        chatroomId
+        userId
+        ttl
+        points
+        state
+        activeState
+        __typename
+      }
+      ttl
+      __typename
+    }
+    hostId
     chatroomState {
       id
       chatroomId
@@ -515,6 +586,7 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -525,6 +597,7 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
         ttl
         points
         state
+        activeState
         __typename
       }
       mode
@@ -584,8 +657,16 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -718,8 +799,16 @@ export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) 
         ttl
         points
         state
+        activeState
         __typename
       }
+      host {
+        id
+        username
+        ttl
+        __typename
+      }
+      hostId
       chatroomState {
         id
         chatroomId
@@ -750,12 +839,14 @@ export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) 
         id
         name
         code
+        hostId
         ttl
         __typename
       }
       ttl
       points
       state
+      activeState
       __typename
     }
     mode
@@ -819,6 +910,7 @@ export const listChatroomStates = /* GraphQL */ `query ListChatroomStates(
         id
         name
         code
+        hostId
         ttl
         __typename
       }
@@ -829,6 +921,7 @@ export const listChatroomStates = /* GraphQL */ `query ListChatroomStates(
         ttl
         points
         state
+        activeState
         __typename
       }
       mode

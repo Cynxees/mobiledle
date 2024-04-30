@@ -89,7 +89,7 @@ export default function ClassicHeroBox({
   
 
   return (
-    <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg h-full w-full">
+    <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg relative">
       
 
       <div className="absolute w-28 h-28 overflow-hidden animate__animated animate__zoomInRight">

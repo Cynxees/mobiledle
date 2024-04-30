@@ -53,7 +53,8 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
     const client = generateClient()
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
     const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsCharacter[]>([])
-    const [ userInput, setUserInput ] = useState('') ;
+    const [ userInput, setUserInput ] = useState('');
+    const [currentRound, setCurrentRound] = useState(0)
     
     const [ answer, setAnswer ] = useState<MobileLegendsCharacter>();
     const [ messagesInit, setMessagesInit ] = useState(false);
@@ -87,11 +88,17 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
                 if(message.type.split('-')[3] != round.toString()) return
                 
+                if(message.type.split('-')[4] != null) return
+                
+                
+                message.type = message.type + "-DONE"
 
                 if(!characterGuesses.includes(character)){
 
                     setCharacterGuesses((oldGuess) => {
-                    
+                        
+                        if(oldGuess.length == 5) return [...oldGuess.slice(1,), characters[parseInt(message.type.split('-')[2])-1]]
+
                         return [...oldGuess, characters[parseInt(message.type.split('-')[2])-1]]
     
     
@@ -110,14 +117,6 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         
     }, [chatroomMessages])
 
-    useEffect(() => {
-
-        
-
-
-
-
-    }, [chatroomMessages])
 
 
     const validateAnswer = (ans: string): boolean => {
@@ -242,7 +241,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
                 {characterGuesses.map(guess => {
 
-                    return <ClassicHeroBox character={guess} answer={answer} showBooleans={[true,true]} />
+                    return <ClassicHeroBox key={guess.id} character={guess} answer={answer} showBooleans={[true,true]} />
 
                 })}
     

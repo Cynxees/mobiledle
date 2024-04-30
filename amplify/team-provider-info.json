@@ -34,7 +34,7 @@
       "function": {
         "launchGame": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/launchGame-456f6a632b7661463374-build.zip"
+          "s3Key": "amplify-builds/launchGame-59314553464967394a72-build.zip"
         },
         "incrementRound": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
@@ -54,7 +54,7 @@
         },
         "checkChatroomState": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
-          "s3Key": "amplify-builds/checkChatroomState-314e464348726d357063-build.zip"
+          "s3Key": "amplify-builds/checkChatroomState-6c73342b6b524b464a46-build.zip"
         },
         "checkUserStates": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
