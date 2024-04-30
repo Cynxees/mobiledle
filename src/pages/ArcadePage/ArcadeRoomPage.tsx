@@ -155,15 +155,13 @@ export default function ArcadeRoomPage() {
         }, 100);
 
 
-
-
         return () => {
             clearInterval(interval)
 
         };
 
 
-    }, [])
+    }, [chatroomInit])
 
     useEffect(() => {
         
