@@ -225,6 +225,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
     }
     
 
+    if(!prompt || !characterGuesses ) return <div> Loading...</div>
 
     return <div className="h-full w-full grid grid-rows-7 ">
 
@@ -251,7 +252,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         
         <div className="flex flex-col mx-auto">
             <div className="flex flex-row justify-center [&>*]:text-3xl mb-5 gap-10">
-                <GiSilverBullet />
+                <GiSilverBullet className=""/>
                 <GiSilverBullet />
                 <GiSilverBullet />
 

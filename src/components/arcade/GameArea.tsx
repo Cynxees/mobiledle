@@ -1,8 +1,9 @@
 import { useMobileLegendsCharacters } from "../../providers/MobileLegendsCharactersProvider";
-import { Chatroom, ChatroomMessage, ChatroomState, ChatroomUser, Prompt } from "../../API";
+import { Chatroom, ChatroomMessage, ChatroomState, ChatroomUser, MobileLegendsCharacter, Prompt } from "../../API";
 import ClassicGameView from "./games/view/ClassicGameView";
 import LobbyView from "./games/view/LobbyView";
 import { useEffect, useState } from "react";
+import IntermissionView from "./games/view/IntermissionView";
 
 
 interface GameAreaInput {
@@ -14,14 +15,14 @@ interface GameAreaInput {
     chatroomMessages: ChatroomMessage[],
     prompt: Prompt,
     setPrompt: React.Dispatch<React.SetStateAction<Prompt>>,
-    round: number
+    round: number,
+    characters: MobileLegendsCharacter[]
     
 }
 
-export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatroomMessages, chatroomUsers, prompt, setPrompt, round} : GameAreaInput){
+export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatroomMessages, chatroomUsers, prompt, setPrompt, round, characters} : GameAreaInput){
 
 
-    const { data: characters, isLoading, error } = useMobileLegendsCharacters();
     const [ promptBank, setPromptBank ] = useState<Prompt>();
 
     useEffect(() => {
@@ -42,26 +43,14 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
         setPromptBank(prompt)
 
     }, [prompt])
-    // if(!prompt) return <div>Loading...</div>
+
 
     return <div className="h-full w-full">
 
         {(chatroomState.mode == "CLASSIC") ? <ClassicGameView chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/> 
         : (chatroomState.currentState == "LOBBY") ? <LobbyView chatroomUsers={chatroomUsers} chatroomState={chatroomState} chatroom={chatroom} chatroomUser={chatroomUser}/>
-        : (chatroomState.currentState == "INTERMISSION" && promptBank != null) ? 
-        <div className="text-3xl my-auto flex flex-col h-full justify-center">
-            
-            <div>
-            
-            Answer is {characters[parseInt(promptBank.mobileLegendsCharacterId)].name}
-            </div>
-
-            
-
-
-
-        </div>
-        : <div>Error </div>}
+        : (chatroomState.currentState == "INTERMISSION" && promptBank != null) ? <IntermissionView characters={characters} prompt={promptBank} />
+        : <div>Loading... </div>}
 
 
 

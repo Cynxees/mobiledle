@@ -173,7 +173,8 @@ export default function DevPage2() {
             variables: {
                 input: {
                     name: chatroomName,
-                    ttl: getTtlFromMinutes(60*24)
+                    ttl: getTtlFromMinutes(60*24),
+                    hostId: "test"
                     
                 }
             },
