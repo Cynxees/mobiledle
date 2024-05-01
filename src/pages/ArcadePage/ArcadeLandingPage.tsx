@@ -121,7 +121,7 @@ export default function ArcadeLandingPage() {
             next: ({data}) => {
                 
                 console.log('got chats: ', data)
-                setChatrooms((currentChatroom) => currentChatroom.filter(chatroom => {(chatroom)?chatroom.id != data.onDeleteChatroom.id:''}))
+                setChatrooms((currentChatroom) => currentChatroom.filter(chatroom => {(chatroom && data.onDeleteChatroom)?chatroom.id != data.onDeleteChatroom.id:''}))
                 
             },error: error => console.error(error)})
 

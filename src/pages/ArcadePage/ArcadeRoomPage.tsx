@@ -58,6 +58,7 @@ export default function ArcadeRoomPage() {
     const [chatInput, setChatInput] = useState('')
     const inactivityTimeout = useRef(null);
     const isFocused = useRef(true);
+    const chatRef = useRef(null);
     
     useEffect(() => {
         if(paramsVerified) return
@@ -145,6 +146,13 @@ export default function ArcadeRoomPage() {
     }, [round])
 
     useEffect(() => {
+        if (chatRef.current) {
+            const { scrollHeight, clientHeight } = chatRef.current;
+            chatRef.current.scrollTop = scrollHeight - clientHeight;
+        }
+    }, [chatroomMessages])
+
+    useEffect(() => {
 
         if(!chatroomState) return
         
@@ -161,7 +169,7 @@ export default function ArcadeRoomPage() {
         };
 
 
-    }, [chatroomInit])
+    }, [chatroomState])
 
     useEffect(() => {
         
@@ -514,7 +522,13 @@ export default function ArcadeRoomPage() {
                     ...oldMessages,
                     data.data.onCreateChatroomMessage
 
-                ]))   
+            ]))
+
+            const el = document.getElementById('chat-container');
+            if (el) {
+                el.scrollTop = el.scrollHeight;
+              }
+
 
         }})
     }
@@ -549,11 +563,12 @@ export default function ArcadeRoomPage() {
 
             if(newState.round != null){
                 setRound(newState.round)
-                setChatroomState((oldState) => {oldState.round = newState.round;console.log('oldState : ',oldState); return oldState})
-            }else{
-                newState.round = oldState.round
-                setChatroomState(newState)
             }
+
+
+
+            
+            setChatroomState(newState)
             if(data.data.onUpdateChatroomState.promptId) fetchPrompt(data.data.onUpdateChatroomState.promptId)
         })
     }
@@ -782,7 +797,7 @@ export default function ArcadeRoomPage() {
 
                     <GameArea 
                     chatroom={chatroom} chatroomMessages={chatroomMessages} chatroomState={chatroomState} chatroomUser={chatroomUser} 
-                    chatroomUsers={chatroomUsers} prompt={prompt} setPrompt={setPrompt} round={round} />
+                    chatroomUsers={chatroomUsers} prompt={prompt} setPrompt={setPrompt} round={round} characters={characters}/>
                     
 
 
@@ -791,7 +806,7 @@ export default function ArcadeRoomPage() {
             </div>
 
             <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full h-screen flex flex-col justify-between'>
-                <div className='flex flex-col justify-end w-full text-start ps-5 align-bottom overflow-x-hidden'>
+                <div id='chat-container' ref={chatRef} className='flex flex-col overflow-y-auto mt-auto w-full text-start ps-5 overflow-x-hidden'>
 
                     {chatroomMessages.map((message) => {
 

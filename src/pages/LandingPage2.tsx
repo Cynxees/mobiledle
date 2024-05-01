@@ -15,7 +15,7 @@ import ArcadeBox from "../components/navigation/ArcadeBox";
 import { useUser } from "../providers/UserProvider";
 import MirrorBox from "../components/navigation/MirrorBox";
 
-export default function LandingPage() {
+export default function LandingPage2() {
 
   const [init, setInit] = useState(false);
   
@@ -98,21 +98,26 @@ export default function LandingPage() {
   if (false) return <div>Loading...</div>;
 
   return (
-    <div className="">
-    <img className="w-screen h-screen object-cover absolute -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-40" src="/landing-bg.jpg"/>
+    <div className="flex flex-col">
+    <img className="w-screen h-screen object-cover absolute -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-40" src="/landing-bg.jpg"
+    
+    />
     <Particles
           id="tsparticles"
           particlesLoaded={particlesLoaded}
           options={options}
           className="absolute -z-10" 
         />
-    <div className="flex flex-col gap-10 w-[400px] md:w-[500px]">
+    <div className="flex flex-col gap-10 h-screen justify-center w-[400px] md:w-[500px]">
       
       <Navbar />
       <ClassicBox />
       <SurvivalBox />
       <ArcadeBox />
       <MirrorBox />
+    </div>
+    <div>
+        hi
     </div>
     </div>
   );
