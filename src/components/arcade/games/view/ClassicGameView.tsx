@@ -6,6 +6,8 @@ import { createChatroomMessage, executeUserAnswer } from "../../../../graphql/mu
 import getTtlFromMinutes from "../../../../utils/getTtlFromMinutes";
 import ClassicHeroBox from "../ClassicHeroBox";
 import { GiSilverBullet } from "react-icons/gi";
+import ArcadeChance from "../..//ArcadeChance";
+import { animated, useSpring } from "react-spring";
 
 function isAlphaNumeric(str : string) {
     var code, i, len;
@@ -58,7 +60,70 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
     
     const [ answer, setAnswer ] = useState<MobileLegendsCharacter>();
     const [ messagesInit, setMessagesInit ] = useState(false);
-    
+
+    const [showInput, setShowInput] = useState(false)
+    const [inputCooldown, setInputCooldown] = useState(3000)
+    const percent = (inputCooldown/2000)*100
+    const inputProps = useSpring({ value: percent, from: { value: 0 } });
+    const [animateInput, setAnimateInput] = useState(true);
+
+    const borderStyle = useSpring({
+        borderLeftColor: percent <= 25 ? 'orange' : 'transparent',
+        borderBottomColor: percent <= 50 ? 'orange' : 'transparent',
+        borderRightColor: percent <= 75 ? 'orange' : 'transparent',
+        borderTopColor: percent <= 100 ? 'orange' : 'transparent',
+        config: { duration: 250 }
+    });
+
+    useEffect(() => {
+        const startAnimate = () => {
+            setAnimateInput(true);
+            setTimeout(() => {
+                console.warn('animation triggered')
+                setAnimateInput(false);
+            }, 1100); 
+        };
+        startAnimate()
+    },[animateInput])
+
+    useEffect(() => {
+
+        
+        const interval = setInterval(() => {
+            
+            setInputCooldown(old => {return old-100})
+            
+
+        }, 100);
+
+
+        return () => {
+            clearInterval(interval)
+
+        };
+
+
+    }, [])
+
+    useEffect(() => {
+
+        if(!chatroomUser) return
+
+
+
+        if(chatroomUser.state == "PLAYING"){
+            setShowInput(true)
+
+        }
+        
+        if(chatroomUser.state == "CORRECT"){
+
+            console.log('user is correct already')
+            setShowInput(false)
+        }
+
+
+    }, [chatroomUser])
 
     useEffect(() => {
 
@@ -158,7 +223,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
     }
 
-    const handleUserAnswer = async () => {
+    const handleUserAnswer = async (points: number) => {
 
         console.log('executing user answer at round ', round)
 
@@ -170,7 +235,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
                     userId: chatroomUser.userId,
                     chatroomId: chatroomUser.chatroomId,
                     chatroomUserTtl: chatroomUser.ttl,
-                    points: 100,
+                    points: points,
                     chatroomStateId: chatroomState.id,
                     lastRound: round
                 }
@@ -185,6 +250,11 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
         var type = 'GUESS'
 
+        if(e.key === 'Enter' && userInput.length < 1) {
+
+            setAnimateInput(true)
+
+        }
         if(e.key === 'Enter' && userInput.length > 0) {
 
             const heroId = validateHero(userInput)
@@ -193,12 +263,25 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
                 type = 'GUESS-HERO-'+heroId+'-'+round
 
+                setInputCooldown(3000)
+
                 if(validateAnswer(userInput)){
 
-                    handleUserAnswer()
+                    setShowInput(false)
+                    const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
+                    console.log('time left percent', timeLeftPercent)
+                    const points = Math.floor((timeLeftPercent) * 10)*10 
+                    console.log('points', points)
+
+                    handleUserAnswer(points)
 
                     type = 'GUESS-CORRECT'
+                }else{
+
+
+
                 }
+
             }
 
             console.log(type)
@@ -251,13 +334,18 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         </div>
         
         <div className="flex flex-col mx-auto">
-            <div className="flex flex-row justify-center [&>*]:text-3xl mb-5 gap-10">
-                <GiSilverBullet className=""/>
-                <GiSilverBullet />
-                <GiSilverBullet />
+            
 
-            </div>
-            <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[20vw] border-orange-200 border-2  focus:outline-none bg-neutral-900 h-16 text-center uppercase text-white ps-5 text-2xl" />
+            {showInput ? 
+            
+            <animated.div className={`border border-4 animate__animated  flex `+ (animateInput)?'animate__shakeX' :''}  style={{
+                ...borderStyle
+                }}>
+
+                <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[20vw] focus:outline-none bg-neutral-900 h-16 text-center uppercase text-white ps-5 text-2xl" />
+            </animated.div>
+            
+            :''}
         </div>
 
 

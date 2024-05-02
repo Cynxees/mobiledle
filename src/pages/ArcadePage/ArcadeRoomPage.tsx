@@ -325,7 +325,6 @@ export default function ArcadeRoomPage() {
                 variables: {
                     input: {
                         id: userId,
-                        state: "PLAYING",
                         activeState: "ACTIVE-0"
                     }
                 }
@@ -466,6 +465,13 @@ export default function ArcadeRoomPage() {
             }).subscribe((data) => {
 
                 console.log('UPDATE: ', data)
+
+                if(data.data.onUpdateChatroomUser.id == chatroomUser.id){
+
+                    setChatroomUser(data.data.onUpdateChatroomUser)
+
+                }
+
 
                 setChatroomUsers((oldData) => {
                     
@@ -762,7 +768,7 @@ export default function ArcadeRoomPage() {
                 data-tooltip-place="bottom"
                 
                 >
-                    <ProgressBar value={timer} maxValue={120000} />
+                    <ProgressBar value={timer} maxValue={(prompt)?prompt.timeLimit*1000: 100000000} />
                     <Tooltip id='timer-tooltip' className='z-10 text-xl font-nova-bold'>{Math.floor(timer/1000).toString()}</Tooltip>
                 </div>
                 {/* <div className='bg-neutral-400 p-5 gap-5 flex flex-row'>
