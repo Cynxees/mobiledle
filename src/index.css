@@ -82,3 +82,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@layer utilities {
+  .flip-card{
+    transform: rotateY(180deg);
+  }
+}
