@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import ClassicPage from "./pages/ClassicPage";
