@@ -705,7 +705,7 @@ export default function ArcadeRoomPage() {
     return(
         <div className='grid grid-cols-5 w-screen h-screen'>
             
-            <div className='col-span-4 w-full h-full flex flex-col justify-between'>
+            <div className='col-span-4 w-full h-full flex flex-col justify-between overflow-hidden'>
 
                 
                 <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row'>
@@ -758,7 +758,7 @@ export default function ArcadeRoomPage() {
 
                 </div>
                 <div 
-                className='h-1 w-full'
+                className='h-1'
                 
                 data-tooltip-id="timer-tooltip"
                 data-tooltip-delay-show={100}
@@ -784,7 +784,7 @@ export default function ArcadeRoomPage() {
                 <div className='h-full w-full flex flex-row p-5'>
                     
 
-                    <div className='top-0 left-0 h-full -z-10 ps-5 text-xl text-nowrap '>
+                    <div className='top-0 left-0 h-full -z-10 ps-5 text-sm text-nowrap '>
 
                         {(chatroomUsers == null)? '' :chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
 
@@ -827,11 +827,11 @@ export default function ArcadeRoomPage() {
                         }
 
                         return( 
-                        <div key={message.id} className={`${message.type.startsWith("GUESS")?'text-neutral-500': 'text-neutral-200'} text-2xl flex flex-col leading-5`}>
-                            <div className='text-sm'>
+                        <div key={message.id} className={`${message.type.startsWith("GUESS")?'text-neutral-500': 'text-neutral-200'} flex flex-col leading-5`}>
+                            <div className='text-xs'>
                                 {(message.chatroomUser) ? message.chatroomUser.user.username: ''}
                             </div>
-                            <div className={`text-2xl mb-3 break-all flex h-6`}>
+                            <div className={`text-lg mb-3 break-all flex h-5`}>
                                 {(message.type.split('-')[2]) == null ?'' :
 
                                     <div className='px-1 '>

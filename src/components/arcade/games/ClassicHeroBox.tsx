@@ -24,7 +24,7 @@ function TraitBox({trait, state, isYear = false, answerYear='0'}: TraitBoxProps)
 
 
   return <div
-  className={`py-4 text-sm text-shadow shadow-gray-700 w-16 h-16 border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/agelta.jpg')] bg-blend-darken ${
+  className={`py-4 text-[0.7rem] break-all  text-shadow shadow-gray-700 w-16 h-16 border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/agelta.jpg')] bg-blend-darken ${
       state == 0 ? correctColor
         : state == 1 ? partialColor
         : wrongColor 
