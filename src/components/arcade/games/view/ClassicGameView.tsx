@@ -319,7 +319,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         </div>
 
 
-        <div className="row-span-5 ">
+        <div className="row-span-5 w-full">
             <div className="w-full h-full flex items-center">
                 <div className="mx-auto flex flex-col gap-5">
 

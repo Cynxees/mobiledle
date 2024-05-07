@@ -18,13 +18,13 @@ interface TraitBoxProps {
 function TraitBox({trait, state, isYear = false, answerYear='0'}: TraitBoxProps){
 
 
-  const wrongColor = "bg-red-900 text-shadow shadow-gray-700 w-28 h-28"
-  const partialColor = "bg-orange-700 text-shadow shadow-gray-700 w-28 h-28"
-  const correctColor = "bg-green-700 text-shadow shadow-gray-700 w-28 h-28"
+  const wrongColor = "bg-red-900"
+  const partialColor = "bg-orange-700"
+  const correctColor = "bg-green-700"
 
 
   return <div
-  className={`py-4  border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/agelta.jpg')] bg-blend-darken ${
+  className={`py-4 text-sm text-shadow shadow-gray-700 w-16 h-16 border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/agelta.jpg')] bg-blend-darken ${
       state == 0 ? correctColor
         : state == 1 ? partialColor
         : wrongColor 
@@ -91,21 +91,23 @@ export default function ClassicHeroBox({
   return (
     <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg relative">
       
+      <div className="w-16 h-16 relative">
 
-      <div className="absolute w-28 h-28 overflow-hidden animate__animated animate__zoomInRight">
-      <img className="absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
-                    currentTarget.src="/noPicture.png";
-                    currentTarget.onerror = null
-              }}/>
-      </div>
-
-      
-      <div className="py-4 w-28 h-28 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
-      
-        <img className="z-10" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
-                    currentTarget.src="/noPicture.png";
-                    currentTarget.onerror = null
+        <div className="absolute w-full h-full overflow-hidden animate__animated animate__zoomInRight">
+        <img className="absolute z-0 w-[200%] h-[200%] object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
+                      currentTarget.src="/noPicture.png";
+                      currentTarget.onerror = null
                 }}/>
+        </div>
+
+        
+        <div className="py-4 w-full h-full border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
+        
+          <img className="z-10" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
+                      currentTarget.src="/noPicture.png";
+                      currentTarget.onerror = null
+                  }}/>
+        </div>
       </div>
       <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />
       

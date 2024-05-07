@@ -45,7 +45,7 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
     }, [prompt])
 
 
-    return <div className="h-full w-full">
+    return <div className="h-full w-full overflow-hidden">
 
         {(chatroomState.mode == "CLASSIC") ? <ClassicGameView chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/> 
         : (chatroomState.currentState == "LOBBY") ? <LobbyView chatroomUsers={chatroomUsers} chatroomState={chatroomState} chatroom={chatroom} chatroomUser={chatroomUser}/>

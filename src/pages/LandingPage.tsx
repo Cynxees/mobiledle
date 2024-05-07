@@ -6,8 +6,6 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import {
   type Container,
   type ISourceOptions,
-  MoveDirection,
-  OutMode,
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
@@ -17,9 +15,9 @@ import MirrorBox from "../components/navigation/MirrorBox";
 
 export default function LandingPage() {
 
-  const [init, setInit] = useState(false);
+  const [, setInit] = useState(false);
   
-  const { data: user, isLoading: userIsLoading, error: userError } = useUser() 
+  const { data: user, isLoading: userIsLoading, error: userError } = useUser();
   const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
   useEffect(() => {
@@ -109,10 +107,13 @@ export default function LandingPage() {
     <div className="flex flex-col gap-10 w-[400px] md:w-[500px]">
       
       <Navbar />
-      <ClassicBox />
-      <SurvivalBox />
-      <ArcadeBox />
-      <MirrorBox />
+      <div className="flex flex-col justify-center align-middle mx-auto gap-5">
+
+        <ClassicBox />
+        <SurvivalBox />
+        <ArcadeBox />
+        <MirrorBox />
+      </div>
     </div>
     </div>
   );
