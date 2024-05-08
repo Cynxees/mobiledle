@@ -853,7 +853,7 @@ export default function ArcadeRoomPage() {
 
                 </div>
                 <div className='mt-4 border-2 border-t-neutral-600 border-transparent'>
-                    <input onChange={handleChatInput} onKeyDown={handleChatKeyDown} value={chatInput} className='w-full focus:outline-none rounded-t-[0.1rem] bg-neutral-900 h-16 text-white ps-5 text-2xl' type="text" placeholder='Type Here' />
+                    <input onChange={handleChatInput} onKeyDown={handleChatKeyDown} value={chatInput} className='w-full focus:outline-none rounded-t-[0.1rem] bg-neutral-900 h-12 text-white ps-5 text-lg' type="text" placeholder='Type Here' />
                 </div>
 
             </div>

@@ -4,6 +4,7 @@ import ClassicGameView from "./games/view/ClassicGameView";
 import LobbyView from "./games/view/LobbyView";
 import { useEffect, useState } from "react";
 import IntermissionView from "./games/view/IntermissionView";
+import BlurGameView from "./games/view/BlurGameView";
 
 
 interface GameAreaInput {

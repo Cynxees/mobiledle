@@ -6,7 +6,7 @@ import { createChatroomMessage, executeUserAnswer } from "../../../../graphql/mu
 import getTtlFromMinutes from "../../../../utils/getTtlFromMinutes";
 import ClassicHeroBox from "../ClassicHeroBox";
 import { GiSilverBullet } from "react-icons/gi";
-import ArcadeChance from "../..//ArcadeChance";
+import ArcadeChance from "../../ArcadeChance";
 import { animated, useSpring } from "react-spring";
 
 function isAlphaNumeric(str : string) {
@@ -49,7 +49,7 @@ interface LobbyViewInput {
 }
 
 
-export default function ClassicGameView({chatroomState, chatroomUser, chatroomMessages, prompt, round} : LobbyViewInput) {
+export default function BlurGameView({chatroomState, chatroomUser, chatroomMessages, prompt, round} : LobbyViewInput) {
 
 
     const client = generateClient()
@@ -306,30 +306,18 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
     }
     
 
-    if(!prompt || !characterGuesses ) return <div> Loading...</div>
+    if(!prompt || !characterGuesses || !answer ) return <div> Loading...</div>
 
     return <div className="h-full w-full grid grid-rows-9 pb-2">
 
         <div className="h-full w-full flex flex-col leading-tight">
-            <span className="text-3xl">CLASSIC</span>
+            <span className="text-3xl">BLUR</span>
             <span className="text-xs">{(prompt)? prompt.question: ''}</span>
             
         </div>
 
+        <img className="row-span-7 mx-auto blur-xl" src={characters[0].imageUrl[1]} alt="" />
 
-        <div className="row-span-7 w-full">
-            <div className="w-full h-full flex items-center">
-                <div className="mx-auto flex flex-col gap-3">
-
-                {characterGuesses.map(guess => {
-
-                    return <ClassicHeroBox key={guess.id} character={guess} answer={answer} showBooleans={[true,true]} />
-
-                })}
-    
-                </div>
-            </div>
-        </div>
         
         <div className="flex mx-auto">
             
