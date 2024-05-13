@@ -316,7 +316,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
             
         </div>
 
-        <img className="row-span-7 mx-auto blur-xl" src={characters[0].imageUrl[1]} alt="" />
+        <img  className="row-span-7 mx-auto blur-sm rotate-90  saturate-[4] hue-rotate-90 brightness-[2]" src={answer.imageUrl[0]} alt="" />
 
         
         <div className="flex mx-auto">

@@ -187,9 +187,9 @@ export default function DevPage() {
                 <img src={item.imageUrl[0]} alt="" className="w-24 h-24" />
                 <div>
                   <div className="text-xl">
-                    {item.id}: {item.name}
+                    {item.id}<br/>{item.name}
                   </div>
-                  <div className="text-sm text-gray-400">{item.region}</div>
+                  {/* <div className="text-sm text-gray-400">{item.region}</div> */}
                 </div>
               </div>
             );
