@@ -1,4 +1,3 @@
-import { MobileLegendsCharacter } from "../../API";
 import CharacterIcon from "../icons/CharacterIcon";
 import { useMobileLegendsCharacters } from "../../providers/MobileLegendsCharactersProvider";
 import { MobileLegendsHero } from "../../types/MobileLegendsHero";

@@ -1,8 +1,8 @@
-import { MobileLegendsCharacter } from "../../API";
+import { MobileLegendsHero } from "../../types/MobileLegendsHero";
 
 
 interface HeroCardProps {
-    character: MobileLegendsCharacter;
+    character: MobileLegendsHero;
   }
   
 

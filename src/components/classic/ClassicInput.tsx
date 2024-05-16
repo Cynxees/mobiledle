@@ -1,5 +1,4 @@
 import { GoArrowDownRight, GoArrowRight, GoPaperAirplane } from "react-icons/go";
-import { MobileLegendsCharacter } from "../../API";
 import { useState } from "react";
 import { MobileLegendsHero } from "../../types/MobileLegendsHero";
 import { StorageImage } from "@aws-amplify/ui-react-storage";
