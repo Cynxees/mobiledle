@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 
 interface ProgressBarProps {
@@ -12,10 +13,10 @@ function ProgressBar({value, maxValue} :ProgressBarProps) {
     
 
     const percent = (value/maxValue*100)
-    const props = useSpring({ width: `${percent}%`, from: { width: '0%' } });
 
+    let props = useSpring({ width: `${percent}%`, from: { width: '0%' } });
     return(
-        <div className="w-full h-full relative">
+        <div className="w-full h-1 relative">
             
             <animated.div
                 style={props}

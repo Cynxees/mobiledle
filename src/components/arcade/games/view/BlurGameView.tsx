@@ -310,7 +310,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
 
     if(!prompt || !characterGuesses || !answer ) return <div> Loading...</div>
 
-    return <div className="h-full w-full grid grid-rows-9 pb-2">
+    return <div className="h-full w-full grid grid-rows-10 pb-2">
 
         <div className="h-full w-full flex flex-col leading-tight">
             <span className="text-3xl">BLUR</span>
@@ -318,7 +318,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
             
         </div>
 
-        <CachedImage className="row-span-7 mx-auto blur-sm rotate-90  saturate-[4] hue-rotate-90 brightness-[2]" imgKey={answer.imageKeys.banners[0]} />
+        <CachedImage className="row-span-7 h-2/3 my-auto mx-auto brightness-110" imgKey={answer.imageKeys.banners[0]} />
 
         
         <div className="flex mx-auto">

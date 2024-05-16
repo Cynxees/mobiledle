@@ -4,13 +4,13 @@ import Timer from "../components/memory/Timer";
 import { useEffect, useState } from "react";
 
 import { initCardArray } from "../constant/memory/index";
-import { MobileLegendsCharacter } from "../API";
+import { MobileLegendsHero } from "../types/MobileLegendsHero";
 
 const MemoryPage = () => {
   const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
   // // character card array that is shown to player
-  const [cardChar, setCardChar] = useState<MobileLegendsCharacter[]>([]);
+  const [cardChar, setCardChar] = useState<MobileLegendsHero[]>([]);
 
   useEffect(() => {
     if (characters != null) {
@@ -65,7 +65,7 @@ const MemoryPage = () => {
               className="grow"
             >
               <MemoryCard
-                imageUrl={element.imageUrl[0]}
+                imageKey={element.imageKeys.banners[0]}
                 isShow={cardSelected.includes(index) ? true : false}
               />
             </div>

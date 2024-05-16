@@ -9,6 +9,7 @@ import RoomCard from '../../components/arcade/RoomCard';
 import Navbar from '../../components/navigation/Navbar';
 import { FiRefreshCw } from 'react-icons/fi';
 import { useUser } from '../../providers/UserProvider';
+import { useSpring } from 'react-spring';
 
 const client = generateClient();
 
@@ -29,6 +30,10 @@ export default function ArcadeLandingPage() {
     const { data: user, isLoading: userIsLoading, error: userError, refetch } = useUser()
     const [init, setInit] = useState(false)
     
+
+    const [spinRotation, setSpinRotation] = useState(0)
+
+    let refreshProps = useSpring({ rotate: `${spinRotation}%`, from: { rotate: '0%' } });
     
     
 
@@ -230,7 +235,7 @@ export default function ArcadeLandingPage() {
                     
                     <input className='p-2 w-full rounded-lg' onChange={handleRoomCodeInputChange} value={roomCode} type="text" placeholder='Find Room'/>
                     
-                    <button className='bg-orange-700' onClick={handleRefreshRoomClick}><FiRefreshCw /></button>
+                    <button className='bg-orange-700' onClick={handleRefreshRoomClick}><div><FiRefreshCw  className='' /></div></button>
                 </div>
             </div>
 

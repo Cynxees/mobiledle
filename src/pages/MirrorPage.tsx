@@ -3,8 +3,9 @@ import questions from "../constant/mirror/questions.json";
 import identity from "../constant/mirror/identity.json";
 import Navbar from "../components/navigation/Navbar";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
-import { MobileLegendsCharacter } from "../API";
 import { useTranslation } from "react-i18next";
+import { MobileLegendsHero } from "../types/MobileLegendsHero";
+import CachedImage from "../components/CachedImage";
 
 const getFiveRandomQuestions = () => {
   const randomQuestions = [];
@@ -24,7 +25,7 @@ const MirrorPage = () => {
   const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
   const [userHighestTrait, setUserHighestTrait] = useState()
-  const [userHero, setUserHero] = useState<MobileLegendsCharacter>();
+  const [userHero, setUserHero] = useState<MobileLegendsHero>();
   const [questions, setQuestions] = useState(getFiveRandomQuestions());
   const [userTraits, setUserTraits] = useState({
     Brave: 0,
@@ -119,7 +120,7 @@ const MirrorPage = () => {
         <div className="flex flex-col gap-5 items-center">
           <h2 className="text-lg">{t`Your hero is :`}</h2>
           
-          <img src={`${userHero.imageUrl[0]}`}></img>
+          <CachedImage className="" imgKey={`${userHero.imageKeys.banners[0]}`} />
           
           <span>{t(`${userHighestTrait}`)} {userHero.name}</span>
           

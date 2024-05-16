@@ -1,6 +1,6 @@
 import { StorageImage } from "@aws-amplify/ui-react-storage";
 
-export class MobileLegendsHero{
+export class    MobileLegendsHero{
     __typename: "MobileLegendsHero"
     id: string
     name: string

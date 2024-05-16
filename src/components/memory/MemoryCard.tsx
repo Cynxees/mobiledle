@@ -3,8 +3,9 @@ import { FaRegCircleQuestion } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 
 import { cardEvents } from "../../constant/memory/events";
+import CachedImage from "../../components/CachedImage";
 
-const MemoryCard = ({ imageUrl, isShow }) => {
+const MemoryCard = ({ imageKey, isShow }) => {
 
 
   // console.log(index)
@@ -20,7 +21,7 @@ const MemoryCard = ({ imageUrl, isShow }) => {
           isShow ? "visible" : "invisible"
         } delay-150`}
       >
-        <img src={`${imageUrl}`} className=" max-md:w-12 max-md:h-12 w-24 h-24"/>
+        <CachedImage imgKey={imageKey} className=" max-md:w-12 max-md:h-12 w-24 h-24"/>
 
         <span>
           

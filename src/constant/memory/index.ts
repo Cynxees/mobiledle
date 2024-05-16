@@ -1,8 +1,8 @@
-import { MobileLegendsCharacter } from "../../API";
+import { MobileLegendsHero } from "../../types/MobileLegendsHero";
 
 // return duplicate heroes array index
-const getRandomHeroes = (characters: MobileLegendsCharacter[]) => {
-  const randomHeroes: MobileLegendsCharacter[] = [];
+const getRandomHeroes = (characters: MobileLegendsHero[]) => {
+  const randomHeroes: MobileLegendsHero[] = [];
   const totalHeroes = characters.length;
 
   while (randomHeroes.length < 12) {
@@ -20,13 +20,13 @@ const getRandomHeroes = (characters: MobileLegendsCharacter[]) => {
 };
 
 // card array init and shuffling
-export const initCardArray = (characters: MobileLegendsCharacter[]) => {
+export const initCardArray = (characters: MobileLegendsHero[]) => {
   const array = getRandomHeroes(characters);
 
   for (let index = 0; index < array.length; index++) {
     const element = array[index];
 
-    index == 1 ? cropFaceImage(element.imageUrl[0]):"";
+    index == 1 ? cropFaceImage(element.imageKeys.banners[0]):"";
   }
 
   return array.sort(() => Math.random() - 0.5);

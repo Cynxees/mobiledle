@@ -158,8 +158,7 @@ export default function ArcadeRoomPage() {
         if(!chatroomState) return
         
         const interval = setInterval(() => {
-            
-            if(chatroomState.willEndAt != null) setTimer(chatroomState.willEndAt*1000 - (new Date().getTime()))
+            if(chatroomState.willEndAt != null) setTimer(chatroomState.willEndAt*1000 - (new Date().getTime() - 17000))
 
         }, 100);
 
@@ -170,7 +169,7 @@ export default function ArcadeRoomPage() {
         };
 
 
-    }, [chatroomState])
+    }, [,chatroomState])
 
     useEffect(() => {
         
