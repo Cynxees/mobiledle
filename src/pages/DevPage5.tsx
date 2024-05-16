@@ -24,6 +24,7 @@ export default function DevPage() {
             prefix: searchPrefix,
             options: {
                 accessLevel: "guest",
+                listAll: true
 
             }
             
