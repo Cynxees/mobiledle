@@ -1,11 +1,14 @@
 import { GoArrowDownRight, GoArrowRight, GoPaperAirplane } from "react-icons/go";
 import { MobileLegendsCharacter } from "../../API";
 import { useState } from "react";
+import { MobileLegendsHero } from "../../types/MobileLegendsHero";
+import { StorageImage } from "@aws-amplify/ui-react-storage";
+import CachedImage from "../../components/CachedImage";
 
 interface ClassicSearchBarProps {
-  characters: MobileLegendsCharacter[];
-  onDataFromChild: (data: MobileLegendsCharacter) => void;
-  userAnswers: MobileLegendsCharacter[];
+  characters: MobileLegendsHero[];
+  onDataFromChild: (data: MobileLegendsHero) => void;
+  userAnswers: MobileLegendsHero[];
 }
 
 export default function ClassicInput({
@@ -14,7 +17,7 @@ export default function ClassicInput({
   userAnswers
 }: ClassicSearchBarProps) {
   const [prefix, setPrefix] = useState("");
-  const [suggestions, setSuggestions] = useState<MobileLegendsCharacter[]>([]);
+  const [suggestions, setSuggestions] = useState<MobileLegendsHero[]>([]);
 
   const findCharacterBasedOnName = (name: string) => {
     const foundCharacter = characters.find(
@@ -88,22 +91,18 @@ export default function ClassicInput({
             onKeyPress={handleKeyPress}
           />
           <div className={`${suggestions.length<4 ? "" : "overflow-y-scroll" } absolute top-12 w-full z-20 max-h-52`}>
-            {suggestions.map((item: MobileLegendsCharacter) => (
+            {suggestions.map((item: MobileLegendsHero) => (
               <li
                 key={item.id}
                 className="bg-[#caa172] w-full list-none py-2 border-t-[1px] border-t-gray-700 text-[#e8dca4] cursor-pointer"
                 onClick={() => handleSuggestionClick(item.name)}
               >
                 <div className="flex items-center px-2 gap-3">
-                  <img
-                    src={item.imageUrl[0] || undefined}
-                    alt=""
-                    onError={({ currentTarget }) => {
-                      currentTarget.src="/noPicture.png";
-                      currentTarget.onerror = null
-                    }}
+                  <CachedImage
+                    imgKey={item.imageKeys.icons[0]}
                     className="max-w-10 max-h-10"
                   />
+                  
                   <div className="">{item.name}</div>
                 </div>
               </li>

@@ -1,7 +1,10 @@
-import { MobileLegendsCharacter } from "../../API";
+import { StorageImage } from "@aws-amplify/ui-react-storage";
+import { MobileLegendsHero } from "../../types/MobileLegendsHero";
+import { Image } from "@aws-amplify/ui-react";
+import CachedImage from "../../components/CachedImage";
 
 interface ClassicIconProps {
-    character: MobileLegendsCharacter;
+    character: MobileLegendsHero;
 }
 
 
@@ -12,10 +15,7 @@ export default function CharacterIcon({
     return(
 
         <div className="flex flex-col h-50">
-            <img src={character.imageUrl[0]} alt="" className="max-w-[100px]" onError={({ currentTarget }) => {
-                    currentTarget.src="/noPicture.png";
-                    currentTarget.onerror = null
-                }}/>
+            <CachedImage imgKey={character.imageKeys.icons[0]} className="max-w-[100px]" />
             <div>{character.name}</div>
         </div>
 

@@ -3,7 +3,6 @@ import ColorIndicator from "../components/classic/ColorIndicator";
 import HeroShowBar from "../components/classic/HeroShowBar";
 import Navbar from "../components/navigation/Navbar";
 import ClassicInput from "../components/classic/ClassicInput";
-import { MobileLegendsCharacter } from "../API";
 import ClassicTableTitle from "../components/classic/ClassicTableTitle";
 import useFetchTodayAnswer from "../hooks/useFetchTodayAnswer";
 import HeroBank from "../components/classic/HeroBank";
@@ -11,6 +10,7 @@ import HeroBank from "../components/classic/HeroBank";
 import { useTranslation } from "react-i18next";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 import WinCard from "../components/public/WinCard";
+import { MobileLegendsHero } from "../types/MobileLegendsHero";
 
 interface userGuess {
   isCorrect: boolean;
@@ -23,7 +23,7 @@ export default function ClassicPage() {
   const { data: characters, isLoading, error } = useMobileLegendsCharacters();
   const todayCharacter = useFetchTodayAnswer("CLASSIC");
 
-  const [userAnswers, setUserAnswers] = useState<MobileLegendsCharacter[]>(
+  const [userAnswers, setUserAnswers] = useState<MobileLegendsHero[]>(
     () => {
       const storedData = localStorage.getItem("userAnswers");
       //check if now is a new day
@@ -47,7 +47,7 @@ export default function ClassicPage() {
     userAnswers.map(c => {
        characters.map(ch => {
         if(c.id == ch.id){
-        c.imageUrl = ch.imageUrl
+        c.imageKeys = ch.imageKeys
         return
       }
     })
@@ -98,7 +98,7 @@ export default function ClassicPage() {
   }, [isWin, winCardRef.current]);
 
   //userAnswer function
-  const handleChildData = (dataFromChild: MobileLegendsCharacter) => {
+  const handleChildData = (dataFromChild: MobileLegendsHero) => {
     if (dataFromChild != null) {
       setUserAnswers((prevAnswers) => [...prevAnswers, dataFromChild]);
 

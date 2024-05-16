@@ -8,6 +8,8 @@ import ClassicHeroBox from "../ClassicHeroBox";
 import { GiSilverBullet } from "react-icons/gi";
 import ArcadeChance from "../../ArcadeChance";
 import { animated, useSpring } from "react-spring";
+import { MobileLegendsHero } from "../../../../types/MobileLegendsHero";
+import CachedImage from "../../../../components/CachedImage";
 
 function isAlphaNumeric(str : string) {
     var code, i, len;
@@ -54,11 +56,11 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
 
     const client = generateClient()
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
-    const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsCharacter[]>([])
+    const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsHero[]>([])
     const [ userInput, setUserInput ] = useState('');
     const [currentRound, setCurrentRound] = useState(0)
     
-    const [ answer, setAnswer ] = useState<MobileLegendsCharacter>();
+    const [ answer, setAnswer ] = useState<MobileLegendsHero>();
     const [ messagesInit, setMessagesInit ] = useState(false);
 
     const [showInput, setShowInput] = useState(false)
@@ -316,7 +318,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
             
         </div>
 
-        <img  className="row-span-7 mx-auto blur-sm rotate-90  saturate-[4] hue-rotate-90 brightness-[2]" src={answer.imageUrl[0]} alt="" />
+        <CachedImage className="row-span-7 mx-auto blur-sm rotate-90  saturate-[4] hue-rotate-90 brightness-[2]" imgKey={answer.imageKeys.banners[0]} />
 
         
         <div className="flex mx-auto">

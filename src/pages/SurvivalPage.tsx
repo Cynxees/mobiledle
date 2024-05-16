@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo  } from "react";
-import { MobileLegendsCharacter } from "../API";
+import { MobileLegendsHero } from "../types/MobileLegendsHero";
 import Draggable, {DraggableEvent, DraggableData} from 'react-draggable';
 import preloadImage from "../utils/preloadImage";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
@@ -11,8 +11,9 @@ import {
 import { useTranslation } from "react-i18next";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import CachedImage from "../components/CachedImage";
 
-function getRandomStat(character: MobileLegendsCharacter) {
+function getRandomStat(character: MobileLegendsHero) {
 
     const random = Math.floor(Math.random()*100)%12
 
@@ -39,7 +40,7 @@ function getRandomStat(character: MobileLegendsCharacter) {
 
 }
 
-function getWrongStat(character: MobileLegendsCharacter, characters: MobileLegendsCharacter[]){
+function getWrongStat(character: MobileLegendsHero, characters: MobileLegendsHero[]){
     
     const characterStats = [
         character.alias, 
@@ -84,7 +85,7 @@ function getWrongStat(character: MobileLegendsCharacter, characters: MobileLegen
 
 }
 
-function getRandomCharacter(characters : MobileLegendsCharacter[]){
+function getRandomCharacter(characters : MobileLegendsHero[]){
 
         
     const random = Math.floor(Math.random()*100)%30
@@ -101,7 +102,7 @@ export default function SurvivalPage() {
     const { t } = useTranslation();
 
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
-    const [currentCharacter, setCurrentCharacter] = useState<MobileLegendsCharacter>();
+    const [currentCharacter, setCurrentCharacter] = useState<MobileLegendsHero>();
     const [countdown, setCountdown] = useState(14);
     const [score, setScore] = useState(0);
     const [correctPrompt, setCorrectPrompt] = useState("")
@@ -248,16 +249,16 @@ export default function SurvivalPage() {
         const fetchData = async () => {
 
             console.log("setting characters")
-            const imagesPromiseList: Promise<any>[] = []
-            characters.forEach(c =>{
+            // const imagesPromiseList: Promise<any>[] = []
+            // characters.forEach(c =>{
 
-                if(c.imageUrl[1] != null && c.imageUrl[1] != undefined && parseInt(c.id) < 30) imagesPromiseList.push(preloadImage(c.imageUrl[1]))
-            }
+            //     imagesPromiseList.push(preloadImage(c.imageKeys.cards[0]))
+            // }
 
-            )
+            // )
 
 
-            await Promise.all(imagesPromiseList)
+            // await Promise.all(imagesPromiseList)
             
             setIsAllLoaded(true)
 
@@ -462,10 +463,16 @@ export default function SurvivalPage() {
             >
                 <div className="handle relative z-30 mb-20 transform w-full h-full " style={{ WebkitFilter: `brightness(${characterOpacity + 0.6})`, filter : `brightness(100%)` }}>
 
-                <div className="bg-image absolute inset-0 bg-center bg-cover max-h-[28vh] lg:max-h-full blur-3xl opacity-80 motion-reduce:animate-bounce animate-pulse" 
-                    style={{ backgroundImage: `url(${currentCharacter?.imageUrl[1]})`, backgroundSize: 'cover', transform: `rotate(${characterRotation}deg)` }} />
+                {/* <div className="bg-image absolute inset-0 bg-center bg-cover max-h-[28vh] lg:max-h-full blur-3xl opacity-80 motion-reduce:animate-bounce animate-pulse" 
+                    style={{ backgroundImage: `url(${currentCharacter.imageKeys[0]})`, backgroundSize: 'cover', transform: `rotate(${characterRotation}deg)` }} /> */}
                     
-                <img className="rounded-xl max-h-[28vh] lg:max-h-full z-10 mx-auto scale-150 md:scale-110 " src={currentCharacter?.imageUrl[1]} alt={currentCharacter?.name} draggable={false}></img>
+                {currentCharacter ? 
+                    
+                    <CachedImage className="rounded-xl max-h-[28vh] lg:max-h-full z-10 mx-auto scale-150 md:scale-110 " imgKey={currentCharacter.imageKeys.cards[0]} />
+                    
+                    : 'no hero'
+                }
+                
                 
 
 

@@ -12,7 +12,8 @@ const useGetMobileLegendsCharacterImageURL = async (character: MobileLegendsChar
     let getUrlResult = await getUrl({
         key: "heroes/icons/"+character.id,
         options: {
-          accessLevel: 'guest'  
+          accessLevel: 'guest',
+          expiresIn: 60*60*24 
         },
     });
 

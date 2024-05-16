@@ -8,6 +8,7 @@ import ClassicHeroBox from "../ClassicHeroBox";
 import { GiSilverBullet } from "react-icons/gi";
 import ArcadeChance from "../..//ArcadeChance";
 import { animated, useSpring } from "react-spring";
+import { MobileLegendsHero } from "../../../../types/MobileLegendsHero";
 
 function isAlphaNumeric(str : string) {
     var code, i, len;
@@ -54,11 +55,11 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
     const client = generateClient()
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
-    const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsCharacter[]>([])
+    const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsHero[]>([])
     const [ userInput, setUserInput ] = useState('');
     const [currentRound, setCurrentRound] = useState(0)
     
-    const [ answer, setAnswer ] = useState<MobileLegendsCharacter>();
+    const [ answer, setAnswer ] = useState<MobileLegendsHero>();
     const [ messagesInit, setMessagesInit ] = useState(false);
 
     const [showInput, setShowInput] = useState(false)
@@ -123,9 +124,9 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         setAnswer(characters[prompt.mobileLegendsCharacterId])
         console.log('answer: ', characters[prompt.mobileLegendsCharacterId])
 
-        const index1 = randomizeHero(parseInt(prompt.mobileLegendsCharacterId), 124)
-        const index2 = randomizeHero(index1, 124)
-        const index3 = randomizeHero(index2, 124)
+        const index1 = randomizeHero(parseInt(prompt.mobileLegendsCharacterId), 21)
+        const index2 = randomizeHero(index1, 21)
+        const index3 = randomizeHero(index2, 21)
 
         setCharacterGuesses([characters[index1], characters[index2], characters[index3]])
 

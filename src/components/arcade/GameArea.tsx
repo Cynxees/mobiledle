@@ -1,10 +1,10 @@
-import { useMobileLegendsCharacters } from "../../providers/MobileLegendsCharactersProvider";
-import { Chatroom, ChatroomMessage, ChatroomState, ChatroomUser, MobileLegendsCharacter, Prompt } from "../../API";
+import { Chatroom, ChatroomMessage, ChatroomState, ChatroomUser, Prompt } from "../../API";
 import ClassicGameView from "./games/view/ClassicGameView";
 import LobbyView from "./games/view/LobbyView";
 import { useEffect, useState } from "react";
 import IntermissionView from "./games/view/IntermissionView";
 import BlurGameView from "./games/view/BlurGameView";
+import { MobileLegendsHero } from "../../types/MobileLegendsHero";
 
 
 interface GameAreaInput {
@@ -17,7 +17,7 @@ interface GameAreaInput {
     prompt: Prompt,
     setPrompt: React.Dispatch<React.SetStateAction<Prompt>>,
     round: number,
-    characters: MobileLegendsCharacter[]
+    characters: MobileLegendsHero[]
     
 }
 

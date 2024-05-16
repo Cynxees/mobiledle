@@ -1,10 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { MobileLegendsCharacter } from "../../../API";
+import { MobileLegendsHero } from "../../../types/MobileLegendsHero";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { StorageImage } from "@aws-amplify/ui-react-storage";
+import CachedImage from "../../../components/CachedImage";
 
 interface ClassicHeroBox {
-  character: MobileLegendsCharacter;
-  answer: MobileLegendsCharacter | undefined;
+  character: MobileLegendsHero;
+  answer: MobileLegendsHero | undefined;
   showBooleans?: boolean[]
 }
 
@@ -94,19 +96,13 @@ export default function ClassicHeroBox({
       <div className="w-16 h-16 relative">
 
         <div className="absolute w-full h-full overflow-hidden animate__animated animate__zoomInRight">
-        <img className="absolute z-0 w-[200%] h-[200%] object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
-                      currentTarget.src="/noPicture.png";
-                      currentTarget.onerror = null
-                }}/>
+        <CachedImage className="absolute z-0 w-[200%] h-[200%] object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" imgKey={character.imageKeys.icons[0]} />
         </div>
 
         
         <div className="py-4 w-full h-full border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
         
-          <img className="z-10" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
-                      currentTarget.src="/noPicture.png";
-                      currentTarget.onerror = null
-                  }}/>
+          <CachedImage className="z-10" imgKey={character.imageKeys.icons[0]} />
         </div>
       </div>
       <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />

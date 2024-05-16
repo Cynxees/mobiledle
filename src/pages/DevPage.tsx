@@ -8,6 +8,7 @@ import useGetMobileLegendsCharacterImageURL from "../hooks/useGetMobileLegendsCh
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 
 import identity from "../constant/mirror/identity.json";
+import CachedImage from '../components/CachedImage'
 
 export default function DevPage() {
   const [init, setInit] = useState(false);
@@ -181,10 +182,10 @@ export default function DevPage() {
         <h2>Today's Answer = {todayCharacter?.name}</h2>
 
         <ul className="text-left flex flex-wrap w-[80%] mx-auto py-16 justify-center mt-10 border-4 border-white shadow-white shadow-2xl mb-72 bg-gray-400 bg-opacity-10 rounded-3xl gap-5">
-          {characters.map((item: MobileLegendsCharacter) => {
+          {characters.map((item) => {
             return (
               <div key="{item.id}" className="flex flex-row w-[10vw] gap-5">
-                <img src={item.imageUrl[0]} alt="" className="w-24 h-24" />
+                <CachedImage imgKey={item.imageKeys.icons[Math.floor(Math.random()*100) % item.imageKeys.icons.length]} className="w-24 h-24" />
                 <div>
                   <div className="text-xl">
                     {item.id}<br/>{item.name}

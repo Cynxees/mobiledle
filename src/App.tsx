@@ -5,6 +5,7 @@ import ClassicPage from "./pages/ClassicPage";
 import DevPage from "./pages/DevPage";
 import DevPage2 from "./pages/DevPage2";
 import DevPage3 from "./pages/DevPage3";
+import DevPage5 from "./pages/DevPage5";
 import 'animate.css';
 import SurvivalPage from "./pages/SurvivalPage";
 import ArcadeLandingPage from "./pages/ArcadePage/ArcadeLandingPage";
@@ -44,6 +45,7 @@ function App() {
           <Route path="dev2" element={<DevPage2 />} />
           <Route path="dev3" element={<DevPage3 />} />
           <Route path="dev4" element={<LandingPage2 />} />
+          <Route path="dev5" element={<DevPage5 />} />
 
         </Routes>
       </BrowserRouter>

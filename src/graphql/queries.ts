@@ -27,7 +27,6 @@ export const getMobileLegendsCharacter = /* GraphQL */ `query GetMobileLegendsCh
     resource
     hairColor
     species
-    imageUrl
     __typename
   }
 }
@@ -63,7 +62,6 @@ export const listMobileLegendsCharacters = /* GraphQL */ `query ListMobileLegend
       resource
       hairColor
       species
-      imageUrl
       __typename
     }
     nextToken
@@ -713,7 +711,6 @@ export const getPrompt = /* GraphQL */ `query GetPrompt($id: ID!) {
       resource
       hairColor
       species
-      imageUrl
       __typename
     }
     mobileLegendsCharacterId
@@ -754,7 +751,6 @@ export const listPrompts = /* GraphQL */ `query ListPrompts(
         resource
         hairColor
         species
-        imageUrl
         __typename
       }
       mobileLegendsCharacterId
@@ -872,7 +868,6 @@ export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) 
         resource
         hairColor
         species
-        imageUrl
         __typename
       }
       mobileLegendsCharacterId

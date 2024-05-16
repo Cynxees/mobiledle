@@ -1,6 +1,7 @@
 import { MobileLegendsCharacter } from "../../API";
 import CharacterIcon from "../icons/CharacterIcon";
 import { useMobileLegendsCharacters } from "../../providers/MobileLegendsCharactersProvider";
+import { MobileLegendsHero } from "../../types/MobileLegendsHero";
 
 
 export default function HeroBank() {
@@ -12,7 +13,7 @@ export default function HeroBank() {
 
         <div className={`flex flex-row flex-wrap w-full  flex-shrink-0 gap-5  items-center justify-center `}>
             
-            {characters.map((item : MobileLegendsCharacter) => {
+            {characters.map((item : MobileLegendsHero) => {
                     
 
                 return(

@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { MobileLegendsCharacter } from "../../API";
+import { MobileLegendsHero } from "../../types/MobileLegendsHero";
+import CachedImage from "../../components/CachedImage";
 
 interface HeroShowBar {
-  character: MobileLegendsCharacter;
-  answer: MobileLegendsCharacter | undefined;
+  character: MobileLegendsHero;
+  answer: MobileLegendsHero;
   showBooleans?: boolean[]
 }
 
@@ -72,19 +73,13 @@ export default function HeroShowBar({
     <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg h-full w-full">
       
       <div className="absolute w-28 h-28 overflow-hidden animate__animated animate__zoomInRight">
-      <img className="absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
-                    currentTarget.src="/noPicture.png";
-                    currentTarget.onerror = null
-              }}/>
+      <CachedImage className="absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" imgKey={character.imageKeys.icons[0]} /> 
       </div>
 
       
       <div className="py-4 w-28 h-28 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
       
-        <img className="z-10" src={character.imageUrl[0] || undefined} alt="" onError={({ currentTarget }) => {
-                    currentTarget.src="/noPicture.png";
-                    currentTarget.onerror = null
-                }}/>
+        <CachedImage className="z-10" imgKey={character.imageKeys.icons[0]} /> 
       </div>
       
       <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />

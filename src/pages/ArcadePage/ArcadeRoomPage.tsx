@@ -17,6 +17,7 @@ import { Amplify } from 'aws-amplify';
 import amplifyconfig from '../../amplifyconfiguration.json'
 import { FaCrown } from 'react-icons/fa6';
 import ProgressBar from '../../components/arcade/ProgressBar';
+import CachedImage from '../../components/CachedImage';
 
 
 
@@ -835,7 +836,7 @@ export default function ArcadeRoomPage() {
                                 {(message.type.split('-')[2]) == null ?'' :
 
                                     <div className='px-1 '>
-                                        <img src={characters[parseInt((message.type.split('-')[2]))-1].imageUrl[0]} alt="" className='max-h-full' />
+                                        <CachedImage imgKey={characters[parseInt((message.type.split('-')[2]))-1].imageKeys.icons[0]}  className='max-h-full' />
                                     </div>
 
                                 

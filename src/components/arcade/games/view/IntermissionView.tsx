@@ -3,11 +3,12 @@ import { Chatroom, ChatroomState, ChatroomUser, MobileLegendsCharacter, Prompt }
 import { generateClient, post } from 'aws-amplify/api';
 import { executeLaunchGame } from "../../../../graphql/mutations";
 import { FaCrown } from "react-icons/fa6";
+import { MobileLegendsHero } from "../../../../types/MobileLegendsHero";
 
 interface IntermissionViewInput {
 
     prompt : Prompt,
-    characters : MobileLegendsCharacter[]
+    characters : MobileLegendsHero[]
     
 }
 

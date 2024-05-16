@@ -29,7 +29,6 @@ export const onCreateMobileLegendsCharacter = /* GraphQL */ `subscription OnCrea
     resource
     hairColor
     species
-    imageUrl
     __typename
   }
 }
@@ -58,7 +57,6 @@ export const onUpdateMobileLegendsCharacter = /* GraphQL */ `subscription OnUpda
     resource
     hairColor
     species
-    imageUrl
     __typename
   }
 }
@@ -87,7 +85,6 @@ export const onDeleteMobileLegendsCharacter = /* GraphQL */ `subscription OnDele
     resource
     hairColor
     species
-    imageUrl
     __typename
   }
 }
@@ -1215,7 +1212,6 @@ export const onCreatePrompt = /* GraphQL */ `subscription OnCreatePrompt(
       resource
       hairColor
       species
-      imageUrl
       __typename
     }
     mobileLegendsCharacterId
@@ -1266,7 +1262,6 @@ export const onUpdatePrompt = /* GraphQL */ `subscription OnUpdatePrompt(
       resource
       hairColor
       species
-      imageUrl
       __typename
     }
     mobileLegendsCharacterId
@@ -1317,7 +1312,6 @@ export const onDeletePrompt = /* GraphQL */ `subscription OnDeletePrompt(
       resource
       hairColor
       species
-      imageUrl
       __typename
     }
     mobileLegendsCharacterId
@@ -1432,7 +1426,6 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
         resource
         hairColor
         species
-        imageUrl
         __typename
       }
       mobileLegendsCharacterId
@@ -1555,7 +1548,6 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
         resource
         hairColor
         species
-        imageUrl
         __typename
       }
       mobileLegendsCharacterId
@@ -1678,7 +1670,6 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
         resource
         hairColor
         species
-        imageUrl
         __typename
       }
       mobileLegendsCharacterId

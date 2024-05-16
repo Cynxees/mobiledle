@@ -30,7 +30,6 @@ export const createMobileLegendsCharacter = /* GraphQL */ `mutation CreateMobile
     resource
     hairColor
     species
-    imageUrl
     __typename
   }
 }
@@ -60,7 +59,6 @@ export const updateMobileLegendsCharacter = /* GraphQL */ `mutation UpdateMobile
     resource
     hairColor
     species
-    imageUrl
     __typename
   }
 }
@@ -90,7 +88,6 @@ export const deleteMobileLegendsCharacter = /* GraphQL */ `mutation DeleteMobile
     resource
     hairColor
     species
-    imageUrl
     __typename
   }
 }
@@ -1115,7 +1112,6 @@ export const createPrompt = /* GraphQL */ `mutation CreatePrompt($input: CreateP
       resource
       hairColor
       species
-      imageUrl
       __typename
     }
     mobileLegendsCharacterId
@@ -1154,7 +1150,6 @@ export const updatePrompt = /* GraphQL */ `mutation UpdatePrompt($input: UpdateP
       resource
       hairColor
       species
-      imageUrl
       __typename
     }
     mobileLegendsCharacterId
@@ -1193,7 +1188,6 @@ export const deletePrompt = /* GraphQL */ `mutation DeletePrompt($input: DeleteP
       resource
       hairColor
       species
-      imageUrl
       __typename
     }
     mobileLegendsCharacterId
@@ -1308,7 +1302,6 @@ export const createChatroomState = /* GraphQL */ `mutation CreateChatroomState($
         resource
         hairColor
         species
-        imageUrl
         __typename
       }
       mobileLegendsCharacterId
@@ -1431,7 +1424,6 @@ export const updateChatroomState = /* GraphQL */ `mutation UpdateChatroomState($
         resource
         hairColor
         species
-        imageUrl
         __typename
       }
       mobileLegendsCharacterId
@@ -1554,7 +1546,6 @@ export const deleteChatroomState = /* GraphQL */ `mutation DeleteChatroomState($
         resource
         hairColor
         species
-        imageUrl
         __typename
       }
       mobileLegendsCharacterId

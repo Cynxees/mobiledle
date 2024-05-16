@@ -115,7 +115,6 @@ export type MobileLegendsCharacter = {
   resource?: string | null,
   hairColor?: string | null,
   species?: string | null,
-  imageUrl?: Array< string | null > | null,
 };
 
 export type UpdateMobileLegendsCharacterInput = {
@@ -629,7 +628,6 @@ export type CreateMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -658,7 +656,6 @@ export type UpdateMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -687,7 +684,6 @@ export type DeleteMobileLegendsCharacterMutation = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -1728,7 +1724,6 @@ export type CreatePromptMutation = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      imageUrl?: Array< string | null > | null,
     } | null,
     mobileLegendsCharacterId?: string | null,
     description?: string | null,
@@ -1768,7 +1763,6 @@ export type UpdatePromptMutation = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      imageUrl?: Array< string | null > | null,
     } | null,
     mobileLegendsCharacterId?: string | null,
     description?: string | null,
@@ -1808,7 +1802,6 @@ export type DeletePromptMutation = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      imageUrl?: Array< string | null > | null,
     } | null,
     mobileLegendsCharacterId?: string | null,
     description?: string | null,
@@ -1925,7 +1918,6 @@ export type CreateChatroomStateMutation = {
         resource?: string | null,
         hairColor?: string | null,
         species?: string | null,
-        imageUrl?: Array< string | null > | null,
       } | null,
       mobileLegendsCharacterId?: string | null,
       description?: string | null,
@@ -2049,7 +2041,6 @@ export type UpdateChatroomStateMutation = {
         resource?: string | null,
         hairColor?: string | null,
         species?: string | null,
-        imageUrl?: Array< string | null > | null,
       } | null,
       mobileLegendsCharacterId?: string | null,
       description?: string | null,
@@ -2173,7 +2164,6 @@ export type DeleteChatroomStateMutation = {
         resource?: string | null,
         hairColor?: string | null,
         species?: string | null,
-        imageUrl?: Array< string | null > | null,
       } | null,
       mobileLegendsCharacterId?: string | null,
       description?: string | null,
@@ -2216,7 +2206,6 @@ export type GetMobileLegendsCharacterQuery = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -2248,7 +2237,6 @@ export type ListMobileLegendsCharactersQuery = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      imageUrl?: Array< string | null > | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2906,7 +2894,6 @@ export type GetPromptQuery = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      imageUrl?: Array< string | null > | null,
     } | null,
     mobileLegendsCharacterId?: string | null,
     description?: string | null,
@@ -2950,7 +2937,6 @@ export type ListPromptsQuery = {
         resource?: string | null,
         hairColor?: string | null,
         species?: string | null,
-        imageUrl?: Array< string | null > | null,
       } | null,
       mobileLegendsCharacterId?: string | null,
       description?: string | null,
@@ -3069,7 +3055,6 @@ export type GetChatroomStateQuery = {
         resource?: string | null,
         hairColor?: string | null,
         species?: string | null,
-        imageUrl?: Array< string | null > | null,
       } | null,
       mobileLegendsCharacterId?: string | null,
       description?: string | null,
@@ -3168,7 +3153,6 @@ export type OnCreateMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -3196,7 +3180,6 @@ export type OnUpdateMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -3224,7 +3207,6 @@ export type OnDeleteMobileLegendsCharacterSubscription = {
     resource?: string | null,
     hairColor?: string | null,
     species?: string | null,
-    imageUrl?: Array< string | null > | null,
   } | null,
 };
 
@@ -4353,7 +4335,6 @@ export type OnCreatePromptSubscription = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      imageUrl?: Array< string | null > | null,
     } | null,
     mobileLegendsCharacterId?: string | null,
     description?: string | null,
@@ -4397,7 +4378,6 @@ export type OnUpdatePromptSubscription = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      imageUrl?: Array< string | null > | null,
     } | null,
     mobileLegendsCharacterId?: string | null,
     description?: string | null,
@@ -4441,7 +4421,6 @@ export type OnDeletePromptSubscription = {
       resource?: string | null,
       hairColor?: string | null,
       species?: string | null,
-      imageUrl?: Array< string | null > | null,
     } | null,
     mobileLegendsCharacterId?: string | null,
     description?: string | null,
@@ -4558,7 +4537,6 @@ export type OnCreateChatroomStateSubscription = {
         resource?: string | null,
         hairColor?: string | null,
         species?: string | null,
-        imageUrl?: Array< string | null > | null,
       } | null,
       mobileLegendsCharacterId?: string | null,
       description?: string | null,
@@ -4682,7 +4660,6 @@ export type OnUpdateChatroomStateSubscription = {
         resource?: string | null,
         hairColor?: string | null,
         species?: string | null,
-        imageUrl?: Array< string | null > | null,
       } | null,
       mobileLegendsCharacterId?: string | null,
       description?: string | null,
@@ -4806,7 +4783,6 @@ export type OnDeleteChatroomStateSubscription = {
         resource?: string | null,
         hairColor?: string | null,
         species?: string | null,
-        imageUrl?: Array< string | null > | null,
       } | null,
       mobileLegendsCharacterId?: string | null,
       description?: string | null,
