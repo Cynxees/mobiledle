@@ -22,7 +22,6 @@ function App() {
     
       <BrowserRouter>
 
-        <Link to={'heroes/' + 1} />
         <Routes>
 
           <Route path="" element={<LandingPage />} />

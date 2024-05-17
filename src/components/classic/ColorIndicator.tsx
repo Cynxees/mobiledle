@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 export default function ColorIndicator() {
   const { t } = useTranslation();
   return (
-    <div className="border-2 p-8 py-4 border-[#CB812D] rounded-md w-96">
+    <div className="border-2 py-4 mx-auto border-[#CB812D] rounded-md sm:w-96 w-[90%]">
       <h3>{t`Color Indicator`}</h3>
       <div className="flex gap-5 justify-center mt-5">
         <span className="flex flex-col items-center">

@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 import WinCard from "../components/public/WinCard";
 import { MobileLegendsHero } from "../types/MobileLegendsHero";
+import CachedImage from "../components/CachedImage";
 
 interface userGuess {
   isCorrect: boolean;
@@ -120,24 +121,41 @@ export default function ClassicPage() {
   if (isLoading) return <div> Loading...</div>;
 
   return (
-    <>
-
-    
-      <aside
-        className={`${
-          showBank ? "xl:block" : "hidden"
-        } fixed top-0 right-0 z-40 justify-end xl:w-[22vw] max-xl:hidden h-screen overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+    <div className="w-screen align-top flex">
 
 
-      >
-        <HeroBank />
-      </aside>
-      <section className={`flex flex-col gap-5 items-center md:mt-[20vh] mt-[25vh] mb-32`}>
+      
+
+      {(userAnswers.length>0) ?
+      <div className="absolute top-0 w-full h-full" draggable="false">
+        <CachedImage
+          imgKey={characters[parseInt(userAnswers[userAnswers.length-1].id)-1].imageKeys.banners[0]} 
+          className="absolute top-0 left-0 w-full h-full object-cover object-top brightness-[0.1] -z-30"
+        />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-transparent to-[#10100e] -z-20"></div>
+      </div>:''
+      }
+
+      {showBank ? 
+        <aside
+        className={`xl:block fixed top-0 right-0 z-40 justify-end xl:w-[22vw] max-xl:hidden h-screen overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+        >
+          <HeroBank />
+        </aside>
+      
+      
+      
+      :''}
+      
+      <section className={`flex flex-col w-full gap-5 items-center md:mt-[20vh] mt-[25vh] mb-32`}>
         
         
 
-        <div className="flex flex-col gap-5 mb-16 mx-24 items-center justify-center">
+        <div className="flex flex-col gap-5 mb-16 mx-24 w-full sm:px-5 px-2 items-center justify-center">
+          <div className="relative z-10">
         <Navbar />
+
+          </div>
         {!isWin && (
           <ClassicInput
             characters={characters}
@@ -154,7 +172,7 @@ export default function ClassicPage() {
             className="sr-only peer"
             onChange={handleShowBank}
           />
-          <div className="relative w-9 h-5 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-orange-900"></div>
+          <div className="relative w-9 h-5 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-orange-500"></div>
           <span className="ms-3 my-auto text-sm font-medium text-gray-900 dark:text-gray-300">
             NOOB MODE
           </span>
@@ -170,8 +188,10 @@ export default function ClassicPage() {
           ))}
         </div>
         {isWin && <WinCard winCardRef={winCardRef}/>}
-        
+        <div className="w-full ">
+
         <ColorIndicator />
+        </div>
       </section>
       <div
         className={`${
@@ -179,11 +199,10 @@ export default function ClassicPage() {
         } flex flex-col xl:hidden align-middle mx-auto`}
       >
         <div className={`text-4xl text-white mb-5 `}>Heroes</div>
-        <div className="px-24">
-
+        
         <HeroBank />
-        </div>
+        
       </div>
-    </>
+    </div>
   );
 }

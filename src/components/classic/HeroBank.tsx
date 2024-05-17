@@ -10,7 +10,7 @@ export default function HeroBank() {
     return(
 
 
-        <div className={`flex flex-row flex-wrap w-full  flex-shrink-0 gap-5  items-center justify-center `}>
+        <div className={`flex flex-row flex-wrap w-full flex-shrink-0 gap-2 sm:gap-5  items-center justify-center `}>
             
             {characters.map((item : MobileLegendsHero) => {
                     

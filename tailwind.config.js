@@ -21,6 +21,14 @@ export default {
         lg: '0 8px 16px var(--tw-shadow-color)',
       }
     },
+    screens: {
+      xs: "375px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
     fontFamily:{
       'nova':['nova'],
       'nova-bold':['nova-bold'],

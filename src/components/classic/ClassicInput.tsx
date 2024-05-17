@@ -76,41 +76,41 @@ export default function ClassicInput({
   };
 
   return (
-    <>
-      <div className="flex items-center gap-4 bg-gradient-to-tr from-[#dccd8c] to-[#caa172] rounded-md ps-2 pr-3 md:w-96 w-full">
-        <div className="relative w-full">
-          <input
-            type="text"
-            className="my-2 md:h-10 h-14 pl-3 w-full rounded-md outline-none bg-[#0b1e34] text-gray-100"
-            id="search-bar-classic"
-            autoComplete="off"
-            placeholder="Heroes"
-            value={prefix}
-            onChange={onInput}
-            onKeyPress={handleKeyPress}
-          />
-          <div className={`${suggestions.length<4 ? "" : "overflow-y-scroll" } absolute top-12 w-full z-20 max-h-52`}>
-            {suggestions.map((item: MobileLegendsHero) => (
-              <li
-                key={item.id}
-                className="bg-[#caa172] w-full list-none py-2 border-t-[1px] border-t-gray-700 text-[#e8dca4] cursor-pointer"
-                onClick={() => handleSuggestionClick(item.name)}
-              >
-                <div className="flex items-center px-2 gap-3">
-                  <CachedImage
-                    imgKey={item.imageKeys.icons[0]}
-                    className="max-w-10 max-h-10"
-                  />
-                  
-                  <div className="">{item.name}</div>
-                </div>
-              </li>
-            ))}
-          </div>
-        </div>
-
-        <GoArrowRight size="30px" color="" className="text-4xl cursor-pointer font-extrabold" />
+  
+    <div className="flex items-center gap-2 relative bg-gradient-to-r from-[#ffea8f] to-[#ffac4d] rounded-md md:w-96 w-full">
+      <div className="relative w-full ps-2">
+        <input
+          type="text"
+          className="my-2 md:h-10 h-14 pl-3 w-full rounded-md outline-none bg-[#0b1e34] text-gray-100"
+          id="search-bar-classic"
+          autoComplete="off"
+          placeholder="Heroes"
+          value={prefix}
+          onChange={onInput}
+          onKeyPress={handleKeyPress}
+        />
+        
       </div>
-    </>
+      <div className={`${suggestions.length<4 ? "" : "overflow-y-scroll" } absolute top-14 w-full z-20 max-h-52 `}>
+          {suggestions.map((item: MobileLegendsHero) => (
+            <li
+              key={item.id}
+              className="bg-[#2d2d2d] w-full list-none py-2 rounded-sm border-b-[2px] border-b-yellow-600 text-[#e8dca4] cursor-pointer"
+              onClick={() => handleSuggestionClick(item.name)}
+            >
+              <div className="flex items-center px-2 gap-3">
+                <CachedImage
+                  imgKey={item.imageKeys.icons[0]}
+                  className="max-w-10 max-h-10"
+                />
+                
+                <div className="">{item.name}</div>
+              </div>
+            </li>
+          ))}
+        </div>
+      <GoArrowRight size="30px" color="" className="text-4xl cursor-pointer font-extrabold mr-4" />
+    </div>
+  
   );
 }
