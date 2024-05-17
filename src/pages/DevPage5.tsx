@@ -80,7 +80,7 @@ export default function DevPage() {
     
     };
 
-    // getIcons()
+    getIcons()
     if(isLoading) return <div>loading</div>
 
     
