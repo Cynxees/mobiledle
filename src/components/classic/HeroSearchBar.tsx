@@ -2,19 +2,19 @@ import { GoArrowDownRight, GoArrowRight, GoPaperAirplane } from "react-icons/go"
 import { useState } from "react";
 import { MobileLegendsHero } from "../../types/MobileLegendsHero";
 import { StorageImage } from "@aws-amplify/ui-react-storage";
-import CachedImage from "../../components/CachedImage";
+import CachedImage from "../CachedImage";
 
-interface ClassicSearchBarProps {
+interface HeroSearchBarProps {
   characters: MobileLegendsHero[];
   onDataFromChild: (data: MobileLegendsHero) => void;
   userAnswers: MobileLegendsHero[];
 }
 
-export default function ClassicInput({
+export default function HeroSearchBar({
   characters,
   onDataFromChild,
   userAnswers
-}: ClassicSearchBarProps) {
+}: HeroSearchBarProps) {
   const [prefix, setPrefix] = useState("");
   const [suggestions, setSuggestions] = useState<MobileLegendsHero[]>([]);
 

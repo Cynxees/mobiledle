@@ -210,10 +210,10 @@ export default function ArcadeLandingPage() {
             </div>
             <div className='mt-10'>
 
-                <input className='p-2 rounded-lg mb-5' onChange={handleUsernameInputChange} value={username} type="text" placeholder='Room Name'/>
+                <input className='p-2 rounded-lg mb-5 bg-neutral-900' onChange={handleUsernameInputChange} value={username} type="text" placeholder='Room Name'/>
                 
                 <div className='flex flex-row gap-2'>
-                    <input className='p-2 rounded-lg' onChange={handleRoomNameInputChange} value={roomName} type="text" placeholder='Room Name'/>
+                    <input className='p-2 rounded-lg bg-neutral-900' onChange={handleRoomNameInputChange} value={roomName} type="text" placeholder='Room Name'/>
                     {(isCreatingRoom) ? 
                     <div role="status" className='w-full bg-neutral-900 rounded-lg align-middle flex items-center'>
                         <svg aria-hidden="true" className="h-8 mx-auto text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -233,7 +233,7 @@ export default function ArcadeLandingPage() {
                 <h2 className='my-5 '>or</h2>
                 <div className='flex flex-row gap-2 w-full justify-between'>
                     
-                    <input className='p-2 w-full rounded-lg' onChange={handleRoomCodeInputChange} value={roomCode} type="text" placeholder='Find Room'/>
+                    <input className='p-2 w-full rounded-lg bg-neutral-900' onChange={handleRoomCodeInputChange} value={roomCode} type="text" placeholder='Find Room'/>
                     
                     <button className='bg-orange-700' onClick={handleRefreshRoomClick}><div><FiRefreshCw  className='' /></div></button>
                 </div>

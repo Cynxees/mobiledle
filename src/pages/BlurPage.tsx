@@ -18,15 +18,15 @@ interface userGuess {
   isClicked: boolean;
 }
 
-export default function ClassicPage() {
+export default function BlurPage() {
   const { t } = useTranslation();
 
   const { data: characters, isLoading, error } = useMobileLegendsCharacters();
-  const todayCharacter = useFetchTodayAnswer("CLASSIC");
+  const todayCharacter = useFetchTodayAnswer("BLUR");
 
   const [userAnswers, setUserAnswers] = useState<MobileLegendsHero[]>(
     () => {
-      const storedData = localStorage.getItem("classicAnswers");
+      const storedData = localStorage.getItem("blurAnswers");
       //check if now is a new day
       const savedDate = localStorage.getItem("savedDate");
       const today = new Date().toLocaleDateString();
@@ -58,10 +58,10 @@ export default function ClassicPage() {
   
 
   const [totalWins, setTotalWins] = useState<number>(() => {
-    return parseInt(localStorage.getItem("totalClassicWon")) || 0;
+    return parseInt(localStorage.getItem("totalBlurWon")) || 0;
   });
   const [isWin, setIsWin] = useState<boolean>(() => {
-    const storedData = localStorage.getItem("classicWon");
+    const storedData = localStorage.getItem("blurWon");
     //check if now is a new day
     const savedDate = localStorage.getItem("savedDate");
     const today = new Date().toLocaleDateString();
@@ -82,13 +82,13 @@ export default function ClassicPage() {
   //local storage init
   useEffect(() => {
     // make sure that the item is in the local storage
-    localStorage.setItem("classicAnswers", JSON.stringify(userAnswers));
-    localStorage.setItem("classicWon", "false");
+    localStorage.setItem("blurAnswers", JSON.stringify(userAnswers));
+    localStorage.setItem("blurWon", "false");
     if (isWin) {
-      localStorage.setItem("classicWon", "true");
+      localStorage.setItem("blurWon", "true");
     }
     localStorage.setItem("savedDate", new Date().toLocaleDateString());
-    localStorage.setItem("totalClassicWon", totalWins.toString());
+    localStorage.setItem("totalBlurWon", totalWins.toString());
   }, [userAnswers, isWin, totalWins]);
 
   //scroll to winCard
@@ -108,8 +108,8 @@ export default function ClassicPage() {
         setIsWin(true);
         setTotalWins((prevTotalWins) => prevTotalWins + 1);
 
-        localStorage.setItem("classicWon", "true");
-        localStorage.setItem("totalClassicWon", totalWins.toString());
+        localStorage.setItem("blurWon", "true");
+        localStorage.setItem("totalBlurWon", totalWins.toString());
       }
     }
   };
@@ -118,7 +118,7 @@ export default function ClassicPage() {
     setShowBank(!showBank);
   };
 
-  if (isLoading) return <div> Loading...</div>;
+  if (isLoading || !todayCharacter) return <div> Loading...</div>;
 
   return (
     <div className="w-screen align-top flex">
@@ -152,40 +152,65 @@ export default function ClassicPage() {
         
 
         <div className="flex flex-col gap-5 mb-16 mx-24 w-full sm:px-5 px-2 items-center justify-center">
-          <div className="relative z-10">
-        <Navbar />
-
-          </div>
-        {!isWin && (
-          <HeroSearchBar
-            characters={characters}
-            onDataFromChild={handleChildData}
-            userAnswers = {userAnswers}
-          />
-        )}
-        <div>
-          {t`Total Wins`} : {totalWins}
-        </div>
-        <label className="inline-flex items-center cursor-pointer">
-          <input
-            type="checkbox"
-            className="sr-only peer"
-            onChange={handleShowBank}
-          />
-          <div className="relative w-9 h-5 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-orange-500"></div>
-          <span className="ms-3 my-auto text-sm font-medium text-gray-900 dark:text-gray-300">
-            NOOB MODE
-          </span>
-        </label>
-          <ClassicTableTitle />
-          {userAnswers.map((character, index) => (
-            <div key={index} className="" style={{ order: userAnswers.length - index }}>
-              <HeroShowBar
-                character={character}
-                answer={todayCharacter}
-              />
+            <div className="relative z-10">
+                <Navbar />
             </div>
-          ))}
+
+
+
+            <div className="w-96 h-96 flex justify-center" style={{filter: `blur(0px)`}}>
+                <CachedImage style={{filter: `blur(${(isWin)?'0':13-userAnswers.length}px) saturate(${(isWin)?1:((userAnswers.length*0.05))})`}} className='' imgKey={todayCharacter.imageKeys.cards[1]} />
+            </div>
+
+            {!isWin && (
+            <HeroSearchBar
+                characters={characters}
+                onDataFromChild={handleChildData}
+                userAnswers = {userAnswers}
+            />
+            )}
+
+
+            <div>
+            {t`Total Wins`} : {totalWins}
+            </div>
+            <label className="inline-flex items-center cursor-pointer">
+            <input
+                type="checkbox"
+                className="sr-only peer"
+                onChange={handleShowBank}
+            />
+            <div className="relative w-9 h-5 bg-gray-400 peer-focus:outline-none peer-focus:ring-4 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full  after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-orange-500"></div>
+            <span className="ms-3 my-auto text-sm font-medium text-gray-900 dark:text-gray-300">
+                NOOB MODE
+            </span>
+            </label>
+            <div className="flex gap-2 flex-wrap w-[90vw] md:w-[50vw] align-middle justify-center">
+                {userAnswers.map((character, index) => (
+                <div key={index} className="relative" style={{ order: userAnswers.length - index }}>
+
+                    {character.id == todayCharacter.id ?
+                    
+                    
+                    <div className="absolute z-10 opacity-30 animate__animated animate__zoomInRight bg-green-500 w-full md:h-28 xs:h-14 h-12">
+
+                    </div>
+                    :
+                    
+                    <div className="absolute z-10 opacity-30 animate__animated animate__zoomInRight bg-red-600 w-full md:h-28 xs:h-14 h-12">
+
+                    </div>
+                    
+                    }
+                    <HeroShowBar
+                    character={character}
+                    answer={todayCharacter}
+                    isClassic={false}
+                    />
+                </div>
+                ))}
+                
+            </div>
         </div>
         {isWin && <WinCard winCardRef={winCardRef}/>}
         <div className="w-full ">

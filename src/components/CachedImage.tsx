@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const urlCache = {};
 
-const CachedImage = ({ imgKey, className }) => {
+const CachedImage = ({ imgKey, className, style={} }) => {
     const [imageUrl, setImageUrl] = useState(urlCache[imgKey] || null);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const CachedImage = ({ imgKey, className }) => {
         fetchImageUrl();
     }, [imgKey]);
 
-    return imageUrl ? <img src={imageUrl} className={className} alt="" draggable='false' /> : '';
+    return imageUrl ? <img src={imageUrl} className={className} style={style} alt="" draggable='false' /> : '';
 };
 
 export default CachedImage;

@@ -6,6 +6,7 @@ interface HeroShowBar {
   character: MobileLegendsHero;
   answer: MobileLegendsHero;
   showBooleans?: boolean[]
+  isClassic?: boolean
 }
 
 interface TraitBoxProps {
@@ -60,7 +61,8 @@ const compareTrait = (trait: string, trait2: string): number => {
 export default function HeroShowBar({
   character,
   answer,
-  showBooleans
+  showBooleans,
+  isClassic=true
 }: HeroShowBar) {
   const { t } = useTranslation();
 
@@ -71,26 +73,42 @@ export default function HeroShowBar({
   
 
   return (
-    <div className="flex gap-1 md:gap-2 z-0 font-nova-bold text-shadow-lg w-full">
+    <div className={`flex ${isClassic? 'flex-row':'flex-col'} gap-1 md:gap-2 z-0 font-nova-bold text-shadow-lg w-full`}>
       
-      <div className="absolute md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 overflow-hidden animate__animated animate__zoomInRight">
-      <CachedImage className={`absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]`} imgKey={character.imageKeys.icons[0]} /> 
+      <div>
+
+        <div className="absolute md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 overflow-hidden animate__animated animate__zoomInRight">
+        <CachedImage className={`absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]`} imgKey={character.imageKeys.icons[0]} /> 
+        </div>
+
+        
+        <div className="py-4 md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
+        
+          <CachedImage className="z-10" imgKey={character.imageKeys.icons[0]} /> 
+        </div>
+
+        
+
       </div>
 
-      
-      <div className="py-4 md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
-      
-        <CachedImage className="z-10" imgKey={character.imageKeys.icons[0]} /> 
+        {isClassic ? 
+
+        <div className="flex gap-2">
+        <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />
+        <TraitBox trait={character.role?.replace("/", " , ")} state={compareTrait(character.role, answer.role)} />
+        <TraitBox trait={character.lane?.replace("/", " , ")} state={compareTrait(character.lane, answer.lane)} />
+        
+        <TraitBox trait={t(`${character.region}`)} state={compareTrait(character.region, answer.region)} />
+        
+        <TraitBox trait={character.year.toString()} state={compareTrait(character.year.toString(), answer.year.toString())} />
       </div>
       
-      <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />
       
-      <TraitBox trait={character.role?.replace("/", " , ")} state={compareTrait(character.role, answer.role)} />
-      <TraitBox trait={character.lane?.replace("/", " , ")} state={compareTrait(character.lane, answer.lane)} />
+      :
       
-      <TraitBox trait={t(`${character.region}`)} state={compareTrait(character.region, answer.region)} />
       
-      <TraitBox trait={character.year.toString()} state={compareTrait(character.year.toString(), answer.year.toString())} />
+      <div className="text-[0.55rem] xs:text-xs md:text-lg">{character.name}</div>}
+      
       {/* <TraitBox trait={character.rangeType.toString()} state={compareTrait(character.rangeType, answer.rangeType)} />
       <TraitBox trait={character.resource.toString()} state={compareTrait(character.resource, answer.resource)} />
       <TraitBox trait={character.species.toString()} state={compareTrait(character.species, answer.species)} />
