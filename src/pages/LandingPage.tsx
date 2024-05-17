@@ -12,6 +12,7 @@ import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharacters
 import ArcadeBox from "../components/navigation/ArcadeBox";
 import { useUser } from "../providers/UserProvider";
 import MirrorBox from "../components/navigation/MirrorBox";
+import NavigationButton from "../components/navigation/NavigationButton";
 
 export default function LandingPage() {
 
@@ -97,22 +98,33 @@ export default function LandingPage() {
 
   return (
     <div className="">
-    <img className="w-screen h-screen object-cover absolute -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-40" src="/landing-bg.jpg"/>
+    <img className="w-screen h-screen object-cover fixed -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-40" src="/landing-bg.jpg"/>
     <Particles
           id="tsparticles"
           particlesLoaded={particlesLoaded}
           options={options}
           className="absolute -z-10" 
         />
-    <div className="flex flex-col gap-10 w-[400px] md:w-[500px]">
+    <div className="flex flex-col mt-[30%] w-[400px] md:w-[500px]">
       
       <Navbar />
-      <div className="flex flex-col justify-center align-middle mx-auto gap-5">
+      <div className="relative" style={{WebkitMaskImage: "linear-gradient(to top, black 80%, transparent 100%)"}}>
 
-        <ClassicBox />
-        <SurvivalBox />
-        <ArcadeBox />
-        <MirrorBox />
+        <div style={{WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)"}}>
+          <div className="flex flex-col h-[60vh] overflow-y-scroll justify-start pt-20 pb-20  mx-auto gap-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          
+
+            <NavigationButton link="/classic"/>
+            <NavigationButton link="/blur"/>
+            <NavigationButton link="/survival"/>
+            <NavigationButton link="/arcade"/>
+            <NavigationButton link="/mirror"/>
+          
+          </div>
+
+        </div>
+
+
       </div>
     </div>
     </div>

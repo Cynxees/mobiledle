@@ -73,7 +73,7 @@ export default function HeroShowBar({
   
 
   return (
-    <div className={`flex ${isClassic? 'flex-row':'flex-col'} gap-1 md:gap-2 z-0 font-nova-bold text-shadow-lg w-full`}>
+    <div className={`flex ${isClassic? 'flex-row':'flex-col'} gap-1 md:gap-2 z-0 font-nova text-shadow-lg w-full`}>
       
       <div>
 
@@ -93,7 +93,7 @@ export default function HeroShowBar({
 
         {isClassic ? 
 
-        <div className="flex gap-2">
+        <div className="flex gap-1 md:gap-2">
         <TraitBox trait={character.gender === "Male" ? t("Male") : t("Female")} state={character.gender === answer.gender ? 0 : 2} />
         <TraitBox trait={character.role?.replace("/", " , ")} state={compareTrait(character.role, answer.role)} />
         <TraitBox trait={character.lane?.replace("/", " , ")} state={compareTrait(character.lane, answer.lane)} />
