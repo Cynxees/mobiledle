@@ -28,7 +28,7 @@ export default function ClassicPage() {
     () => {
       const storedData = localStorage.getItem("classicAnswers");
       //check if now is a new day
-      const savedDate = localStorage.getItem("savedDate");
+      const savedDate = localStorage.getItem("latestClassicDate");
       const today = new Date().toLocaleDateString();
       if (savedDate !== today) {
         return [];
@@ -63,7 +63,7 @@ export default function ClassicPage() {
   const [isWin, setIsWin] = useState<boolean>(() => {
     const storedData = localStorage.getItem("classicWon");
     //check if now is a new day
-    const savedDate = localStorage.getItem("savedDate");
+    const savedDate = localStorage.getItem("latestClassicDate");
     const today = new Date().toLocaleDateString();
     if (savedDate !== today) {
       return false;
@@ -87,7 +87,7 @@ export default function ClassicPage() {
     if (isWin) {
       localStorage.setItem("classicWon", "true");
     }
-    localStorage.setItem("savedDate", new Date().toLocaleDateString());
+    localStorage.setItem("latestClassicDate", new Date().toLocaleDateString());
     localStorage.setItem("totalClassicWon", totalWins.toString());
   }, [userAnswers, isWin, totalWins]);
 

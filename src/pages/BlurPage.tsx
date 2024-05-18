@@ -28,7 +28,7 @@ export default function BlurPage() {
     () => {
       const storedData = localStorage.getItem("blurAnswers");
       //check if now is a new day
-      const savedDate = localStorage.getItem("savedDate");
+      const savedDate = localStorage.getItem("latestBlurDate");
       const today = new Date().toLocaleDateString();
       if (savedDate !== today) {
         return [];
@@ -63,7 +63,7 @@ export default function BlurPage() {
   const [isWin, setIsWin] = useState<boolean>(() => {
     const storedData = localStorage.getItem("blurWon");
     //check if now is a new day
-    const savedDate = localStorage.getItem("savedDate");
+    const savedDate = localStorage.getItem("latestBlurDate");
     const today = new Date().toLocaleDateString();
     if (savedDate !== today) {
       return false;
@@ -87,7 +87,7 @@ export default function BlurPage() {
     if (isWin) {
       localStorage.setItem("blurWon", "true");
     }
-    localStorage.setItem("savedDate", new Date().toLocaleDateString());
+    localStorage.setItem("latestBlurDate", new Date().toLocaleDateString());
     localStorage.setItem("totalBlurWon", totalWins.toString());
   }, [userAnswers, isWin, totalWins]);
 

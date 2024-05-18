@@ -98,28 +98,35 @@ export default function LandingPage() {
 
   return (
     <div className="">
-    <img className="w-screen h-screen object-cover fixed -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-40" src="/landing-bg.jpg"/>
+    <img className="w-full h-full object-cover fixed -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-40" src="/landing-bg.jpg"/>
     <Particles
           id="tsparticles"
           particlesLoaded={particlesLoaded}
           options={options}
           className="absolute -z-10" 
         />
-    <div className="flex flex-col mt-[30%] w-[400px] md:w-[500px]">
+    <div className="flex flex-col mt-[5%] md:mt-[30%] md:w-[500px] w-[90vw]">
       
       <Navbar />
-      <div className="relative" style={{WebkitMaskImage: "linear-gradient(to top, black 80%, transparent 100%)"}}>
+      <div className="relative" style={{WebkitMaskImage: "linear-gradient(to top, black 85%, transparent 100%)"}}>
 
         <div style={{WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)"}}>
-          <div className="flex flex-col h-[60vh] overflow-y-scroll justify-start pt-20 pb-20  mx-auto gap-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="flex flex-col h-[85vh] md:h-[60vh] overflow-y-scroll justify-start pt-12 md:pt-16 pb-20 mx-auto gap-4 md:gap-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           
-
+          
+            <NavigationButton link="/arcade"/>
             <NavigationButton link="/classic"/>
+
+            <NavigationButton link="/blur"/>
+            <NavigationButton link="/survival"/>
+            <NavigationButton link="/mirror"/>
+          
+            <NavigationButton link="/classic"/>
+
             <NavigationButton link="/blur"/>
             <NavigationButton link="/survival"/>
             <NavigationButton link="/arcade"/>
             <NavigationButton link="/mirror"/>
-          
           </div>
 
         </div>
