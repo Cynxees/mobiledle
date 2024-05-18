@@ -46,12 +46,13 @@ interface LobbyViewInput {
     chatroomUser : ChatroomUser,
     chatroomMessages: ChatroomMessage[],
     prompt: Prompt,
-    round: number
+    round: number,
+    timer: number
     
 }
 
 
-export default function BlurGameView({chatroomState, chatroomUser, chatroomMessages, prompt, round} : LobbyViewInput) {
+export default function BlurGameView({chatroomState, chatroomUser, chatroomMessages, prompt, round, timer} : LobbyViewInput) {
 
 
     const client = generateClient()
@@ -61,6 +62,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
     const [currentRound, setCurrentRound] = useState(0)
     
     const [ answer, setAnswer ] = useState<MobileLegendsHero>();
+    const [isRevealed, setReveal] = useState(false);
     const [ messagesInit, setMessagesInit ] = useState(false);
 
     const [showInput, setShowInput] = useState(true)
@@ -68,6 +70,13 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
     const percent = (inputCooldown/2000)*100
     const inputProps = useSpring({ value: percent, from: { value: 0 } });
 
+    const timerPercent = (prompt) ? Math.floor((timer/(prompt.timeLimit*1000))*1000)/10 : 100
+
+    const skinIndex = (prompt) ? parseInt(prompt.description) : 0
+
+
+
+    
     const borderStyle = useSpring({
         borderLeftColor: percent <= 0 ? 'orange' : 'transparent',
         borderBottomColor: percent <= 33 ? 'orange' : 'transparent',
@@ -324,7 +333,12 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
             
         </div>
 
-        <CachedImage className="row-span-7 h-2/3 my-auto mx-auto brightness-110" imgKey={answer.imageKeys.banners[0]} />
+        <CachedImage 
+        style={{filter: `blur(${(isRevealed)?'0':13*(timerPercent/100)}px) saturate(${(isRevealed)?1:(((100-timerPercent)/100))})`}}
+        className="row-span-7 h-2/3 my-auto mx-auto brightness-110" 
+        imgKey={answer.imageKeys.banners[skinIndex % answer.imageKeys.banners.length]} 
+        />
+
 
         
         <div className="flex mx-auto">

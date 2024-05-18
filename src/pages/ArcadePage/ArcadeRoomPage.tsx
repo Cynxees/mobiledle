@@ -486,7 +486,7 @@ export default function ArcadeRoomPage() {
                     console.log('user before: ', temp[changedIndex])
 
                     if(data.data.onUpdateChatroomUser.points != temp[changedIndex].points && data.data.onUpdateChatroomUser.points) {
-                        console.warn('audio played 2',data.data.onUpdateChatroomUser.points,'vs' , temp[changedIndex].points )
+                        console.log('audio played 2',data.data.onUpdateChatroomUser.points,'vs' , temp[changedIndex].points )
                         popAudio2.play()
                     
                     }
@@ -657,7 +657,7 @@ export default function ArcadeRoomPage() {
         console.log(chatroom.users)
         if(chatroom.users.length > userCount){
             
-            console.warn(chatroom.users.length, '>', userCount)
+            console.log(chatroom.users.length, '>', userCount)
             popAudio.play()
             
             
@@ -811,7 +811,8 @@ export default function ArcadeRoomPage() {
 
                     <GameArea 
                     chatroom={chatroom} chatroomMessages={chatroomMessages} chatroomState={chatroomState} chatroomUser={chatroomUser} 
-                    chatroomUsers={chatroomUsers} prompt={prompt} setPrompt={setPrompt} round={round} characters={characters}/>
+                    chatroomUsers={chatroomUsers} prompt={prompt} setPrompt={setPrompt} round={round} characters={characters}
+                    timer={timer}/>
                     
 
 

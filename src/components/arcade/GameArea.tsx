@@ -17,11 +17,12 @@ interface GameAreaInput {
     prompt: Prompt,
     setPrompt: React.Dispatch<React.SetStateAction<Prompt>>,
     round: number,
-    characters: MobileLegendsHero[]
+    characters: MobileLegendsHero[],
+    timer: number
     
 }
 
-export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatroomMessages, chatroomUsers, prompt, setPrompt, round, characters} : GameAreaInput){
+export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatroomMessages, chatroomUsers, prompt, setPrompt, round, characters, timer} : GameAreaInput){
 
 
     const [ promptBank, setPromptBank ] = useState<Prompt>();
@@ -49,7 +50,7 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
     return <div className="h-full w-full overflow-hidden">
 
         {(chatroomState.mode == "CLASSIC") ? <ClassicGameView chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/> 
-        : (chatroomState.mode == "BLUR") ? <BlurGameView chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/> 
+        : (chatroomState.mode == "BLUR") ? <BlurGameView timer={timer} chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/> 
         : (chatroomState.currentState == "LOBBY") ? <LobbyView chatroomUsers={chatroomUsers} chatroomState={chatroomState} chatroom={chatroom} chatroomUser={chatroomUser}/>
         : (chatroomState.currentState == "INTERMISSION" && promptBank != null) ? <IntermissionView characters={characters} prompt={promptBank} />
         : <div>Loading... </div>}
