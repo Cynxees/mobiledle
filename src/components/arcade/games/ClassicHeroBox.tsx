@@ -29,7 +29,7 @@ function TraitBox({trait, state, isYear = false, answerYear='0'}: TraitBoxProps)
   className={`break-normal text-shadow shadow-gray-700 
   w-[8vw] h-[8vw] lg:w-[4.5vw] lg:h-[4.5vw] aspect-square 
   text-[0.3rem] xs:text-[0.4rem] sm:text-[0.6rem] md:text-[0.7rem] lg:text-[0.7rem] 2xl:text-[1rem] 
-  border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/images/agelta.jpg')] bg-blend-darken ${
+  border-neutral-300 border lg:border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/images/agelta.jpg')] bg-blend-darken ${
       state == 0 ? correctColor
         : state == 1 ? partialColor
         : wrongColor 

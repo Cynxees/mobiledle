@@ -9,6 +9,7 @@ import { GiSilverBullet } from "react-icons/gi";
 import ArcadeChance from "../..//ArcadeChance";
 import { animated, useSpring } from "react-spring";
 import { MobileLegendsHero } from "../../../../types/MobileLegendsHero";
+import { IoIosArrowForward } from "react-icons/io";
 
 function isAlphaNumeric(str : string) {
     var code, i, len;
@@ -241,11 +242,54 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
 
     }
+
+    const submitAnswer = (answer : string) => {
+
+        var type = 'GUESS'
+        const heroId = validateHero(answer)
+        if(heroId != '-1'){
+
+            type = 'GUESS-HERO-'+heroId+'-'+round
+
+            setInputCooldown(3000)
+
+            if(validateAnswer(userInput)){
+
+                setShowInput(false)
+                const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
+                console.log('time left percent', timeLeftPercent)
+                let points = Math.floor((timeLeftPercent) * 10)*10 
+                if(points < 0) points = 0
+                console.log('points', points)
+
+                handleUserAnswer(points)
+
+                type = 'GUESS-CORRECT'
+            }
+
+        }
+
+        console.log(type)
+        client.graphql({
+            query: createChatroomMessage,
+            variables: {
+                input: {
+                    chatroomId: chatroomUser.chatroomId,
+                    createdAt: new Date().toISOString(),
+                    content: userInput,
+                    chatroomUserId: chatroomUser.id,
+                    ttl: getTtlFromMinutes(60),
+                    type: type
+                }
+            }
+        })
+
+        setUserInput('')
+    }
  
     const handleChatKeyDown = (e : React.KeyboardEvent) => {
         
 
-        var type = 'GUESS'
 
         if(e.key === 'Enter' && userInput.length < 1) {
 
@@ -259,52 +303,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
         if(e.key === 'Enter' && userInput.length > 0 && inputCooldown < 0) {
 
-            const heroId = validateHero(userInput)
-            
-            if(heroId != '-1'){
-
-                type = 'GUESS-HERO-'+heroId+'-'+round
-
-                setInputCooldown(3000)
-
-                if(validateAnswer(userInput)){
-
-                    setShowInput(false)
-                    const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
-                    console.log('time left percent', timeLeftPercent)
-                    let points = Math.floor((timeLeftPercent) * 10)*10 
-                    if(points < 0) points = 0
-                    console.log('points', points)
-
-                    handleUserAnswer(points)
-
-                    type = 'GUESS-CORRECT'
-                }
-
-            }else{
-
-
-
-            }
-
-            console.log(type)
-            client.graphql({
-                query: createChatroomMessage,
-                variables: {
-                    input: {
-                        chatroomId: chatroomUser.chatroomId,
-                        createdAt: new Date().toISOString(),
-                        content: userInput,
-                        chatroomUserId: chatroomUser.id,
-                        ttl: getTtlFromMinutes(60),
-                        type: type
-                    }
-                }
-            })
-
-            setUserInput('')
-            
-
+            submitAnswer(userInput) 
 
         }
 
@@ -343,11 +342,14 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
             
             <div className=''>
 
-                <animated.div className='border lg:border-4' style={{
+                <animated.div className='border lg:border-4 flex items-center ' style={{
                     ...borderStyle
                     }}>
 
-                    <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[80vw] lg:w-[20vw] focus:outline-none bg-neutral-900 lg:h-12 text-center uppercase text-white text-sm lg:text-xl" />
+                    <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[70vw] lg:w-[20vw] focus:outline-none bg-neutral-900 lg:h-12 text-center uppercase text-white text-sm lg:text-xl" />
+
+                    <IoIosArrowForward className={(inputCooldown<0) ? 'text-orange-300 lg:hidden w-[10vw]':'lg:hidden w-[10vw]' } /> 
+
                 </animated.div>
 
             </div>
