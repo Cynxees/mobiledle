@@ -329,7 +329,7 @@ export default function ArcadeRoomPage() {
                 variables: {
                     input: {
                         id: userId,
-                        activeState: "ACTIVE-0"
+                        activeState: "ACTIVE-" + round
                     }
                 }
             }).then(data => {
