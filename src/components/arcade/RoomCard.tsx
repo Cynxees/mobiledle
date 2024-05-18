@@ -9,7 +9,8 @@ interface RoomCardProps {
     username?: string
     usernameChanged?: boolean
     user?: User
-    client?: Client
+    client?: Client,
+    joinable: boolean
 }
 
 
@@ -18,7 +19,8 @@ const RoomCard: React.FC<RoomCardProps> = ({
     username,
     usernameChanged,
     user,
-    client
+    client,
+    joinable
 }) => (
 
     
@@ -46,7 +48,7 @@ const RoomCard: React.FC<RoomCardProps> = ({
             {room.users ? room.users.length.toString() + ((room.users.length > 1) ? " users" : " user") : "empty"}    
 
             </div>
-            <Link to={'/arcade/'+room.code}>
+            <Link to={joinable ? '/arcade/'+room.code : ''}>
                 <button 
                 className="h-[80%] flex items-center my-auto mx-auto text-orange-300"
                 onClick={() =>{

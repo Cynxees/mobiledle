@@ -32,7 +32,7 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
         if(!chatroomState) return
 
         if(chatroomState.currentState == "INTERMISSION"){
-            console.warn('Nulling prompt')
+            console.log('Nulling prompt')
             setPrompt(null)
         }
 

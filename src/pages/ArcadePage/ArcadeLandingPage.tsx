@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { generateClient } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage, updateUser } from '../../graphql/mutations';
-import { onCreateChatroom, onUpdateChatroom, onDeleteChatroom } from '../../graphql/subscriptions';
+import { onCreateChatroom, onDeleteChatroom } from '../../graphql/subscriptions';
 import { Chatroom, ChatroomMessage } from '../../API';
 import getTtlFromMinutes from '../../utils/getTtlFromMinutes';
 import { listChatrooms, getChatroom } from '../../graphql/queries';
@@ -10,6 +10,7 @@ import Navbar from '../../components/navigation/Navbar';
 import { FiRefreshCw } from 'react-icons/fi';
 import { useUser } from '../../providers/UserProvider';
 import { useSpring } from 'react-spring';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const client = generateClient();
 
@@ -29,6 +30,8 @@ export default function ArcadeLandingPage() {
     const [chatroomFetched, setChatroomFetched] = useState(false)
     const { data: user, isLoading: userIsLoading, error: userError, refetch } = useUser()
     const [init, setInit] = useState(false)
+
+    const navigate = useNavigate()
     
 
     const [spinRotation, setSpinRotation] = useState(0)
@@ -177,6 +180,8 @@ export default function ArcadeLandingPage() {
 
             setIsCreatingRoom(false)
             console.log('createRoom successful: ', result)
+            navigate('/ARCADE/'+result.data.createChatroom.code)
+            
             
         }).catch((error) => {
             
@@ -242,7 +247,7 @@ export default function ArcadeLandingPage() {
             <div className='mx-auto mt-10'>
                 {filteredChatrooms.map(room => 
                 
-                <RoomCard key={room.code} room={room} username={username} client={client}  user={(user)? user : null} usernameChanged={usernameChanged} />
+                <RoomCard key={room.code} room={room} username={username} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={usernameChanged} />
             )}
             </div>
 

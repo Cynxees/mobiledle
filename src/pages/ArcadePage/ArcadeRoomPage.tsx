@@ -18,6 +18,8 @@ import amplifyconfig from '../../amplifyconfiguration.json'
 import { FaCrown } from 'react-icons/fa6';
 import ProgressBar from '../../components/arcade/ProgressBar';
 import CachedImage from '../../components/CachedImage';
+import { CiSquareRemove } from 'react-icons/ci';
+import { FaVolumeMute } from 'react-icons/fa';
 
 
 
@@ -333,12 +335,33 @@ export default function ArcadeRoomPage() {
             }).then(data => {
                 console.log('chatroomUser state updated: ', data)
             })
+        }else{
+            
+            if(chatroomUsers && chatroomUsers.length > 0){
+                chatroomUsers.map((tempUser) => {
+
+                    if(tempUser.userId == user.id && !userExist){
+                        setChatroomUser(tempUser)
+                        setChatroomUserInit(true)
+                        userExist = true
+                        userId = tempUser.userId
+                        console.log('chatroomUser Fetched: ', tempUser)
+                        setChatroomUserId(tempUser.id)
+                        return 
+                    } 
+
+
+                })
+            }
+
+            if(!userExist){
+                initializeChatroomUser()
+
+            }
+            
         }
         
 
-        if(!userExist) {
-            initializeChatroomUser()
-        }
 
     }, [chatroomInit])
 
@@ -708,6 +731,13 @@ export default function ArcadeRoomPage() {
         })
     }
 
+    const handleKickUser = () => {
+
+        console.log('kicked')
+
+
+    }
+
     if(!chatroomInit || isLoading) return <div>loading...</div>
 
     return(
@@ -791,16 +821,45 @@ export default function ArcadeRoomPage() {
 
                 <div className='h-full w-full flex flex-row p-5'>
                     
-
-                    <div className='top-0 left-0 h-full -z-10 ps-5 text-sm text-nowrap '>
-
-                        {(chatroomUsers == null)? '' :chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
+                    <div className='top-0 left-0 h-full ps-5 text-sm text-nowrap flex flex-col gap-2'>
+                        {(chatroomUsers == null)? '' : chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
 
                             return (
                             
-                            <div key={user.id} className='flex'>
+                            <div key={user.id} className='flex items-center gap-2 text-lg border-b-orange-300 border-opacity-30 border-b py-2 px-2 relative'>
 
-                                {user.user.username}:   {user.points}
+                                
+                                <div className='flex justify-end w-20'>
+                                    {(user.points == chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1)[0].points) ? 
+                                        <div className=''>
+                                            <div className="absolute left-[4.5rem] rotate-12 text-orange-300">
+                                                <FaCrown />
+                                            </div>
+                                            <div className='text-5xl font-nova-bold text-orange-100'>
+                                            {user.points}
+                                            </div>
+                                        </div>
+
+                                    : <div className='text-5xl font-nova-bold'>
+                                        {user.points}
+                                    </div>
+
+                                    }
+                                </div>
+                                
+                                
+
+                                <div className='flex flex-col text-lg'>
+                                    {user.user.username}
+
+                                    <div className='flex items-center gap-2'>
+                                        
+                                        <CiSquareRemove  fontSize={'2rem'} color='#947570' className='cursor-pointer' onClick={handleKickUser} />
+                                        <FaVolumeMute fontSize={'1.8rem'} color='#947570' className='cursor-pointer' onClick={handleKickUser} />
+
+                                    </div>
+                                </div>    
+
                                 
                             </div>
                         

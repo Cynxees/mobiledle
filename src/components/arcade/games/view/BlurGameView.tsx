@@ -334,7 +334,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
         </div>
 
         <CachedImage 
-        style={{filter: `blur(${(isRevealed)?'0':13*(timerPercent/100)}px) saturate(${(isRevealed)?1:(((100-timerPercent)/100))})`}}
+        style={{filter: `blur(${(isRevealed)?'0':0.8*(timerPercent/100)}vw) saturate(${(isRevealed)?1:(((100-timerPercent)/100))})`}}
         className="row-span-7 h-2/3 my-auto mx-auto brightness-110" 
         imgKey={answer.imageKeys.banners[skinIndex % answer.imageKeys.banners.length]} 
         />
