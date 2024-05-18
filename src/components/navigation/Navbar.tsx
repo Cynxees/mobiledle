@@ -39,10 +39,10 @@ const Navbar = () => {
         MOBILEDLE
       </Link>
       {currentLanguage === "en" ? (
-        <img src="/us-flag.jpeg" className="md:w-12 w-6 cursor-pointer" onClick={() => changeLanguage("id")}></img>
+        <img src="/images/us-flag.jpeg" className="md:w-12 w-6 cursor-pointer" onClick={() => changeLanguage("id")}></img>
       ) : (
         // <button onClick={() => changeLanguage("en")}>ID</button>
-        <img src="/indo-flag.jpeg" className="md:w-12 w-6  cursor-pointer" onClick={() => changeLanguage("en")}></img>
+        <img src="/images/indo-flag.jpeg" className="md:w-12 w-6  cursor-pointer" onClick={() => changeLanguage("en")}></img>
       )}
       {/* <span>
         <button className="w-full mb-3" onClick={() => changeLanguage("en")}>English</button>

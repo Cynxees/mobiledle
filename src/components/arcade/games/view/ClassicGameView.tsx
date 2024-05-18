@@ -62,7 +62,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
     const [ answer, setAnswer ] = useState<MobileLegendsHero>();
     const [ messagesInit, setMessagesInit ] = useState(false);
 
-    const [showInput, setShowInput] = useState(false)
+    const [showInput, setShowInput] = useState(true)
     const [inputCooldown, setInputCooldown] = useState(3000)
     const percent = (inputCooldown/2000)*100
     const inputProps = useSpring({ value: percent, from: { value: 0 } });
@@ -106,10 +106,17 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
         }
         
-        if(chatroomUser.state == "CORRECT"){
+        
+        if(chatroomUser.state.startsWith("CORRECT")){
 
-            console.log('user is correct already')
-            setShowInput(false)
+            const correctRound = chatroomUser.state.split('-')[1]
+
+            if(parseInt(correctRound) >= round){
+
+                setShowInput(false)
+            }else{
+                setShowInput(true)
+            }
         }
 
 
@@ -265,16 +272,13 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
                     setShowInput(false)
                     const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
                     console.log('time left percent', timeLeftPercent)
-                    const points = Math.floor((timeLeftPercent) * 10)*10 
+                    let points = Math.floor((timeLeftPercent) * 10)*10 
+                    if(points < 0) points = 0
                     console.log('points', points)
 
                     handleUserAnswer(points)
 
                     type = 'GUESS-CORRECT'
-                }else{
-
-
-
                 }
 
             }else{

@@ -63,7 +63,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
     const [ answer, setAnswer ] = useState<MobileLegendsHero>();
     const [ messagesInit, setMessagesInit ] = useState(false);
 
-    const [showInput, setShowInput] = useState(false)
+    const [showInput, setShowInput] = useState(true)
     const [inputCooldown, setInputCooldown] = useState(3000)
     const percent = (inputCooldown/2000)*100
     const inputProps = useSpring({ value: percent, from: { value: 0 } });
@@ -107,10 +107,16 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
 
         }
         
-        if(chatroomUser.state == "CORRECT"){
+        if(chatroomUser.state.startsWith("CORRECT")){
 
-            console.log('user is correct already')
-            setShowInput(false)
+            const correctRound = chatroomUser.state.split('-')[1]
+
+            if(parseInt(correctRound) >= round){
+
+                setShowInput(false)
+            }else{
+                setShowInput(true)
+            }
         }
 
 

@@ -28,7 +28,8 @@ export default function ArcadeRoomPage() {
     const navigate = useNavigate()
     let params = useParams()
     const client = generateClient()
-    let audio = new Audio("/bloop.mp3")
+    let popAudio = new Audio("/audios/bubble-pop.mp3")
+    let popAudio2 = new Audio("/audios/pop2.mp3")
 
     const [linkTooltip, setLinkTooltip] = useState('Copy to Clipboard')
     const [usersTooltip, setUsersTooltip] = useState('')
@@ -61,6 +62,7 @@ export default function ArcadeRoomPage() {
     const isFocused = useRef(true);
     const chatRef = useRef(null);
     
+
     useEffect(() => {
         if(paramsVerified) return
         if(!params.code || params.code.length != 4 || !/^[A-Z0-9]+$/gm.test(params.code)){
@@ -158,7 +160,7 @@ export default function ArcadeRoomPage() {
         if(!chatroomState) return
         
         const interval = setInterval(() => {
-            if(chatroomState.willEndAt != null) setTimer(chatroomState.willEndAt*1000 - (new Date().getTime() - 17000))
+            if(chatroomState.willEndAt != null) setTimer(chatroomState.willEndAt*1000 - (new Date().getTime()))
 
         }, 100);
 
@@ -477,13 +479,18 @@ export default function ArcadeRoomPage() {
                     
                     console.log('oldData: ',oldData)
                     const temp = oldData
-                    var changedIndex = temp.findIndex((user) => user.id != data.data.onUpdateChatroomUser.id)
+                    var changedIndex = temp.findIndex((user) => user.id == data.data.onUpdateChatroomUser.id)
                     console.log('Update user index: ', changedIndex)
                     if(oldData[0].id == data.data.onUpdateChatroomUser.id) changedIndex = 0;
                     if(changedIndex == -1) return [...oldData]
                     console.log('user before: ', temp[changedIndex])
 
-                    if(data.data.onUpdateChatroomUser.points) temp[changedIndex].points = data.data.onUpdateChatroomUser.points
+                    if(data.data.onUpdateChatroomUser.points != temp[changedIndex].points && data.data.onUpdateChatroomUser.points) {
+                        console.warn('audio played 2',data.data.onUpdateChatroomUser.points,'vs' , temp[changedIndex].points )
+                        popAudio2.play()
+                    
+                    }
+                    temp[changedIndex].points = data.data.onUpdateChatroomUser.points
                     if(data.data.onUpdateChatroomUser.state) temp[changedIndex].state = data.data.onUpdateChatroomUser.state
 
                     console.log('user after: ', temp[changedIndex])
@@ -650,7 +657,8 @@ export default function ArcadeRoomPage() {
         console.log(chatroom.users)
         if(chatroom.users.length > userCount){
             
-            // audio.play()
+            console.warn(chatroom.users.length, '>', userCount)
+            popAudio.play()
             
             
         }
@@ -711,7 +719,7 @@ export default function ArcadeRoomPage() {
                 <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row'>
                     
                     
-                    <img src="/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => {setUserInactive(); navigate('/arcade'); }} />
+                    <img src="/images/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => {setUserInactive(); navigate('/arcade'); }} />
                 
                     <div 
                     className='text-[2vh] align-middle text-start my-auto font-modesto pr-5 cursor-pointer'  
@@ -750,7 +758,7 @@ export default function ArcadeRoomPage() {
                         </span>
                         <Tooltip id='users-tooltip' className='z-10 flex flex-col'>{chatroomUsers.map((user) => {
 
-                            return <div>{user.user.username}</div>
+                            return <div key={user.id}>{user.user.username}</div>
 
                         })}</Tooltip>
                     </div>
@@ -829,7 +837,12 @@ export default function ArcadeRoomPage() {
                         return( 
                         <div key={message.id} className={`${message.type.startsWith("GUESS")?'text-neutral-500': 'text-neutral-200'} flex flex-col leading-5`}>
                             <div className='text-xs'>
-                                {(message.chatroomUser) ? message.chatroomUser.user.username: ''}
+                                {(message.chatroomUser) ? 
+                                    (message.chatroomUserId == chatroomUserId && user) ? user.username
+                                    : message.chatroomUser.user.username
+                                    :'error' 
+
+                                }
                             </div>
                             <div className={`text-lg mb-3 break-all flex h-5`}>
                                 {(message.type.split('-')[2]) == null ?'' :
