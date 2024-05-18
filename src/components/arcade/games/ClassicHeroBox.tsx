@@ -26,14 +26,17 @@ function TraitBox({trait, state, isYear = false, answerYear='0'}: TraitBoxProps)
 
 
   return <div
-  className={`py-4 text-[0.7rem] break-all  text-shadow shadow-gray-700 w-16 h-16 border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/images/agelta.jpg')] bg-blend-darken ${
+  className={`break-normal text-shadow shadow-gray-700 
+  w-[8vw] h-[8vw] lg:w-[4.5vw] lg:h-[4.5vw] aspect-square 
+  text-[0.3rem] xs:text-[0.4rem] sm:text-[0.6rem] md:text-[0.7rem] lg:text-[0.7rem] 2xl:text-[1rem] 
+  border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/images/agelta.jpg')] bg-blend-darken ${
       state == 0 ? correctColor
         : state == 1 ? partialColor
         : wrongColor 
     } `}
   >
 
-  {(!isYear)? trait : 
+  {(!isYear)? trait.replace('/', '/ ') : 
   
     <div className="flex flex-row align-middle">
       {trait}
@@ -91,16 +94,16 @@ export default function ClassicHeroBox({
   
 
   return (
-    <div className="flex gap-2 z-0 font-nova-bold text-shadow-lg relative">
+    <div className="flex gap-[2px] lg:gap-2 z-0 font-nova-bold text-shadow-lg relative">
       
-      <div className="w-16 h-16 relative">
+      <div className="w-[8vw] h-[8vw] lg:w-[4.5vw] lg:h-[4.5vw] text-[0.6rem] xs:text-xs md:text-lg relative">
 
         <div className="absolute w-full h-full overflow-hidden animate__animated animate__zoomInRight">
         <CachedImage className="absolute z-0 w-[200%] h-[200%] object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]" imgKey={character.imageKeys.icons[0]} />
         </div>
 
         
-        <div className="py-4 w-full h-full border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
+        <div className="w-[8vw] h-[8vw] lg:w-[4.5vw] lg:h-[4.5vw] border lg:border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
         
           <CachedImage className="z-10" imgKey={character.imageKeys.icons[0]} />
         </div>

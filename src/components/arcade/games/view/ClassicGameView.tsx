@@ -313,18 +313,18 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
     if(!prompt || !characterGuesses ) return <div> Loading...</div>
 
-    return <div className="h-full w-full grid grid-rows-9 pb-2">
+    return <div className="h-full w-full grid grid-rows-11 lg:grid-rows-12 pb-2">
 
-        <div className="h-full w-full flex flex-col leading-tight">
-            <span className="text-3xl">CLASSIC</span>
-            <span className="text-xs">{(prompt)? prompt.question: ''}</span>
+        <div className="h-full w-full flex flex-col leading-tight mt-10">
+            <span className="xl:text-6xl lg:text-4xl">CLASSIC</span>
+            <span className="text-xl">{(prompt)? prompt.question: ''}</span>
             
         </div>
 
 
-        <div className="row-span-7 w-full">
+        <div className="row-span-9 w-full">
             <div className="w-full h-full flex items-center">
-                <div className="mx-auto flex flex-col gap-3">
+                <div className="mx-auto flex flex-col gap-1 lg:gap-3">
 
                 {characterGuesses.map(guess => {
 
@@ -343,11 +343,11 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
             
             <div className=''>
 
-                <animated.div className='border-4' style={{
+                <animated.div className='border lg:border-4' style={{
                     ...borderStyle
                     }}>
 
-                    <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[20vw] focus:outline-none bg-neutral-900 h-12 text-center uppercase text-white ps-5 text-xl" />
+                    <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[80vw] lg:w-[20vw] focus:outline-none bg-neutral-900 lg:h-12 text-center uppercase text-white text-sm lg:text-xl" />
                 </animated.div>
 
             </div>

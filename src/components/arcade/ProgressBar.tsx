@@ -16,7 +16,7 @@ function ProgressBar({value, maxValue} :ProgressBarProps) {
 
     let props = useSpring({ width: `${percent}%`, from: { width: '0%' } });
     return(
-        <div className="w-full h-1 relative">
+        <div className="w-full h-[2px] lg:h-1 relative">
             
             <animated.div
                 style={props}

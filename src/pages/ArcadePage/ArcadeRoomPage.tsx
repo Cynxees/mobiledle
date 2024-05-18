@@ -741,18 +741,18 @@ export default function ArcadeRoomPage() {
     if(!chatroomInit || isLoading) return <div>loading...</div>
 
     return(
-        <div className='grid grid-cols-5 w-screen h-screen'>
+        <div className='w-screen h-screen lg:h-screen'>
             
-            <div className='col-span-4 w-full h-full flex flex-col justify-between overflow-hidden'>
+            <div className='max-w-screen w-full h-full flex flex-col'>
 
                 
-                <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row'>
+                <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row text-xs'>
                     
                     
                     <img src="/images/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => {setUserInactive(); navigate('/arcade'); }} />
                 
                     <div 
-                    className='text-[2vh] align-middle text-start my-auto font-modesto pr-5 cursor-pointer'  
+                    className='align-middle text-start my-auto font-modesto pr-5 cursor-pointer'  
                     onClick={() => {navigator.clipboard.writeText(`https://www.mobiledle.com/arcade/${params.code}`); setLinkTooltip('Link Copied!') }}
                     onMouseLeave={() => setLinkTooltip('Copy to Clipboard')}
                     data-tooltip-id="link-tooltip"
@@ -766,37 +766,35 @@ export default function ArcadeRoomPage() {
                         MOBILEDLE.COM/ARCADE/<span className='text-orange-200'>{params.code}</span>
                     </div>
 
-                    <div 
-                    className='w-full bg-gray-700 font-modesto text-start flex flex-row justify-between text-[2vh] pr-5'
-                    
-                    
-                    >
+                    <div className='w-full hidden xs:flex text-[0.5rem] bg-gray-700 font-modesto text-start flex-row justify-between pr-5'>
 
-                        <span className='my-auto ps-5'><span>{(round == 0)? "LOBBY": "Round " + round}:  {chatroomState.currentState}</span></span>
+                        <span className='my-auto ps-2 lg:ps-5'><span>{(round == 0)? "LOBBY": "Round " + round}:  {chatroomState.currentState}</span></span>
                         <span className='my-auto flex flex-row cursor-default' onMouseEnter={() => {
-                        setUsersTooltip((chatroomUsers.map((user) => user.user.username.toString()).join("\n")))
-                    }}
-                        data-tooltip-id="users-tooltip"
-                        data-tooltip-delay-show={100}
-                        data-tooltip-float={true}
-                        data-tooltip-offset={30}
-                        data-tooltip-variant='light'
-                        data-tooltip-place="bottom">{(chatroomUsers) ? chatroomUsers.length: 0} 
+                            setUsersTooltip((chatroomUsers.map((user) => user.user.username.toString()).join("\n")))
+                        }}
+                            data-tooltip-id="users-tooltip"
+                            data-tooltip-delay-show={100}
+                            data-tooltip-float={true}
+                            data-tooltip-offset={30}
+                            data-tooltip-variant='light'
+                            data-tooltip-place="bottom">
+                                
+                            {(chatroomUsers) ? chatroomUsers.length: 0} 
                         
-                        <IoPersonSharp className='my-auto ms-2' />
-                        
+                            <IoPersonSharp className='my-auto sm:ms-2' />
+                            
                         </span>
-                        <Tooltip id='users-tooltip' className='z-10 flex flex-col'>{chatroomUsers.map((user) => {
+                            <Tooltip id='users-tooltip' className='z-10 flex flex-col'>{chatroomUsers.map((user) => {
 
-                            return <div key={user.id}>{user.user.username}</div>
+                                return <div key={user.id}>{user.user.username}</div>
 
-                        })}</Tooltip>
+                            })}</Tooltip>
                     </div>
 
 
                 </div>
                 <div 
-                className='h-1'
+                className='h-[2px] lg:h-1'
                 
                 data-tooltip-id="timer-tooltip"
                 data-tooltip-delay-show={100}
@@ -819,43 +817,40 @@ export default function ArcadeRoomPage() {
                     }>2: ADD POINTS</button>
                 </div> */}
 
-                <div className='h-full w-full flex flex-row p-5'>
+                <div className='h-[95vh] w-full flex lg:flex-row flex-col'>
                     
-                    <div className='top-0 left-0 h-full ps-5 text-sm text-nowrap flex flex-col gap-2'>
+
+                        {window.innerWidth < 1024 ? <div className='h-[70vh] max-lg:w-full'><GameArea 
+                        chatroom={chatroom} chatroomMessages={chatroomMessages} chatroomState={chatroomState} chatroomUser={chatroomUser} 
+                        chatroomUsers={chatroomUsers} prompt={prompt} setPrompt={setPrompt} round={round} characters={characters} timer={timer}/> </div>: ''}
+                    
+
+
+                    <div className='grid grid-cols-2 lg:flex flex-row w-full max-lg:h-[24.5vh]'>
+                    <div className='top-0 left-0 h-full max-lg:overflow-y-scroll lg:gap-5 lg:ps-2 xl:ps-5 lg:pt-5 text-nowrap md:flex flex-col'>
                         {(chatroomUsers == null)? '' : chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
 
                             return (
                             
-                            <div key={user.id} className='flex items-center gap-2 text-lg border-b-orange-300 border-opacity-30 border-b py-2 px-2 relative'>
+                            <div key={user.id} className='flex items-center gap-2 border-neutral-500 border-2 bg-neutral-800 py-2 lg:py-4 px-2 relative'>
 
                                 
-                                <div className='flex justify-end w-20'>
-                                    {(user.points == chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1)[0].points) ? 
-                                        <div className=''>
-                                            <div className="absolute left-[4.5rem] rotate-12 text-orange-300">
-                                                <FaCrown />
-                                            </div>
-                                            <div className='text-5xl font-nova-bold text-orange-100'>
-                                            {user.points}
-                                            </div>
-                                        </div>
-
-                                    : <div className='text-5xl font-nova-bold'>
+                                <div className='flex justify-center lg:w-12'>
+                                    <div className='text-sm lg:text-xl xl:text-4xl ms-1 font-nova-bold'>
                                         {user.points}
                                     </div>
-
-                                    }
+                                    
                                 </div>
                                 
                                 
 
-                                <div className='flex flex-col text-lg'>
+                                <div className='flex flex-col text-[0.8rem] lg:text-[0.7rem] xl:text-[0.9rem]'>
                                     {user.user.username}
 
                                     <div className='flex items-center gap-2'>
                                         
-                                        <CiSquareRemove  fontSize={'2rem'} color='#947570' className='cursor-pointer' onClick={handleKickUser} />
-                                        <FaVolumeMute fontSize={'1.8rem'} color='#947570' className='cursor-pointer' onClick={handleKickUser} />
+                                        <CiSquareRemove color='#947570' className=' cursor-pointer' onClick={handleKickUser} />
+                                        <FaVolumeMute  color='#947570' className='cursor-pointer' onClick={handleKickUser} />
 
                                     </div>
                                 </div>    
@@ -868,68 +863,76 @@ export default function ArcadeRoomPage() {
                     
                     </div>
 
-                    <GameArea 
+                    {window.innerWidth >= 1024 ? <GameArea 
                     chatroom={chatroom} chatroomMessages={chatroomMessages} chatroomState={chatroomState} chatroomUser={chatroomUser} 
-                    chatroomUsers={chatroomUsers} prompt={prompt} setPrompt={setPrompt} round={round} characters={characters}
-                    timer={timer}/>
+                    chatroomUsers={chatroomUsers} prompt={prompt} setPrompt={setPrompt} round={round} characters={characters} timer={timer}/> : ''}
+
+                    <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full lg:w-[35vw] h-full flex flex-col justify-between'>
+                        <div id='chat-container' ref={chatRef} className='flex flex-col max-lg:h-[20vh] overflow-y-auto mt-auto w-full text-start ps-3 lg:ps-5 overflow-x-hidden'>
+
+                            {chatroomMessages.map((message) => {
+
+                                if(message.type == 'GUESS-CORRECT' ){
+
+                                    return <div key={message.id} className='text-sm lg:text-xl leading-5 text-orange-300 mb-3'>
+                                        <span className='font-nova-bold text-neutral-300'>{message.chatroomUser.user.username}</span> guessed it!
+
+
+                                    </div>
+
+                                }
+
+                                return( 
+                                <div key={message.id} className={`${message.type.startsWith("GUESS")?'text-neutral-500': 'text-neutral-200'} flex flex-col leading-4 lg:leading-6`}>
+                                    <div className='text-xs text-neutral-400 font-nova'>
+                                        {(message.chatroomUser) ? 
+                                            (message.chatroomUserId == chatroomUserId && user) ? user.username
+                                            : message.chatroomUser.user.username
+                                            :'error' 
+
+                                        }
+                                    </div>
+                                    <div className={`lg:text-xl mb-1 lg:mb-3 flex`}>
+                                        {(message.type.split('-')[2]) == null ?'' :
+
+                                            <div className='px-1 '>
+                                                <CachedImage imgKey={characters[parseInt((message.type.split('-')[2]))-1].imageKeys.icons[0]}  className='h-5' />
+                                            </div>
+
+                                        
+                                        
+                                        }
+                                        <div className='my-auto font-nova'>
+                                        {message.content}
+
+                                        </div>
+                                    </div>
+                                </div>
+                                )
+                            })}
+        
+
+                        </div>
+                        <div className='lg:mt-4 w-full border-2 border-t-neutral-600 border-transparent'>
+                            <input onChange={handleChatInput} onKeyDown={handleChatKeyDown} value={chatInput} 
+                            className='w-full focus:outline-none rounded-t-[0.1rem] bg-neutral-900 h-[4vh] lg:h-12 text-white ps-2 lg:ps-5 text-lg' type="text" placeholder='Type Here' />
+                        </div>
+
+                    </div>
+
+                    </div>
+                    
+
+                    
+                    
+                    
                     
 
 
-
                 </div>
+                
             </div>
 
-            <div className='bg-gray-900 bg-opacity-30 shadow-lg shadow-black w-full h-screen flex flex-col justify-between'>
-                <div id='chat-container' ref={chatRef} className='flex flex-col overflow-y-auto mt-auto w-full text-start ps-5 overflow-x-hidden'>
-
-                    {chatroomMessages.map((message) => {
-
-                        if(message.type == 'GUESS-CORRECT' ){
-
-                            return <div key={message.id} className='text-lg leading-5 text-orange-300 mb-3'>
-                                <span className='font-nova-bold text-neutral-300'>{message.chatroomUser.user.username}</span> guessed it!
-
-
-                            </div>
-
-                        }
-
-                        return( 
-                        <div key={message.id} className={`${message.type.startsWith("GUESS")?'text-neutral-500': 'text-neutral-200'} flex flex-col leading-5`}>
-                            <div className='text-xs'>
-                                {(message.chatroomUser) ? 
-                                    (message.chatroomUserId == chatroomUserId && user) ? user.username
-                                    : message.chatroomUser.user.username
-                                    :'error' 
-
-                                }
-                            </div>
-                            <div className={`text-lg mb-3 break-all flex h-5`}>
-                                {(message.type.split('-')[2]) == null ?'' :
-
-                                    <div className='px-1 '>
-                                        <CachedImage imgKey={characters[parseInt((message.type.split('-')[2]))-1].imageKeys.icons[0]}  className='max-h-full' />
-                                    </div>
-
-                                
-                                
-                                }
-                                <div className='my-auto'>
-                                {message.content}
-
-                                </div>
-                            </div>
-                        </div>
-                        )
-                    })}
-   
-
-                </div>
-                <div className='mt-4 border-2 border-t-neutral-600 border-transparent'>
-                    <input onChange={handleChatInput} onKeyDown={handleChatKeyDown} value={chatInput} className='w-full focus:outline-none rounded-t-[0.1rem] bg-neutral-900 h-12 text-white ps-5 text-lg' type="text" placeholder='Type Here' />
-                </div>
-
-            </div>
                 
         </div>
     )
