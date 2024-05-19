@@ -91,7 +91,15 @@ export default function ArcadeLandingPage() {
 
         if(!chatroomFetched || !isRefreshed) return
 
-        setFilteredChatrooms(chatrooms.sort((a,b) => a.users.length > b.users.length ? -1 : 1 ))
+        setFilteredChatrooms(chatrooms.sort((a,b) => a.users.filter((user) => {
+            return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
+            
+        }).length > b.users.filter((user) => {
+            return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
+            
+        }).length ? -1 : 1 ))
+
+        
         setInit(true)
 
     }, [isRefreshed, chatroomFetched])

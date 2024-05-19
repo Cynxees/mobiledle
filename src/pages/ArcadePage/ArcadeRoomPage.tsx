@@ -94,7 +94,11 @@ export default function ArcadeRoomPage() {
 
         if(!chatroomUserInit) return
 
-        if(chatroomUser.activeState == "BANNED") return
+        if(chatroomUser.activeState == "BANNED" || chatroomUser.state == "BANNED"){
+
+            handleBlockCurrentUser()
+            return
+        } 
 
         client.graphql({
             query: updateChatroomUser,
@@ -266,7 +270,7 @@ export default function ArcadeRoomPage() {
                     setChatroom(data.data.getChatroomByCode)
 
                     const chatroomUsers = data.data.getChatroomByCode.users.filter((tempUser) => {
-                        return tempUser.state != "BANNED" && tempUser.activeState != "BANNED"
+                        return !(tempUser.state == "BANNED" || tempUser.activeState == "BANNED")
                     })
 
                     if(chatroomUsers.length > 10){
@@ -576,21 +580,13 @@ export default function ArcadeRoomPage() {
 
                     temp[changedIndex].points = updatedUser.points
                     if(updatedUser.state) temp[changedIndex].state = updatedUser.state
+                    
+                    if(updatedUser.activeState) temp[changedIndex].activeState = updatedUser.activeState
 
-                    console.warn(updatedUser.activeState)
-                    console.warn('user array before: ', temp)
-                    if(updatedUser.activeState == "BANNED" || updatedUser.state == "BANNED" || temp[changedIndex].state == "BANNED" || temp[changedIndex].activeState == "BANNED"){
-
-                        console.warn(updatedUser.id,' IS BANNED')
-                        temp = temp.filter((tempUser) => {
-                            return tempUser.id !== updatedUser.id
-                        })
-
-                    }
+                    
 
 
                     console.log('user after: ', temp[changedIndex])
-                    console.warn('user array after: ', temp)
                     return temp
                     
 
@@ -823,15 +819,15 @@ export default function ArcadeRoomPage() {
 
     }
 
-    if(!chatroomInit || isLoading) return <div>loading...</div>
+    if(!chatroomInit || isLoading || !user || !chatroomUser) return <div>loading...</div>
 
     return(
-        <div className='w-screen h-screen lg:h-screen'>
+        <div className='w-screen h-screen lg:h-screen lg:overflow-hidden'>
             
             <div className='max-w-screen w-full h-full flex flex-col'>
 
                 
-                <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row text-xs'>
+                <div className='w-full h-[5vh] bg-gray-800 shadow-md shadow-gray-900 flex flex-row text-xs lg:text-3xl'>
                     
                     
                     <img src="/images/ml-icon.svg" alt="" className='h-[70%] my-auto px-3 cursor-pointer' onClick={() => {setUserInactive(); navigate('/arcade'); }} />
@@ -851,7 +847,7 @@ export default function ArcadeRoomPage() {
                         MOBILEDLE.COM/ARCADE/<span className='text-orange-200'>{params.code}</span>
                     </div>
 
-                    <div className='w-full hidden xs:flex text-[0.5rem] lg:text-[1rem] lg:pr-10 bg-gray-700 font-modesto text-start flex-row justify-between pr-5'>
+                    <div className='w-full hidden xs:flex lg:text-xl text-[0.5rem] lg:pr-10 bg-gray-700 font-modesto text-start flex-row justify-between pr-5'>
 
                         <span className='my-auto ps-2 lg:ps-5'><span>{(round == 0)? "LOBBY": "Round " + round}:  {chatroomState.currentState}</span></span>
                         <span className='my-auto flex flex-row cursor-default' onMouseEnter={() => {
@@ -871,7 +867,7 @@ export default function ArcadeRoomPage() {
                         </span>
                             <Tooltip id='users-tooltip' className='z-10 flex flex-col'>{chatroomUsers.map((user) => {
 
-                                return <div key={user.id}>{user.user.username}</div>
+                                return <div key={user.id}>{user.user.username} {user.activeState} {user.state}</div>
 
                             })}</Tooltip>
                     </div>
@@ -914,6 +910,9 @@ export default function ArcadeRoomPage() {
                     <div className='grid grid-cols-2 lg:flex flex-row w-full max-lg:h-[24.5vh]'>
                     <div className='top-0 left-0 h-full max-lg:overflow-y-scroll lg:gap-5 lg:ps-2 xl:ps-5 lg:pt-5 text-nowrap md:flex flex-col'>
                         {(chatroomUsers == null)? '' : chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
+
+                            if((user.activeState == "INACTIVE" || user.activeState == "BANNED" || user.state == "BANNED") && user.id != chatroomUser.id) return
+
 
                             return (
                             

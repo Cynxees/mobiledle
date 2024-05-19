@@ -38,6 +38,13 @@ export type AmplifyDependentResourcesAttributes = {
       "Name": "string",
       "Region": "string"
     },
+    "checkWinCondition": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "executeLaunchGameStep": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
@@ -53,6 +60,13 @@ export type AmplifyDependentResourcesAttributes = {
       "Region": "string"
     },
     "incrementRound": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
+    "launchEndGame": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",

@@ -67,6 +67,14 @@
         "setChatroomStateState": {
           "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
           "s3Key": "amplify-builds/setChatroomStateState-54643659737757665847-build.zip"
+        },
+        "checkWinCondition": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/checkWinCondition-6d704b572f7333724254-build.zip"
+        },
+        "launchEndGame": {
+          "deploymentBucketName": "amplify-amplify86e306a394064-staging-ba38a-deployment",
+          "s3Key": "amplify-builds/launchEndGame-51346b5a2b3076525874-build.zip"
         }
       }
     }

@@ -110,6 +110,22 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "checkWinCondition": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "executeLaunchGameStep": {
       "build": true,
       "dependsOn": [
@@ -133,6 +149,22 @@
       "service": "Lambda"
     },
     "incrementRound": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "mobiledle"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "launchEndGame": {
       "build": true,
       "dependsOn": [
         {
@@ -246,6 +278,22 @@
         }
       ]
     },
+    "AMPLIFY_function_checkWinCondition_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkWinCondition"
+        }
+      ]
+    },
+    "AMPLIFY_function_checkWinCondition_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "checkWinCondition"
+        }
+      ]
+    },
     "AMPLIFY_function_executeLaunchGameStep_deploymentBucketName": {
       "usedBy": [
         {
@@ -291,6 +339,22 @@
         {
           "category": "function",
           "resourceName": "incrementRound"
+        }
+      ]
+    },
+    "AMPLIFY_function_launchEndGame_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "launchEndGame"
+        }
+      ]
+    },
+    "AMPLIFY_function_launchEndGame_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "launchEndGame"
         }
       ]
     },

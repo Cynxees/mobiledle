@@ -42,10 +42,13 @@ const RoomCard: React.FC<RoomCardProps> = ({
             "text-green-300" : 'text-green-300'}`}>
 
 
-            {(room.chatroomState) ? room.chatroomState.currentState: "LOBBY"}
+            {(room.chatroomState) ? room.chatroomState.currentState.split('-')[0]: "LOBBY"}
             </div>
             <div>
-            {room.users ? room.users.length.toString() + ((room.users.length > 1) ? " users" : " user") : "empty"}    
+            {room.users ? room.users.filter((user) => {
+                return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
+                
+            }).length.toString() + ((room.users.length > 1) ? " users" : " user") : "empty"}    
 
             </div>
             <Link to={joinable ? '/arcade/'+room.code : ''}>

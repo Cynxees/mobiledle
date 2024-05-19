@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import IntermissionView from "./games/view/IntermissionView";
 import BlurGameView from "./games/view/BlurGameView";
 import { MobileLegendsHero } from "../../types/MobileLegendsHero";
+import EndGameViewInput from "./games/view/EndGameView";
 
 
 interface GameAreaInput {
@@ -58,7 +59,7 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
     useEffect(() => {
         const tickingClockAudio = tickingClockAudioRef.current;
 
-        if (timer < 5000 && chatroomState.currentState !== "LOBBY" && chatroomState.currentState !== "INTERMISSION") {
+        if (timer > 0 && timer < 5000 && chatroomState.currentState !== "LOBBY" && chatroomState.currentState !== "INTERMISSION") {
             
             tickingClockAudio.play()
         } else{
@@ -74,6 +75,7 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
         : (chatroomState.mode == "BLUR") ? <BlurGameView timer={timer} chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/> 
         : (chatroomState.currentState == "LOBBY") ? <LobbyView chatroomUsers={chatroomUsers} chatroomState={chatroomState} chatroom={chatroom} chatroomUser={chatroomUser}/>
         : (chatroomState.currentState == "INTERMISSION" && promptBank != null) ? <IntermissionView characters={characters} prompt={promptBank} />
+        : (chatroomState.currentState && chatroomState.currentState.startsWith("ENDED")) ? <EndGameViewInput chatroomState={chatroomState} chatroomUsers={chatroomUsers} winnerId={chatroomState.currentState.replace('ENDED-', '')}  />
         : <div>Loading... </div>}
 
 
