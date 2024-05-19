@@ -55,7 +55,7 @@ const fetchCharacters = async () => {
         let items = [] as MobileLegendsHero[];
         res.data.listMobileLegendsCharacters.items.map(item => {
 
-            if(parseInt(item.id)<= 60){
+            if(parseInt(item.id)<= 70){
                 
                 items.push(new MobileLegendsHero(item.id, item.name, item.alias, item.gender, item.role, item.specialty, item.lane, item.region, item.goldPrice, item.ticketPrice, item.diamondPrice, item.year, item.rangeType, item.damageType, item.resource, item.hairColor, item.species)) 
 

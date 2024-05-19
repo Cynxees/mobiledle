@@ -61,6 +61,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
     const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsHero[]>([])
     const [ userInput, setUserInput ] = useState('');
     const [currentRound, setCurrentRound] = useState(0)
+    const [ guessesInit, setGuessesInit ] = useState(false)
     
     const [ answer, setAnswer ] = useState<MobileLegendsHero>();
     const [ messagesInit, setMessagesInit ] = useState(false);
@@ -139,11 +140,13 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         const seed = parseInt(prompt.description)
         const answer = parseInt(prompt.mobileLegendsCharacterId)
 
-        const index1 = randomizeHero(seed, 60, [answer])
-        const index2 = randomizeHero(index1 * seed, 60, [answer, index1])
-        const index3 = randomizeHero(index2 * seed, 60, [answer, index1, index2])
+        const index1 = randomizeHero(seed, 70, [answer])
+        const index2 = randomizeHero(index1 * seed, 70, [answer, index1])
+        const index3 = randomizeHero(index2 * seed, 70, [answer, index1, index2])
 
+        console.log('Initial Guesses', index1,index2,index3, 'seed: ', seed)
         setCharacterGuesses([characters[index1], characters[index2], characters[index3]])
+        setGuessesInit(true)
 
     }, [prompt])
 
@@ -317,7 +320,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
     }
     
 
-    if(!prompt || !characterGuesses ) return <div> Loading...</div>
+    if(!prompt || !guessesInit ) return <div> Loading...</div>
 
     return <div className="h-full w-full grid grid-rows-11 lg:grid-rows-12 pb-2">
 
