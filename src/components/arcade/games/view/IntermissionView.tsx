@@ -17,6 +17,14 @@ interface IntermissionViewInput {
 
 export default function IntermissionView({prompt, characters}: IntermissionViewInput){
 
+    const audio = new Audio('/audios/end_game.mp3')
+
+    useEffect(() => {
+
+
+        audio.play()
+
+    }, [])
     
 
     if(!prompt || !characters) return <div>Loading...</div>

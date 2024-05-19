@@ -11,8 +11,10 @@ interface ProgressBarProps {
 function ProgressBar({value, maxValue} :ProgressBarProps) {
 
     
-
     const percent = (value/maxValue*100)
+
+
+    
 
     let props = useSpring({ width: `${percent}%`, from: { width: '0%' } });
     return(

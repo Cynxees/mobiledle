@@ -6,21 +6,32 @@ export default function ErrorPage() {
 
     const errorMessages = {
 
-        '1': 'Invalid Room Code', 
-        '2': 'Room Not Found', 
+        '1': ['Invalid Room Code', '/arcade'],  
+        '2': ['Room Not Found', '/arcade'], 
+        '3': ['Banned From Room' , '/arcade'],
+        '4': ['Room is Full', '/arcade'],
 
     }
 
     return(
-        <div>
+        <div className='flex flex-col gap-5'>
             <div>
-                ERROR! {errorMessages[params.code]} 
+                <div>
+                    ERROR!
+                    
 
+                </div>
+                <div>
+                    {errorMessages[params.code][0]} 
+                </div>
             </div>
+            
 
-            <Link to={'/'}>
+            <Link to={errorMessages[params.code][1]}>
 
-                <button>Back to Home</button>
+                <button className='text-orange-200'>Back to 
+                    <span className='text-orange-400'> {errorMessages[params.code][1]}</span>
+                </button>
 
             </Link>
 

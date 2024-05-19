@@ -63,7 +63,7 @@ export default function ArcadeRoomPage() {
     const inactivityTimeout = useRef(null);
     const isFocused = useRef(true);
     const chatRef = useRef(null);
-    
+
 
     useEffect(() => {
         if(paramsVerified) return
@@ -75,10 +75,26 @@ export default function ArcadeRoomPage() {
         }
         setParamsVerified(true)
     }, [])
+
+    const handleBlockCurrentUser = () => {
+
+        console.warn("KICKED")
+        navigate('/error/3')
+
+    }
+
+    const handleRoomIsFull = () => {
+        
+        console.warn("FULL ROOM")
+        navigate('/error/4')
+    }
+
     
     const setUserInactive = () => {
 
         if(!chatroomUserInit) return
+
+        if(chatroomUser.activeState == "BANNED") return
 
         client.graphql({
             query: updateChatroomUser,
@@ -89,7 +105,7 @@ export default function ArcadeRoomPage() {
                 }
             }
         }).then(data => {
-            console.log('Changed to Inactive: ', data)
+            console.warn('Changed to Inactive: ', data)
         })
 
     }
@@ -131,6 +147,7 @@ export default function ArcadeRoomPage() {
 
         if(round == activeRound) return
 
+        if(chatroomUser.activeState == "BANNED") return
         
         setActiveRound(round)
 
@@ -236,7 +253,7 @@ export default function ArcadeRoomPage() {
     
 
     useEffect(() => {
-        if(userIsLoading || !paramsVerified) return
+        if(userIsLoading || !paramsVerified || !user) return
         const initializeChatroom = async () => {
 
             return await client
@@ -247,7 +264,28 @@ export default function ArcadeRoomPage() {
                     }
                 }).then(data => {
                     setChatroom(data.data.getChatroomByCode)
-                    setChatroomUsers(data.data.getChatroomByCode.users)
+
+                    const chatroomUsers = data.data.getChatroomByCode.users.filter((tempUser) => {
+                        return tempUser.state != "BANNED" && tempUser.activeState != "BANNED"
+                    })
+
+                    if(chatroomUsers.length > 10){
+
+                        if(chatroomUsers.findIndex((temp) => {
+                            return temp.userId == user.id
+
+                        }) == -1 ){
+                            
+                            handleRoomIsFull()
+                            return
+                        }
+                        
+
+                    }
+
+                    setChatroomUsers(chatroomUsers)
+                    
+                    
                     setChatroomInit(true)
                     console.log('chatroom Initialized: ', data)
 
@@ -311,6 +349,10 @@ export default function ArcadeRoomPage() {
             if(chatroomUser.chatroom.code == params.code){
                 
                 if(userExist) return 
+
+                if(chatroomUser.activeState == "BANNED" || chatroomUser.state == "BANNED"){
+                    handleBlockCurrentUser()
+                }
                 
                 setChatroomUser(chatroomUser)
                 setChatroomUserInit(true)
@@ -491,9 +533,21 @@ export default function ArcadeRoomPage() {
 
                 console.log('UPDATE: ', data)
 
-                if(data.data.onUpdateChatroomUser.id == chatroomUser.id){
+                const updatedUser= data.data.onUpdateChatroomUser
 
-                    setChatroomUser(data.data.onUpdateChatroomUser)
+
+                if(updatedUser.id == chatroomUser.id){
+
+                    setChatroomUser(updatedUser)
+
+                    if(updatedUser.state == "BANNED" || updatedUser.activeState == "BANNED"){
+
+
+                        handleBlockCurrentUser()
+                        
+
+
+                    }
 
                 }
 
@@ -501,22 +555,42 @@ export default function ArcadeRoomPage() {
                 setChatroomUsers((oldData) => {
                     
                     console.log('oldData: ',oldData)
-                    const temp = oldData
-                    var changedIndex = temp.findIndex((user) => user.id == data.data.onUpdateChatroomUser.id)
+                    if(oldData.length <= 0) return oldData
+
+                    let temp = oldData
+                    
+                    var changedIndex = temp.findIndex((user) => user.id == updatedUser.id)
+
                     console.log('Update user index: ', changedIndex)
-                    if(oldData[0].id == data.data.onUpdateChatroomUser.id) changedIndex = 0;
+                    if(oldData[0].id == updatedUser.id) changedIndex = 0;
                     if(changedIndex == -1) return [...oldData]
+
+
                     console.log('user before: ', temp[changedIndex])
 
-                    if(data.data.onUpdateChatroomUser.points != temp[changedIndex].points && data.data.onUpdateChatroomUser.points) {
-                        console.log('audio played 2',data.data.onUpdateChatroomUser.points,'vs' , temp[changedIndex].points )
+                    if(updatedUser.points != temp[changedIndex].points && updatedUser.points) {
+                        console.log('audio played 2',updatedUser.points,'vs' , temp[changedIndex].points )
                         popAudio2.play()
                     
                     }
-                    temp[changedIndex].points = data.data.onUpdateChatroomUser.points
-                    if(data.data.onUpdateChatroomUser.state) temp[changedIndex].state = data.data.onUpdateChatroomUser.state
+
+                    temp[changedIndex].points = updatedUser.points
+                    if(updatedUser.state) temp[changedIndex].state = updatedUser.state
+
+                    console.warn(updatedUser.activeState)
+                    console.warn('user array before: ', temp)
+                    if(updatedUser.activeState == "BANNED" || updatedUser.state == "BANNED" || temp[changedIndex].state == "BANNED" || temp[changedIndex].activeState == "BANNED"){
+
+                        console.warn(updatedUser.id,' IS BANNED')
+                        temp = temp.filter((tempUser) => {
+                            return tempUser.id !== updatedUser.id
+                        })
+
+                    }
+
 
                     console.log('user after: ', temp[changedIndex])
+                    console.warn('user array after: ', temp)
                     return temp
                     
 
@@ -731,8 +805,19 @@ export default function ArcadeRoomPage() {
         })
     }
 
-    const handleKickUser = () => {
+    const handleKickUser = (id: string) => {
 
+        console.log(id)
+        client.graphql({
+            query: updateChatroomUser,
+            variables: {
+                input: {
+                    id: id,
+                    activeState: 'BANNED',
+                    state: 'BANNED'
+                }
+            }
+        })
         console.log('kicked')
 
 
@@ -766,7 +851,7 @@ export default function ArcadeRoomPage() {
                         MOBILEDLE.COM/ARCADE/<span className='text-orange-200'>{params.code}</span>
                     </div>
 
-                    <div className='w-full hidden xs:flex text-[0.5rem] bg-gray-700 font-modesto text-start flex-row justify-between pr-5'>
+                    <div className='w-full hidden xs:flex text-[0.5rem] lg:text-[1rem] lg:pr-10 bg-gray-700 font-modesto text-start flex-row justify-between pr-5'>
 
                         <span className='my-auto ps-2 lg:ps-5'><span>{(round == 0)? "LOBBY": "Round " + round}:  {chatroomState.currentState}</span></span>
                         <span className='my-auto flex flex-row cursor-default' onMouseEnter={() => {
@@ -849,8 +934,8 @@ export default function ArcadeRoomPage() {
 
                                     <div className='flex items-center gap-2'>
                                         
-                                        <CiSquareRemove color='#947570' className=' cursor-pointer' onClick={handleKickUser} />
-                                        <FaVolumeMute  color='#947570' className='cursor-pointer' onClick={handleKickUser} />
+                                        <CiSquareRemove color='#947570' className=' cursor-pointer' onClick={() => handleKickUser(user.id)} />
+                                        <FaVolumeMute  color='#947570' className='cursor-pointer' />
 
                                     </div>
                                 </div>    

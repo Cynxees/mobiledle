@@ -281,7 +281,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
                     setShowInput(false)
                     const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
                     console.log('time left percent', timeLeftPercent)
-                    const points = Math.floor((timeLeftPercent) * 10)*10 
+                    const points = Math.ceil((timeLeftPercent) * 10) 
                     console.log('points', points)
 
                     handleUserAnswer(points)

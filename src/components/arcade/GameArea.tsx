@@ -1,7 +1,7 @@
 import { Chatroom, ChatroomMessage, ChatroomState, ChatroomUser, Prompt } from "../../API";
 import ClassicGameView from "./games/view/ClassicGameView";
 import LobbyView from "./games/view/LobbyView";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import IntermissionView from "./games/view/IntermissionView";
 import BlurGameView from "./games/view/BlurGameView";
 import { MobileLegendsHero } from "../../types/MobileLegendsHero";
@@ -27,6 +27,12 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
 
     const [ promptBank, setPromptBank ] = useState<Prompt>();
 
+    const tickingClockAudioRef = useRef(new Audio('/audios/ticking_clock.mp3'))
+    const startGameAudio = new Audio('/audios/start_game.mp3')
+
+
+
+
     useEffect(() => {
 
         if(!chatroomState) return
@@ -34,9 +40,11 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
         if(chatroomState.currentState == "INTERMISSION"){
             console.log('Nulling prompt')
             setPrompt(null)
+        }else if(chatroomState.currentState != "INTERMISSION" && chatroomState.currentState != "LOBBY" && chatroomState.currentState != null){
+            startGameAudio.play()
         }
 
-    }, [chatroomState])
+    }, [chatroomState.currentState])
 
     useEffect(() => {
 
@@ -46,6 +54,19 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
 
     }, [prompt])
 
+
+    useEffect(() => {
+        const tickingClockAudio = tickingClockAudioRef.current;
+
+        if (timer < 5000 && chatroomState.currentState !== "LOBBY" && chatroomState.currentState !== "INTERMISSION") {
+            
+            tickingClockAudio.play()
+        } else{
+            tickingClockAudio.pause();
+            tickingClockAudio.currentTime = 0;
+        }
+
+    }, [timer, chatroomState.currentState]);
 
     return <div className="h-full w-full overflow-hidden">
 

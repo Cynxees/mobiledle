@@ -27,14 +27,16 @@ function isAlphaNumeric(str : string) {
     return true;
 };
 
-const randomizeHero = (index : number, max: number) => {
+const randomizeHero = (seed : number, max: number, avoid : number[]) => {
 
-    const date = new Date().getUTCDay();
-    const month = new Date().getUTCMonth();
-    const year = new Date().getUTCFullYear();
     
-    return Math.floor(index+5 * date+5 * month+5 * year+5) % max
+    let randomIndex = Math.floor(seed+5) % max
 
+    while(avoid.findIndex((data)=> data == randomIndex) != -1){
+        randomIndex = (randomIndex*2)%max
+    }
+
+    return randomIndex
 
 
 }
@@ -75,6 +77,8 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         borderTopColor: percent <= 100 ? 'orange' : 'transparent',
         config: { duration: 250 }
     });
+
+    
 
 
     useEffect(() => {
@@ -132,9 +136,12 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         setAnswer(characters[prompt.mobileLegendsCharacterId])
         console.log('answer: ', characters[prompt.mobileLegendsCharacterId])
 
-        const index1 = randomizeHero(parseInt(prompt.mobileLegendsCharacterId), 60)
-        const index2 = randomizeHero(index1, 60)
-        const index3 = randomizeHero(index2, 60)
+        const seed = parseInt(prompt.description)
+        const answer = parseInt(prompt.mobileLegendsCharacterId)
+
+        const index1 = randomizeHero(seed, 60, [answer])
+        const index2 = randomizeHero(index1 * seed, 60, [answer, index1])
+        const index3 = randomizeHero(index2 * seed, 60, [answer, index1, index2])
 
         setCharacterGuesses([characters[index1], characters[index2], characters[index3]])
 
@@ -258,7 +265,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
                 setShowInput(false)
                 const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
                 console.log('time left percent', timeLeftPercent)
-                let points = Math.floor((timeLeftPercent) * 10)*10 
+                let points = Math.ceil((timeLeftPercent)*10) 
                 if(points < 0) points = 0
                 console.log('points', points)
 
