@@ -125,45 +125,45 @@ export default function DevPage() {
     return null; // Return null if no trait is found
   };
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const personalityTrait = findTraitWithLargestValue()
+  //   const personalityTrait = findTraitWithLargestValue()
 
-    console.log(personalityTrait)
+  //   console.log(personalityTrait)
     
-    console.log(identity[personalityTrait]);
+  //   console.log(identity[personalityTrait]);
 
 
-  //   var allHeroesInIdentity = []
-  //   var tempArray = [];
+  // //   var allHeroesInIdentity = []
+  // //   var tempArray = [];
 
-  //   Object.entries(identity).forEach(([personality, heroes]) => {
-  //     // heroes.forEach(hero => allHeroesInIdentity.push(hero))
-  //     heroes.forEach(hero => allHeroesInIdentity.push(hero))
-  //   });
+  // //   Object.entries(identity).forEach(([personality, heroes]) => {
+  // //     // heroes.forEach(hero => allHeroesInIdentity.push(hero))
+  // //     heroes.forEach(hero => allHeroesInIdentity.push(hero))
+  // //   });
 
-  //   console.log(allHeroesInIdentity.length)
+  // //   console.log(allHeroesInIdentity.length)
 
-  //   for (let index = 0; index < characters.length; index++) {
-  //     const region = characters[index].region;
-  //     const gender = characters[index].gender;
-  //     const role = characters[index].role;
-  //     const name = characters[index].name;
-  //     const specialty = characters[index].specialty;
-  //     const alias = characters[index].alias;
-
-
-  //     if (!allHeroesInIdentity.includes(name)) {
-  //       // console.log(name);
-  //       // Do something with the heroes not in identity
-  //       tempArray.push(name.concat(", " + alias + " from " + region + " specializes in" + specialty))
-  //     }
+  // //   for (let index = 0; index < characters.length; index++) {
+  // //     const region = characters[index].region;
+  // //     const gender = characters[index].gender;
+  // //     const role = characters[index].role;
+  // //     const name = characters[index].name;
+  // //     const specialty = characters[index].specialty;
+  // //     const alias = characters[index].alias;
 
 
-  //   }
+  // //     if (!allHeroesInIdentity.includes(name)) {
+  // //       // console.log(name);
+  // //       // Do something with the heroes not in identity
+  // //       tempArray.push(name.concat(", " + alias + " from " + region + " specializes in" + specialty))
+  // //     }
 
-    // console.log(tempArray)
-  }, [characters]);
+
+  // //   }
+
+  //   // console.log(tempArray)
+  // }, [characters]);
 
   if (!init || isLoading) return <div>Loading...</div>;
 

@@ -177,11 +177,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
     
                     })
                 }
-
-
-
                 
-
             }
 
         })
