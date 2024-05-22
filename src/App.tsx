@@ -47,6 +47,7 @@ function App() {
           <Route path="dev3" element={<DevPage3 />} />
           <Route path="dev4" element={<LandingPage2 />} />
           <Route path="dev5" element={<DevPage5 />} />
+          <Route path="dev6" element={<DevPage5 />} />
 
         </Routes>
       </BrowserRouter>
