@@ -59,3 +59,5 @@ const cropFaceImage = (imageUrl) => {
 
   return croppedImageUrl;
 };
+
+// I love Chang'e's Armpit
