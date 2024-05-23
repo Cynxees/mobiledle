@@ -49,6 +49,9 @@ export default function LobbyView({chatroomState, chatroomUsers, chatroom, chatr
 
         <div className="my-auto flex flex-row flex-wrap justify-center gap-5">
             {chatroomUsers.map(user => {
+
+                if(user.activeState == 'INACTIVE' && user.id != chatroomUser.id) return
+
                 return <div key={user.id} className={`py-5 px-14 relative border border-neutral-700 rounded-md bg-neutral-900 ` + (user.id == chatroomUser.id ? 'font-nova-bold text-orange-300':'') }>
 
                     {(user.userId == chatroom.hostId) ? 

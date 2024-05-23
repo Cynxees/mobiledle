@@ -96,6 +96,7 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($id: ID, $u
   onCreateUser(id: $id, username: $username) {
     id
     username
+    profilePicture
     chatrooms {
       id
       chatroomId
@@ -103,6 +104,7 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($id: ID, $u
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -132,6 +134,7 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($id: ID, $u
   onUpdateUser(id: $id, username: $username) {
     id
     username
+    profilePicture
     chatrooms {
       id
       chatroomId
@@ -139,6 +142,7 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($id: ID, $u
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -168,6 +172,7 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($id: ID, $u
   onDeleteUser(id: $id, username: $username) {
     id
     username
+    profilePicture
     chatrooms {
       id
       chatroomId
@@ -175,6 +180,7 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($id: ID, $u
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -220,6 +226,7 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
     user {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -260,6 +267,7 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -299,6 +307,7 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
     user {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -339,6 +348,7 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -378,6 +388,7 @@ export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpda
     user {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -418,6 +429,7 @@ export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpda
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -457,6 +469,7 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
     user {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -497,6 +510,7 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -549,6 +563,7 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -594,6 +609,7 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -640,6 +656,7 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -685,6 +702,7 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -727,6 +745,7 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -772,6 +791,7 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -843,6 +863,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -863,6 +884,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
     host {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -968,6 +990,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -988,6 +1011,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
     host {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -1093,6 +1117,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -1113,6 +1138,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
     host {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -1359,6 +1385,7 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -1386,6 +1413,7 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -1481,6 +1509,7 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -1508,6 +1537,7 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -1603,6 +1633,7 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -1630,6 +1661,7 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }

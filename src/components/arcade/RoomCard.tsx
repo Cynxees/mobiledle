@@ -7,6 +7,7 @@ import { updateUser } from "../../graphql/mutations"
 interface RoomCardProps {
     room : Chatroom
     username?: string
+    profilePicture?: string
     usernameChanged?: boolean
     user?: User
     client?: Client,
@@ -17,6 +18,7 @@ interface RoomCardProps {
 const RoomCard: React.FC<RoomCardProps> = ({
     room,
     username,
+    profilePicture,
     usernameChanged,
     user,
     client,
@@ -31,16 +33,34 @@ const RoomCard: React.FC<RoomCardProps> = ({
 
     const cardColor = 'rgb(255,' + (175-userCount*10) +',' + (70-userCount*10) +')'
 
+    const updateUserData = () => {
 
+
+        user.profilePicture = profilePicture
+        client.graphql({
+            query: updateUser,
+            variables: {
+                input: {
+                    id: user.id,
+                    username: username,
+                    profilePicture: profilePicture
+                }
+            }
+        }).then((data) => {
+            console.log("changed pfp & username: ", data)
+        })
+
+
+    }
 
     
     return (
 
     
 
-    <div className="w-full my-5 bg-white bg-opacity-5" style={{'color': cardColor }}>
+    <div className="w-full h-full bg-white bg-opacity-5" style={{'color': cardColor }}>
 
-        <div className='border-[3px] rounded-xl p-5 flex flex-col ' style={{'borderColor': cardColor}}>
+        <div className='border-[3px] rounded-xl p-5 flex flex-col h-full' style={{'borderColor': cardColor}}>
             <div className="flex gap-2">
                 <span className="font-nova-bold text-3xl">
                     {room.code} 
@@ -55,8 +75,8 @@ const RoomCard: React.FC<RoomCardProps> = ({
                 
 
             </div>
-            <span className="font-nova text-xl mr-auto text-white mb-5">
-                {room.name}
+            <span className="font-nova text-lg mr-auto text-white mb-5">
+                {room.name.length > 0 ? room.name: room.host.username+ "'s Room"}
 
             </span>
 
@@ -74,6 +94,7 @@ const RoomCard: React.FC<RoomCardProps> = ({
                         if(usernameChanged == null) return
                         if(!usernameChanged) return
                         
+                        updateUserData()
                         console.log("changing username")
                         client.graphql({
                             query: updateUser,

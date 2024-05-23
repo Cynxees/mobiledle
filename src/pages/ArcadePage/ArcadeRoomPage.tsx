@@ -117,6 +117,23 @@ export default function ArcadeRoomPage() {
     const onFocus = () => {
         isFocused.current = true;
         clearTimeout(inactivityTimeout.current);
+
+        if(!chatroomUser || !user) return
+
+        if(chatroomUser.activeState == "INACTIVE"){
+
+            client.graphql({
+                query: updateChatroomUser,
+                variables: {
+                    input: {
+                        id: user.id,
+                        activeState: "ACTIVE-"+ chatroomState.round
+                    }
+                }
+            })
+
+
+        }
     };
     const onBlur = () => {
         if(!chatroomUserInit) return
@@ -937,19 +954,24 @@ export default function ArcadeRoomPage() {
 
                                 
                                 <div className='flex justify-center lg:w-12'>
-                                    <div className='text-sm lg:text-xl xl:text-4xl ms-1 font-nova-bold'>
-                                        {user.points}
-                                    </div>
                                     
+                                    {user.user? 
+                                        <CachedImage className={''} imgKey={characters[user.user.profilePicture.split('-')[0]].imageKeys.icons[user.user.profilePicture.split('-')[1]]}></CachedImage>
+                                    :
+                                    <div></div>
+                                
+                                
+                                    }
+
                                 </div>
                                 
                                 
 
-                                <div className='flex flex-col text-[0.8rem] lg:text-[0.7rem] xl:text-[0.9rem]'>
+                                <div className='flex flex-col text-left text-[0.8rem] lg:text-[0.7rem] xl:text-[0.9rem]'>
                                     {user.user.username}
 
                                     <div className='flex items-center gap-2'>
-                                        
+                                        Points: {user.points}
                                         <CiSquareRemove color='#947570' className=' cursor-pointer' onClick={() => handleKickUser(user.id)} />
                                         <FaVolumeMute  color='#947570' className='cursor-pointer' />
 

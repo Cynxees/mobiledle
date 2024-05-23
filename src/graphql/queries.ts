@@ -76,6 +76,7 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
   getUser(id: $id) {
     id
     username
+    profilePicture
     chatrooms {
       id
       chatroomId
@@ -83,6 +84,7 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -114,6 +116,7 @@ export const listUsers = /* GraphQL */ `query ListUsers(
     items {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -140,6 +143,7 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
     user {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -180,6 +184,7 @@ export const getChatroomUser = /* GraphQL */ `query GetChatroomUser($id: ID!) {
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -224,6 +229,7 @@ export const listChatroomUsers = /* GraphQL */ `query ListChatroomUsers(
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -260,6 +266,7 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -305,6 +312,7 @@ export const getChatroomMessage = /* GraphQL */ `query GetChatroomMessage($id: I
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -418,6 +426,7 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -438,6 +447,7 @@ export const getChatroomByCode = /* GraphQL */ `query GetChatroomByCode($code: S
     host {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -543,6 +553,7 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -563,6 +574,7 @@ export const getChatroom = /* GraphQL */ `query GetChatroom($id: ID!) {
     host {
       id
       username
+      profilePicture
       chatrooms {
         id
         chatroomId
@@ -661,6 +673,7 @@ export const listChatrooms = /* GraphQL */ `query ListChatrooms(
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -801,6 +814,7 @@ export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) 
       host {
         id
         username
+        profilePicture
         ttl
         __typename
       }
@@ -828,6 +842,7 @@ export const getChatroomState = /* GraphQL */ `query GetChatroomState($id: ID!) 
       user {
         id
         username
+        profilePicture
         ttl
         __typename
       }
