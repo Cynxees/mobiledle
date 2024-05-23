@@ -4,6 +4,7 @@ import { generateClient, post } from 'aws-amplify/api';
 import { executeLaunchGame } from "../../../../graphql/mutations";
 import { FaCrown } from "react-icons/fa6";
 import { MobileLegendsHero } from "../../../../types/MobileLegendsHero";
+import CachedImage from "../../../../components/CachedImage";
 
 interface IntermissionViewInput {
 
@@ -34,6 +35,8 @@ export default function IntermissionView({prompt, characters}: IntermissionViewI
         <div>
         
             Answer is {characters[parseInt(prompt.mobileLegendsCharacterId)].name}
+
+            <CachedImage className={''} imgKey={characters[parseInt(prompt.mobileLegendsCharacterId)].imageKeys.banners[0]} ></CachedImage>
 
         </div>
 
