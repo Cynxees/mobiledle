@@ -321,6 +321,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
         }
 
     }
+   
     
 
     if(!prompt || !characterGuesses || !answer ) return <div> Loading...</div>
@@ -332,13 +333,13 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
             <span className="text-xs">{(prompt)? prompt.question: ''}</span>
             
         </div>
-
+        
         <CachedImage 
         style={{filter: `blur(${(isRevealed)?'0':0.8*(timerPercent/100)}vw) saturate(${(isRevealed)?1:(((100-timerPercent)/100))})`}}
         className="row-span-7 h-2/3 my-auto mx-auto brightness-110" 
         imgKey={answer.imageKeys.banners[skinIndex % answer.imageKeys.banners.length]} 
         />
-
+        
 
         
         <div className="flex mx-auto">

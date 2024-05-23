@@ -5,7 +5,7 @@ const urlCache = {};
 
 const CachedImage = ({ imgKey, className, style={} }) => {
     const [imageUrl, setImageUrl] = useState(urlCache[imgKey] || null);
-
+    
     useEffect(() => {
         const fetchImageUrl = async () => {
             if (!urlCache[imgKey]) {
@@ -30,7 +30,7 @@ const CachedImage = ({ imgKey, className, style={} }) => {
         fetchImageUrl();
     }, [imgKey]);
 
-    return imageUrl ? <img src={imageUrl} className={className} style={style} alt="NO IMAGE" draggable='false' /> : '';
+    return imageUrl ? <img src={imageUrl} className={className} style={style} alt="NO IMAGE" draggable='false'/> : '';
 };
 
 export default CachedImage;
