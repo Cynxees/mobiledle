@@ -21,68 +21,83 @@ const RoomCard: React.FC<RoomCardProps> = ({
     user,
     client,
     joinable
-}) => (
+}) => { 
+    
+    // const userCount = room.users.filter((user) => {
+    //     return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
+    // }).length
+
+    const userCount = Math.floor(Math.random()*10)
+
+    const cardColor = 'rgb(255,' + (175-userCount*10) +',' + (70-userCount*10) +')'
+
+
+
+    
+    return (
 
     
 
-    <div className="text-left">
+    <div className="w-full my-5 bg-white bg-opacity-5" style={{'color': cardColor }}>
 
-        <div className="grid grid-cols-6">
+        <div className='border-[3px] rounded-xl p-5 flex flex-col ' style={{'borderColor': cardColor}}>
+            <div className="flex gap-2">
+                <span className="font-nova-bold text-3xl">
+                    {room.code} 
 
-            <div>
-            {room.code} 
-            </div>
-            <div className="border pl-5 border-y-transparent border-r-transparent border-l-gray-500 col-span-2">
-            {room.name} 
-            </div>
-            <div 
-            className={`text-center text-orange-100 mr-5 
-            ${(room.chatroomState) ? 
-            (room.chatroomState.currentState == "PLAYING")? "text-orange-300" : 
-            "text-green-300" : 'text-green-300'}`}>
-
-
-            {(room.chatroomState) ? room.chatroomState.currentState.split('-')[0]: "LOBBY"}
-            </div>
-            <div>
-            {room.users ? room.users.filter((user) => {
-                return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
+                </span>
                 
-            }).length.toString() + ((room.users.length > 1) ? " users" : " user") : "empty"}    
+                <span className="mt-auto text-lg font-nova-bold text-white">
+
+                    {room.users ? userCount.toString() + ((room.users.length > 1) ? "/10" : "/10") : "0/10"}
+                </span>
+                
+                
 
             </div>
-            <Link to={joinable ? '/arcade/'+room.code : ''}>
-                <button 
-                className="h-[80%] flex items-center my-auto mx-auto text-orange-300"
-                onClick={() =>{
+            <span className="font-nova text-xl mr-auto text-white mb-5">
+                {room.name}
 
-                    if(usernameChanged == null) return
-                    if(!usernameChanged) return
-                    
-                    console.log("changing username")
-                    client.graphql({
-                        query: updateUser,
-                        variables: {
-                            input: {
-                                id: user.id,
-                                username: username
+            </span>
+
+            <div className="flex">
+
+                <div className="text-gray-500 text-xl font-nova-bold mt-auto mb-2">
+                    {(room.chatroomState) ? room.chatroomState.currentState.split('-')[0]: "LOBBY"}
+                </div>
+
+                <Link className="ms-auto" to={joinable ? '/arcade/'+room.code : ''}>
+                    <button 
+                    className="ms-auto bg-white bg-opacity-5 text-white font-nova-bold px-10"
+                    onClick={() =>{
+
+                        if(usernameChanged == null) return
+                        if(!usernameChanged) return
+                        
+                        console.log("changing username")
+                        client.graphql({
+                            query: updateUser,
+                            variables: {
+                                input: {
+                                    id: user.id,
+                                    username: username
+                                }
                             }
-                        }
-                    }).then((data) => {
-                        console.log("changed username: ", data)
-                    })
-                    
+                        }).then((data) => {
+                            console.log("changed username: ", data)
+                        })
+                        
 
 
-                }}>Join</button>
-            </Link>
-            
+                    }}>Join</button>
+                </Link>
+            </div>
+        </div>
 
-        </div>   
         
     </div>
 
 
-)
+)}
 
 export default RoomCard

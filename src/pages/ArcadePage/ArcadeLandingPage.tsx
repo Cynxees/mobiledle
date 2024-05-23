@@ -11,12 +11,17 @@ import { FiRefreshCw } from 'react-icons/fi';
 import { useUser } from '../../providers/UserProvider';
 import { useSpring } from 'react-spring';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { BiSolidPencil } from 'react-icons/bi';
+import CachedImage from '../../components/CachedImage';
+import { useMobileLegendsCharacters } from '../../providers/MobileLegendsCharactersProvider';
+import { TiTick } from 'react-icons/ti';
 
 const client = generateClient();
 
 export default function ArcadeLandingPage() {
 
     const [username, setUsername] = useState('')
+    const [showInputUsername, setShowInputUsername] = useState(false)
     const [usernameChanged, setUsernameChanged] = useState(false)
     
     const [roomName, setRoomName] = useState('')
@@ -33,6 +38,7 @@ export default function ArcadeLandingPage() {
 
     const navigate = useNavigate()
     
+    const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
     const [spinRotation, setSpinRotation] = useState(0)
 
@@ -150,10 +156,11 @@ export default function ArcadeLandingPage() {
         setFilteredChatrooms(chatrooms.filter(chat => chat.code.startsWith(prefix)))
     }
     
-    const handleRoomNameInputChange = (event : React.FormEvent<HTMLInputElement>) => {
+    const handleRoomNameInputChange = (e : React.FormEvent<HTMLInputElement>) => {
         
-        setRoomName(event.currentTarget.value)
-    
+        if(e.currentTarget.value.length > 16) return
+
+        setRoomName(e.currentTarget.value)
     }
 
     const handleRoomCodeInputChange = (event : React.FormEvent<HTMLInputElement>) => {
@@ -198,13 +205,19 @@ export default function ArcadeLandingPage() {
 
     }
 
+    const handleChangeNameClick = () => {
+
+        setShowInputUsername((old) => !old)
+
+
+    }
+
     const handleUsernameInputChange = (e : React.FormEvent<HTMLInputElement>) => {
 
         if(e.currentTarget.value.length > 16) return
 
         setUsernameChanged(true)
         setUsername(e.currentTarget.value)
-        console.log('username: ',username)
 
     }
 
@@ -212,16 +225,83 @@ export default function ArcadeLandingPage() {
         setRefresh(false)
     }
 
-    if(!init) return <div>Loading...</div>
+    
+
+
+    if(!init || !characters) return <div>Loading...</div>
 
     return(
-        <div className='flex flex-col justify-center'>
+        <div className='flex flex-col justify-center mt-52'>
             
-            <div className=''>
-
             <Navbar />
+
+            <div className='border-2 border-orange-200  rounded-lg'>
+
+                <div className='flex flex-col gap-2 w-[80vw] py-10'>
+
+                    <div className='flex align-middle justify-center gap-2 text-lg'>
+
+                        {!showInputUsername?
+                        
+                        <div className='flex gap-2'>
+
+
+                            {username} <BiSolidPencil className='my-auto' onClick={handleChangeNameClick} />
+                        </div>:
+
+                        <div className='relative flex'>
+                            <input className='text-center py-1 rounded-lg bg-white bg-opacity-5' onChange={handleUsernameInputChange} value={username} type="text" placeholder='Username'/>
+                        </div>
+
+                        
+                        } 
+
+                    </div>
+
+                    <CachedImage className={'mx-auto mb-5'} imgKey={characters[10].imageKeys.icons[1]}></CachedImage>
+
+                    <div className='grid grid-cols-3 w-[15%] gap-4 mx-auto'>
+                        <input className='rounded-lg col-span-2 bg-neutral-900 ps-3' onChange={handleRoomNameInputChange} value={roomName} type="text" placeholder='Room Name'/>
+
+                        <button className='w-full bg-[#D6B485]  rounded-lg p-0' onClick={handleCreateRoomClick}>
+                            <span className='font-nova text-lg text-wrap text-shadow drop-shadow-[0_2px_1px_rgba(0,0,0,0.3)] shadow-black'>Create<br/>Room</span>
+                        </button>
+
+                        <button className='col-span-3 bg-orange-400'>
+                            <span className='font-nova-bold text-3xl text-wrap text-shadow drop-shadow-[0_7px_1px_rgba(0,0,0,0.15)] shadow-black'>QUICK START</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
             </div>
-            <div className='mt-10'>
+
+            <div className='grid grid-cols-5 w-[80vw] py-10 gap-10'>
+
+
+
+
+                
+
+                {filteredChatrooms.map(room => 
+                    <div className=''>
+
+                        <RoomCard key={room.code} room={room} username={username} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={usernameChanged} />
+                        <RoomCard key={room.code} room={room} username={username} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={usernameChanged} />
+                        <RoomCard key={room.code} room={room} username={username} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={usernameChanged} />
+                        <RoomCard key={room.code} room={room} username={username} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={usernameChanged} />
+                        <RoomCard key={room.code} room={room} username={username} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={usernameChanged} />
+                    
+                    </div>
+                )}
+
+            </div>
+
+
+            <div className='mt-10 hidden'>
 
                 <input className='p-2 rounded-lg mb-5 bg-neutral-900' onChange={handleUsernameInputChange} value={username} type="text" placeholder='Room Name'/>
                 
@@ -252,7 +332,7 @@ export default function ArcadeLandingPage() {
                 </div>
             </div>
 
-            <div className='mx-auto mt-10'>
+            <div className='mx-auto mt-10 hidden'>
                 {filteredChatrooms.map(room => 
                 
                 <RoomCard key={room.code} room={room} username={username} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={usernameChanged} />

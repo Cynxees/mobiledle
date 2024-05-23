@@ -105,7 +105,7 @@ export default function LandingPage() {
           options={options}
           className="absolute -z-10" 
         />
-    <div className="flex flex-col mt-[5%] md:mt-[30%] md:w-[500px] w-[90vw]">
+    <div className="flex flex-col mt-[5%] md:mt-[20%] md:w-[500px] w-[90vw]">
       
       <Navbar />
       <div className="relative" style={{WebkitMaskImage: "linear-gradient(to top, black 85%, transparent 100%)"}}>
