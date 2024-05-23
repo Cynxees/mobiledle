@@ -78,7 +78,7 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
         : (chatroomState.currentState && chatroomState.currentState.startsWith("ENDED")) ? <EndGameViewInput chatroomState={chatroomState} chatroomUsers={chatroomUsers} winnerId={chatroomState.currentState.replace('ENDED-', '')}  />
         : <div>Loading... </div>}
 
-
+    {/* <IntermissionView characters={characters} prompt={promptBank} />  */}
 
     </div>
 }
