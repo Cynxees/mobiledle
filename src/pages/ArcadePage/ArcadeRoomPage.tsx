@@ -664,17 +664,34 @@ export default function ArcadeRoomPage() {
             }
         }).subscribe(data => {
             console.log('got updateChatroomState: ', data)
-            const oldState = chatroomState
             const newState = data.data.onUpdateChatroomState
 
             if(newState.round != null){
                 setRound(newState.round)
             }
 
+            setChatroomState((oldState) => {
+                
+                if(newState.chatroom) oldState.chatroom = newState.chatroom
+                if(newState.chatroomId) oldState.chatroomId = newState.chatroomId
+                if(newState.currentState) oldState.currentState = newState.currentState
+                if(newState.gameDuration) oldState.gameDuration = newState.gameDuration
+                if(newState.maxPoints) oldState.maxPoints = newState.maxPoints
+                if(newState.mode) oldState.mode = newState.mode
+                if(newState.prompt) oldState.prompt = newState.prompt
+                if(newState.promptId) oldState.promptId = newState.promptId
+                if(newState.round) oldState.round = newState.round
+                if(newState.ttl) oldState.ttl = newState.ttl
+                if(newState.users) oldState.users = newState.users
+                if(newState.willEndAt) oldState.willEndAt = newState.willEndAt
 
 
-            
-            setChatroomState(newState)
+                return oldState
+                
+                
+
+
+            })
             if(data.data.onUpdateChatroomState.promptId) fetchPrompt(data.data.onUpdateChatroomState.promptId)
         })
     }
@@ -819,7 +836,7 @@ export default function ArcadeRoomPage() {
 
     }
 
-    if(!chatroomInit || isLoading || !user || !chatroomUser) return <div>loading...</div>
+    if(!chatroomInit || isLoading || !user || !chatroomUser) return <div>Loading...</div>
 
     return(
         <div className='w-screen h-screen lg:h-screen lg:overflow-hidden'>
