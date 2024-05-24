@@ -94,7 +94,7 @@ export default function ArcadeRoomPage() {
 
         if(!chatroomUserInit) return
 
-        if(chatroomUser.activeState == "BANNED" || chatroomUser.state == "BANNED"){
+        if(chatroomUser.activeState == "BANNED" || chatroomUser.state == "BANNED" || chatroomUser.role == "BANNED"){
 
             handleBlockCurrentUser()
             return
@@ -120,13 +120,20 @@ export default function ArcadeRoomPage() {
 
         if(!chatroomUser || !user) return
 
+        
+        if(chatroomUser.activeState == "BANNED" || chatroomUser.state == "BANNED" || chatroomUser.role == "BANNED"){
+
+            return handleBlockCurrentUser()
+
+        }
+
         if(chatroomUser.activeState == "INACTIVE"){
 
             client.graphql({
                 query: updateChatroomUser,
                 variables: {
                     input: {
-                        id: user.id,
+                        id: chatroomUser.id,
                         activeState: "ACTIVE-"+ chatroomState.round
                     }
                 }
@@ -139,6 +146,7 @@ export default function ArcadeRoomPage() {
         if(!chatroomUserInit) return
         isFocused.current = false;
         inactivityTimeout.current = setTimeout(() => {
+            if(chatroomUser.state == "BANNED" || chatroomUser.activeState == "BANNED" || chatroomUser.role == "BANNED") return handleBlockCurrentUser() 
             console.warn("USER IS INACTIVE: ", chatroomUser);
             setUserInactive()
             navigate('/arcade');
@@ -160,7 +168,7 @@ export default function ArcadeRoomPage() {
 
     useEffect(() => {
 
-        if(!chatroomUserInit) return
+        if(!chatroomUserInit || !chatroomUser) return
 
         if(round == 0) return
 
@@ -168,7 +176,7 @@ export default function ArcadeRoomPage() {
 
         if(round == activeRound) return
 
-        if(chatroomUser.activeState == "BANNED") return
+        if(chatroomUser.activeState == "BANNED" || chatroomUser.state == "BANNED" || chatroomUser.role == "BANNED") return handleBlockCurrentUser()
         
         setActiveRound(round)
 
@@ -287,7 +295,7 @@ export default function ArcadeRoomPage() {
                     setChatroom(data.data.getChatroomByCode)
 
                     const chatroomUsers = data.data.getChatroomByCode.users.filter((tempUser) => {
-                        return !(tempUser.state == "BANNED" || tempUser.activeState == "BANNED")
+                        return !(tempUser.state == "BANNED" || tempUser.activeState == "BANNED" || tempUser.role == "BANNED")
                     })
 
                     if(chatroomUsers.length > 10){
@@ -332,7 +340,7 @@ export default function ArcadeRoomPage() {
 
     useEffect(()=> {
 
-        if(!chatroomInit || !user) return
+        if(!chatroomInit || !user || !chatroomUsers) return
         
         
         const initializeChatroomUser = async ()=> {
@@ -371,8 +379,9 @@ export default function ArcadeRoomPage() {
                 
                 if(userExist) return 
 
-                if(chatroomUser.activeState == "BANNED" || chatroomUser.state == "BANNED"){
+                if(chatroomUser.activeState == "BANNED" || chatroomUser.state == "BANNED" || chatroomUser.role == "BANNED"){
                     handleBlockCurrentUser()
+                    return
                 }
                 
                 setChatroomUser(chatroomUser)
@@ -561,7 +570,7 @@ export default function ArcadeRoomPage() {
 
                     setChatroomUser(updatedUser)
 
-                    if(updatedUser.state == "BANNED" || updatedUser.activeState == "BANNED"){
+                    if(updatedUser.state == "BANNED" || updatedUser.activeState == "BANNED" || updatedUser.role == "BANNED"){
 
 
                         handleBlockCurrentUser()
@@ -836,7 +845,9 @@ export default function ArcadeRoomPage() {
     }
 
     const handleKickUser = (id: string) => {
-
+        
+        if(!user)return
+        if(chatroom.hostId != user.id) return
         console.log(id)
         client.graphql({
             query: updateChatroomUser,
@@ -844,7 +855,8 @@ export default function ArcadeRoomPage() {
                 input: {
                     id: id,
                     activeState: 'BANNED',
-                    state: 'BANNED'
+                    state: 'BANNED',
+                    role: 'BANNED'
                 }
             }
         })
@@ -943,20 +955,20 @@ export default function ArcadeRoomPage() {
 
                     <div className='grid grid-cols-2 lg:flex flex-row w-full max-lg:h-[24.5vh]'>
                     <div className='top-0 left-0 h-full max-lg:overflow-y-scroll lg:gap-5 lg:ps-2 xl:ps-5 lg:pt-5 text-nowrap md:flex flex-col'>
-                        {(chatroomUsers == null)? '' : chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((user) => {
+                        {(chatroomUsers == null)? '' : chatroomUsers.sort((a,b) => a.points> b.points ? -1 : 1).map((tempUser) => {
 
-                            if((user.activeState == "INACTIVE" || user.activeState == "BANNED" || user.state == "BANNED") && user.id != chatroomUser.id) return
+                            if((tempUser.activeState == "INACTIVE" || tempUser.activeState == "BANNED" || tempUser.state == "BANNED" || tempUser.role == "BANNED") && tempUser.id != chatroomUser.id) return
 
 
                             return (
                             
-                            <div key={user.id} className='flex items-center gap-2 border-neutral-500 border-2 bg-neutral-800 py-2 lg:py-4 px-2 relative'>
+                            <div key={tempUser.id} className='flex items-center gap-2 border-neutral-500 border-2 bg-neutral-800 py-2 lg:py-4 px-2 relative'>
 
                                 
                                 <div className='flex justify-center lg:w-12'>
                                     
-                                    {user.user && user.user.profilePicture? 
-                                        <CachedImage className={''} imgKey={characters[user.user.profilePicture.split('-')[0]].imageKeys.icons[user.user.profilePicture.split('-')[1]]}></CachedImage>
+                                    {tempUser.user && tempUser.user.profilePicture? 
+                                        <CachedImage className={''} imgKey={characters[tempUser.user.profilePicture.split('-')[0]].imageKeys.icons[tempUser.user.profilePicture.split('-')[1]]}></CachedImage>
                                     :
                                     <div></div>
                                 
@@ -968,12 +980,22 @@ export default function ArcadeRoomPage() {
                                 
 
                                 <div className='flex flex-col text-left text-[0.8rem] lg:text-[0.7rem] xl:text-[0.9rem]'>
-                                    {user.user.username}
+                                    {tempUser.user.username}
 
                                     <div className='flex items-center gap-2'>
-                                        Points: {user.points}
-                                        <CiSquareRemove color='#947570' className=' cursor-pointer' onClick={() => handleKickUser(user.id)} />
-                                        <FaVolumeMute  color='#947570' className='cursor-pointer' />
+                                        Points: {tempUser.points}
+
+                                        {chatroom.hostId == user.id && tempUser.user.id != user.id ? 
+                                        
+                                        <div className='flex gap-2'>
+                                            <CiSquareRemove color='#947570' className=' cursor-pointer' onClick={() => handleKickUser(tempUser.id)} />
+                                            <FaVolumeMute  color='#947570' className='cursor-pointer' />
+
+                                        </div>
+                                        
+                                        
+                                        
+                                        : ''}
 
                                     </div>
                                 </div>    

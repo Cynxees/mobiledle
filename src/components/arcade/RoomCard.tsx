@@ -88,7 +88,7 @@ const RoomCard: React.FC<RoomCardProps> = ({
 
                 <Link className="ms-auto" to={joinable ? '/arcade/'+room.code : ''}>
                     <button 
-                    className="ms-auto bg-white bg-opacity-5 text-white font-nova-bold px-10"
+                    className="ms-auto bg-white bg-opacity-10 text-white font-nova-bold px-10"
                     onClick={() =>{
 
                         if(usernameChanged == null) return

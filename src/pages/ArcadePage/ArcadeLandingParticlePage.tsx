@@ -22,7 +22,6 @@ export default function ArcadeLandingParticlePage() {
       }, []);
 
       const particlesLoaded = async (container?: Container): Promise<void> => {
-        console.log(container);
       };
       
       

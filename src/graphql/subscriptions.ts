@@ -114,12 +114,14 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($id: ID, $u
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     ttl
@@ -152,12 +154,14 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($id: ID, $u
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     ttl
@@ -190,12 +194,14 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($id: ID, $u
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     ttl
@@ -235,6 +241,7 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
         points
         state
         activeState
+        role
         __typename
       }
       ttl
@@ -262,6 +269,7 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -286,12 +294,14 @@ export const onCreateChatroomUser = /* GraphQL */ `subscription OnCreateChatroom
         __typename
       }
       ttl
+      type
       __typename
     }
     ttl
     points
     state
     activeState
+    role
     __typename
   }
 }
@@ -316,6 +326,7 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
         points
         state
         activeState
+        role
         __typename
       }
       ttl
@@ -343,6 +354,7 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -367,12 +379,14 @@ export const onUpdateChatroomUser = /* GraphQL */ `subscription OnUpdateChatroom
         __typename
       }
       ttl
+      type
       __typename
     }
     ttl
     points
     state
     activeState
+    role
     __typename
   }
 }
@@ -397,6 +411,7 @@ export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpda
         points
         state
         activeState
+        role
         __typename
       }
       ttl
@@ -424,6 +439,7 @@ export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpda
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -448,12 +464,14 @@ export const onUpdateChatroomUserByChatroom = /* GraphQL */ `subscription OnUpda
         __typename
       }
       ttl
+      type
       __typename
     }
     ttl
     points
     state
     activeState
+    role
     __typename
   }
 }
@@ -478,6 +496,7 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
         points
         state
         activeState
+        role
         __typename
       }
       ttl
@@ -505,6 +524,7 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -529,12 +549,14 @@ export const onDeleteChatroomUser = /* GraphQL */ `subscription OnDeleteChatroom
         __typename
       }
       ttl
+      type
       __typename
     }
     ttl
     points
     state
     activeState
+    role
     __typename
   }
 }
@@ -573,12 +595,14 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     chatroomUserId
@@ -604,6 +628,7 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -628,6 +653,7 @@ export const onCreateChatroomMessage = /* GraphQL */ `subscription OnCreateChatr
         __typename
       }
       ttl
+      type
       __typename
     }
     chatroomId
@@ -666,12 +692,14 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     chatroomUserId
@@ -697,6 +725,7 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -721,6 +750,7 @@ export const onUpdateChatroomMessage = /* GraphQL */ `subscription OnUpdateChatr
         __typename
       }
       ttl
+      type
       __typename
     }
     chatroomId
@@ -755,12 +785,14 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     chatroomUserId
@@ -786,6 +818,7 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -810,6 +843,7 @@ export const onDeleteChatroomMessage = /* GraphQL */ `subscription OnDeleteChatr
         __typename
       }
       ttl
+      type
       __typename
     }
     chatroomId
@@ -839,6 +873,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       chatroomUserId
@@ -848,6 +883,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       chatroomId
@@ -873,12 +909,14 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     host {
@@ -893,6 +931,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       ttl
@@ -908,6 +947,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       users {
@@ -918,6 +958,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       mode
@@ -943,6 +984,7 @@ export const onCreateChatroom = /* GraphQL */ `subscription OnCreateChatroom($id
       __typename
     }
     ttl
+    type
     __typename
   }
 }
@@ -966,6 +1008,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       chatroomUserId
@@ -975,6 +1018,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       chatroomId
@@ -1000,12 +1044,14 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     host {
@@ -1020,6 +1066,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       ttl
@@ -1035,6 +1082,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       users {
@@ -1045,6 +1093,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       mode
@@ -1070,6 +1119,7 @@ export const onUpdateChatroom = /* GraphQL */ `subscription OnUpdateChatroom($id
       __typename
     }
     ttl
+    type
     __typename
   }
 }
@@ -1093,6 +1143,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       chatroomUserId
@@ -1102,6 +1153,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       chatroomId
@@ -1127,12 +1179,14 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     host {
@@ -1147,6 +1201,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       ttl
@@ -1162,6 +1217,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         code
         hostId
         ttl
+        type
         __typename
       }
       users {
@@ -1172,6 +1228,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
         points
         state
         activeState
+        role
         __typename
       }
       mode
@@ -1197,6 +1254,7 @@ export const onDeleteChatroom = /* GraphQL */ `subscription OnDeleteChatroom($id
       __typename
     }
     ttl
+    type
     __typename
   }
 }
@@ -1380,6 +1438,7 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -1404,6 +1463,7 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
         __typename
       }
       ttl
+      type
       __typename
     }
     users {
@@ -1423,12 +1483,14 @@ export const onCreateChatroomState = /* GraphQL */ `subscription OnCreateChatroo
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     mode
@@ -1504,6 +1566,7 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -1528,6 +1591,7 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
         __typename
       }
       ttl
+      type
       __typename
     }
     users {
@@ -1547,12 +1611,14 @@ export const onUpdateChatroomState = /* GraphQL */ `subscription OnUpdateChatroo
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     mode
@@ -1628,6 +1694,7 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
         points
         state
         activeState
+        role
         __typename
       }
       host {
@@ -1652,6 +1719,7 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
         __typename
       }
       ttl
+      type
       __typename
     }
     users {
@@ -1671,12 +1739,14 @@ export const onDeleteChatroomState = /* GraphQL */ `subscription OnDeleteChatroo
         code
         hostId
         ttl
+        type
         __typename
       }
       ttl
       points
       state
       activeState
+      role
       __typename
     }
     mode

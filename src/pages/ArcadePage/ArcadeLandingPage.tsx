@@ -15,7 +15,7 @@ import { BiSolidPencil } from 'react-icons/bi';
 import CachedImage from '../../components/CachedImage';
 import { useMobileLegendsCharacters } from '../../providers/MobileLegendsCharactersProvider';
 import { TiTick } from 'react-icons/ti';
-import { FaShuffle } from 'react-icons/fa6';
+import { FaLock, FaShuffle, FaUnlock } from 'react-icons/fa6';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
 const client = generateClient();
@@ -25,6 +25,7 @@ export default function ArcadeLandingPage() {
     const [username, setUsername] = useState('')
     const [showInputUsername, setShowInputUsername] = useState(false)
     const [willUpdateUser, setWillUpdateUser] = useState(false)
+    const [roomIsPrivate, setRoomIsPrivate] = useState(false)
 
     const [profilePicture, setProfilePicture] = useState('0-0')
     const [profileIsHovered, setProfileHover] = useState(false)
@@ -44,6 +45,9 @@ export default function ArcadeLandingPage() {
     const [init, setInit] = useState(false)
 
     const navigate = useNavigate()
+
+    const lockAudio = new Audio('/audios/lock.mp3')
+    const unlockAudio = new Audio('/audios/unlock.mp3')
     
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
@@ -82,7 +86,14 @@ export default function ArcadeLandingPage() {
 
         console.log('fetching chatrooms...')
         client.graphql({
-            query: listChatrooms
+            query: listChatrooms,
+            variables: {
+                filter: {
+                    type: {
+                        eq: 'PUBLIC'
+                    }
+                }
+            }
 
         }).then(data => {
             console.log('chatrooms fetched: ', data)
@@ -239,7 +250,8 @@ export default function ArcadeLandingPage() {
                 input: {
                     name: roomName,
                     ttl: getTtlFromMinutes(10),
-                    hostId: user.id
+                    hostId: user.id,
+                    type: roomIsPrivate ? 'PRIVATE': 'PUBLIC'
                 }
             }
         }).then((result) => {
@@ -422,7 +434,19 @@ export default function ArcadeLandingPage() {
                     </div>
                 
                     <div className='grid grid-cols-3 max-sm:px-4 lg:w-[300px] gap-4 mx-auto'>
-                        <input className='rounded-lg col-span-2 bg-neutral-900 ps-3' onChange={handleRoomNameInputChange} value={roomName} type="text" placeholder='Room Name'/>
+
+                        <div className='relative col-span-2'>
+
+                            <input className='rounded-lg w-full h-[53px] bg-neutral-900 ps-3'
+                            onChange={handleRoomNameInputChange} value={roomName} type="text" placeholder='Room Name'
+                            />
+
+                            {!roomIsPrivate? <FaUnlock className='select-none absolute top-1/3 right-3 text-lg text-gray-400 cursor-pointer' onClick={() => {lockAudio.play();setRoomIsPrivate(true)}}  />
+                            : <FaLock className='select-none absolute top-1/3 right-3 text-lg text-orange-300 cursor-pointer' onClick={() => {unlockAudio.play();setRoomIsPrivate(false)}}  />
+                        
+                            }
+
+                        </div>
 
                         <button className='w-full bg-[#D6B485] rounded-lg p-0' onClick={handleCreateRoomClick}>
                             {isCreatingRoom ? 
