@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import ClassicBox from "../components/navigation/ClassicBox";
 import Navbar from "../components/navigation/Navbar";
-import SurvivalBox from "../components/navigation/SurvivalBox";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import {
   type Container,
@@ -9,9 +7,7 @@ import {
 } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
-import ArcadeBox from "../components/navigation/ArcadeBox";
 import { useUser } from "../providers/UserProvider";
-import MirrorBox from "../components/navigation/MirrorBox";
 import NavigationButton from "../components/navigation/NavigationButton";
 
 export default function LandingPage() {
@@ -96,7 +92,7 @@ export default function LandingPage() {
 
 
   return (
-    <div className="">
+    <div className="mt-20">
     <img className="w-full h-full object-cover fixed -z-10 left-0 top-0  motion-reduce:animate-bounce opacity-40" src="/images/landing-bg.jpg"/>
     <Particles
           id="tsparticles"
@@ -110,13 +106,14 @@ export default function LandingPage() {
       <div className="relative" style={{WebkitMaskImage: "linear-gradient(to top, black 85%, transparent 100%)"}}>
 
         <div style={{WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)"}}>
-          <div className="flex flex-col h-[85vh] md:h-[60vh] overflow-y-scroll justify-start pt-12 md:pt-16 pb-20 mx-auto gap-4 md:gap-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div className="flex flex-col h-[85vh] md:h-[60vh] overflow-y-scroll justify-start pt-12 md:pt-16 pb-52 mx-auto gap-4 md:gap-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           
           
             <NavigationButton link="arcade"/>
             <NavigationButton link="classic"/>
 
             <NavigationButton link="blur"/>
+            <NavigationButton link="disco"/>
             <NavigationButton link="survival"/>
             <NavigationButton link="mirror"/>
           

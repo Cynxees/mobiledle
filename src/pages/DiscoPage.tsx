@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import ColorIndicator from "../components/classic/ColorIndicator";
 import HeroShowBar from "../components/classic/HeroShowBar";
 import Navbar from "../components/navigation/Navbar";
@@ -18,21 +18,18 @@ interface userGuess {
   isClicked: boolean;
 }
 
-export default function BlurPage() {
+export default function DiscoPage() {
   const { t } = useTranslation();
 
   const { data: characters, isLoading, error } = useMobileLegendsCharacters();
-  const todayCharacter = useFetchTodayAnswer("BLUR");
-
+  const todayCharacter = useFetchTodayAnswer("DISCO");
   const currentDate = new Date()
-
   const seed = currentDate.getDate() * currentDate.getMonth() * currentDate.getFullYear()
-
   const [userAnswers, setUserAnswers] = useState<MobileLegendsHero[]>(
     () => {
-      const storedData = localStorage.getItem("blurAnswers");
+      const storedData = localStorage.getItem("discoAnswers");
       //check if now is a new day
-      const savedDate = localStorage.getItem("latestBlurDate");
+      const savedDate = localStorage.getItem("latestDiscoDate");
       const today = new Date().toLocaleDateString();
       if (savedDate !== today) {
         return [];
@@ -59,15 +56,16 @@ export default function BlurPage() {
   
     })
   }, [isLoading])
+
   
 
   const [totalWins, setTotalWins] = useState<number>(() => {
-    return parseInt(localStorage.getItem("totalBlurWon")) || 0;
+    return parseInt(localStorage.getItem("totalDiscoWon")) || 0;
   });
   const [isWin, setIsWin] = useState<boolean>(() => {
-    const storedData = localStorage.getItem("blurWon");
+    const storedData = localStorage.getItem("discoWon");
     //check if now is a new day
-    const savedDate = localStorage.getItem("latestBlurDate");
+    const savedDate = localStorage.getItem("latestDiscoDate");
     const today = new Date().toLocaleDateString();
     if (savedDate !== today) {
       return false;
@@ -86,13 +84,13 @@ export default function BlurPage() {
   //local storage init
   useEffect(() => {
     // make sure that the item is in the local storage
-    localStorage.setItem("blurAnswers", JSON.stringify(userAnswers));
-    localStorage.setItem("blurWon", "false");
+    localStorage.setItem("discoAnswers", JSON.stringify(userAnswers));
+    localStorage.setItem("discoWon", "false");
     if (isWin) {
-      localStorage.setItem("blurWon", "true");
+      localStorage.setItem("discoWon", "true");
     }
-    localStorage.setItem("latestBlurDate", new Date().toLocaleDateString());
-    localStorage.setItem("totalBlurWon", totalWins.toString());
+    localStorage.setItem("latestDiscoDate", new Date().toLocaleDateString());
+    localStorage.setItem("totalDiscoWon", totalWins.toString());
   }, [userAnswers, isWin, totalWins]);
 
   //scroll to winCard
@@ -112,8 +110,8 @@ export default function BlurPage() {
         setIsWin(true);
         setTotalWins((prevTotalWins) => prevTotalWins + 1);
 
-        localStorage.setItem("blurWon", "true");
-        localStorage.setItem("totalBlurWon", totalWins.toString());
+        localStorage.setItem("discoWon", "true");
+        localStorage.setItem("totalDiscoWon", totalWins.toString());
       }
     }
   };
@@ -153,14 +151,55 @@ export default function BlurPage() {
       
       <section className={`flex flex-col w-full gap-5 items-center md:mt-[20vh] mt-[25vh] mb-32`}>
         
+        
+
         <div className="flex flex-col gap-5 mb-16 mx-24 w-full sm:px-5 px-2 items-center justify-center">
             <div className="relative z-10">
                 <Navbar />
             </div>
 
-            <div className="w-96 h-96 flex justify-center" style={{filter: `blur(0px)`}}>
-                <CachedImage style={{filter: `blur(${(isWin)?'0':13-userAnswers.length}px) saturate(${(isWin)?1:((userAnswers.length*0.05))})`}} className='' 
-                imgKey={todayCharacter.imageKeys.cards[Math.floor(seed%todayCharacter.imageKeys.cards.length)]} />
+
+
+            <div className="flex justify-center select-none" style={{filter: `blur(0px)`}}>
+                <CachedImage className='' style={{filter: `blur(${(isWin)?'0':2-userAnswers.length}px) saturate(${(isWin)?1:((userAnswers.length*0.05))})`}} imgKey={todayCharacter.imageKeys.skills[(seed)%todayCharacter.imageKeys.skills.length]} />
+                
+                {userAnswers.length >= 3 || isWin ? 
+                
+                  <CachedImage className='' style={{filter: `blur(${(isWin)?'0':2-(userAnswers.length-3)}px) saturate(${(isWin)?1:(((userAnswers.length-3)*0.05))})`}} imgKey={todayCharacter.imageKeys.skills[(seed+1)%todayCharacter.imageKeys.skills.length]} />
+                  :<div className="relative">
+                    <div className="text-[2.5rem] text-orange-200 font-nova-bold absolute z-10 top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2">
+                      {3-userAnswers.length}
+                    </div>
+                    <CachedImage className='w-24 h-24' style={{filter: `blur(5px) saturate(0.05)`}} imgKey={todayCharacter.imageKeys.skills[(seed+1)%todayCharacter.imageKeys.skills.length]} />
+                  </div>
+                }
+                
+
+                {userAnswers.length >= 5 || isWin ? 
+                
+                <CachedImage className='' style={{filter: `blur(${(isWin)?'0':2-(userAnswers.length-5)}px) saturate(${(isWin)?1:(((userAnswers.length-5)*0.05))})`}} imgKey={todayCharacter.imageKeys.skills[(seed+2)%todayCharacter.imageKeys.skills.length]} />
+                :<div className={`relative ${userAnswers.length<3 ? 'hidden': ''}`}>
+                  <div className="text-[2.5rem] text-orange-200 font-nova-bold absolute z-10 top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2">
+                    {5-userAnswers.length}
+                  </div>
+                  <CachedImage className='w-24 h-24' style={{filter: `blur(5px) saturate(0.05)`}} imgKey={todayCharacter.imageKeys.skills[(seed+2)%todayCharacter.imageKeys.skills.length]} />
+                </div>
+                }
+
+                {userAnswers.length >= 7 || isWin ? 
+                
+                <CachedImage className='' style={{filter: `blur(${(isWin)?'0':2-(userAnswers.length-7)}px) saturate(${(isWin)?1:(((userAnswers.length-7)*0.05))})`}} imgKey={todayCharacter.imageKeys.skills[(seed+3)%todayCharacter.imageKeys.skills.length]} />
+                :<div className={`relative ${userAnswers.length<5 ? 'hidden': ''}`}>
+                  <div className="text-[2.5rem] text-orange-200 font-nova-bold absolute z-10 top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2">
+                    {7-userAnswers.length}
+                  </div>
+                  <CachedImage className='w-24 h-24' style={{filter: `blur(5px) saturate(0.05)`}} imgKey={todayCharacter.imageKeys.skills[(seed+3)%todayCharacter.imageKeys.skills.length]} />
+                </div>
+                }
+
+                
+                
+                
             </div>
 
             {!isWin && (
@@ -173,7 +212,7 @@ export default function BlurPage() {
 
 
             <div>
-              {t`Total Wins`} : {totalWins}
+            {t`Total Wins`} : {totalWins}
             </div>
             <label className="inline-flex items-center cursor-pointer">
             <input

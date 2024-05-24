@@ -14,19 +14,37 @@ const useFetchTodayAnswer = (gamemode) => {
             const date = today.getDate() + 5;
             const month = today.getMonth() + 5;
             const year = today.getFullYear() + 5;
+
+            const classicIndex = (date+2 * month+2 * year+2 * 5) % characters.length;
+
+            let blurIndex = (date+2 * month+2 * year+2 * 25) % characters.length;
+
+            if(blurIndex == classicIndex) blurIndex += 1
+
+            let discoIndex = (date+2 * month+2 * year+2 * 55) % characters.length;
+            if(discoIndex == classicIndex || discoIndex == blurIndex ) blurIndex += 1
+            if(discoIndex == classicIndex || discoIndex == blurIndex ) blurIndex += 1
             
             if(gamemode.toUpperCase() === "CLASSIC"){
 
-                const todayIndex = (date * month * year * 5) % characters.length;
-                setTodayCharacter(characters[todayIndex]);
+                setTodayCharacter(characters[classicIndex]);
 
-                console.log("today's classic answer: ", characters[todayIndex].name)
+                console.log("today's classic answer: ", characters[classicIndex].name)
             
             }
 
             if(gamemode.toUpperCase() === "BLUR"){
 
                 const todayIndex = (date * month * year * 23) % characters.length;
+                setTodayCharacter(characters[todayIndex]);
+
+                console.log("today's blur answer: ", characters[todayIndex].name)
+            
+            }
+
+            if(gamemode.toUpperCase() === "DISCO"){
+
+                const todayIndex = (date * month * year * 55) % characters.length;
                 setTodayCharacter(characters[todayIndex]);
 
                 console.log("today's blur answer: ", characters[todayIndex].name)

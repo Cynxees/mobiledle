@@ -5,7 +5,7 @@ import ClassicPage from "./pages/ClassicPage";
 import DevPage from "./pages/DevPage";
 import DevPage2 from "./pages/DevPage2";
 import DevPage3 from "./pages/DevPage3";
-import DevPage5 from "./pages/DevPage5";
+import DevPage4 from "./pages/DevPage4";
 import 'animate.css';
 import SurvivalPage from "./pages/SurvivalPage";
 import ArcadeLandingPage from "./pages/ArcadePage/ArcadeLandingPage";
@@ -14,8 +14,8 @@ import ErrorPage from "./pages/ErrorPage";
 import MirrorPage from "./pages/MirrorPage";
 import MemoryPage from "./pages/MemoryPage";
 import BlurPage from "./pages/BlurPage";
-import LandingPage2 from "./pages/LandingPage2";
 import ArcadeLandingParticlePage from "./pages/ArcadePage/ArcadeLandingParticlePage";
+import DiscoPage from "./pages/DiscoPage";
 
 
 
@@ -30,8 +30,7 @@ function App() {
 
           <Route path="classic" element={<ClassicPage />} />
           <Route path="blur" element={<BlurPage />} />
-          <Route path="dev" element={<DevPage />} />
-          <Route path="dev2" element={<DevPage2 />} />
+          <Route path="disco" element={<DiscoPage />} />
           <Route path="mirror" element={<MirrorPage />} />
           <Route path="survival" element={<SurvivalPage />} />
           <Route path="memory" element={<MemoryPage />} />
@@ -46,9 +45,7 @@ function App() {
           <Route path="dev" element={<DevPage />} />
           <Route path="dev2" element={<DevPage2 />} />
           <Route path="dev3" element={<DevPage3 />} />
-          <Route path="dev4" element={<LandingPage2 />} />
-          <Route path="dev5" element={<DevPage5 />} />
-          <Route path="dev6" element={<DevPage5 />} />
+          <Route path="dev4" element={<DevPage4 />} />
 
         </Routes>
       </BrowserRouter>

@@ -121,7 +121,7 @@ export default function ClassicPage() {
   if (isLoading) return <div> Loading...</div>;
 
   return (
-    <div className="w-screen align-top flex">
+    <div className="w-screen align-top flex flex-col">
 
 
       
@@ -138,7 +138,7 @@ export default function ClassicPage() {
 
       {showBank ? 
         <aside
-        className={`xl:block fixed top-0 right-0 z-40 justify-end xl:w-[22vw] max-xl:hidden h-screen overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+        className={"hidden xl:block fixed top-0 right-0 z-40 justify-end xl:w-[22vw] h-screen overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"}
         >
           <HeroBank />
         </aside>
