@@ -3,7 +3,6 @@ import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import ClassicPage from "./pages/ClassicPage";
 import DevPage from "./pages/DevPage";
-import DevPage2 from "./pages/DevPage2";
 import DevPage3 from "./pages/DevPage3";
 import DevPage4 from "./pages/DevPage4";
 import 'animate.css';
@@ -43,9 +42,8 @@ function App() {
           <Route path=":code" element={<ErrorPage />}/>
 
           <Route path="dev" element={<DevPage />} />
-          <Route path="dev2" element={<DevPage2 />} />
-          <Route path="dev3" element={<DevPage3 />} />
-          <Route path="dev4" element={<DevPage4 />} />
+          {/* <Route path="dev3" element={<DevPage3 />} />
+          <Route path="dev4" element={<DevPage4 />} /> */}
 
         </Routes>
       </BrowserRouter>
