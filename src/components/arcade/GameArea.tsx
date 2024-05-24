@@ -75,7 +75,7 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
         : (chatroomState.currentState == "INTERMISSION" && promptBank != null) ? <IntermissionView characters={characters} prompt={promptBank} /> 
         : (chatroomState.mode == "CLASSIC") ? <ClassicGameView chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/>
         : (chatroomState.mode == "BLUR") ? <BlurGameView timer={timer} chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/>
-        : (chatroomState.currentState && chatroomState.currentState.startsWith("ENDED")) ? <EndGameViewInput chatroomState={chatroomState} chatroomUsers={chatroomUsers} winnerId={chatroomState.currentState.replace('ENDED-', '')}  />
+        : (chatroomState.currentState && chatroomState.currentState.startsWith("ENDED")) ? <EndGameViewInput timer={timer} chatroomState={chatroomState} chatroomUsers={chatroomUsers} winnerId={chatroomState.currentState.replace('ENDED-', '')}  />
         : <div>Loading... </div>}
 
     {/* <IntermissionView characters={characters} prompt={promptBank} />  */}
