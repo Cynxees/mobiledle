@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const urlCache = {};
 
-const CachedImage = ({ imgKey, className, style={} }) => {
+const CachedImage = ({ imgKey, className='', style={} }) => {
     const [imageUrl, setImageUrl] = useState(urlCache[imgKey] || null);
     
     useEffect(() => {

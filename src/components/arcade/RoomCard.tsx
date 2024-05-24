@@ -25,11 +25,11 @@ const RoomCard: React.FC<RoomCardProps> = ({
     joinable
 }) => { 
     
-    // const userCount = room.users.filter((user) => {
-    //     return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
-    // }).length
+    const userCount = room.users.filter((user) => {
+        return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
+    }).length
 
-    const userCount = Math.floor(Math.random()*10)
+    // const userCount = Math.floor(Math.random()*10)
 
     const cardColor = 'rgb(255,' + (175-userCount*10) +',' + (70-userCount*10) +')'
 
@@ -58,7 +58,7 @@ const RoomCard: React.FC<RoomCardProps> = ({
 
     
 
-    <div className="w-full h-full bg-white bg-opacity-5" style={{'color': cardColor }}>
+    <div className="w-full h-full bg-black bg-opacity-55  shadow-orange-200" style={{'color': cardColor }}>
 
         <div className='border-[3px] rounded-xl p-5 flex flex-col h-full' style={{'borderColor': cardColor}}>
             <div className="flex gap-2">

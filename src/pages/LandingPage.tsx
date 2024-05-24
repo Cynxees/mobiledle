@@ -94,7 +94,6 @@ export default function LandingPage() {
   );
 
 
-  if (false) return <div>Loading...</div>;
 
   return (
     <div className="">

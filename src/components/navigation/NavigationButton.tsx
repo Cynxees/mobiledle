@@ -15,7 +15,7 @@ export default function NavigationButton({link}: NavigationButtonProps) {
 
   const linkMetadata = {
     '/classic': ['CLASSIC', t`Get Clues On Every Try`, '#CB812D', '#e8dca4'],
-    '/survival': ['SURVIVAL', t`How Long Will You Last?`, '#d1b4ff', '#ecc3ff'],
+    '/survival': ['SURVIVAL', t`How Long Will You Last?`, '#CEB4DD', '#ecc3ff'],
     '/arcade': ['ARCADE', t`Prove Yourself against Others`, '#ff9a9c', '#ff9292'],
     '/mirror': ['MIRROR', t`What Hero Would You Be?`, '#befffc', '#2da4cb'],
     '/blur': ['BLUR', t`Hue hue hue hue, TREMBLEEE`, '#2d94cb', '#131a2b'],
@@ -27,7 +27,8 @@ export default function NavigationButton({link}: NavigationButtonProps) {
   return (
     
     <Link
-      className={`w-full py-4 md:h-full md:py-7 border-2 group rounded-lg cursor-pointer border-[${linkMetadata[link][2]}]  hover:bg-[${linkMetadata[link][2]}] hover:border-[${linkMetadata[link][3]}] transition duration-500 bg-[#101010] shadow-lg shadow-black w-full`}
+      className={`w-full py-4 md:h-full md:py-7 border-2 group rounded-lg cursor-pointer border-[${linkMetadata[link][2]}] 
+      bg-[#101010]  hover:bg-[${linkMetadata[link][2]}] hover:border-[${linkMetadata[link][3]}] transition duration-500  shadow-lg shadow-black w-full`}
       to={link}
     >
       <div className="flex relative justify-center items-center">

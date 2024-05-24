@@ -15,6 +15,7 @@ import MirrorPage from "./pages/MirrorPage";
 import MemoryPage from "./pages/MemoryPage";
 import BlurPage from "./pages/BlurPage";
 import LandingPage2 from "./pages/LandingPage2";
+import ArcadeLandingParticlePage from "./pages/ArcadePage/ArcadeLandingParticlePage";
 
 
 
@@ -35,7 +36,7 @@ function App() {
           <Route path="survival" element={<SurvivalPage />} />
           <Route path="memory" element={<MemoryPage />} />
 
-          <Route path="arcade" element={<ArcadeLandingPage />} />
+          <Route path="arcade" element={<ArcadeLandingParticlePage />} />
           <Route path="arcade/:code" element={<ArcadeRoomPage />}/>
 
           <Route path="error" element={<ErrorPage />}/>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MobileLegendsHero } from "../../types/MobileLegendsHero";
 import { StorageImage } from "@aws-amplify/ui-react-storage";
 import CachedImage from "../CachedImage";
+import "../../index.css"
 
 interface HeroSearchBarProps {
   characters: MobileLegendsHero[];
@@ -77,7 +78,7 @@ export default function HeroSearchBar({
 
   return (
   
-    <div className="flex items-center gap-2 relative bg-gradient-to-r from-[#ffea8f] to-[#ffac4d] rounded-md md:w-[600px] w-full">
+    <div className="flex items-center gap-2 relative bg-gradient-to-r from-[#ffea8f] to-[#ffac4d] rounded-md rounded-b-none md:w-[600px] w-full">
       <div className="relative w-full ps-2">
         <input
           type="text"
@@ -91,11 +92,11 @@ export default function HeroSearchBar({
         />
         
       </div>
-      <div className={`${suggestions.length<4 ? "" : "overflow-y-scroll" } absolute top-20 w-full z-20 max-h-52 `}>
+      <div className={`${suggestions.length<4 ? "" : "overflow-y-scroll" } absolute top-20 w-full z-20 max-h-52 custom-scrollbar `}>
           {suggestions.map((item: MobileLegendsHero) => (
             <li
               key={item.id}
-              className="bg-[#06081b] w-full list-none py-2 rounded-sm border-b-[2px] border-b-yellow-600 text-[#e8dca4] cursor-pointer"
+              className="bg-[#06081b] w-full list-none py-2 rounded-t-none border-b-[2px] border-b-yellow-600 text-[#e8dca4] cursor-pointer"
               onClick={() => handleSuggestionClick(item.name)}
             >
               <div className="flex items-center px-6 py-2 gap-3">

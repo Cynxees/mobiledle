@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { generateClient } from 'aws-amplify/api';
 import { createUser, createChatroomUser , updateChatroom, updateChatroomUser, updateChatroomMessage, createChatroom, createChatroomMessage, updateUser } from '../../graphql/mutations';
 import { onCreateChatroom, onDeleteChatroom } from '../../graphql/subscriptions';
@@ -49,7 +49,7 @@ export default function ArcadeLandingPage() {
 
     const [spinRotation, setSpinRotation] = useState(0)
 
-    let refreshProps = useSpring({ rotate: `${spinRotation}%`, from: { rotate: '0%' } });
+
     
 
     useEffect(() => {
@@ -64,13 +64,13 @@ export default function ArcadeLandingPage() {
             const pictureId = Math.floor(Math.random()*characters[id].imageKeys.icons.length)
             user.profilePicture = id + '-' + pictureId
             setProfilePicture(id+'-'+pictureId)
-            setProfileBank((oldData) => {return {...oldData, pictureId}})
+            setProfileBank((oldData) => {return [...oldData, id + '-' + pictureId]})
 
         }else{
             
             const picture = user.profilePicture
             setProfilePicture(user.profilePicture)
-            setProfileBank((oldData) => {return {...oldData, picture}})
+            setProfileBank((oldData) => {return [...oldData, picture]})
         }
 
 
@@ -127,13 +127,13 @@ export default function ArcadeLandingPage() {
 
         if(!chatroomFetched || !isRefreshed) return
 
-        setFilteredChatrooms(chatrooms.sort((a,b) => a.users.filter((user) => {
+        const chatroomUsersFiltered = chatrooms.filter((chatroom) => chatroom.users.filter((user) => {
             return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
-            
-        }).length > b.users.filter((user) => {
-            return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
-            
-        }).length ? -1 : 1 ))
+        })).filter((chatroom) => {
+            return chatroom.users.length < 0
+        })
+
+        setFilteredChatrooms(chatroomUsersFiltered.sort((a,b) => a.users.length > b.users.length ? -1 : 1 ))
 
         
         setInit(true)
@@ -205,6 +205,7 @@ export default function ArcadeLandingPage() {
 
     const handleCreateRoomClick = () => {
         
+        if(isCreatingRoom) return
         console.log('creating room')
         setIsCreatingRoom(true)
 
@@ -295,17 +296,16 @@ export default function ArcadeLandingPage() {
 
         const pictureId = Math.floor(Math.random()*characters[id].imageKeys.icons.length)
 
-        let profilePicture = id + "-" + pictureId
+        let newProfilePicture = id + "-" + pictureId
         setWillUpdateUser(true)
 
-        console.log(profileBankIndex, (profileBank.length) ? profileBank.length:0)
         if(profileBankIndex+1 >= profileBank.length){
 
-            setProfileBank((oldData) => {return {...oldData, pictureId}})
-            setProfilePicture(profilePicture)
+            setProfileBank((oldData) => {return [...oldData, newProfilePicture]})
+            setProfilePicture(newProfilePicture)
         }else{
-            profilePicture = profileBank[profileBankIndex]
-            setProfilePicture(profilePicture)
+            newProfilePicture = profileBank[profileBankIndex+1]
+            setProfilePicture(newProfilePicture)
         }
 
         
@@ -319,11 +319,60 @@ export default function ArcadeLandingPage() {
         const pictureId = Math.floor(Math.random()*characters[id].imageKeys.icons.length)
 
         if(profileBankIndex > 0){
-            setProfileBankIndex((old) => old-1)
+
+            setProfilePicture(profileBank[profileBankIndex-1])
+            setProfileBankIndex(old => old-1)
+
+
+        }else{
+
+            const id = Math.floor(Math.random()*characters.length)
+
+            const pictureId = Math.floor(Math.random()*characters[id].imageKeys.icons.length)
+
+            let newProfilePicture = id + "-" + pictureId
+
+            setProfileBank((oldData) => {return [newProfilePicture, ...oldData]})
+            setProfilePicture(newProfilePicture)
+            setProfileBankIndex(0)
+
+
         }
+          
+    
+    
+    }
+
+    const handleQuickStart = () => {
+
+        let roomFound = false
+        console.log(filteredChatrooms)
+
+        if(filteredChatrooms.length <= 0){
+
+            handleCreateRoomClick()
+
+            return
+        }
+
         
-        setWillUpdateUser(true)
-        setProfileBank((oldData) => {return {...oldData, pictureId}})
+        filteredChatrooms.sort((a,b) => a.users.length > b.users.length? -1: 1 ).map((tempRoom) => {
+
+            if(roomFound) return
+            if(tempRoom.users.length < 8){
+
+                roomFound = true
+                navigate('/arcade/' + tempRoom.code)
+
+            }
+
+
+
+
+        })
+
+
+
     }
     
 
@@ -331,11 +380,13 @@ export default function ArcadeLandingPage() {
     if(!init || !characters || userIsLoading) return <div>Loading...</div>
 
     return(
-        <div className='flex flex-col justify-center my-52'>
+        <div className='flex flex-col justify-center my-52 w-screen'>
             
+
+            <img src="/images/arcade_background.png" alt="" className='-z-50 object-cover fixed blur brightness-[0.15] top-0 left-0 w-full h-full' />
             <Navbar />
 
-            <div className='border-2 border-orange-200  rounded-lg'>
+            <div className='border-2 mx-auto border-orange-200 bg-black bg-opacity-35  rounded-lg'>
 
                 <div className='flex flex-col gap-2 w-[80vw] py-10'>
 
@@ -346,7 +397,7 @@ export default function ArcadeLandingPage() {
                         <div className='flex gap-2'>
 
 
-                            {username} <BiSolidPencil className='my-auto' onClick={handleChangeNameClick} />
+                            {username} <BiSolidPencil className='cursor-pointer my-auto' onClick={handleChangeNameClick} />
                         </div>:
 
                         <div className='relative flex'>
@@ -358,17 +409,22 @@ export default function ArcadeLandingPage() {
 
                     </div>
 
-                    <div className={`w-24 h-24 flex mx-auto mb-5 relative cursor-pointer`} onMouseLeave={handleProfileUnhover} onMouseOver={handleProfileHover} onClick={handleNextClick}>
-                        <IoMdArrowDropleft className='text-[3rem] absolute left-0 -translate-x-[150%] -translate-y-[50%] top-1/2'/>
-                        {/* <FaShuffle className={`absolute left-1/2 top-1/2 text-[3rem] -translate-x-1/2 -translate-y-1/2 ${profileIsHovered ? 'opacity-20': 'opacity-70 animate-pulse'}`} /> */}
-                        <CachedImage className={`mx-auto  ${profileIsHovered ? 'opacity-50': ''}`} imgKey={characters[profilePicture.split('-')[0]].imageKeys.icons[profilePicture.split('-')[1]]} />
-                        <IoMdArrowDropright className='text-[3rem] absolute right-0 translate-x-[150%] -translate-y-[50%] top-1/2'/>
+                    <div className={`w-24 h-24 flex mx-auto mb-5 relative cursor-pointer`}  >
+                        <IoMdArrowDropleft className='select-none text-[3rem] absolute left-0 -translate-x-[150%] -translate-y-[50%] top-1/2' onClick={handlePrevClick}/>
+                        <FaShuffle className={`absolute left-1/2 top-1/2 text-[3rem] -translate-x-1/2 -translate-y-1/2 ${profileIsHovered ? 'opacity-70 animate-pulse': 'opacity-0'}`} />
+                        <span onMouseLeave={handleProfileUnhover} onMouseOver={handleProfileHover} onClick={handleNextClick} >
+                            {profilePicture ? <CachedImage className={`mx-auto select-none  ${profileIsHovered ? 'opacity-50': ''}`} imgKey={characters[profilePicture.split('-')[0]].imageKeys.icons[profilePicture.split('-')[1]]}/>
+                            :'no pic'
+
+                            }
+                        </span>
+                        <IoMdArrowDropright className='select-none text-[3rem] absolute right-0 translate-x-[150%] -translate-y-[50%] top-1/2' onClick={handleNextClick}/>
                     </div>
                 
-                    <div className='grid grid-cols-3 w-[15%] gap-4 mx-auto'>
+                    <div className='grid grid-cols-3 max-sm:px-4 lg:w-[300px] gap-4 mx-auto'>
                         <input className='rounded-lg col-span-2 bg-neutral-900 ps-3' onChange={handleRoomNameInputChange} value={roomName} type="text" placeholder='Room Name'/>
 
-                        <button className='w-full bg-[#D6B485]  rounded-lg p-0' onClick={handleCreateRoomClick}>
+                        <button className='w-full bg-[#D6B485] rounded-lg p-0' onClick={handleCreateRoomClick}>
                             {isCreatingRoom ? 
                             <div role="status" className='w-full h-[53px] bg-neutral-900 rounded-lg align-middle flex items-center'>
                                 <svg aria-hidden="true" className="h-8 mx-auto text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -383,7 +439,7 @@ export default function ArcadeLandingPage() {
                             }
                         </button>
 
-                        <button className='col-span-3 bg-orange-400'>
+                        <button className='col-span-3 bg-orange-400' onClick={handleQuickStart}>
                             <span className='font-nova-bold text-3xl text-wrap text-shadow drop-shadow-[0_7px_1px_rgba(0,0,0,0.15)] shadow-black'>QUICK START</span>
                         </button>
 
@@ -395,10 +451,10 @@ export default function ArcadeLandingPage() {
 
             </div>
 
-            <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 w-[80vw] pt-10 gap-10'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 w-[80vw] mx-auto pt-10 gap-5 md:gap-10'>
 
 
-                {filteredChatrooms.map(room => 
+                {filteredChatrooms.sort((a,b) => a.users.length > b.users.length ? -1 : 1 ).map(room => 
 
                 <RoomCard key={room.code} room={room} username={username} profilePicture={profilePicture} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={willUpdateUser} />
                     
