@@ -80,8 +80,9 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                  Male, Female or Genderless
 
             <p className={propertiesCss}>Role:</p> 
-                Most played positions in game (can be 2). <span className='text-lime-200'>ex. Roaming, EXP Lane/Jungling</span>
+               Each characters duties and functions in the game (can be 2). <span className='text-lime-200'>ex. Marksman, Fighter/Mage</span>
             <p className={propertiesCss}>Lane:</p> 
+            Most played positions in game (can be 2). <span className='text-lime-200'>ex. Roaming, EXP Lane/Jungling</span>
             <p className={propertiesCss}>Region:</p> 
             <p className={propertiesCss}>Year:</p> 
             <div className='flex'>
