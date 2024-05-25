@@ -63,6 +63,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
 
   const gridCss =  "mx-auto grid grid-cols-5 w-52 justify-center "
   const textCss =  "text-2xl pt-1 relative text-center col-span-3"
+  const propertiesCss = "text-amber-200 text-xl"
   switch (currentPage){
     case 'classic':
       tutorialContent = (
@@ -70,12 +71,19 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
         <div className= {gridCss}>
                         <BsFillQuestionSquareFill className="text-4xl text-[#e8dca4]" />
 
-                    <div className={textCss}>
-                        Classic</div>
+                    <div className={textCss}>Classic</div>
         </div>
             <p className=''>
-            Test your knowledge everyday eivigeifaofhaoifnawaef
+            <div className='text-2xl'>Properties</div>
+            <p className={propertiesCss}>Gender:</p> 
+            
+                 Male, Female or Genderless
 
+            <p className={propertiesCss}>Role:</p> 
+                Most played positions in game (can be 2). <span className='text-lime-200'>ex. Roaming, EXP Lane/Jungling</span>
+            <p className={propertiesCss}>Lane:</p> 
+            <p className={propertiesCss}>Region:</p> 
+            <p className={propertiesCss}>Year:</p> 
             <div className='flex'>
             <div className=''>
 
