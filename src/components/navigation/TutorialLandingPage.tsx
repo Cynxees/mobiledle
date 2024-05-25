@@ -7,7 +7,34 @@ import { BsFillQuestionSquareFill } from 'react-icons/bs';
 import { IoDiscOutline, IoIdCardOutline } from 'react-icons/io5';
 import { AiFillAlert } from 'react-icons/ai';
 import { GiMirrorMirror } from 'react-icons/gi';
+import CachedImage from '../../components/CachedImage';
 
+interface TraitBoxProps {
+    trait: string,
+    state: number,
+  }
+
+  function TraitBox({trait, state}: TraitBoxProps){
+
+
+    const wrongColor = "bg-red-900"
+    const partialColor = "bg-orange-700"
+    const correctColor = "bg-green-700"
+  
+    return <div
+    className={`text-shadow shadow-gray-700 md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 text-[0.6rem] xs:text-xs md:text-lg  border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/images/agelta.jpg')] bg-blend-darken ${
+        state == 0 ? correctColor
+          : state == 1 ? partialColor
+          : wrongColor 
+      } `}
+    >
+  
+    {trait}
+  
+  
+  </div>
+  
+  }  
 
 const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
     
@@ -20,8 +47,6 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)', 
-        maxWidth: '40%',
-        width: '80%',
         outline: 'none',
         overflow: 'hidden',
     
@@ -42,14 +67,37 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
     case 'classic':
       tutorialContent = (
         <>
-          <div className= {gridCss}>
+        <div className= {gridCss}>
                         <BsFillQuestionSquareFill className="text-4xl text-[#e8dca4]" />
 
                     <div className={textCss}>
                         Classic</div>
+        </div>
+            <p className=''>
+            Test your knowledge everyday eivigeifaofhaoifnawaef
+
+            <div className='flex'>
+            <div className=''>
+
+            <div className="absolute md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 overflow-hidden animate__animated animate__zoomInRight bg-red-50">
+            <CachedImage className={`absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]`} imgKey={"data/61 - Chang'e/Icons/latest_13.png"} /> 
+            </div>
+
+
+            <div className="py-4 md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
+
+            <CachedImage className="z-10" imgKey={"data/61 - Chang'e/Icons/latest_13.png"} /> 
+            </div>
+
+
+
+            </div>
+                <TraitBox trait= {'melee'}state = {0} />
+                <TraitBox trait= {'melee'} state = {0} />
+                <TraitBox trait= {'melee'}state = {0} />
+                <TraitBox trait= {'melee'} state = {0} />
+                <TraitBox trait= {'melee'}state = {0} />
                 </div>
-                <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
                 </p>
         </>
       );
@@ -234,7 +282,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
         
         {tutorialContent}
       </div>
-      <div style={{ marginTop: 'auto',textAlign: 'center' }}>
+      <div className = 'mt-auto text-center pt-3'>
         <button onClick={onRequestClose}>Close</button>
       </div>
     </Modal>
