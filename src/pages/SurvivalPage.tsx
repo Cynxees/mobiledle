@@ -100,6 +100,7 @@ function getRandomCharacter(characters : MobileLegendsHero[]){
 export default function SurvivalPage() {
 
     const { t } = useTranslation();
+    const ding = new Audio('/audios/pop2.mp3')
 
     const { data: characters, isLoading, error } = useMobileLegendsCharacters();
     const [currentCharacter, setCurrentCharacter] = useState<MobileLegendsHero>();
@@ -384,7 +385,7 @@ export default function SurvivalPage() {
     function handleCorrect(){
 
 
-        
+        ding.play()
         setCurrentCharacter(getRandomCharacter(characters))
         startRound()
         setScore(score+1)

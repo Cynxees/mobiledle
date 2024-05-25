@@ -483,31 +483,7 @@ export default function ArcadeLandingPage() {
                 <RoomCard key={room.code} room={room} username={username} profilePicture={profilePicture} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={willUpdateUser} />
                     
                 )}
-                {filteredChatrooms.map(room => 
-
-                <RoomCard key={room.code} room={room} username={username} profilePicture={profilePicture} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={willUpdateUser} />
-
-                )}
-                {filteredChatrooms.map(room => 
-
-                <RoomCard key={room.code} room={room} username={username} profilePicture={profilePicture} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={willUpdateUser} />
-
-                )}
-                {filteredChatrooms.map(room => 
-
-                <RoomCard key={room.code} room={room} username={username} profilePicture={profilePicture} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={willUpdateUser} />
-
-                )}
-                {filteredChatrooms.map(room => 
-
-                <RoomCard key={room.code} room={room} username={username} profilePicture={profilePicture} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={willUpdateUser} />
-
-                )}
-                {filteredChatrooms.map(room => 
-
-                <RoomCard key={room.code} room={room} username={username} profilePicture={profilePicture} client={client} joinable={!isCreatingRoom}  user={(user)? user : null} usernameChanged={willUpdateUser} />
-
-                )}
+                
             </div>
 
 
