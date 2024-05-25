@@ -428,7 +428,7 @@ export default function SurvivalPage() {
         </div>
 
         <div className="bg-gray-900 rounded-lg shadow-inner shadow-white  border-yellow-100 border-2 p-5 md:p-20 w-full h-full mx-auto md:mt-[10vh] md:w-4/5 md:h-4/5 lg:w-3/5 xl:w-2/5">
-        <Navbar />
+        <Navbar currentPage={'survival'} />
 
 
         <div className="grid grid-cols-6 w-full h-full select-none mt-20 px-2">
@@ -441,7 +441,7 @@ export default function SurvivalPage() {
             </div>
             
             
-            <div className="z-10 col-span-4 h-full relative flex-shrink">
+            <div className="z-0 col-span-4 h-full relative flex-shrink">
 
             <div className={`font-nova-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-10 ${countdownClass}`}>
                 {(countdown > 12) ? "?" : (countdown > 11) ? "READY?" : (countdown > 10) ? "START" : (countdown < 1) ? "DEFEAT" : countdown} 
@@ -461,14 +461,14 @@ export default function SurvivalPage() {
                 scale={1}
                 
             >
-                <div className="handle relative z-30 mb-20 transform w-full h-full " style={{ WebkitFilter: `brightness(${characterOpacity + 0.6})`, filter : `brightness(100%)` }}>
+                <div className="handle relative -z-10 mb-20 transform w-full h-full " style={{ WebkitFilter: `brightness(${characterOpacity + 0.6})`, filter : `brightness(100%)` }}>
 
                 {/* <div className="bg-image absolute inset-0 bg-center bg-cover max-h-[28vh] lg:max-h-full blur-3xl opacity-80 motion-reduce:animate-bounce animate-pulse" 
                     style={{ backgroundImage: `url(${currentCharacter.imageKeys[0]})`, backgroundSize: 'cover', transform: `rotate(${characterRotation}deg)` }} /> */}
                     
                 {currentCharacter ? 
                     
-                    <CachedImage className="rounded-xl max-h-[28vh] lg:max-h-full z-10 mx-auto scale-150 md:scale-110 " imgKey={currentCharacter.imageKeys.cards[0]} />
+                    <CachedImage className="rounded-xl max-h-[28vh] lg:max-h-full -z-20 mx-auto scale-150 md:scale-110 " imgKey={currentCharacter.imageKeys.cards[0]} />
                     
                     : 'no hero'
                 }

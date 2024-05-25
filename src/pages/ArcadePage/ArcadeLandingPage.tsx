@@ -396,7 +396,7 @@ export default function ArcadeLandingPage() {
             
 
             <img src="/images/arcade_background.png" alt="" className='-z-50 object-cover fixed blur brightness-[0.15] top-0 left-0 w-full h-full' />
-            <Navbar />
+            <Navbar currentPage={'arcade'}/>
 
             <div className='border-2 mx-auto border-orange-200 bg-black bg-opacity-35  rounded-lg'>
 

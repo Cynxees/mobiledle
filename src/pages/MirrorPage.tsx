@@ -113,7 +113,7 @@ const MirrorPage = () => {
   console.log(userHero);
   return (
     <div className="flex flex-col gap-5 items-center mx-10">
-      <Navbar />
+      <Navbar currentPage={'mirror'}/>
       
 
       {currentQuestionIndex == questions.length ? (
