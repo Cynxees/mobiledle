@@ -140,9 +140,9 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         const seed = parseInt(prompt.description)
         const answer = parseInt(prompt.mobileLegendsCharacterId)
 
-        const index1 = randomizeHero(seed, 90, [answer])
-        const index2 = randomizeHero(index1 * seed, 90, [answer, index1])
-        const index3 = randomizeHero(index2 * seed, 90, [answer, index1, index2])
+        const index1 = randomizeHero(seed, 124, [answer])
+        const index2 = randomizeHero(index1 * seed, 124, [answer, index1])
+        const index3 = randomizeHero(index2 * seed, 124, [answer, index1, index2])
 
         console.log('Initial Guesses', index1,index2,index3, 'seed: ', seed)
         setCharacterGuesses([characters[index1], characters[index2], characters[index3]])
