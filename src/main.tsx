@@ -9,7 +9,7 @@ import './i18n';
 
 Amplify.configure(amplifyconfig);
 const queryClient = new QueryClient();
-console.log = () => {};
+// console.log = () => {};
 ReactDOM.createRoot(document.getElementById('root')!).render(
     
       <QueryClientProvider client={queryClient}>

@@ -154,8 +154,8 @@ export default function DiscoPage() {
         
 
         <div className="flex flex-col gap-5 mb-16 mx-24 w-full sm:px-5 px-2 items-center justify-center">
-            <div className="relative z-10">
-                <Navbar />
+            <div className="relative -z-1">
+                <Navbar currentPage={'disco'}/>
             </div>
 
 
