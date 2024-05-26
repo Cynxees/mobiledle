@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mobiledle.com/</loc>
+    <loc>https://www.mobiledle.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mobiledle.com/classic</loc>
+    <loc>https://www.mobiledle.com/classic</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mobiledle.com/mirror</loc>
+    <loc>https://www.mobiledle.com/mirror</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mobiledle.com/survival</loc>
+    <loc>https://www.mobiledle.com/survival</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mobiledle.com/memory</loc>
+    <loc>https://www.mobiledle.com/memory</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mobiledle.com/arcade</loc>
+    <loc>https://www.mobiledle.com/arcade</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
