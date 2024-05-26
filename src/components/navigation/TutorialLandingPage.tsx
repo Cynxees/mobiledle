@@ -23,7 +23,7 @@ interface TraitBoxProps {
     const correctColor = "bg-green-700"
   
     return <div
-    className={`text-shadow shadow-gray-700 md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 text-[0.6rem] xs:text-xs md:text-lg  border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/images/agelta.jpg')] bg-blend-darken ${
+    className={`text-shadow text-center shadow-gray-700 md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 text-[0.6rem] xs:text-xs md:text-lg  border-neutral-300 border-2 overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight animate__delay-1s bg-[url('/images/agelta.jpg')] bg-blend-darken ${
         state == 0 ? correctColor
           : state == 1 ? partialColor
           : wrongColor 
@@ -88,7 +88,9 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
             The year the hero was released. <span className='text-lime-200'>ex. 2016 until today</span>
             
             <div className='text-2xl pt-3'>Example</div>
-            <p>If the champion of the day was <span className='text-[#e8dca4] text-xl'>Diggie.</span> </p>
+            <hr />
+            
+            <p>If the champion of the day was <span className='text-[#e8dca4] text-xl'>Nana.</span> </p>
             
             And you entered Chang'e, this will appear:
             {/* Chang'e Picture */}
@@ -105,11 +107,49 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
             </div>
                 <TraitBox trait= {'Female'}state = {0} />
                 <TraitBox trait= {'Mage'} state = {0} />
-                <TraitBox trait= {'Mid Lane'}state = {0} />
-                <TraitBox trait= {'Cadia River'} state = {0} />
-                <TraitBox trait= {'2018'}state = {0} />
+                <TraitBox trait= {'Mid Lane'}state = {1} />
+                <TraitBox trait= {'Cadia Riverlands'} state = {2} />
+                <TraitBox trait= {'2018'}state = {2} />
               </div>
             {/*Chang'e*/}
+            <div className='pt-2 gap-3'>
+            <p className={propertiesCss}>Gender: <span className='text-green-500'>Correct</span></p> 
+              They are both females.
+            <p className={propertiesCss}>Role: <span className='text-green-500'>Correct</span></p> 
+              They are both played as a mage.
+            <p className={propertiesCss}>Lane: <span className='text-orange-400'>Partial</span></p> 
+              It is partially correct since both Chang'e and Nana is played in Mid but Nana is also played in Roaming. 
+            <p className={propertiesCss}>Region: <span className='text-red-700'>Incorrect</span></p> 
+              Chang'e is from Cadia Riverlands while Nana is from Azyra Woodlands.
+            <p className={propertiesCss}>Year: <span className='text-red-700'>Incorrect</span></p> 
+              Chang'e was released at 2018 while Nana was released at 2016.
+            </div>
+
+            <div className='pt-7'>
+            if you entered Nana, then this would appear:
+
+            <div className='flex'>
+            <div className=''>
+
+            <div className="absolute md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 overflow-hidden animate__animated animate__zoomInRight bg-red-50">
+            <CachedImage className={`absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]`} imgKey={"data/61 - Chang'e/Icons/latest_13.png"} /> 
+            </div>
+
+            <div className="py-4 md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
+            <CachedImage className="z-10" imgKey={"data/5 - Nana/Icons/214_latest.png"} /> 
+            </div>
+            </div>
+            
+                <TraitBox trait= {'Female'}state = {0} />
+                <TraitBox trait= {'Mage'} state = {0} />
+                <TraitBox trait= {'Mid Lane/ Roaming'}state = {0} />
+                <TraitBox trait= {'Azyra Woodlands'} state = {0} />
+                <TraitBox trait= {'2016'}state = {0} />
+            
+                
+              </div>
+            </div>
+
             
                 </p>
         </>
@@ -142,7 +182,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                 <>
                  <div>
                     <div className={gridCss}>
-                        <IoIdCardOutline className="text-4xl text-[#93c5fd]" />
+                        <IoIdCardOutline className="text-4xl text-[#fcffa5]" />
                     
                     <div className={textCss}>Blur</div>
                 </div>
@@ -247,7 +287,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
 
             <div>
                 <div className={gridCss}>
-                        <IoIdCardOutline className="text-4xl text-[#93c5fd]" />
+                        <IoIdCardOutline className="text-4xl text-[#fcffa5]" />
                     
                     <div className={textCss}>Blur</div>
                 </div>
@@ -263,7 +303,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Disco</div>
                 </div>
                 <p className=''>
-                Take a guess on who's ability it belongs to a certain hero.
+                Take a guess on who's ability it belongs to.
                 </p>
             </div>
             
