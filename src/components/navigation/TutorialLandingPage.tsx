@@ -8,6 +8,7 @@ import { IoDiscOutline, IoIdCardOutline } from 'react-icons/io5';
 import { AiFillAlert } from 'react-icons/ai';
 import { GiMirrorMirror } from 'react-icons/gi';
 import CachedImage from '../../components/CachedImage';
+import { FaDiceD20 } from 'react-icons/fa6';
 
 interface TraitBoxProps {
     trait: string,
@@ -76,15 +77,21 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
             <p className=''>
             <div className='text-2xl'>Properties</div>
             <p className={propertiesCss}>Gender:</p> 
-            
                  Male, Female or Genderless
-
             <p className={propertiesCss}>Role:</p> 
                Each characters duties and functions in the game (can be 2). <span className='text-lime-200'>ex. Marksman, Fighter/Mage</span>
             <p className={propertiesCss}>Lane:</p> 
             Most played positions in game (can be 2). <span className='text-lime-200'>ex. Roaming, EXP Lane/Jungling</span>
             <p className={propertiesCss}>Region:</p> 
+            Consist of regions of the Land of Dawn. <span className='text-lime-200'>ex. Laboratory 1718, Moniyan Empire</span>
             <p className={propertiesCss}>Year:</p> 
+            The year the hero was released. <span className='text-lime-200'>ex. 2016 until today</span>
+            
+            <div className='text-2xl pt-3'>Example</div>
+            <p>If the champion of the day was <span className='text-[#e8dca4] text-xl'>Diggie.</span> </p>
+            
+            And you entered Chang'e, this will appear:
+            {/* Chang'e Picture */}
             <div className='flex'>
             <div className=''>
 
@@ -92,21 +99,18 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
             <CachedImage className={`absolute z-0 w-52 h-52 object-fill opacity-80 top-0 -translate-y-1/4 blur-[9px]`} imgKey={"data/61 - Chang'e/Icons/latest_13.png"} /> 
             </div>
 
-
             <div className="py-4 md:w-28 md:h-28 xs:w-14 xs:h-14 w-12 h-12 border-2 border-white overflow-hidden flex justify-center items-center animate__animated animate__zoomInRight">
-
             <CachedImage className="z-10" imgKey={"data/61 - Chang'e/Icons/latest_13.png"} /> 
             </div>
-
-
-
             </div>
-                <TraitBox trait= {'melee'}state = {0} />
-                <TraitBox trait= {'melee'} state = {0} />
-                <TraitBox trait= {'melee'}state = {0} />
-                <TraitBox trait= {'melee'} state = {0} />
-                <TraitBox trait= {'melee'}state = {0} />
-                </div>
+                <TraitBox trait= {'Female'}state = {0} />
+                <TraitBox trait= {'Mage'} state = {0} />
+                <TraitBox trait= {'Mid Lane'}state = {0} />
+                <TraitBox trait= {'Cadia River'} state = {0} />
+                <TraitBox trait= {'2018'}state = {0} />
+              </div>
+            {/*Chang'e*/}
+            
                 </p>
         </>
       );
@@ -167,13 +171,29 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
           );
           break;
 
+          case 'survival':
+            tutorialContent = (
+                <>
+                 <div>
+                    <div className= {gridCss}>
+                        {/* <TbBuildingCircus className="text-4xl text-[#ff9292] absolute left-16" /> */}
+                        <FaDiceD20 className="text-4xl text-[#131a2b]" />
+                        <div className={textCss}>Survival</div>
+                    </div>
+                    <p className=''>
+                    Create your own room to fight againts friends or with other bang-bangers in a contest of knowledge!
+                    </p>
+                </div>
+                </>
+              );
+              break;
         case 'swipe':
             tutorialContent = (
                 <>
                 <div>
                 <div className={gridCss}>
-                    <AiFillAlert className="text-4xl text-[#ecc3ff]" />
-                    <div className={textCss}>swipe</div>
+                    <MdSwipeRight className="text-4xl text-[#ecc3ff]" />
+                    <div className={textCss}>Swipe</div>
                 </div>
                 <p className=''>
                 Test your knowledge everyday eivigeifaofhaoifnawaef
@@ -209,7 +229,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Arcade</div>
                 </div>
                 <p className=''>
-                Create your own room to fight againts friends or with other bang-bangers in a contest of knowledge!
+                Create your own room to fight againts friends or with other people in a contest of knowledge!
                 </p>
             </div>
 
@@ -221,7 +241,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                         Classic</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                Test your Mobile Legends heroes knowledge here everyday.
                 </p>
             </div>
 
@@ -232,7 +252,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Blur</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                How much do you know your favourite heroes splash art?
                 </p>
             </div>
            
@@ -240,21 +260,31 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                 <div className= {gridCss}>
                         <IoDiscOutline className="text-4xl text-[#D9F99D]" />
                     
-                    <div className={textCss}>
-                        Disco</div>
+                    <div className={textCss}>Disco</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                Take a guess on who's ability it belongs to a certain hero.
                 </p>
             </div>
             
+            <div>
+                    <div className= {gridCss}>
+
+                        <FaDiceD20 className="text-4xl text-[#131a2b]" />
+                        <div className={textCss}>Survival</div>
+                    </div>
+                    <p className=''>
+                Join in the ultimate challenge of knowledge. Includes all gamemodes with limited lives!
+                    </p>
+                </div>
+
             <div>
                 <div className={gridCss}>
                     <MdSwipeRight className="text-4xl text-[#ecc3ff]" />
                     <div className={textCss}>Swipe</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                Match the hero to the most relevant keyword to it.
                 </p>
             </div>
            
@@ -264,7 +294,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Mirror</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                Find out which hero suits you the most in this short quiz.
                 </p>
             </div>
             

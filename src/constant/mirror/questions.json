@@ -1,191 +1,175 @@
-[
-  {
-    "question": "Your friend has forgotten their wallet and needs money urgently. How do you handle this situation?",
-    "options": [
-      {
-        "text": "Offer to lend them the money without hesitation.",
-        "traits": { "Loyal": 2, "Honorable": 1, "Brave": 1 }
-      },
-      {
-        "text": "Ask them about their backup plan and suggest alternative solutions.",
-        "traits": { "Clever": 2, "Resourceful": 1, "Wise": 1 }
-      },
-      {
-        "text": "Assess their situation discreetly and then decide on the best course of action.",
-        "traits": { "Mysterious": 2, "Calm": 1, "Sly": 1 }
-      }
-    ]
-  },
-  {
-    "question": "You're hiking with friends, and you discover a hidden path that looks dangerous but intriguing. What's your approach?",
-    "options": [
-      {
-        "text": "Immediately suggest exploring the path to satisfy your curiosity.",
-        "traits": { "Adventurous": 2, "Resourceful": 1, "Determined": 1 }
-      },
-      {
-        "text": "Analyze the potential risks and benefits of taking that path before making a decision.",
-        "traits": { "Wise": 2, "Loyal": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "Keep the discovery to yourself and observe quietly to gather more information.",
-        "traits": { "Mysterious": 2, "Calm": 1, "Sly": 1 }
-      }
-    ]
-  },
-  {
-    "question": "Your classmate is being unfairly blamed for something they didn't do. How do you intervene?",
-    "options": [
-      {
-        "text": "Speak up immediately to defend your classmate, regardless of consequences.",
-        "traits": { "Noble": 2, "Charismatic": 1, "Honorable": 1 }
-      },
-      {
-        "text": "Gather evidence discreetly to prove your classmate's innocence before confronting anyone.",
-        "traits": { "Resourceful": 2, "Determined": 1, "Mysterious": 1 }
-      },
-      {
-        "text": "Observe the situation from a distance and devise a plan to subtly shift the blame away from your classmate.",
-        "traits": { "Sly": 2, "Adventurous": 1, "Clever": 1 }
-      }
-    ]
-  },
-  {
-    "question": "You're part of a group project, and a team member is not pulling their weight. How do you address this issue?",
-    "options": [
-      {
-        "text": "Confront the team member directly and discuss the problem openly.",
-        "traits": { "Brave": 2, "Wise": 1, "Loyal": 1 }
-      },
-      {
-        "text": "Strategize a plan to motivate the team member without causing conflict.",
-        "traits": { "Honorable": 2, "Sly": 1, "Adventurous": 1 }
-      },
-      {
-        "text": "Quietly take on extra tasks to compensate for their lack of effort without making it a big issue.",
-        "traits": { "Loyal": 2, "Calm": 1, "Mysterious": 1 }
-      }
-    ]
-  },
-
-  {
-    "question": "You're at a social gathering, and someone makes a disrespectful comment about a close friend. How do you react?",
-    "options": [
-      {
-        "text": "Immediately confront the person and defend your friend.",
-        "traits": { "Determined": 2, "Loyal": 1, "Honorable": 1 }
-      },
-      {
-        "text": "Use humor or wit to defuse the situation and indirectly defend your friend.",
-        "traits": { "Charismatic": 2, "Calm": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "Do nothing",
-        "traits": { "Sly": 2, "Calm": 1, "Wise": 1 }
-      }
-    ]
-  },
-  {
-    "question": "You're offered an opportunity that requires bending the rules slightly. How do you approach this situation?",
-    "options": [
-      {
-        "text": "Decline the opportunity as it goes against your principles.",
-        "traits": { "Honorable": 2, "Determined": 1, "Noble": 1 }
-      },
-      {
-        "text": "Explore the potential benefits and risks before making a decision.",
-        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "Accept the opportunity but find a creative and ethical way to navigate the situation.",
-        "traits": { "Resourceful": 2, "Charismatic": 1, "Sly": 1 }
-      }
-    ]
-  },
-  {
-    "question": "You're in a group discussion where opinions are divided and tensions are rising. How do you help diffuse the situation?",
-    "options": [
-      {
-        "text": "Act as a mediator, encouraging everyone to listen and find common ground.",
-        "traits": { "Charismatic": 2, "Calm": 1, "Determined": 1 }
-      },
-      {
-        "text": "Present logical arguments and facts to steer the discussion towards a constructive resolution.",
-        "traits": { "Clever": 2, "Wise": 1, "Resourceful": 1 }
-      },
-      {
-        "text": "Use humor or a light-hearted approach to ease tensions and shift the focus to positive aspects.",
-        "traits": { "Charismatic": 2, "Resourceful": 1, "Mysterious": 1 }
-      }
-    ]
-  },
-
-  {
-    "question": "Your colleague takes credit for your idea during a meeting. How do you handle this situation?",
-    "options": [
-      {
-        "text": "Address the situation calmly, explaining to your colleague and the team that the idea originated from you.",
-        "traits": { "Calm": 2, "Determined": 1, "Brave": 1 }
-      },
-      {
-        "text": "Talk to your colleague privately, expressing your concerns and seeking a fair resolution.",
-        "traits": { "Determined": 2, "Wise": 1, "Loyal": 1 }
-      },
-      {
-        "text": "Let it go for now but ensure to document your contributions in the future to avoid similar issues.",
-        "traits": { "Noble": 2, "Resourceful": 1, "Clever": 1 }
-      }
-    ]
-  },
-  {
-    "question": "You're at a family gathering, and a heated political debate breaks out. How do you contribute to a constructive conversation?",
-    "options": [
-      {
-        "text": "Listen actively to everyone's viewpoints, showing empathy and understanding even if you disagree.",
-        "traits": { "Wise": 2, "Charismatic": 1, "Sly": 1 }
-      },
-      {
-        "text": "Ask questions to delve deeper into each perspective, encouraging thoughtful dialogue.",
-        "traits": { "Honorable": 2, "Determined": 1, "Mysterious": 1 }
-      },
-      {
-        "text": "Share personal experiences or anecdotes that relate to the topic, aiming to find common ground.",
-        "traits": { "Charismatic": 2, "Resourceful": 1, "Wise": 1 }
-      }
-    ]
-  },
-  {
-    "question": "You witness a friend being bullied by a group of peers. How do you intervene?",
-    "options": [
-      {
-        "text": "Stand up to the bullies directly, firmly expressing that their behavior is unacceptable.",
-        "traits": { "Brave": 2, "Honorable": 1, "Adventurous": 1 }
-      },
-      {
-        "text": "Distract the bullies by starting a different conversation or activity to remove the focus from your friend.",
-        "traits": { "Sly": 2, "Adventurous": 1, "Noble": 1 }
-      },
-      {
-        "text": "Report the bullying to a trusted authority figure while ensuring your friend feels supported and safe.",
-        "traits": { "Resourceful": 2, "Loyal": 1, "Wise": 1 }
-      }
-    ]
-  },
-  {
-    "question": "You've planned a hiking trip with friends, but the weather forecast predicts heavy rain. What's your approach?",
-    "options": [
-      {
-        "text": "Suggest alternative indoor activities or locations that can still provide a fun experience.",
-        "traits": { "Resourceful": 2, "Clever": 1, "Calm": 1 }
-      },
-      {
-        "text": "Encourage everyone to pack appropriate gear for rain and embrace the adventure despite the weather.",
-        "traits": { "Brave": 2, "Mysterious": 1, "Sly": 1 }
-      },
-      {
-        "text": "Postpone the trip to a better weather window to ensure everyone's safety and enjoyment.",
-        "traits": { "Calm": 2, "Determined": 1, "Honorable": 1 }
-      }
-    ]
-  }
-]
+{
+  "questions": [
+    {
+      "question": "What word would people describe you?",
+      "options": [
+        {
+          "text": "Dependable",
+          "image": "path/to/tank_image.jpg",
+          "role": "Tank"
+        },
+        {
+          "text": "Perfectionist",
+          "image": "path/to/marksman_image.jpg",
+          "role": "Marksman"
+        },
+        {
+          "text": "Supportive",
+          "image": "path/to/support_image.jpg",
+          "role": "Support"
+        },
+        {
+          "text": "Strategic",
+          "image": "path/to/mage_image.jpg",
+          "role": "Mage"
+        },
+        {
+          "text": "Swift",
+          "image": "path/to/assassin_image.jpg",
+          "role": "Assassin"
+        },
+        {
+          "text": "Versatile",
+          "image": "path/to/fighter_image.jpg",
+          "role": "Fighter"
+        }
+      ]
+    },  
+    {
+      "question": "Social gathering activity",
+      "options": [
+        {
+          "text": "I enjoy meeting new people",
+          "image": "path/to/ranged_image.jpg",
+          "rangeType": "Ranged"
+        },
+        {
+          "text": "I prefer to stay close to familiar faces",
+          "image": "path/to/melee_image.jpg",
+          "rangeType": "Melee"
+        }
+      ]
+    },   
+    {
+      "question": "What do you do to manage stress?",
+      "options": [
+        {
+          "text": "Take a quick, decisive actions",
+          "image": "path/to/burst_image.jpg",
+          "specialty": "Burst"
+        },
+        {
+          "text": "Stay calm",
+          "image": "path/to/sustained_dps_image.jpg",
+          "specialty": "Damage"
+        },
+        {
+          "text": "Talk to others",
+          "image": "path/to/support_specialty_image.jpg",
+          "specialty": "Crowd Control"
+        },
+        {
+          "text": "Re-evaluate the situation",
+          "image": "path/to/poke_image.jpg",
+          "specialty": "Poke"
+        },
+        {
+          "text": "Move around to clear my mind",
+          "image": "path/to/chase_image.jpg",
+          "specialty": "Chase"
+        },
+        {
+          "text": "Meditation and exercise",
+          "image": "path/to/finisher_image.jpg",
+          "specialty": "Finisher"
+        }
+      ]
+    },
+    {
+      "question": "What do you do in a group project?",
+      "options": [
+        {
+          "text": "Lead members to start doing",
+          "image": "path/to/mana_image.jpg",
+          "resource": "Mana"
+        },
+        {
+          "text": "Wait for others",
+          "image": "path/to/energy_image.jpg",
+          "resource": "Energy"
+        },
+        {
+          "text": "Do it alone",
+          "image": "path/to/no_resource_image.jpg",
+          "resource": "None"
+        }
+      ]
+    },
+    {
+      "question":  "What makes you happy?",
+      "options": [
+        {
+          "text": "Personal achievement",
+          "image": "path/to/gold_lane_image.jpg",
+          "lane": "Gold Lane"
+        },
+        {
+          "text": "Leading a group",
+          "image": "path/to/mid_lane_image.jpg",
+          "lane": "Mid Lane"
+        },
+        {
+          "text": "Gaining new experiences",
+          "image": "path/to/exp_lane_image.jpg",
+          "lane": "EXP Lane"
+        },
+        {
+          "text": "Exploring new places",
+          "image": "path/to/jungle_image.jpg",
+          "lane": "Jungle"
+        },
+        {
+          "text": "Helping others",
+          "image": "path/to/roaming_image.jpg",
+          "lane": "Roaming"
+        }
+      ]
+    },
+    {
+      "question": "What is your dream place to visit?",
+      "options": [
+        {
+          "text": "A vast desert",
+          "image": "path/to/agelta_drylands_image.jpg",
+          "region": "Agelta Drylands/The Barren Lands"
+        },
+        {
+          "text": "A grand empire",
+          "image": "path/to/moniyan_empire_image.jpg",
+          "region": "Moniyan Empire"
+        },
+        {
+          "text": "A cold, mountainous region",
+          "image": "path/to/northern_vale_image.jpg",
+          "region": "Northern Vale"
+        },
+        {
+          "text": "A futuristic realm",
+          "image": "path/to/nebula_chronorift_image.jpg",
+          "region": "Nebula Chronorift"
+        },
+        {
+          "text": "An ancient region",
+          "image": "path/to/cadia_riverlands_image.jpg",
+          "region": "Cadia Riverlands"
+        },
+        {
+          "text": "Magical forest",
+          "image": "path/to/azrya_woodlands_image.jpg",
+          "region": "Azrya Woodlands"
+        }
+      ]
+    }
+    
+  ]
+}
