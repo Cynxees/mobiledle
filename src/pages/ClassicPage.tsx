@@ -124,8 +124,6 @@ export default function ClassicPage() {
     <div className="w-screen align-top flex flex-col">
 
 
-      
-
       {(userAnswers.length>0) ?
       <div className="absolute top-0 w-full h-full" draggable="false">
         <CachedImage
@@ -179,6 +177,7 @@ export default function ClassicPage() {
         </label>
           <ClassicTableTitle />
           {userAnswers.map((character, index) => (
+            
             <div key={index} className="" style={{ order: userAnswers.length - index }}>
               <HeroShowBar
                 character={character}

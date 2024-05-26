@@ -7,7 +7,7 @@ const useFetchTodayAnswer = (gamemode) => {
     const [todayCharacter, setTodayCharacter] = useState<MobileLegendsHero>();
 
     useEffect(() => {
-
+        
         
         if (!isLoading && characters.length > 0) {
             const today = new Date();
@@ -21,33 +21,29 @@ const useFetchTodayAnswer = (gamemode) => {
 
             if(blurIndex == classicIndex) blurIndex += 1
 
-            let discoIndex = (date+2 * month+2 * year+2 * 55) % characters.length;
+            let discoIndex = (date+2 * month+2 * year+2 * 65) % characters.length;
             if(discoIndex == classicIndex || discoIndex == blurIndex ) blurIndex += 1
             if(discoIndex == classicIndex || discoIndex == blurIndex ) blurIndex += 1
             
             if(gamemode.toUpperCase() === "CLASSIC"){
 
-                setTodayCharacter(characters[classicIndex]);
-
+                setTodayCharacter(characters[classicIndex])
                 console.log("today's classic answer: ", characters[classicIndex].name)
-            
             }
 
             if(gamemode.toUpperCase() === "BLUR"){
 
-                const todayIndex = (date * month * year * 23) % characters.length;
-                setTodayCharacter(characters[todayIndex]);
+                setTodayCharacter(characters[blurIndex]);
 
-                console.log("today's blur answer: ", characters[todayIndex].name)
+                console.log("today's blur answer: ", characters[blurIndex].name)
             
             }
 
             if(gamemode.toUpperCase() === "DISCO"){
 
-                const todayIndex = (date * month * year * 55) % characters.length;
-                setTodayCharacter(characters[todayIndex]);
+                setTodayCharacter(characters[discoIndex]);
 
-                console.log("today's blur answer: ", characters[todayIndex].name)
+                console.log("today's disco answer: ", characters[discoIndex].name)
             
             }
             
