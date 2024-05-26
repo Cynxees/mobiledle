@@ -29,7 +29,7 @@ const RoomCard: React.FC<RoomCardProps> = ({
         return user.activeState != "BANNED" && user.state != "BANNED" && user.activeState != "INACTIVE"
     }).length
 
-    // const userCount = Math.floor(Math.random()*10)
+    // const userCount = Math.floor(Math.random()*10)+1
 
     const cardColor = 'rgb(255,' + (175-userCount*10) +',' + (70-userCount*10) +')'
 

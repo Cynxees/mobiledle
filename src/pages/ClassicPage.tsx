@@ -147,13 +147,13 @@ export default function ClassicPage() {
       
       :''}
       
-      <section className={`flex flex-col w-full gap-5 items-center md:mt-[20vh] mt-[25vh] mb-32`}>
+      <section className={`flex flex-col w-full gap-5 items-center md:mt-[20vh] mt-[25vh] mb-32 `}>
         
         
 
         <div className="flex flex-col gap-5 mb-16 mx-24 w-full sm:px-5 px-2 items-center justify-center">
-          <div className="relative z-10">
-        <Navbar />
+          <div className="relative -z-1">
+        <Navbar currentPage={'classic'} />
 
           </div>
         {!isWin && (

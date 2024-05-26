@@ -4,14 +4,18 @@ import "animate.css";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MdOutlineQuestionMark, MdQuestionMark } from "react-icons/md";
+import Modal from 'react-modal';
+import TutorialLandingPage from './TutorialLandingPage';
 
-const Navbar = () => {
+const Navbar = ({currentPage = ''}) => {
   const { t, i18n } = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState<string>(() => {
     return localStorage.getItem("savedLanguage") || 'en';
   });
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     i18n.changeLanguage(currentLanguage);
@@ -32,13 +36,23 @@ const Navbar = () => {
     localStorage.setItem("savedLanguage", "en");
   }, []);
 
-  return (
+  const openTutorial = () => {
+    setModalIsOpen(true);
+  };
 
-    <div className="flex flex-col mb-5">
+  const closeTutorial = () => {
+    setModalIsOpen(false);
+  };
+
+  return (
+    
+    <div> 
+      <TutorialLandingPage currentPage={currentPage} isOpen={modalIsOpen} onRequestClose={closeTutorial} />
+    <div className="flex flex-col mb-5 relative z-0">
       <nav className="flex justify-center items-center w-full gap-5 md:gap-10">
   
         
-        <IoMdSettings className="md:min-w-12 min-w-6 w-6 text-3xl" />
+        <MdQuestionMark className="md:min-w-12 min-w-6 w-6 text-4xl" color="fff5c6" style = {{cursor : 'pointer'}} onClick={openTutorial}/>
         <Link to='/' className="md:text-7xl text-4xl font-modesto bg-gradient-to-br from-[#fff5c6]  to-[#caa172] text-transparent bg-clip-text cursor-pointer hover:text-[90px] transition-all duration-500 ease-in-out">
           MOBILEDLE
         </Link>
@@ -68,8 +82,13 @@ const Navbar = () => {
             <img className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-white hover:brightness-110" src="/images/trakteer_icon.png" alt="" />
           </a>
         </div>
+        
+      
+    </div>
+    
     </div>
   );
 }
+
 
 export default Navbar

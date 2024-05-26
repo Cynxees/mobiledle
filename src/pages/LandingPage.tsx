@@ -115,6 +115,7 @@ export default function LandingPage() {
             <NavigationButton link="blur"/>
             <NavigationButton link="disco"/>
             <NavigationButton link="survival"/>
+            <NavigationButton link="swipe"/>
             <NavigationButton link="mirror"/>
           
           </div>
