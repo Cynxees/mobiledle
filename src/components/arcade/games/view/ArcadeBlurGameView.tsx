@@ -10,6 +10,7 @@ import ArcadeChance from "../../ArcadeChance";
 import { animated, useSpring } from "react-spring";
 import { MobileLegendsHero } from "../../../../types/MobileLegendsHero";
 import CachedImage from "../../../../components/CachedImage";
+import { IoIosArrowForward } from "react-icons/io";
 
 function isAlphaNumeric(str : string) {
     var code, i, len;
@@ -250,6 +251,8 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
 
 
     }
+
+    
  
     const handleChatKeyDown = (e : React.KeyboardEvent) => {
         
@@ -321,7 +324,75 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
         }
 
     }
-   
+
+    const submitAnswer = () => {
+
+
+        var type = 'GUESS'
+            const heroId = validateHero(userInput)
+            
+            if(heroId != '-1'){
+
+                type = 'GUESS-HERO-'+heroId+'-'+round
+
+                setInputCooldown(3000)
+
+                if(validateAnswer(userInput)){
+
+                    setShowInput(false)
+                    const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
+                    console.log('time left percent', timeLeftPercent)
+                    const points = Math.ceil((timeLeftPercent) * 10) 
+                    console.log('points', points)
+
+                    handleUserAnswer(points)
+
+                    type = 'GUESS-CORRECT'
+                }else{
+
+
+
+                }
+
+            }else{
+
+
+
+            }
+
+            console.log(type)
+            client.graphql({
+                query: createChatroomMessage,
+                variables: {
+                    input: {
+                        chatroomId: chatroomUser.chatroomId,
+                        createdAt: new Date().toISOString(),
+                        content: userInput,
+                        chatroomUserId: chatroomUser.id,
+                        ttl: getTtlFromMinutes(60),
+                        type: type
+                    }
+                }
+            })
+
+            setUserInput('')
+            
+
+
+    }
+
+
+    const handleUserAnswerMobile = () => {
+
+
+        
+        if(inputCooldown<0){
+
+            submitAnswer()
+            setInputCooldown(1200)
+        }
+        
+    }
     
 
     if(!prompt || !characterGuesses || !answer ) return <div> Loading...</div>
@@ -349,12 +420,15 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
             
             <div className=''>
 
-                <animated.div className='border-4' style={{
-                    ...borderStyle
-                    }}>
+            <animated.div className='border lg:border-4 flex items-center ' style={{
+                ...borderStyle
+                }}>
 
-                    <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[20vw] focus:outline-none bg-neutral-900 h-12 text-center uppercase text-white ps-5 text-xl" />
-                </animated.div>
+                <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[70vw] lg:w-[20vw] focus:outline-none bg-neutral-900 lg:h-12 text-center uppercase text-white text-sm lg:text-xl" />
+
+                <IoIosArrowForward onClick={handleUserAnswerMobile} className={(inputCooldown<0) ? 'text-orange-300 lg:hidden w-[10vw]':'lg:hidden w-[10vw]' } /> 
+
+            </animated.div>
 
             </div>
             
