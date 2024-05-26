@@ -7,6 +7,8 @@ import { TbBuildingCircus } from "react-icons/tb";
 import { GiFog, GiMirrorMirror } from "react-icons/gi";
 import { useState } from "react";
 import { IoDiscOutline, IoIdCardOutline } from "react-icons/io5";
+import { MdSwipeRight } from "react-icons/md";
+import { FaDiceD20 } from "react-icons/fa6";
 
 interface NavigationButtonProps {
     link: string
@@ -16,12 +18,13 @@ export default function NavigationButton({link}: NavigationButtonProps) {
   const { t } = useTranslation();
 
   const linkMetadata = {
-    classic: ['CLASSIC', t`Get Clues On Every Try`, '#9c6323', '#e8dca4'],
-    survival: ['SURVIVAL', t`How Long Will You Last?`, '#744092', '#ecc3ff'],
     arcade: ['ARCADE', t`Prove Yourself against Others`, '#85191b', '#ff9292'],
+    classic: ['CLASSIC', t`Get Clues On Every Try`, '#9c6323', '#e8dca4'],
+    blur: ['BLUR', t`Who is that Hero?`, '#807c00', '#fcffa5'],
+    disco: ['DISCO', t`Whose Skill is That?`, '#173908', '#c2ffa8'],
+    survival: ['SURVIVAL', t`How Long Will You Last?`, '#193d85', '#131a2b'],
+    swipe: ['SWIPE', t`Match Hero with Traits`, '#744092', '#ecc3ff'],
     mirror: ['MIRROR', t`What Hero Would You Be?`, '#5aaabf', '#b1d6ff'],
-    blur: ['BLUR', t`Who is that Hero?`, '#193d85', '#131a2b'],
-    disco: ['DISCO', t`Whose Skill is That?`, '#173908', '#c2ffa8']
 
   } 
 
@@ -50,10 +53,11 @@ export default function NavigationButton({link}: NavigationButtonProps) {
       <div className="flex relative justify-center items-center">
         
         {(link == 'classic') ? <BsFillQuestionSquareFill className={iconCss} />
-        : (link == 'survival') ? <AiFillAlert className={iconCss} /> 
+        : (link == 'survival') ? <FaDiceD20 className={iconCss + ' text-blue-300 '} /> 
+        : (link == 'swipe') ? <MdSwipeRight className={iconCss} /> 
         : (link == 'arcade') ? <TbBuildingCircus className={iconCss} />
         : (link == 'mirror') ? <GiMirrorMirror className={iconCss + ' text-cyan-200'}/>
-        : (link == 'blur') ? <IoIdCardOutline className={iconCss + ' text-blue-300'} />
+        : (link == 'blur') ? <IoIdCardOutline className={iconCss + ' text-yellow-200'} />
         : (link == 'disco') ? <IoDiscOutline className={iconCss + ' text-lime-200'} />
         : 'no link found'
       }

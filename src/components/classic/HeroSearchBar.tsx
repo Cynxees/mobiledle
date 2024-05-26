@@ -63,7 +63,7 @@ export default function HeroSearchBar({
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && suggestions[0]) {
       findCharacterBasedOnName(suggestions[0].name);
       setPrefix("");
       setSuggestions([]);
@@ -78,7 +78,7 @@ export default function HeroSearchBar({
 
   return (
   
-    <div className="flex items-center gap-2 relative bg-gradient-to-r from-[#ffea8f] to-[#ffac4d] rounded-md rounded-b-none md:w-[600px] w-full">
+    <div className="flex items-center gap-2 mx-auto relative bg-gradient-to-r from-[#ffea8f] to-[#ffac4d] rounded-md rounded-b-none md:w-[600px] w-full">
       <div className="relative w-full ps-2">
         <input
           type="text"

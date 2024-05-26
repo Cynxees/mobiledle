@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { MdClose } from "react-icons/md";
+import { MdClose, MdSwipeRight } from "react-icons/md";
 import { TbBuildingCircus } from 'react-icons/tb';
 import { ZIndex } from '@tsparticles/engine';
 import { BsFillQuestionSquareFill } from 'react-icons/bs';
@@ -167,13 +167,13 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
           );
           break;
 
-        case 'survival':
+        case 'swipe':
             tutorialContent = (
                 <>
                 <div>
                 <div className={gridCss}>
                     <AiFillAlert className="text-4xl text-[#ecc3ff]" />
-                    <div className={textCss}>Survival</div>
+                    <div className={textCss}>swipe</div>
                 </div>
                 <p className=''>
                 Test your knowledge everyday eivigeifaofhaoifnawaef
@@ -250,8 +250,8 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
             
             <div>
                 <div className={gridCss}>
-                    <AiFillAlert className="text-4xl text-[#ecc3ff]" />
-                    <div className={textCss}>Survival</div>
+                    <MdSwipeRight className="text-4xl text-[#ecc3ff]" />
+                    <div className={textCss}>Swipe</div>
                 </div>
                 <p className=''>
                 Test your knowledge everyday eivigeifaofhaoifnawaef

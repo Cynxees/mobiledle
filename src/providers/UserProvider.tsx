@@ -20,7 +20,7 @@ const fetchUser = async () => {
 
         const randomUsername = dictionary.colors[randomColorIndex] + dictionary.animals[randomAnimalIndex] + (Math.floor(Math.random()*10000%9000)+1000)
         
-        const randomProfilePicture = Math.floor(Math.random()*90)+'-0'
+        const randomProfilePicture = Math.floor(Math.random()*124)+'-0'
         
         console.log('creating new user')
 
@@ -72,7 +72,7 @@ const fetchUser = async () => {
     const randomAnimalIndex = Math.floor(Math.random()*1000)%dictionary.animals.length
 
     const randomUsername = dictionary.colors[randomColorIndex] + dictionary.animals[randomAnimalIndex] + (Math.floor(Math.random()*10000%9000)+1000)
-    const randomProfilePicture = Math.floor(Math.random()*90)+'-0'
+    const randomProfilePicture = Math.floor(Math.random()*124)+'-0'
     console.log('creating new user')
     
     return await client.graphql({

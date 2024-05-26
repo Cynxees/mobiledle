@@ -736,17 +736,17 @@ export default function ArcadeRoomPage() {
             var input = chatInput
 
             // DEV ONLY
-            if(chatInput == '/help'){
-                input = "/launch /points"
-            }
-            if(chatInput == '/launch'){
-                devLaunchStepFunction()
-                input = 'Game Launched'
-            }
-            if(chatInput == '/points'){
-                devAddPoints()
-                input = 'Points Added'
-            }
+            // if(chatInput == '/help'){
+            //     input = "/launch /points"
+            // }
+            // if(chatInput == '/launch'){
+            //     devLaunchStepFunction()
+            //     input = 'Game Launched'
+            // }
+            // if(chatInput == '/points'){
+            //     devAddPoints()
+            //     input = 'Points Added'
+            // }
             
             client.graphql({
                 query: createChatroomMessage,

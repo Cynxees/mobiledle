@@ -20,6 +20,8 @@ const WinCard: React.FC<WinCardProps> = ({ winCardRef }) => {
       setPath('blur')
     }else if(localStorage.getItem("discoWon") != "true"){
       setPath('disco')
+    }else if(localStorage.getItem("survivalWon") != "true"){
+      setPath('survival')
     }else{
       setPath('arcade')
     }

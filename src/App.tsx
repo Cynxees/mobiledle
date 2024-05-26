@@ -7,6 +7,7 @@ import DevPage3 from "./pages/DevPage3";
 import DevPage4 from "./pages/DevPage4";
 import 'animate.css';
 import SurvivalPage from "./pages/SurvivalPage";
+import SwipePage from "./pages/SwipePage";
 import ArcadeLandingPage from "./pages/ArcadePage/ArcadeLandingPage";
 import ArcadeRoomPage from "./pages/ArcadePage/ArcadeRoomPage";
 import ErrorPage from "./pages/ErrorPage";
@@ -32,6 +33,7 @@ function App() {
           <Route path="disco" element={<DiscoPage />} />
           <Route path="mirror" element={<MirrorPage />} />
           <Route path="survival" element={<SurvivalPage />} />
+          <Route path="swipe" element={<SwipePage />} />
           <Route path="memory" element={<MemoryPage />} />
 
           <Route path="arcade" element={<ArcadeLandingParticlePage />} />

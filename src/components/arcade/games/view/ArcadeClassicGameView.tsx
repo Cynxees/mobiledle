@@ -6,10 +6,10 @@ import { createChatroomMessage, executeUserAnswer } from "../../../../graphql/mu
 import getTtlFromMinutes from "../../../../utils/getTtlFromMinutes";
 import ClassicHeroBox from "../ClassicHeroBox";
 import { GiSilverBullet } from "react-icons/gi";
-import ArcadeChance from "../../ArcadeChance";
+import ArcadeChance from "../..//ArcadeChance";
 import { animated, useSpring } from "react-spring";
 import { MobileLegendsHero } from "../../../../types/MobileLegendsHero";
-import CachedImage from "../../../../components/CachedImage";
+import { IoIosArrowForward } from "react-icons/io";
 
 function isAlphaNumeric(str : string) {
     var code, i, len;
@@ -27,14 +27,16 @@ function isAlphaNumeric(str : string) {
     return true;
 };
 
-const randomizeHero = (index : number, max: number) => {
+const randomizeHero = (seed : number, max: number, avoid : number[]) => {
 
-    const date = new Date().getUTCDay();
-    const month = new Date().getUTCMonth();
-    const year = new Date().getUTCFullYear();
     
-    return Math.floor(index+5 * date+5 * month+5 * year+5) % max
+    let randomIndex = Math.floor(seed+5) % max
 
+    while(avoid.findIndex((data)=> data == randomIndex) != -1){
+        randomIndex = (randomIndex*2)%max
+    }
+
+    return randomIndex
 
 
 }
@@ -46,13 +48,12 @@ interface LobbyViewInput {
     chatroomUser : ChatroomUser,
     chatroomMessages: ChatroomMessage[],
     prompt: Prompt,
-    round: number,
-    timer: number
+    round: number
     
 }
 
 
-export default function BlurGameView({chatroomState, chatroomUser, chatroomMessages, prompt, round, timer} : LobbyViewInput) {
+export default function ClassicGameView({chatroomState, chatroomUser, chatroomMessages, prompt, round} : LobbyViewInput) {
 
 
     const client = generateClient()
@@ -60,9 +61,9 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
     const [ characterGuesses, setCharacterGuesses ] = useState<MobileLegendsHero[]>([])
     const [ userInput, setUserInput ] = useState('');
     const [currentRound, setCurrentRound] = useState(0)
+    const [ guessesInit, setGuessesInit ] = useState(false)
     
     const [ answer, setAnswer ] = useState<MobileLegendsHero>();
-    const [isRevealed, setReveal] = useState(false);
     const [ messagesInit, setMessagesInit ] = useState(false);
 
     const [showInput, setShowInput] = useState(true)
@@ -70,13 +71,6 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
     const percent = (inputCooldown/2000)*100
     const inputProps = useSpring({ value: percent, from: { value: 0 } });
 
-    const timerPercent = (prompt) ? Math.floor((timer/(prompt.timeLimit*1000))*1000)/10 : 100
-
-    const skinIndex = (prompt) ? parseInt(prompt.description) : 0
-
-
-
-    
     const borderStyle = useSpring({
         borderLeftColor: percent <= 0 ? 'orange' : 'transparent',
         borderBottomColor: percent <= 33 ? 'orange' : 'transparent',
@@ -84,6 +78,8 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
         borderTopColor: percent <= 100 ? 'orange' : 'transparent',
         config: { duration: 250 }
     });
+
+    
 
 
     useEffect(() => {
@@ -116,6 +112,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
 
         }
         
+        
         if(chatroomUser.state.startsWith("CORRECT")){
 
             const correctRound = chatroomUser.state.split('-')[1]
@@ -140,11 +137,16 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
         setAnswer(characters[prompt.mobileLegendsCharacterId])
         console.log('answer: ', characters[prompt.mobileLegendsCharacterId])
 
-        const index1 = randomizeHero(parseInt(prompt.mobileLegendsCharacterId), 124)
-        const index2 = randomizeHero(index1, 124)
-        const index3 = randomizeHero(index2, 124)
+        const seed = parseInt(prompt.description)
+        const answer = parseInt(prompt.mobileLegendsCharacterId)
 
+        const index1 = randomizeHero(seed, characters.length, [answer])
+        const index2 = randomizeHero(index1 * seed, characters.length, [answer, index1])
+        const index3 = randomizeHero(index2 * seed, characters.length, [answer, index1, index2])
+
+        console.log('Initial Guesses', index1,index2,index3, 'seed: ', seed)
         setCharacterGuesses([characters[index1], characters[index2], characters[index3]])
+        setGuessesInit(true)
 
     }, [prompt])
 
@@ -175,11 +177,7 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
     
                     })
                 }
-
-
-
                 
-
             }
 
         })
@@ -250,11 +248,54 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
 
 
     }
+
+    const submitAnswer = (answer : string) => {
+
+        var type = 'GUESS'
+        const heroId = validateHero(answer)
+        if(heroId != '-1'){
+
+            type = 'GUESS-HERO-'+heroId+'-'+round
+
+            setInputCooldown(3000)
+
+            if(validateAnswer(userInput)){
+
+                setShowInput(false)
+                const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
+                console.log('time left percent', timeLeftPercent)
+                let points = Math.ceil((timeLeftPercent)*10) 
+                if(points < 0) points = 0
+                console.log('points', points)
+
+                handleUserAnswer(points)
+
+                type = 'GUESS-CORRECT'
+            }
+
+        }
+
+        console.log(type)
+        client.graphql({
+            query: createChatroomMessage,
+            variables: {
+                input: {
+                    chatroomId: chatroomUser.chatroomId,
+                    createdAt: new Date().toISOString(),
+                    content: userInput,
+                    chatroomUserId: chatroomUser.id,
+                    ttl: getTtlFromMinutes(60),
+                    type: type
+                }
+            }
+        })
+
+        setUserInput('')
+    }
  
     const handleChatKeyDown = (e : React.KeyboardEvent) => {
         
 
-        var type = 'GUESS'
 
         if(e.key === 'Enter' && userInput.length < 1) {
 
@@ -268,79 +309,37 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
 
         if(e.key === 'Enter' && userInput.length > 0 && inputCooldown < 0) {
 
-            const heroId = validateHero(userInput)
-            
-            if(heroId != '-1'){
-
-                type = 'GUESS-HERO-'+heroId+'-'+round
-
-                setInputCooldown(3000)
-
-                if(validateAnswer(userInput)){
-
-                    setShowInput(false)
-                    const timeLeftPercent = (chatroomState.willEndAt*1000 - (new Date().getTime()))/(prompt.timeLimit*1000)
-                    console.log('time left percent', timeLeftPercent)
-                    const points = Math.ceil((timeLeftPercent) * 10) 
-                    console.log('points', points)
-
-                    handleUserAnswer(points)
-
-                    type = 'GUESS-CORRECT'
-                }else{
-
-
-
-                }
-
-            }else{
-
-
-
-            }
-
-            console.log(type)
-            client.graphql({
-                query: createChatroomMessage,
-                variables: {
-                    input: {
-                        chatroomId: chatroomUser.chatroomId,
-                        createdAt: new Date().toISOString(),
-                        content: userInput,
-                        chatroomUserId: chatroomUser.id,
-                        ttl: getTtlFromMinutes(60),
-                        type: type
-                    }
-                }
-            })
-
-            setUserInput('')
-            
-
+            submitAnswer(userInput) 
 
         }
 
     }
-   
     
 
-    if(!prompt || !characterGuesses || !answer ) return <div> Loading...</div>
+    if(!prompt || !guessesInit ) return <div> Loading...</div>
 
-    return <div className="h-full w-full grid grid-rows-10 pb-2">
+    return <div className="h-full w-full grid grid-rows-11 lg:grid-rows-12 pb-2">
 
-        <div className="h-full w-full flex flex-col leading-tight">
-            <span className="text-3xl">BLUR</span>
-            <span className="text-xs">{(prompt)? prompt.question: ''}</span>
+        <div className="h-full w-full flex flex-col leading-tight mt-10">
+            <span className="xl:text-6xl lg:text-4xl">CLASSIC</span>
+            <span className="text-xl">{(prompt)? prompt.question: ''}</span>
             
         </div>
-        
-        <CachedImage 
-        style={{filter: `blur(${(isRevealed)?'0':0.8*(timerPercent/100)}vw) saturate(${(isRevealed)?1:(((100-timerPercent)/100))})`}}
-        className="row-span-7 h-2/3 my-auto mx-auto brightness-110" 
-        imgKey={answer.imageKeys.banners[skinIndex % answer.imageKeys.banners.length]} 
-        />
-        
 
+
+        <div className="row-span-9 w-full">
+            <div className="w-full h-full flex items-center">
+                <div className="mx-auto flex flex-col gap-1 lg:gap-3">
+
+                {characterGuesses.map(guess => {
+
+                    return <ClassicHeroBox key={guess.id} character={guess} answer={answer} showBooleans={[true,true]} />
+
+                })}
+    
+                </div>
+            </div>
+        </div>
         
         <div className="flex mx-auto">
             
@@ -349,11 +348,14 @@ export default function BlurGameView({chatroomState, chatroomUser, chatroomMessa
             
             <div className=''>
 
-                <animated.div className='border-4' style={{
+                <animated.div className='border lg:border-4 flex items-center ' style={{
                     ...borderStyle
                     }}>
 
-                    <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[20vw] focus:outline-none bg-neutral-900 h-12 text-center uppercase text-white ps-5 text-xl" />
+                    <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[70vw] lg:w-[20vw] focus:outline-none bg-neutral-900 lg:h-12 text-center uppercase text-white text-sm lg:text-xl" />
+
+                    <IoIosArrowForward className={(inputCooldown<0) ? 'text-orange-300 lg:hidden w-[10vw]':'lg:hidden w-[10vw]' } /> 
+
                 </animated.div>
 
             </div>
