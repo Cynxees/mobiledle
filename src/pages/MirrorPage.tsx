@@ -90,7 +90,7 @@ const MirrorPage = () => {
       <Navbar currentPage={'mirror'}/>
       
 
-      {currentQuestionIndex == questions.length ? (
+      {userHero && currentQuestionIndex == questions.length ? (
         <div className="flex flex-col gap-5 items-center">
           <h2 className="text-lg">{t`Your hero is :`}</h2>
 
