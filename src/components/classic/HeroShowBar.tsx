@@ -73,7 +73,7 @@ export default function HeroShowBar({
   
 
   return (
-    <div className={`flex ${isClassic? 'flex-row':'flex-col'} gap-1 md:gap-2 z-0 font-nova text-shadow-lg w-full`}>
+    <div className={`flex ${isClassic? 'flex-row':'flex-col'} gap-1 md:gap-2 z-50 font-nova text-shadow-lg w-full`}>
       
       <div>
 
