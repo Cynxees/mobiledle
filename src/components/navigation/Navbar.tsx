@@ -75,6 +75,10 @@ const Navbar = ({currentPage = ''}) => {
           <a href="https://www.youtube.com/@Mobiledle">
             <img className="w-8 h-8 md:w-12 md:h-12 hover:brightness-90" src="/images/youtube_logo.svg" alt="" />
           </a>
+          
+          <a href="https://discord.gg/MPgdt4TxWU">
+            <img className="w-8 h-8 md:w-12 md:h-12 hover:brightness-90" src="/images/discord_logo.png" alt="" />
+          </a>
           <a href="https://www.tiktok.com/@mobiledle">
             <img className="w-8 h-8 md:w-12 md:h-12 hover:brightness-90" src="/images/tiktok_logo.png" alt="" />
           </a>
