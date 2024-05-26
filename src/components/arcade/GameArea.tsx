@@ -1,11 +1,11 @@
 import { Chatroom, ChatroomMessage, ChatroomState, ChatroomUser, Prompt } from "../../API";
-import ClassicGameView from "./games/view/ClassicGameView";
-import LobbyView from "./games/view/LobbyView";
+import ClassicGameView from "./games/view/ArcadeClassicGameView";
+import LobbyView from "./games/view/ArcadeLobbyView";
 import { useEffect, useRef, useState } from "react";
-import IntermissionView from "./games/view/IntermissionView";
-import BlurGameView from "./games/view/BlurGameView";
+import IntermissionView from "./games/view/ArcadeIntermissionView";
+import BlurGameView from "./games/view/ArcadeBlurGameView";
 import { MobileLegendsHero } from "../../types/MobileLegendsHero";
-import EndGameViewInput from "./games/view/EndGameView";
+import EndGameViewInput from "./games/view/ArcadeEndGameView";
 
 
 interface GameAreaInput {

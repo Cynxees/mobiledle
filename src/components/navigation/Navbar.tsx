@@ -8,7 +8,7 @@ import { MdOutlineQuestionMark, MdQuestionMark } from "react-icons/md";
 import Modal from 'react-modal';
 import TutorialLandingPage from './TutorialLandingPage';
 
-const Navbar = ({currentPage}) => {
+const Navbar = ({currentPage = ''}) => {
   const { t, i18n } = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState<string>(() => {
