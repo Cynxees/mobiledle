@@ -161,7 +161,7 @@ export default function SurvivalPage() {
         
         <div className="flex flex-col gap-5 mb-16 mx-24 w-full sm:px-5 px-2 items-center justify-center">
             <div className="relative -z-1">
-                <Navbar currentPage={'blur'} />
+                <Navbar currentPage={'survival'} />
             </div>
 
 
