@@ -170,7 +170,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     </div>
                 </div>
                 <p className=''>
-                Create your own room to fight againts friends or with other bang-bangers in a contest of knowledge!
+                Create your own room to fight againts friends or with other people in a contest of knowledge!
                 </p>
             </div>
             </>
@@ -187,7 +187,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Blur</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                How much do you know your favourite heroes splash art?
                 </p>
                  </div>
                 </>
@@ -204,7 +204,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Disco</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                Take a guess on who's ability it belongs to.
                 </p>
             </div>
             </>
@@ -221,7 +221,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                         <div className={textCss}>Survival</div>
                     </div>
                     <p className=''>
-                    Create your own room to fight againts friends or with other bang-bangers in a contest of knowledge!
+                    Join in the ultimate challenge of knowledge. Includes all gamemodes with limited lives!
                     </p>
                 </div>
                 </>
@@ -236,7 +236,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Swipe</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                Match the hero to the most relevant keyword to it.
                 </p>
             </div>
                 </>
@@ -252,7 +252,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Mirror</div>
                  </div>
                  <p className=''>
-                    Test your knowledge everyday eivigeifaofhaoifnawaef
+                  Find out which hero suits you the most in this short quiz.
                     </p>
                 </div>
                 </>
