@@ -968,7 +968,7 @@ export default function ArcadeRoomPage() {
                                 <div className='flex justify-center lg:w-12'>
                                     
                                     {tempUser.user && tempUser.user.profilePicture? 
-                                        <CachedImage className={''} imgKey={characters[tempUser.user.profilePicture.split('-')[0]].imageKeys.icons[tempUser.user.profilePicture.split('-')[1]]}></CachedImage>
+                                        <CachedImage className={'w-12 h-12'} imgKey={characters[tempUser.user.profilePicture.split('-')[0]].imageKeys.icons[tempUser.user.profilePicture.split('-')[1]]}></CachedImage>
                                     :
                                     <div></div>
                                 

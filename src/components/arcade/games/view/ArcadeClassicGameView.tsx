@@ -293,6 +293,19 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
         setUserInput('')
     }
  
+    const handleUserAnswerMobile = () => {
+
+
+        
+        if(inputCooldown<0){
+
+            submitAnswer(userInput)
+            setInputCooldown(1200)
+        }
+        
+    }
+
+
     const handleChatKeyDown = (e : React.KeyboardEvent) => {
         
 
@@ -354,7 +367,7 @@ export default function ClassicGameView({chatroomState, chatroomUser, chatroomMe
 
                     <input autoFocus={true} onInput={handleUserInput} onKeyDown={handleChatKeyDown} value={userInput} type="text" className="rounded-[0.1rem] w-[70vw] lg:w-[20vw] focus:outline-none bg-neutral-900 lg:h-12 text-center uppercase text-white text-sm lg:text-xl" />
 
-                    <IoIosArrowForward className={(inputCooldown<0) ? 'text-orange-300 lg:hidden w-[10vw]':'lg:hidden w-[10vw]' } /> 
+                    <IoIosArrowForward onClick={handleUserAnswerMobile} className={(inputCooldown<0) ? 'text-orange-300 lg:hidden w-[10vw]':'lg:hidden w-[10vw]' } /> 
 
                 </animated.div>
 
