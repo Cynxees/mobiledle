@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import mirrorConstant from "../constant/mirror/questions.json";
 import identity from "../constant/mirror/identity.json";
 import Navbar from "../components/navigation/Navbar";
@@ -6,6 +6,9 @@ import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharacters
 import { useTranslation } from "react-i18next";
 import { MobileLegendsHero } from "../types/MobileLegendsHero";
 import CachedImage from "../components/CachedImage";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import { Container, ISourceOptions } from "@tsparticles/engine";
 
 // const getFiveRandomQuestions = () => {
 //   const randomQuestions = [];
@@ -20,6 +23,7 @@ import CachedImage from "../components/CachedImage";
 // };
 
 const MirrorPage = () => {
+  const [, setInit] = useState(false);
   const { t } = useTranslation();
 
   const { data: characters, isLoading, error } = useMobileLegendsCharacters();
@@ -36,6 +40,77 @@ const MirrorPage = () => {
     year: "",
   });
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  
+  const particlesLoaded = async (container?: Container): Promise<void> => {
+  
+  };
+  const options: ISourceOptions = useMemo(
+  () => ({
+    background: {
+      color: {
+        value: "",
+      },
+    },
+    fpsLimit: 60,
+    interactivity: {
+      events: {
+        onClick: {
+          enable: true,
+          mode: "push",
+        }
+      },
+      modes: {
+        push: {
+          quantity: 1,
+        },
+        repulse: {
+          distance: 150,
+          duration: 0.4,
+        },
+      },
+    },
+    particles: {
+      color: {
+        value: "#00FFFF",
+      },
+      move: {
+        direction: "bottom",
+        enable: true,
+        outModes: {
+          default: "out",
+        },
+        random: true,
+        speed: 5,
+        straight: false,
+      },
+      number: {
+        density: {
+          enable: true,
+        },
+        value: 20,
+      },
+      opacity: {
+        value: 0.4,
+      },
+      shape: {
+        type: "circle",
+      },
+      size: {
+        value: { min: 3, max: 6 },
+      },
+    },
+    detectRetina: true,
+  }),
+  [],
+  );
 
   const handleOption = (optionTrait) => {
     // console.log("halo : ", optionTrait)
@@ -87,6 +162,13 @@ const MirrorPage = () => {
   // console.log(userHero);
   return (
     <div className="flex flex-col gap-5 items-center mx-10">
+
+    <Particles
+          id="tsparticles"
+          particlesLoaded={particlesLoaded}
+          options={options}
+          className="absolute -z-10" 
+        />
       <Navbar currentPage={'mirror'}/>
       
 
