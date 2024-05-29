@@ -88,7 +88,7 @@ function getWrongStat(character: MobileLegendsHero, characters: MobileLegendsHer
 function getRandomCharacter(characters : MobileLegendsHero[]){
 
         
-    const random = Math.floor(Math.random()*100)%30
+    const random = Math.floor(Math.random()*100)%124
 
 
     return characters[random]

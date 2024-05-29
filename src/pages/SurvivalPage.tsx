@@ -155,7 +155,7 @@ export default function SurvivalPage() {
       
       
       :''}
-      <button className="bg-red-50 absolute top-0" onClick={handleUserCorrect}></button>
+      {/* <button className="bg-red-50 absolute top-0" onClick={handleUserCorrect}></button> */}
       
       <section className={`flex flex-col w-full gap-5 items-center md:mt-[20vh] mt-[25vh] mb-32`}>
         
