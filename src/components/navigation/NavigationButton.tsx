@@ -45,7 +45,7 @@ export default function NavigationButton({link}: NavigationButtonProps) {
     
     <Link
       to={'/'+link}
-      className={`w-full py-4 md:h-full md:py-7 border-2 group rounded-lg cursor-pointer transition duration-500 shadow-lg shadow-black`}
+      className={`w-full py-4 md:py-7 border-2 group rounded-lg cursor-pointer transition duration-500 shadow-lg shadow-black`}
       style={baseStyle}
       onMouseEnter={e => e.currentTarget.style.backgroundColor = hoverStyle.backgroundColor}
       onMouseLeave={e => e.currentTarget.style.backgroundColor = baseStyle.backgroundColor}
