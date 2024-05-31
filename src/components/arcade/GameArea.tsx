@@ -6,6 +6,8 @@ import IntermissionView from "./games/view/ArcadeIntermissionView";
 import BlurGameView from "./games/view/ArcadeBlurGameView";
 import { MobileLegendsHero } from "../../types/MobileLegendsHero";
 import EndGameViewInput from "./games/view/ArcadeEndGameView";
+import DiscoGameView from "./games/view/ArcadeDiscoGameView";
+import ExtraGameView from "./games/view/ArcadeExtraGameView";
 
 
 interface GameAreaInput {
@@ -75,10 +77,13 @@ export default function GameArea(  {chatroom, chatroomState, chatroomUser, chatr
         : (chatroomState.currentState == "INTERMISSION" && promptBank != null) ? <IntermissionView characters={characters} prompt={promptBank} /> 
         : (chatroomState.mode == "CLASSIC") ? <ClassicGameView chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/>
         : (chatroomState.mode == "BLUR") ? <BlurGameView timer={timer} chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/>
+        : (chatroomState.mode == "DISCO") ? <DiscoGameView timer={timer} chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/>
+        : (chatroomState.mode == "EXTRA") ? <ExtraGameView timer={timer} chatroomMessages={chatroomMessages} chatroomState={chatroomState} prompt={prompt} chatroomUser={chatroomUser} round={round}/>
         : (chatroomState.currentState && chatroomState.currentState.startsWith("ENDED")) ? <EndGameViewInput timer={timer} chatroomState={chatroomState} chatroomUsers={chatroomUsers} winnerId={chatroomState.currentState.replace('ENDED-', '')}  />
         : <div>Loading... </div>}
 
-    {/* <IntermissionView characters={characters} prompt={promptBank} />  */}
+
+        {/* <IntermissionView characters={characters} prompt={promptBank} />  */}
 
     </div>
 }

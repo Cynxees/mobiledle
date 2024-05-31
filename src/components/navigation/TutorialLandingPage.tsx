@@ -50,6 +50,11 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
         transform: 'translate(-50%, -50%)', 
         outline: 'none',
         overflow: 'hidden',
+        maxHeight: '80vh',
+        overflowY: 'auto',
+        WebkitOverflowScrolling: 'touch', 
+        scrollbarWidth: 'none', 
+        msOverflowStyle: 'none' 
     
     },
 
@@ -60,6 +65,10 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
         
     }
   };
+
+
+  
+
   let tutorialContent = null;
 
   const gridCss =  "mx-auto grid grid-cols-5 w-52 justify-center "
@@ -170,7 +179,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     </div>
                 </div>
                 <p className=''>
-                Create your own room to fight againts friends or with other bang-bangers in a contest of knowledge!
+                Create your own room to fight againts friends or with other people in a contest of knowledge!
                 </p>
             </div>
             </>
@@ -186,8 +195,14 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     
                     <div className={textCss}>Blur</div>
                 </div>
-                <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                <p className='pb-4 gap-2'>
+                <div className='pb-6 text-center'>How much do you know your favourite heroes splash art?</div>
+                You will be given a blurred version of a hero's splashart <span className='text-lime-200'>(Could be skin). </span>
+                Every wrong guess will slightly unblur the image.
+                <div className='pt-8'>Objective is to guess which hero has the splash art shown in the least amount of tries.</div>
+                
+                
+
                 </p>
                  </div>
                 </>
@@ -201,10 +216,15 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                 <div className= {gridCss}>
                         <IoDiscOutline className="text-4xl text-[#D9F99D]" />
                     
-                    <div className={textCss}>Disco</div>
+                    <div className= {textCss} >Disco</div>
                 </div>
-                <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                <p className='pb-4'>
+                <div className='pb-6 text-center'>Take a guess on who's ability it belongs to. </div>
+               
+                First you will be given only 1 ability being fully blurred. After multiple tries, the icon will be unblurred and you will be given another ability
+                of said hero as a clue. 
+                
+                <div className='pt-8'>Objective is to guess which hero has the ability shown in the least amount of tries.</div>
                 </p>
             </div>
             </>
@@ -221,7 +241,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                         <div className={textCss}>Survival</div>
                     </div>
                     <p className=''>
-                    Create your own room to fight againts friends or with other bang-bangers in a contest of knowledge!
+                    Join in the ultimate challenge of knowledge. Includes all gamemodes with limited lives!
                     </p>
                 </div>
                 </>
@@ -236,7 +256,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Swipe</div>
                 </div>
                 <p className=''>
-                Test your knowledge everyday eivigeifaofhaoifnawaef
+                Match the hero to the most relevant keyword to it.
                 </p>
             </div>
                 </>
@@ -252,7 +272,7 @@ const TutorialLandingPage = ({ isOpen, onRequestClose, currentPage}) => {
                     <div className={textCss}>Mirror</div>
                  </div>
                  <p className=''>
-                    Test your knowledge everyday eivigeifaofhaoifnawaef
+                  Find out which hero suits you the most in this short quiz.
                     </p>
                 </div>
                 </>
