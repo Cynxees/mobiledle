@@ -78,18 +78,7 @@ const MirrorPage = () => {
     fetchImageUrl();
   }, [imgKey]);
   
-  const renderDots = (numDots) => {
-    const dots = [];
-    for (let i = 0; i < 6; i++) {
-      dots.push(
-        <span
-          key={i}
-          className={`inline-block h-4 w-4 mx-1 rounded-full ${i < numDots ? 'bg-blue-500' : 'bg-gray-300'}`}
-        ></span>
-      );
-    }
-    return dots;
-  };
+  
 
   useEffect(() => {
     if (userHero && imageRef.current && canvasRef.current) {
