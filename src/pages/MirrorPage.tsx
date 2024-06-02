@@ -281,7 +281,7 @@ const MirrorPage = () => {
               return <div>
                 <MirrorPrompt currentQuestionId={currentQuestionId} handleOption={handleOption} question={question} className={(' '+((currentQuestionId == currentQuestionIndex) ? 'text-white animate__animated animate__fadeInUp':'text-gray-600')) + `` + ((question.type == "reaction") ? '':'')} key={question.question} />
 
-                <div className="w-[90vw] mx-auto h-1 bg-gray-400 bg-opacity-15 rounded-xl mt-11"></div>
+                <div className="w-[90vw] md:w-full mx-auto h-1 bg-gray-400 bg-opacity-15 rounded-xl mt-11"></div>
               </div> 
 
 
