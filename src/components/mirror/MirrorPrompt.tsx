@@ -1,5 +1,5 @@
 
-
+import ReactionGame from "./ReactionGame"
 
 const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""}) => {
 
@@ -75,16 +75,14 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
 
         </div>
 
-    }else if(question.type == "reactin"){
+    }else if(question.type == "reaction"){
 
         return <div className={className + " translate-y-1/2"}>
                   
-            <div className="bg-red-200 h-[30vh]">
-
-
-            reaction game
-            </div>
-
+            <ReactionGame onGameEnd={(result) => {
+                handleOption(currentQuestionId, question, result)
+            }} />
+            
         </div>
 
 
