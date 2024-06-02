@@ -12,17 +12,17 @@ import { Container, ISourceOptions } from "@tsparticles/engine";
 import html2canvas from "html2canvas";
 import { getUrl } from 'aws-amplify/storage';
 
-// const getFiveRandomQuestions = () => {
-//   const randomQuestions = [];
-//   while (randomQuestions.length < 5) {
-//     const randomIndex = Math.floor(Math.random() * questions.questions.length);
-//     const randomQuestion = questions[randomIndex];
-//     if (!randomQuestions.some((q) => q.question === randomQuestion.question)) {
-//       randomQuestions.push(randomQuestion);
-//     }
-//   }
-//   return randomQuestions;
-// };
+const getFiveRandomQuestions = () => {
+  const randomQuestions = [];
+  while (randomQuestions.length < 5) {
+    const randomIndex = Math.floor(Math.random() * questions.questions.length);
+    const randomQuestion = questions[randomIndex];
+    if (!randomQuestions.some((q) => q.question === randomQuestion.question)) {
+      randomQuestions.push(randomQuestion);
+    }
+  }
+  return randomQuestions;
+};
 
 const MirrorPage = () => {
   const [, setInit] = useState(false);
@@ -78,7 +78,18 @@ const MirrorPage = () => {
     fetchImageUrl();
   }, [imgKey]);
   
-  
+  const renderDots = (numDots) => {
+    const dots = [];
+    for (let i = 0; i < 6; i++) {
+      dots.push(
+        <span
+          key={i}
+          className={`inline-block h-4 w-4 mx-1 rounded-full ${i < numDots ? 'bg-blue-500' : 'bg-gray-300'}`}
+        ></span>
+      );
+    }
+    return dots;
+  };
 
   useEffect(() => {
     if (userHero && imageRef.current && canvasRef.current) {
@@ -104,24 +115,24 @@ const MirrorPage = () => {
 
     question.answer = optionTrait
 
-    // setUserTraits((prevUserTraits) => {
+    setUserTraits((prevUserTraits) => {
 
-    //   const temp = prevUserTraits
+      const temp = prevUserTraits
 
-    //   console.warn('old traits: ', temp)
+      console.warn('old traits: ', temp)
 
-    //   if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
-    //   if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
-    //   if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
-    //   if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
-    //   if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
-
-
-    //   console.warn('new traits::: ',temp)
-    //   return temp
+      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
+      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
+      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
+      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
+      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
 
 
-    // });
+      console.warn('new traits::: ',temp)
+      return temp
+
+
+    });
 
 
     if(currentQuestionId >= currentQuestionIndex){
@@ -244,7 +255,7 @@ const MirrorPage = () => {
               
               const currentQuestionId = questions.findIndex((tempQuestion) => tempQuestion == question )
 
-              return <div className={((currentQuestionId == currentQuestionIndex) ? 'text-white':'text-gray-600') + ``} key={question.question}>
+              return <div className={((currentQuestionId == currentQuestionIndex) ? 'text-white animate__animated animate__fadeInUp':'text-gray-600') + ``} key={question.question}>
               
                 {question.question}
 
