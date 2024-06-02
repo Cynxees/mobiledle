@@ -11,6 +11,7 @@ import { loadSlim } from "@tsparticles/slim";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 import html2canvas from "html2canvas";
 import { getUrl } from 'aws-amplify/storage';
+import ReactionGame from "../components/mirror/ReactionGame";
 
 
 const MirrorPage = () => {
@@ -243,11 +244,13 @@ const MirrorPage = () => {
               return <div className={((currentQuestionId == currentQuestionIndex) ? 'text-white animate__animated animate__fadeInUp':'text-gray-600') + `` + ((question.type == "reaction") ? '':'')} key={question.question}>
               
                 {(question.type == "reaction") ? <div className="translate-y-1/2">
-                  
+                <h2 className="text-white text-xl">Reaction Test</h2>
                   <div className="bg-red-200 h-[30vh]">
 
-
-                    reaction game
+                    
+                    <ReactionGame onGameEnd={(result) => {
+                      handleOption(currentQuestionId, question, result)
+                    }}/>
                   </div>
 
                 </div>:
