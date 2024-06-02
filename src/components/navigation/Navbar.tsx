@@ -32,9 +32,7 @@ const Navbar = ({mode = '', currentPage = ''}) => {
     i18n.changeLanguage(lng);
   };
 
-  useEffect(() => {
-    localStorage.setItem("savedLanguage", "en");
-  }, []);
+
 
   const openTutorial = () => {
     setModalIsOpen(true);
