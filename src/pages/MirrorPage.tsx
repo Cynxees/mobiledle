@@ -11,6 +11,7 @@ import { loadSlim } from "@tsparticles/slim";
 import { Container, ISourceOptions } from "@tsparticles/engine";
 import html2canvas from "html2canvas";
 import { getUrl } from 'aws-amplify/storage';
+import MirrorPrompt from "../components/mirror/MirrorPrompt";
 
 
 const MirrorPage = () => {
@@ -41,11 +42,28 @@ const MirrorPage = () => {
   const [imgUrl, setImgUrl] = useState('')
 
   useEffect(() => {
+
+    questions.map((question) => {
+      question.answer = {
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+      }
+    })
+
+  }, [])
+
+  useEffect(() => {
     if (displayedQuestionsRef.current) {
-        const { scrollHeight, clientHeight } = displayedQuestionsRef.current;
-        displayedQuestionsRef.current.scrollTop = scrollHeight - clientHeight;
+      const { scrollHeight, clientHeight } = displayedQuestionsRef.current;
+      displayedQuestionsRef.current.scrollTo({
+        top: scrollHeight - clientHeight,
+        behavior: "smooth",
+      });
     }
-}, [displayedQuestions])
+  }, [currentQuestionIndex]);
   
   useEffect(() => {
     const fetchImageUrl = async () => {
@@ -78,12 +96,12 @@ const MirrorPage = () => {
       img.onload = () => {
         if (ctx) {
           ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-          ctx.drawImage(backgroundRef.current, 0, 0, 1080, 1350);
-          ctx.drawImage(img, 390, 525, 300, 300);
+          ctx.drawImage(backgroundRef.current, 0, 0, 1080, 1080);
+          ctx.drawImage(img, 390, 350, 300, 300);
           ctx.font = "128px Modesto";
           ctx.fillStyle = "#FFFFFF";
           ctx.textAlign = "center";
-          ctx.fillText(userHero.name, 1080/2, 350); 
+          ctx.fillText(userHero.name, 1080/2, 290); 
         }
       };
     }
@@ -95,24 +113,24 @@ const MirrorPage = () => {
 
     question.answer = optionTrait
 
-    setUserTraits((prevUserTraits) => {
+    // setUserTraits((prevUserTraits) => {
 
-      const temp = prevUserTraits
+    //   const temp = prevUserTraits
 
-      console.warn('old traits: ', temp)
+    //   console.warn('old traits: ', temp)
 
-      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
-      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
-      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
-      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
-      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
-
-
-      console.warn('new traits::: ',temp)
-      return temp
+      // if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
+      // if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
+      // if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
+      // if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
+      // if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
 
 
-    });
+    //   console.warn('new traits::: ',temp)
+    //   return temp
+
+
+    // });
 
 
     if(currentQuestionId >= currentQuestionIndex){
@@ -138,7 +156,30 @@ const MirrorPage = () => {
   ): MobileLegendsHero => {
 
 
-    console.warn('final traits: ', userTraits)
+    const temp = {
+      passive_aggresive: 5,
+      kill_team: 5,
+      slow_quick: 5,
+      micro_macro: 5,
+      early_late: 5
+
+    }
+    
+    questions.map((question) => {
+
+      const optionTrait = question.answer
+
+      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
+      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
+      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
+      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
+      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
+
+
+
+    })
+
+    console.warn('final traits: ', temp)
 
     let mostSuitedHeroDifference = 100
     let mostSuitedHero = null
@@ -149,11 +190,11 @@ const MirrorPage = () => {
 
       let difference = 0
 
-      difference += Math.abs(userTraits.early_late - heroIdentity.early_late)
-      difference += Math.abs(userTraits.micro_macro - heroIdentity.micro_macro)
-      difference += Math.abs(userTraits.kill_team - heroIdentity.kill_team)
-      difference += Math.abs(userTraits.passive_aggresive - heroIdentity.passive_aggressive)
-      difference += Math.abs(userTraits.slow_quick - heroIdentity.slow_quick)
+      difference += Math.abs(temp.early_late - heroIdentity.early_late)
+      difference += Math.abs(temp.micro_macro - heroIdentity.micro_macro)
+      difference += Math.abs(temp.kill_team - heroIdentity.kill_team)
+      difference += Math.abs(temp.passive_aggresive - heroIdentity.passive_aggressive)
+      difference += Math.abs(temp.slow_quick - heroIdentity.slow_quick)
 
       if(mostSuitedHeroDifference > difference){
 
@@ -193,11 +234,11 @@ const MirrorPage = () => {
   if(isLoading) return <div>loading..</div>
 
   return (
-    <div className="flex flex-col gap-5 items-center mx-10">
+    <div className="flex flex-col gap-5 items-center h-screen w-screen overflow-y-scroll" ref={displayedQuestionsRef}>
 
 
 
-    <div className="absolute top-[10vh]">
+    <div className="mt-[20vh]">
       {userHero && currentQuestionIndex == questions.length ? 
       <Navbar mode={'simple'} currentPage={'mirror'}/>: <Navbar currentPage={'mirror'}/>    
       }
@@ -209,7 +250,7 @@ const MirrorPage = () => {
 
     {userHero && currentQuestionIndex === questions.length ? (
       <div className="flex flex-col items-center">
-        <canvas ref={canvasRef} width={1080} height={1350} className="max-h-[50vh]" style={{ backgroundColor: '#FFFFFF', borderRadius: '10px' }}>
+        <canvas ref={canvasRef} width={1080} height={1080} className="max-h-[50vh]" style={{ backgroundColor: '#FFFFFF', borderRadius: '10px' }}>
 
         <img ref={backgroundRef} src="/images/mirror_template.png" alt="" crossOrigin="anonymous"
           style={{ display: 'none' }} />
@@ -228,10 +269,7 @@ const MirrorPage = () => {
 
 
 
-    {currentQuestionIndex !== questions.length && <div className="mt-52" style={{WebkitMaskImage: "linear-gradient(to top, black 85%, transparent 100%)"}}>
-
-      <div className="" style={{WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)"}}>
-        <div className="flex flex-col overflow-y-scroll h-[70vh] pt-[25vh] pb-[45vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" ref={displayedQuestionsRef}>
+    {currentQuestionIndex !== questions.length && <div className="flex flex-col gap-10 pb-[45vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
           {
 
@@ -240,57 +278,11 @@ const MirrorPage = () => {
               
               const currentQuestionId = questions.findIndex((tempQuestion) => tempQuestion == question )
 
-              return <div className={((currentQuestionId == currentQuestionIndex) ? 'text-white animate__animated animate__fadeInUp':'text-gray-600') + `` + ((question.type == "reaction") ? '':'')} key={question.question}>
-              
-                {(question.type == "reaction") ? <div className="translate-y-1/2">
-                  
-                  <div className="bg-red-200 h-[30vh]">
+              return <div>
+                <MirrorPrompt currentQuestionId={currentQuestionId} handleOption={handleOption} question={question} className={(' '+((currentQuestionId == currentQuestionIndex) ? 'text-white animate__animated animate__fadeInUp':'text-gray-600')) + `` + ((question.type == "reaction") ? '':'')} key={question.question} />
 
-
-                    reaction game
-                  </div>
-
-                </div>:
-
-                <div>
-                  {question.question}
-
-                  <div className="flex justify-center gap-5">
-
-
-                    { 
-                    
-                    question.options.map((option) => {
-
-                      if(question.answer === option){
-
-                        return <div key={option.text} className="border bg-red-100 text-xl cursor-pointer" onClick={() => handleOption(currentQuestionId, question, option)}>
-
-                        {option.text}
-
-                      </div>
-
-
-
-
-                      }
-                      
-                      return <div key={option.text} className="border text-xl cursor-pointer" onClick={() => handleOption(currentQuestionId, question, option)}>
-
-                        {option.text}
-
-                      </div>
-                      
-                      
-                      })}
-                  </div>
-
-                </div>
-                }
-                
-                
-                
-              </div>
+                <div className="w-[90vw] mx-auto h-1 bg-gray-400 bg-opacity-15 rounded-xl mt-11"></div>
+              </div> 
 
 
             })
@@ -298,12 +290,7 @@ const MirrorPage = () => {
 
           }
 
-        </div>
-
-      </div>
-
-
-    </div>}
+        </div>}
     
     </div>
   );

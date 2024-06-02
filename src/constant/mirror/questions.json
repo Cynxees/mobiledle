@@ -3,7 +3,16 @@
     {
       "question": "You pay more attention to detail rather than seeing the bigger picture.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Detail-oriented",
@@ -24,7 +33,16 @@
     {
       "question": "You are doing a group project, What would you do?",
       "type": "option",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Work Alone",
@@ -49,7 +67,16 @@
     {
       "question": "You are insulted by a stranger, What would you do?",
       "type": "option",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Fight Back",
@@ -74,7 +101,16 @@
     {
       "question": "When looking for a partner, You prioritize appearance over personality.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Appearance",
@@ -91,7 +127,16 @@
     {
       "question": "You prefer to do things methodically than be flexible.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Structured",
@@ -110,7 +155,16 @@
     {
       "question": "Reaction test",
       "type": "reaction",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Fast",
@@ -133,7 +187,16 @@
     {
       "question": "You prefer to finish your work quickly rather than perfecting it.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Quick",
@@ -154,7 +217,16 @@
     {
       "question": "You like to help people.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Help",
@@ -171,7 +243,16 @@
     {
       "question": "You procrastinate regularly.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Often",
@@ -190,7 +271,16 @@
     {
       "question": "You prefer to be a leader than a worker.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Leader",
@@ -211,7 +301,16 @@
     {
       "question": "Your work style is usually consistent rather than a burst of effort.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "Consistent",
@@ -230,7 +329,16 @@
     {
       "question": "You like to plan your day.",
       "type": "agree",
-"answer": "",
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
       "options": [
         {
           "text": "List/Schedule",
