@@ -27,17 +27,19 @@ import { getUrl } from 'aws-amplify/storage';
 const MirrorPage = () => {
   const [, setInit] = useState(false);
   const { t } = useTranslation();
-  const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
+  const { data: characters, isLoading, error } = useMobileLegendsCharacters();
 
   const [userHero, setUserHero] = useState<MobileLegendsHero>();
   const [questions, setQuestions] = useState(mirrorConstant.questions);
   const [userTraits, setUserTraits] = useState({
-    passive_aggresive: 5,
-    kill_team: 5,
-    slow_quick: 5,
-    micro_macro: 5,
-    early_late: 5
+    role: "",
+    rangeType: "",
+    specialty: "",
+    resource: "",
+    lane: "",
+    gender: "",
+    year: "",
   });
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -158,64 +160,37 @@ const MirrorPage = () => {
 
   const handleOption = (optionTrait) => {
     // console.log("halo : ", optionTrait)
-    setUserTraits((prevUserTraits) => {
-
-      const temp = prevUserTraits
-
-      console.warn('old traits: ', temp)
-
-      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
-      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
-      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
-      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
-      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
-
-
-      console.warn('new traits::: ',temp)
-      return temp
-
-
-    });
+    setUserTraits((prevUserTraits) => ({
+      ...prevUserTraits,
+      ...optionTrait,
+    }));
 
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   const findMostSuitedHero = (
     heroes: MobileLegendsHero[]
-  ): MobileLegendsHero => {
+  ): MobileLegendsHero | null => {
+    let bestMatch: MobileLegendsHero | null = null;
+    let maxMatches = 0;
 
+    heroes.forEach((hero) => {
+      let matches = 0;
 
-    console.warn('final traits: ', userTraits)
+      if (hero.role === userTraits.role) matches++;
+      if (hero.rangeType === userTraits.rangeType) matches++;
+      if (hero.specialty === userTraits.specialty) matches++;
+      if (hero.resource === userTraits.resource) matches++;
+      if (hero.lane === userTraits.lane) matches++;
+      if (hero.gender === userTraits.gender) matches++;
 
-    let mostSuitedHeroDifference = 100
-    let mostSuitedHero = null
-
-    characters.map((hero) => {
-
-      const heroIdentity = identity.heroes[parseInt(hero.id) - 1]
-
-      let difference = 0
-
-      difference += Math.abs(userTraits.early_late - heroIdentity.early_late)
-      difference += Math.abs(userTraits.micro_macro - heroIdentity.micro_macro)
-      difference += Math.abs(userTraits.kill_team - heroIdentity.kill_team)
-      difference += Math.abs(userTraits.passive_aggresive - heroIdentity.passive_aggressive)
-      difference += Math.abs(userTraits.slow_quick - heroIdentity.slow_quick)
-
-      if(mostSuitedHeroDifference > difference){
-
-        mostSuitedHero = hero
-        mostSuitedHeroDifference = difference
-
+      if (matches > maxMatches) {
+        maxMatches = matches;
+        bestMatch = hero;
       }
+    });
 
-
-    })
-
-    return mostSuitedHero
-    
-
-
+    return bestMatch;
   };
 
   useEffect(() => {
@@ -237,8 +212,6 @@ const MirrorPage = () => {
     }
   };
   
-  if(isLoading) return <div>loading..</div>
-
   return (
     <div className="flex flex-col gap-5 items-center mx-10">
 
@@ -251,29 +224,28 @@ const MirrorPage = () => {
 
 
 
-    <div className="absolute top-[10vh]">
-      {userHero && currentQuestionIndex == questions.length ? 
-      <Navbar mode={'simple'} currentPage={'mirror'}/>: <Navbar currentPage={'mirror'}/>    
-      }
-
-    </div>
+    {userHero && currentQuestionIndex == questions.length ? 
+    <Navbar mode={'simple'} currentPage={'mirror'}/>: <Navbar currentPage={'mirror'}/>    
+    }
 
 
       
 
-    {userHero && currentQuestionIndex === questions.length ? (
-      <div className="flex flex-col items-center">
-        <canvas ref={canvasRef} width={1080} height={1080} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px' }}></canvas>
-        <img
-          ref={imageRef}
-          src={imgUrl}
-          alt={userHero.name}
-          crossOrigin="anonymous"
-          style={{ display: 'none' }}
-        />
-        <button onClick={downloadImage} className="mt-4 p-2 bg-blue-500 text-white rounded">Download Image</button>
-      </div>
-    ) : ''}
+      {userHero && currentQuestionIndex === questions.length ? (
+        <div className="flex flex-col items-center">
+          <canvas ref={canvasRef} width={1080} height={1080} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px' }}></canvas>
+          <img
+            ref={imageRef}
+            src={imgUrl}
+            alt={userHero.name}
+            crossOrigin="anonymous"
+            style={{ display: 'none' }}
+          />
+          <button onClick={downloadImage} className="mt-4 p-2 bg-blue-500 text-white rounded">Download Image</button>
+        </div>
+      ) : (
+        <h2 className="text-lg">{t`What Hero Would You Be?`}</h2>
+      )}
 
     {currentQuestionIndex < questions.length ? (
       <div key={currentQuestionIndex} className="+w-full md:w-[500px]">

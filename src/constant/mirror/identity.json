@@ -1,16 +1,996 @@
 {
-    "Brave": ["Freya", "Leomord", "Baxia", "Zilong", "Gatotkaca", "Guinevere", "Tigreal", "Minsitthar", "Bane"],
-    "Clever": ["Gord", "Cyclops", "Harley", "Alice", "Vexana", "Faramis", "Gusion", "Carmilla", "Luo Yi", "Layla", "Moskov"],
-    "Sly": ["Fanny", "Natalia", "Lancelot", "Alice", "Vexana", "Faramis", "Karina", "Ling", "Selena", "Claude", "Hanzo"],
-    "Loyal": ["Akai", "Angela", "Johnson", "Franco", "Argus", "Masha", "Hilda", "Thamuz"],
-    "Honorable": ["Sun", "Martis", "Atlas", "Alpha", "Chang'e", "Khufra", "Yi Sun-shin"],
-    "Adventurous": ["Chou", "Lapu-Lapu", "Benedetta", "Ruby", "Irithel", "X.Borg", "Kagura"],
-    "Wise": ["Estes", "Uranus", "Vale", "Aurora", "Lunox", "Khaleed", "Cecilion"],
-    "Calm": ["Rafaela", "Kimmy", "Popol and Kupa", "Hayabusa", "Valir", "Silvanna", "Nana"],
-    "Mysterious": ["Roger", "Pharsa", "Granger", "Diggie", "Harith", "Barats", "Wanwan"],
-    "Charismatic": ["Alucard", "Clint", "Karrie", "Miya", "Odette", "Yu Zhong", "Zhask"],
-    "Determined": ["Balmond", "Minotaur", "Lolita", "Saber", "Grock", "Lylia", "Helcurt", "Dyrroth"],
-    "Resourceful": ["Bruno", "Lolita", "Hanabi", "Jawhead", "Kadita", "Esmeralda", "Aldous", "Brody"],
-    "Noble": ["Bruno", "Minotaur", "Baxia", "Eudora", "Hylos", "Kaja", "Belerick", "Badang"]
-  }
-  
+  "heroes": [
+    {
+      "id": 1,
+      "passive_aggressive": 4,
+      "kill_team": 6,
+      "slow_quick": 6,
+      "micro_macro": 5,
+      "early_late": 8
+    },
+    {
+      "id": 2,
+      "passive_aggressive": 7,
+      "kill_team": 3,
+      "slow_quick": 5,
+      "micro_macro": 4,
+      "early_late": 3
+    },
+    {
+      "id": 3,
+      "passive_aggressive": 9,
+      "kill_team": 1,
+      "slow_quick": 8,
+      "micro_macro": 10,
+      "early_late": 7
+    },
+    {
+      "id": 4,
+      "passive_aggressive": 8,
+      "kill_team": 4,
+      "slow_quick": 6,
+      "micro_macro": 4,
+      "early_late": 10
+    },
+    {
+      "id": 5,
+      "passive_aggressive": 7,
+      "kill_team": 8,
+      "slow_quick": 9,
+      "micro_macro": 6,
+      "early_late": 7
+    },
+    {
+      "id": 6,
+      "passive_aggressive": 8,
+      "kill_team": 10,
+      "slow_quick": 3,
+      "micro_macro": 8,
+      "early_late": 3
+    },
+    {
+      "id": 7,
+      "passive_aggressive": 9,
+      "kill_team": 3,
+      "slow_quick": 8,
+      "micro_macro": 2,
+      "early_late": 8
+    },
+    {
+      "id": 8,
+      "passive_aggressive": 10,
+      "kill_team": 2,
+      "slow_quick": 7,
+      "micro_macro": 1,
+      "early_late": 6
+    },
+    {
+      "id": 9,
+      "passive_aggressive": 7,
+      "kill_team": 9,
+      "slow_quick": 6,
+      "micro_macro": 8,
+      "early_late": 4
+    },
+    {
+      "id": 10,
+      "passive_aggressive": 4,
+      "kill_team": 10,
+      "slow_quick": 6,
+      "micro_macro": 2,
+      "early_late": 1
+    },
+    {
+      "id": 11,
+      "passive_aggressive": 6,
+      "kill_team": 4,
+      "slow_quick": 6,
+      "micro_macro": 5,
+      "early_late": 8
+    },
+    {
+      "id": 12,
+      "passive_aggressive": 4,
+      "kill_team": 7,
+      "slow_quick": 7,
+      "micro_macro": 4,
+      "early_late": 8
+    },
+    {
+      "id": 13,
+      "passive_aggressive": 5,
+      "kill_team": 6,
+      "slow_quick": 4,
+      "micro_macro": 3,
+      "early_late": 9
+    },
+    {
+      "id": 14,
+      "passive_aggressive": 1,
+      "kill_team": 8,
+      "slow_quick": 9,
+      "micro_macro": 10,
+      "early_late": 4
+    },
+    {
+      "id": 15,
+      "passive_aggressive": 7,
+      "kill_team": 1,
+      "slow_quick": 1,
+      "micro_macro": 6,
+      "early_late": 4
+    },
+    {
+      "id": 16,
+      "passive_aggressive": 8,
+      "kill_team": 2,
+      "slow_quick": 8,
+      "micro_macro": 4,
+      "early_late": 10
+    },
+    {
+      "id": 17,
+      "passive_aggressive": 10,
+      "kill_team": 2,
+      "slow_quick": 10,
+      "micro_macro": 1,
+      "early_late": 3
+    },
+    {
+      "id": 18,
+      "passive_aggressive": 3,
+      "kill_team": 7,
+      "slow_quick": 2,
+      "micro_macro": 2,
+      "early_late": 10
+    },
+    {
+      "id": 19,
+      "passive_aggressive": 7,
+      "kill_team": 9,
+      "slow_quick": 3,
+      "micro_macro": 9,
+      "early_late": 4
+    },
+    {
+      "id": 20,
+      "passive_aggressive": 7,
+      "kill_team": 10,
+      "slow_quick": 4,
+      "micro_macro": 8,
+      "early_late": 8
+    },
+    {
+      "id": 21,
+      "passive_aggressive": 7,
+      "kill_team": 2,
+      "slow_quick": 10,
+      "micro_macro": 3,
+      "early_late": 6
+    },
+    {
+      "id": 22,
+      "passive_aggressive": 8,
+      "kill_team": 3,
+      "slow_quick": 6,
+      "micro_macro": 4,
+      "early_late": 4
+    },
+    {
+      "id": 23,
+      "passive_aggressive": 2,
+      "kill_team": 8,
+      "slow_quick": 3,
+      "micro_macro": 4,
+      "early_late": 8
+    },
+    {
+      "id": 24,
+      "passive_aggressive": 8,
+      "kill_team": 1,
+      "slow_quick": 9,
+      "micro_macro": 8,
+      "early_late": 1
+    },
+    {
+      "id": 25,
+      "passive_aggressive": 6,
+      "kill_team": 8,
+      "slow_quick": 4,
+      "micro_macro": 5,
+      "early_late": 8
+    },
+    {
+      "id": 26,
+      "passive_aggressive": 8,
+      "kill_team": 3,
+      "slow_quick": 10,
+      "micro_macro": 4,
+      "early_late": 4
+    },
+    {
+      "id": 27,
+      "passive_aggressive": 6,
+      "kill_team": 8,
+      "slow_quick": 9,
+      "micro_macro": 7,
+      "early_late": 9
+    },
+    {
+      "id": 28,
+      "passive_aggressive": 7,
+      "kill_team": 4,
+      "slow_quick": 7,
+      "micro_macro": 3,
+      "early_late": 4
+    },
+    {
+      "id": 29,
+      "passive_aggressive": 8,
+      "kill_team": 9,
+      "slow_quick": 3,
+      "micro_macro": 4,
+      "early_late": 6
+    },
+    {
+      "id": 30,
+      "passive_aggressive": 8,
+      "kill_team": 7,
+      "slow_quick": 8,
+      "micro_macro": 3,
+      "early_late": 4
+    },
+    {
+      "id": 31,
+      "passive_aggressive": 7,
+      "kill_team": 3,
+      "slow_quick": 7,
+      "micro_macro": 2,
+      "early_late": 10
+    },
+    {
+      "id": 32,
+      "passive_aggressive": 6,
+      "kill_team": 10,
+      "slow_quick": 8,
+      "micro_macro": 8,
+      "early_late": 8
+    },
+    {
+      "id": 33,
+      "passive_aggressive": 2,
+      "kill_team": 7,
+      "slow_quick": 6,
+      "micro_macro": 6,
+      "early_late": 8
+    },
+    {
+      "id": 34,
+      "passive_aggressive": 2,
+      "kill_team": 10,
+      "slow_quick": 2,
+      "micro_macro": 9,
+      "early_late": 5
+    },
+    {
+      "id": 35,
+      "passive_aggressive": 7,
+      "kill_team": 7,
+      "slow_quick": 9,
+      "micro_macro": 8,
+      "early_late": 5
+    },
+    {
+      "id": 36,
+      "passive_aggressive": 3,
+      "kill_team": 8,
+      "slow_quick": 2,
+      "micro_macro": 4,
+      "early_late": 8
+    },
+    {
+      "id": 37,
+      "passive_aggressive": 8,
+      "kill_team": 7,
+      "slow_quick": 4,
+      "micro_macro": 7,
+      "early_late": 3
+    },
+    {
+      "id": 38,
+      "passive_aggressive": 3,
+      "kill_team": 8,
+      "slow_quick": 3,
+      "micro_macro": 4,
+      "early_late": 9
+    },
+    {
+      "id": 39,
+      "passive_aggressive": 7,
+      "kill_team": 3,
+      "slow_quick": 9,
+      "micro_macro": 3,
+      "early_late": 2
+    },
+    {
+      "id": 40,
+      "passive_aggressive": 3,
+      "kill_team": 4,
+      "slow_quick": 7,
+      "micro_macro": 2,
+      "early_late": 10
+    },
+    {
+      "id": 41,
+      "passive_aggressive": 7,
+      "kill_team": 10,
+      "slow_quick": 4,
+      "micro_macro": 9,
+      "early_late": 5
+    },
+    {
+      "id": 42,
+      "passive_aggressive": 8,
+      "kill_team": 2,
+      "slow_quick": 10,
+      "micro_macro": 4,
+      "early_late": 3
+    },
+    {
+      "id": 43,
+      "passive_aggressive": 3,
+      "kill_team": 8,
+      "slow_quick": 4,
+      "micro_macro": 2,
+      "early_late": 9
+    },
+    {
+      "id": 44,
+      "passive_aggressive": 7,
+      "kill_team": 6,
+      "slow_quick": 5,
+      "micro_macro": 7,
+      "early_late": 2
+    },
+    {
+      "id": 45,
+      "passive_aggressive": 10,
+      "kill_team": 2,
+      "slow_quick": 3,
+      "micro_macro": 3,
+      "early_late": 8
+    },
+    {
+      "id": 46,
+      "passive_aggressive": 4,
+      "kill_team": 8,
+      "slow_quick": 3,
+      "micro_macro": 3,
+      "early_late": 7
+    },
+    {
+      "id": 47,
+      "passive_aggressive": 10,
+      "kill_team": 3,
+      "slow_quick": 9,
+      "micro_macro": 2,
+      "early_late": 3
+    },
+    {
+      "id": 48,
+      "passive_aggressive": 2,
+      "kill_team": 9,
+      "slow_quick": 2,
+      "micro_macro": 7,
+      "early_late": 3
+    },
+    {
+      "id": 49,
+      "passive_aggressive": 8,
+      "kill_team": 7,
+      "slow_quick": 7,
+      "micro_macro": 9,
+      "early_late": 4
+    },
+    {
+      "id": 50,
+      "passive_aggressive": 8,
+      "kill_team": 4,
+      "slow_quick": 3,
+      "micro_macro": 5,
+      "early_late": 3
+    },
+    {
+      "id": 51,
+      "passive_aggressive": 9,
+      "kill_team": 2,
+      "slow_quick": 8,
+      "micro_macro": 2,
+      "early_late": 3
+    },
+    {
+      "id": 52,
+      "passive_aggressive": 6,
+      "kill_team": 4,
+      "slow_quick": 7,
+      "micro_macro": 3,
+      "early_late": 9
+    },
+    {
+      "id": 53,
+      "passive_aggressive": 4,
+      "kill_team": 4,
+      "slow_quick": 7,
+      "micro_macro": 3,
+      "early_late": 10
+    },
+    {
+      "id": 54,
+      "passive_aggressive": 8,
+      "kill_team": 6,
+      "slow_quick": 6,
+      "micro_macro": 4,
+      "early_late": 4
+    },
+    {
+      "id": 55,
+      "passive_aggressive": 2,
+      "kill_team": 10,
+      "slow_quick": 3,
+      "micro_macro": 8,
+      "early_late": 4
+    },
+    {
+      "id": 56,
+      "passive_aggressive": 9,
+      "kill_team": 3,
+      "slow_quick": 10,
+      "micro_macro": 3,
+      "early_late": 2
+    },
+    {
+      "id": 57,
+      "passive_aggressive": 2,
+      "kill_team": 8,
+      "slow_quick": 3,
+      "micro_macro": 4,
+      "early_late": 5
+    },
+    {
+      "id": 58,
+      "passive_aggressive": 9,
+      "kill_team": 1,
+      "slow_quick": 3,
+      "micro_macro": 4,
+      "early_late": 3
+    },
+    {
+      "id": 59,
+      "passive_aggressive": 8,
+      "kill_team": 7,
+      "slow_quick": 9,
+      "micro_macro": 2,
+      "early_late": 7
+    },
+    {
+      "id": 60,
+      "passive_aggressive": 2,
+      "kill_team": 7,
+      "slow_quick": 2,
+      "micro_macro": 3,
+      "early_late": 9
+    },
+    {
+      "id": 61,
+      "passive_aggressive": 3,
+      "kill_team": 7,
+      "slow_quick": 2,
+      "micro_macro": 4,
+      "early_late": 5
+    },
+    {
+      "id": 62,
+      "passive_aggressive": 9,
+      "kill_team": 7,
+      "slow_quick": 4,
+      "micro_macro": 8,
+      "early_late": 4
+    },
+    {
+      "id": 63,
+      "passive_aggressive": 8,
+      "kill_team": 2,
+      "slow_quick": 9,
+      "micro_macro": 2,
+      "early_late": 4
+    },
+    {
+      "id": 64,
+      "passive_aggressive": 7,
+      "kill_team": 2,
+      "slow_quick": 6,
+      "micro_macro": 3,
+      "early_late": 10
+    },
+    {
+      "id": 65,
+      "passive_aggressive": 8,
+      "kill_team": 6,
+      "slow_quick": 9,
+      "micro_macro": 3,
+      "early_late": 8
+    },
+    {
+      "id": 66,
+      "passive_aggressive": 5,
+      "kill_team": 7,
+      "slow_quick": 2,
+      "micro_macro": 4,
+      "early_late": 7
+    },
+    {
+      "id": 67,
+      "passive_aggressive": 8,
+      "kill_team": 4,
+      "slow_quick": 7,
+      "micro_macro": 3,
+      "early_late": 8
+    },
+    {
+      "id": 68,
+      "passive_aggressive": 7,
+      "kill_team": 3,
+      "slow_quick": 2,
+      "micro_macro": 4,
+      "early_late": 9
+    },
+    {
+      "id": 69,
+      "passive_aggressive": 8,
+      "kill_team": 2,
+      "slow_quick": 7,
+      "micro_macro": 3,
+      "early_late": 8
+    },
+    {
+      "id": 70,
+      "passive_aggressive": 3,
+      "kill_team": 7,
+      "slow_quick": 4,
+      "micro_macro": 7,
+      "early_late": 6
+    },
+    {
+      "id": 71,
+      "passive_aggressive": 3,
+      "kill_team": 6,
+      "slow_quick": 3,
+      "micro_macro": 2,
+      "early_late": 6
+    },
+    {
+      "id": 72,
+      "passive_aggressive": 9,
+      "kill_team": 4,
+      "slow_quick": 3,
+      "micro_macro": 6,
+      "early_late": 3
+    },
+    {
+      "id": 73,
+      "passive_aggressive": 7,
+      "kill_team": 2,
+      "slow_quick": 8,
+      "micro_macro": 1,
+      "early_late": 7
+    },
+    {
+      "id": 74,
+      "passive_aggressive": 6,
+      "kill_team": 9,
+      "slow_quick": 2,
+      "micro_macro": 3,
+      "early_late": 4
+    },
+    {
+      "id": 75,
+      "passive_aggressive": 9,
+      "kill_team": 2,
+      "slow_quick": 4,
+      "micro_macro": 7,
+      "early_late": 3
+    },
+    {
+      "id": 76,
+      "passive_aggressive": 3,
+      "kill_team": 10,
+      "slow_quick": 10,
+      "micro_macro": 5,
+      "early_late": 7
+    },
+    {
+      "id": 77,
+      "passive_aggressive": 8,
+      "kill_team": 4,
+      "slow_quick": 3,
+      "micro_macro": 5,
+      "early_late": 7
+    },
+    {
+      "id": 78,
+      "passive_aggressive": 9,
+      "kill_team": 8,
+      "slow_quick": 4,
+      "micro_macro": 7,
+      "early_late": 4
+    },
+    {
+      "id": 79,
+      "passive_aggressive": 7,
+      "kill_team": 3,
+      "slow_quick": 5,
+      "micro_macro": 3,
+      "early_late": 9
+    },
+    {
+      "id": 80,
+      "passive_aggressive": 9,
+      "kill_team": 4,
+      "slow_quick": 7,
+      "micro_macro": 2,
+      "early_late": 8
+    },
+    {
+      "id": 81,
+      "passive_aggressive": 8,
+      "kill_team": 4,
+      "slow_quick": 8,
+      "micro_macro": 7,
+      "early_late": 8
+    },
+    {
+      "id": 82,
+      "passive_aggressive": 9,
+      "kill_team": 4,
+      "slow_quick": 1,
+      "micro_macro": 5,
+      "early_late": 4
+    },
+    {
+      "id": 83,
+      "passive_aggressive": 10,
+      "kill_team": 2,
+      "slow_quick": 4,
+      "micro_macro": 3,
+      "early_late": 2
+    },
+    {
+      "id": 84,
+      "passive_aggressive": 10,
+      "kill_team": 1,
+      "slow_quick": 10,
+      "micro_macro": 1,
+      "early_late": 5
+    },
+    {
+      "id": 85,
+      "passive_aggressive": 10,
+      "kill_team": 1,
+      "slow_quick": 7,
+      "micro_macro": 3,
+      "early_late": 1
+    },
+    {
+      "id": 86,
+      "passive_aggressive": 9,
+      "kill_team": 3,
+      "slow_quick": 8,
+      "micro_macro": 2,
+      "early_late": 6
+    },
+    {
+      "id": 87,
+      "passive_aggressive": 8,
+      "kill_team": 10,
+      "slow_quick": 9,
+      "micro_macro": 8,
+      "early_late": 7
+    },
+    {
+      "id": 88,
+      "passive_aggressive": 7,
+      "kill_team": 8,
+      "slow_quick": 9,
+      "micro_macro": 8,
+      "early_late": 5
+    },
+    {
+      "id": 89,
+      "passive_aggressive": 7,
+      "kill_team": 1,
+      "slow_quick": 10,
+      "micro_macro": 1,
+      "early_late": 9
+    },
+    {
+      "id": 90,
+      "passive_aggressive": 8,
+      "kill_team": 8,
+      "slow_quick": 7,
+      "micro_macro": 5,
+      "early_late": 6
+    },
+    {
+      "id": 91,
+      "passive_aggressive": 7,
+      "kill_team": 4,
+      "slow_quick": 2,
+      "micro_macro": 4,
+      "early_late": 10
+    },
+    {
+      "id": 92,
+      "passive_aggressive": 3,
+      "kill_team": 7,
+      "slow_quick": 8,
+      "micro_macro": 7,
+      "early_late": 8
+    },
+    {
+      "id": 93,
+      "passive_aggressive": 8,
+      "kill_team": 10,
+      "slow_quick": 8,
+      "micro_macro": 10,
+      "early_late": 4
+    },
+    {
+      "id": 94,
+      "passive_aggressive": 7,
+      "kill_team": 4,
+      "slow_quick": 4,
+      "micro_macro": 5,
+      "early_late": 7
+    },
+    {
+      "id": 95,
+      "passive_aggressive": 9,
+      "kill_team": 6,
+      "slow_quick": 4,
+      "micro_macro": 4,
+      "early_late": 5
+    },
+    {
+      "id": 96,
+      "passive_aggressive": 5,
+      "kill_team": 7,
+      "slow_quick": 5,
+      "micro_macro": 6,
+      "early_late": 6
+    },
+    {
+      "id": 97,
+      "passive_aggressive": 8,
+      "kill_team": 3,
+      "slow_quick": 9,
+      "micro_macro": 2,
+      "early_late": 4
+    },
+    {
+      "id": 98,
+      "passive_aggressive": 7,
+      "kill_team": 6,
+      "slow_quick": 8,
+      "micro_macro": 7,
+      "early_late": 6
+    },
+    {
+      "id": 99,
+      "passive_aggressive": 5,
+      "kill_team": 7,
+      "slow_quick": 2,
+      "micro_macro": 7,
+      "early_late": 7
+    },
+    {
+      "id": 100,
+      "passive_aggressive": 6,
+      "kill_team": 4,
+      "slow_quick": 4,
+      "micro_macro": 5,
+      "early_late": 5
+    },
+    {
+      "id": 101,
+      "passive_aggressive": 6,
+      "kill_team": 6,
+      "slow_quick": 7,
+      "micro_macro": 5,
+      "early_late": 7
+    },
+    {
+      "id": 102,
+      "passive_aggressive": 7,
+      "kill_team": 8,
+      "slow_quick": 8,
+      "micro_macro": 8,
+      "early_late": 7
+    },
+    {
+      "id": 103,
+      "passive_aggressive": 10,
+      "kill_team": 3,
+      "slow_quick": 9,
+      "micro_macro": 2,
+      "early_late": 4
+    },
+    {
+      "id": 104,
+      "passive_aggressive": 8,
+      "kill_team": 8,
+      "slow_quick": 3,
+      "micro_macro": 10,
+      "early_late": 6
+    },
+    {
+      "id": 105,
+      "passive_aggressive": 7,
+      "kill_team": 2,
+      "slow_quick": 7,
+      "micro_macro": 2,
+      "early_late": 7
+    },
+    {
+      "id": 106,
+      "passive_aggressive": 6,
+      "kill_team": 7,
+      "slow_quick": 5,
+      "micro_macro": 5,
+      "early_late": 5
+    },
+    {
+      "id": 107,
+      "passive_aggressive": 7,
+      "kill_team": 4,
+      "slow_quick": 5,
+      "micro_macro": 4,
+      "early_late": 8
+    },
+    {
+      "id": 108,
+      "passive_aggressive": 4,
+      "kill_team": 1,
+      "slow_quick": 7,
+      "micro_macro": 6,
+      "early_late": 8
+    },
+    {
+      "id": 109,
+      "passive_aggressive": 7,
+      "kill_team": 3,
+      "slow_quick": 9,
+      "micro_macro": 2,
+      "early_late": 8
+    },
+    {
+      "id": 110,
+      "passive_aggressive": 8,
+      "kill_team": 2,
+      "slow_quick": 7,
+      "micro_macro": 3,
+      "early_late": 4
+    },
+    {
+      "id": 111,
+      "passive_aggressive": 8,
+      "kill_team": 9,
+      "slow_quick": 5,
+      "micro_macro": 5,
+      "early_late": 9
+    },
+    {
+      "id": 112,
+      "passive_aggressive": 1,
+      "kill_team": 10,
+      "slow_quick": 3,
+      "micro_macro": 10,
+      "early_late": 5
+    },
+    {
+      "id": 113,
+      "passive_aggressive": 10,
+      "kill_team": 2,
+      "slow_quick": 8,
+      "micro_macro": 2,
+      "early_late": 3
+    },
+    {
+      "id": 114,
+      "passive_aggressive": 7,
+      "kill_team": 3,
+      "slow_quick": 7,
+      "micro_macro": 6,
+      "early_late": 9
+    },
+    {
+      "id": 115,
+      "passive_aggressive": 6,
+      "kill_team": 6,
+      "slow_quick": 7,
+      "micro_macro": 5,
+      "early_late": 5
+    },
+    {
+      "id": 116,
+      "passive_aggressive": 8,
+      "kill_team": 2,
+      "slow_quick": 7,
+      "micro_macro": 4,
+      "early_late": 5
+    },
+    {
+      "id": 117,
+      "passive_aggressive": 4,
+      "kill_team": 5,
+      "slow_quick": 3,
+      "micro_macro": 7,
+      "early_late": 8
+    },
+    {
+      "id": 118,
+      "passive_aggressive": 8,
+      "kill_team": 3,
+      "slow_quick": 10,
+      "micro_macro": 2,
+      "early_late": 4
+    },
+    {
+      "id": 119,
+      "passive_aggressive": 5,
+      "kill_team": 6,
+      "slow_quick": 8,
+      "micro_macro": 7,
+      "early_late": 6
+    },
+    {
+      "id": 120,
+      "passive_aggressive": 3,
+      "kill_team": 5,
+      "slow_quick": 7,
+      "micro_macro": 3,
+      "early_late": 4
+    },
+    {
+      "id": 121,
+      "passive_aggressive": 4,
+      "kill_team": 2,
+      "slow_quick": 6,
+      "micro_macro": 4,
+      "early_late": 8
+    },
+    {
+      "id": 122,
+      "passive_aggressive": 8,
+      "kill_team": 3,
+      "slow_quick": 9,
+      "micro_macro": 5,
+      "early_late": 6
+    },
+    {
+      "id": 123,
+      "passive_aggressive": 4,
+      "kill_team": 5,
+      "slow_quick": 7,
+      "micro_macro": 5,
+      "early_late": 9
+    },
+    {
+      "id": 124,
+      "passive_aggressive": 5,
+      "kill_team": 9,
+      "slow_quick": 6,
+      "micro_macro": 8,
+      "early_late": 5
+    }
+  ]
+}
