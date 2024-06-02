@@ -12,17 +12,6 @@ import { Container, ISourceOptions } from "@tsparticles/engine";
 import html2canvas from "html2canvas";
 import { getUrl } from 'aws-amplify/storage';
 
-const getFiveRandomQuestions = () => {
-  const randomQuestions = [];
-  while (randomQuestions.length < 5) {
-    const randomIndex = Math.floor(Math.random() * questions.questions.length);
-    const randomQuestion = questions[randomIndex];
-    if (!randomQuestions.some((q) => q.question === randomQuestion.question)) {
-      randomQuestions.push(randomQuestion);
-    }
-  }
-  return randomQuestions;
-};
 
 const MirrorPage = () => {
   const [, setInit] = useState(false);
@@ -251,40 +240,53 @@ const MirrorPage = () => {
               
               const currentQuestionId = questions.findIndex((tempQuestion) => tempQuestion == question )
 
-              return <div className={((currentQuestionId == currentQuestionIndex) ? 'text-white animate__animated animate__fadeInUp':'text-gray-600') + ``} key={question.question}>
+              return <div className={((currentQuestionId == currentQuestionIndex) ? 'text-white animate__animated animate__fadeInUp':'text-gray-600') + `` + ((question.type == "reaction") ? '':'')} key={question.question}>
               
-                {question.question}
-
-                <div className="flex justify-center gap-5">
-
-
-                  { 
+                {(question.type == "reaction") ? <div className="translate-y-1/2">
                   
-                  question.options.map((option) => {
-
-                    if(question.answer === option){
-
-                      return <div key={option.text} className="border bg-red-100 text-xl cursor-pointer" onClick={() => handleOption(currentQuestionId, question, option)}>
-
-                      {option.text}
-
-                    </div>
+                  <div className="bg-red-200 h-[30vh]">
 
 
+                    reaction game
+                  </div>
+
+                </div>:
+
+                <div>
+                  {question.question}
+
+                  <div className="flex justify-center gap-5">
 
 
-                    }
+                    { 
                     
-                    return <div key={option.text} className="border text-xl cursor-pointer" onClick={() => handleOption(currentQuestionId, question, option)}>
+                    question.options.map((option) => {
 
-                      {option.text}
+                      if(question.answer === option){
 
-                    </div>
-                    
-                    
-                    })}
+                        return <div key={option.text} className="border bg-red-100 text-xl cursor-pointer" onClick={() => handleOption(currentQuestionId, question, option)}>
+
+                        {option.text}
+
+                      </div>
+
+
+
+
+                      }
+                      
+                      return <div key={option.text} className="border text-xl cursor-pointer" onClick={() => handleOption(currentQuestionId, question, option)}>
+
+                        {option.text}
+
+                      </div>
+                      
+                      
+                      })}
+                  </div>
+
                 </div>
-
+                }
                 
                 
                 
