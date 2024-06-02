@@ -46,6 +46,7 @@ const MirrorPage = () => {
   });
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const backgroundRef = useRef<HTMLImageElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const [imgKey, setImgKey] = useState('')
   const [imgUrl, setImgUrl] = useState('')
@@ -87,12 +88,13 @@ const MirrorPage = () => {
 
       img.onload = () => {
         if (ctx) {
-          ctx.fillStyle = "#FFFFFF";
           ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-          ctx.drawImage(img, 0, 0, 200, 200);
-          ctx.font = "20px Arial";
-          ctx.fillStyle = "#000000";
-          ctx.fillText(`Your hero is: ${userHero.name}`, 50, 200); 
+          ctx.drawImage(backgroundRef.current, 0, 0, 1080, 1350);
+          ctx.drawImage(img, 390, 525, 300, 300);
+          ctx.font = "128px Modesto";
+          ctx.fillStyle = "#FFFFFF";
+          ctx.textAlign = "center";
+          ctx.fillText(userHero.name, 1080/2, 350); 
         }
       };
     }
@@ -104,24 +106,24 @@ const MirrorPage = () => {
 
     question.answer = optionTrait
 
-    // setUserTraits((prevUserTraits) => {
+    setUserTraits((prevUserTraits) => {
 
-    //   const temp = prevUserTraits
+      const temp = prevUserTraits
 
-    //   console.warn('old traits: ', temp)
+      console.warn('old traits: ', temp)
 
-    //   if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
-    //   if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
-    //   if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
-    //   if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
-    //   if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
-
-
-    //   console.warn('new traits::: ',temp)
-    //   return temp
+      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
+      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
+      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
+      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
+      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
 
 
-    // });
+      console.warn('new traits::: ',temp)
+      return temp
+
+
+    });
 
 
     if(currentQuestionId >= currentQuestionIndex){
@@ -218,7 +220,12 @@ const MirrorPage = () => {
 
     {userHero && currentQuestionIndex === questions.length ? (
       <div className="flex flex-col items-center">
-        <canvas ref={canvasRef} width={1080} height={1080} style={{ backgroundColor: '#FFFFFF', borderRadius: '10px' }}></canvas>
+        <canvas ref={canvasRef} width={1080} height={1350} className="max-h-[50vh]" style={{ backgroundColor: '#FFFFFF', borderRadius: '10px' }}>
+
+        <img ref={backgroundRef} src="/images/mirror_template.png" alt="" crossOrigin="anonymous"
+          style={{ display: 'none' }} />
+        </canvas>
+
         <img
           ref={imageRef}
           src={imgUrl}
