@@ -1,7 +1,9 @@
 {
   "questions": [
     {
-      "question": "Detail-oriented or bigger picture?",
+      "question": "You pay more attention to detail rather than seeing the bigger picture.",
+      "type": "agree",
+"answer": "",
       "options": [
         {
           "text": "Detail-oriented",
@@ -20,10 +22,12 @@
       ]
     },
     {
-      "question": "In a group, what do you do?",
+      "question": "You are doing a group project, What would you do?",
+      "type": "option",
+"answer": "",
       "options": [
         {
-          "text": "Alone",
+          "text": "Work Alone",
           "image": "path/to/alone_image.jpg",
           "passive_aggresive": -1,
           "kill_team": -2
@@ -43,22 +47,24 @@
       ]
     },
     {
-      "question": "Someone insults you, what do you do?",
+      "question": "You are insulted by a stranger, What would you do?",
+      "type": "option",
+"answer": "",
       "options": [
         {
-          "text": "Fight back",
+          "text": "Fight Back",
           "image": "path/to/fight_back_image.jpg",
           "passive_aggresive": 3,
           "kill_team": -1,
           "early_late": -1
         },
         {
-          "text": "Sad",
+          "text": "Be Emotional",
           "image": "path/to/sad_image.jpg",
           "passive_aggresive": -1
         },
         {
-          "text": "Don't care",
+          "text": "Don't Care",
           "image": "path/to/dont_care_image.jpg",
           "passive_aggresive": -1,
           "kill_team": -1
@@ -66,7 +72,9 @@
       ]
     },
     {
-      "question": "Appearance or personality?",
+      "question": "When looking for a partner, You prioritize appearance over personality.",
+      "type": "agree",
+"answer": "",
       "options": [
         {
           "text": "Appearance",
@@ -81,7 +89,9 @@
       ]
     },
     {
-      "question": "Structured or flexible plan?",
+      "question": "You prefer to do things methodically than be flexible.",
+      "type": "agree",
+"answer": "",
       "options": [
         {
           "text": "Structured",
@@ -99,6 +109,8 @@
     },
     {
       "question": "Reaction test",
+      "type": "reaction",
+"answer": "",
       "options": [
         {
           "text": "Fast",
@@ -119,7 +131,9 @@
       ]
     },
     {
-      "question": "Finish quickly or make it perfect?",
+      "question": "You prefer to finish your work quickly rather than perfecting it.",
+      "type": "agree",
+"answer": "",
       "options": [
         {
           "text": "Quick",
@@ -138,22 +152,26 @@
       ]
     },
     {
-      "question": "Someone is in trouble, help or not?",
+      "question": "You like to help people.",
+      "type": "agree",
+"answer": "",
       "options": [
-        {
-          "text": "No",
-          "image": "path/to/no_help_image.jpg",
-          "kill_team": -3
-        },
         {
           "text": "Help",
           "image": "path/to/help_image.jpg",
           "kill_team": 3
+        },
+        {
+          "text": "No",
+          "image": "path/to/no_help_image.jpg",
+          "kill_team": -3
         }
       ]
     },
     {
-      "question": "How often do you procrastinate?",
+      "question": "You procrastinate regularly.",
+      "type": "agree",
+"answer": "",
       "options": [
         {
           "text": "Often",
@@ -170,7 +188,9 @@
       ]
     },
     {
-      "question": "In a project, leader or work?",
+      "question": "You prefer to be a leader than a worker.",
+      "type": "agree",
+"answer": "",
       "options": [
         {
           "text": "Leader",
@@ -189,7 +209,9 @@
       ]
     },
     {
-      "question": "Consistent effort or burst of effort?",
+      "question": "Your work style is usually consistent rather than a burst of effort.",
+      "type": "agree",
+"answer": "",
       "options": [
         {
           "text": "Consistent",
@@ -206,7 +228,9 @@
       ]
     },
     {
-      "question": "Do you like to list/schedule or go with the flow?",
+      "question": "You like to plan your day.",
+      "type": "agree",
+"answer": "",
       "options": [
         {
           "text": "List/Schedule",

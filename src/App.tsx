@@ -11,7 +11,7 @@ import SwipePage from "./pages/SwipePage";
 import ArcadeLandingPage from "./pages/ArcadePage/ArcadeLandingPage";
 import ArcadeRoomPage from "./pages/ArcadePage/ArcadeRoomPage";
 import ErrorPage from "./pages/ErrorPage";
-import MirrorPage from "./pages/MirrorPage";
+import MirrorParticlePage from "./pages/MirrorParticlePage";
 import MemoryPage from "./pages/MemoryPage";
 import BlurPage from "./pages/BlurPage";
 import ArcadeLandingParticlePage from "./pages/ArcadePage/ArcadeLandingParticlePage";
@@ -31,7 +31,7 @@ function App() {
           <Route path="classic" element={<ClassicPage />} />
           <Route path="blur" element={<BlurPage />} />
           <Route path="disco" element={<DiscoPage />} />
-          <Route path="mirror" element={<MirrorPage />} />
+          <Route path="mirror" element={<MirrorParticlePage />} />
           <Route path="survival" element={<SurvivalPage />} />
           <Route path="swipe" element={<SwipePage />} />
           <Route path="memory" element={<MemoryPage />} />

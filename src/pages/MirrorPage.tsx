@@ -31,7 +31,12 @@ const MirrorPage = () => {
 
 
   const [userHero, setUserHero] = useState<MobileLegendsHero>();
-  const [questions, setQuestions] = useState(mirrorConstant.questions);
+  const questions = mirrorConstant.questions
+
+  const [displayedQuestions, setDisplayedQuestions] = useState([questions[0]])
+  const displayedQuestionsRef = useRef(null)
+  const [results, setResults] = useState([])
+
   const [userTraits, setUserTraits] = useState({
     passive_aggresive: 5,
     kill_team: 5,
@@ -46,13 +51,12 @@ const MirrorPage = () => {
   const [imgUrl, setImgUrl] = useState('')
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
-
+    if (displayedQuestionsRef.current) {
+        const { scrollHeight, clientHeight } = displayedQuestionsRef.current;
+        displayedQuestionsRef.current.scrollTop = scrollHeight - clientHeight;
+    }
+}, [displayedQuestions])
+  
   useEffect(() => {
     const fetchImageUrl = async () => {
       if (!imgKey || imgKey == '') return
@@ -74,68 +78,7 @@ const MirrorPage = () => {
     fetchImageUrl();
   }, [imgKey]);
   
-  const particlesLoaded = async (container?: Container): Promise<void> => {
   
-  };
-  const options: ISourceOptions = useMemo(
-  () => ({
-    background: {
-      color: {
-        value: "",
-      },
-    },
-    fpsLimit: 60,
-    interactivity: {
-      events: {
-        onClick: {
-          enable: true,
-          mode: "push",
-        }
-      },
-      modes: {
-        push: {
-          quantity: 1,
-        },
-        repulse: {
-          distance: 150,
-          duration: 0.4,
-        },
-      },
-    },
-    particles: {
-      color: {
-        value: "#00FFFF",
-      },
-      move: {
-        direction: "bottom",
-        enable: true,
-        outModes: {
-          default: "out",
-        },
-        random: true,
-        speed: 5,
-        straight: false,
-      },
-      number: {
-        density: {
-          enable: true,
-        },
-        value: 20,
-      },
-      opacity: {
-        value: 0.4,
-      },
-      shape: {
-        type: "circle",
-      },
-      size: {
-        value: { min: 3, max: 6 },
-      },
-    },
-    detectRetina: true,
-  }),
-  [],
-  );
 
   useEffect(() => {
     if (userHero && imageRef.current && canvasRef.current) {
@@ -156,28 +99,47 @@ const MirrorPage = () => {
   }, [userHero]);
 
 
-  const handleOption = (optionTrait) => {
-    // console.log("halo : ", optionTrait)
-    setUserTraits((prevUserTraits) => {
+  const handleOption = (currentQuestionId, question, optionTrait) => {
+    // console.log("halo : ", optionTrait
 
-      const temp = prevUserTraits
+    question.answer = optionTrait
 
-      console.warn('old traits: ', temp)
+    // setUserTraits((prevUserTraits) => {
 
-      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
-      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
-      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
-      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
-      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
+    //   const temp = prevUserTraits
+
+    //   console.warn('old traits: ', temp)
+
+    //   if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
+    //   if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
+    //   if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
+    //   if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
+    //   if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
 
 
-      console.warn('new traits::: ',temp)
-      return temp
+    //   console.warn('new traits::: ',temp)
+    //   return temp
 
 
-    });
+    // });
 
-    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+
+    if(currentQuestionId >= currentQuestionIndex){
+
+      const temp = currentQuestionIndex
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+
+      setDisplayedQuestions((prevDisplayedQuestions) => {
+
+        return [...prevDisplayedQuestions, questions[temp+1]]
+      })
+      
+    }else{
+      setDisplayedQuestions((prevDisplayedQuestions) => {
+
+        return [...prevDisplayedQuestions]
+      })
+    }
   };
 
   const findMostSuitedHero = (
@@ -242,13 +204,6 @@ const MirrorPage = () => {
   return (
     <div className="flex flex-col gap-5 items-center mx-10">
 
-    <Particles
-        id="tsparticles"
-        particlesLoaded={particlesLoaded}
-        options={options}
-        className="absolute -z-10" 
-      />
-
 
 
     <div className="absolute top-[10vh]">
@@ -275,31 +230,72 @@ const MirrorPage = () => {
       </div>
     ) : ''}
 
-    {currentQuestionIndex < questions.length ? (
-      <div key={currentQuestionIndex} className="+w-full md:w-[500px]">
-        <p className="text-xl font-bold">{t(`${questions[currentQuestionIndex].question}`)}</p>
-        <br />
-        <ul className="flex gap-2 flex-wrap justify-center">
-          {questions[currentQuestionIndex].options.map(
-            (option, optionIndex) => (
-              <li
-                key={optionIndex}
-                onClick={() => handleOption(option)}
-                className="w-[48%] md:w-[36%] flex flex-col items-center border-2 p-2 mb-4 rounded-lg hover:bg-[#CB812D] transition duration-300 ease-in-out cursor-pointer py-4 hover:animate__animated animate__flash"
-              >
-                <img
-                  src={`/images/mirror/${option.text}.jpg`}
-                  className="w-full rounded-lg"
-                />
-                <p className="font-bold">{t(`${option.text}`)}</p>
-              </li>
-            )
-          )}
-        </ul>
+
+
+    {currentQuestionIndex !== questions.length && <div className="mt-52" style={{WebkitMaskImage: "linear-gradient(to top, black 85%, transparent 100%)"}}>
+
+      <div className="" style={{WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)"}}>
+        <div className="flex flex-col overflow-y-scroll h-[70vh] pt-[25vh] pb-[45vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" ref={displayedQuestionsRef}>
+
+          {
+
+            displayedQuestions.map((question) => {
+
+              
+              const currentQuestionId = questions.findIndex((tempQuestion) => tempQuestion == question )
+
+              return <div className={((currentQuestionId == currentQuestionIndex) ? 'text-white':'text-gray-600') + ``} key={question.question}>
+              
+                {question.question}
+
+                <div className="flex justify-center gap-5">
+
+
+                  { 
+                  
+                  question.options.map((option) => {
+
+                    if(question.answer === option){
+
+                      return <div key={option.text} className="border bg-red-100 text-xl cursor-pointer" onClick={() => handleOption(currentQuestionId, question, option)}>
+
+                      {option.text}
+
+                    </div>
+
+
+
+
+                    }
+                    
+                    return <div key={option.text} className="border text-xl cursor-pointer" onClick={() => handleOption(currentQuestionId, question, option)}>
+
+                      {option.text}
+
+                    </div>
+                    
+                    
+                    })}
+                </div>
+
+                
+                
+                
+              </div>
+
+
+            })
+
+
+          }
+
+        </div>
+
       </div>
-    ) : (
-      <div></div>
-    )}
+
+
+    </div>}
+    
     </div>
   );
 };

@@ -734,6 +734,7 @@ export default function ArcadeRoomPage() {
         if(e.key === 'Enter') {
 
             var input = chatInput
+            if(input.length <=0) return
 
             // DEV ONLY
             // if(chatInput == '/help'){
