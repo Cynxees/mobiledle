@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import mirrorConstant from "../constant/mirror/questions.json";
+import mirrorConstant from "../constant/mirror/testQuestions.json";
 import identity from "../constant/mirror/identity.json";
+import assessments from "../constant/mirror/assessments.json";
 import Navbar from "../components/navigation/Navbar";
 import { useMobileLegendsCharacters } from "../providers/MobileLegendsCharactersProvider";
 import { useTranslation } from "react-i18next";
@@ -40,6 +41,7 @@ const MirrorPage = () => {
   const imageRef = useRef<HTMLImageElement>(null);
   const [imgKey, setImgKey] = useState('')
   const [imgUrl, setImgUrl] = useState('')
+
 
   useEffect(() => {
 
@@ -86,12 +88,66 @@ const MirrorPage = () => {
     fetchImageUrl();
   }, [imgKey]);
   
+
+
+  const processTrait = (positives, negatives, seed, trait, traitName) => {
+
+    const index2 = seed%3
+
+    if(Math.floor(trait) + seed == 0 && positives.length < 3){
+
+      // positive
+      positives = [...positives, assessments[traitName][0].positive[index2]]
+      
+
+
+
+    }else if(negatives.length < 3){
+
+      // negative
+      negatives = [...negatives, assessments[traitName][0].negative[index2]]
+      
+
+
+    }else{
+
+      // positive
+      positives = [...positives, assessments[traitName][0].positive[index2]]
+
+
+    }
+
+
+    return [positives, negatives]
+
+
+  }
   
 
   useEffect(() => {
     if (userHero && imageRef.current && canvasRef.current) {
+
+
+      const seed = Math.floor(userTraits.early_late + userTraits.kill_team + userTraits.micro_macro + userTraits.passive_aggresive + userTraits.slow_quick)
+
+      let positives = [];
+      let negatives = [];
+
+      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
+      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.kill_team, "kill_team");
+      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
+      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
+      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.slow_quick, "slow_quick");
+      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
+
+
+
+
+
       const ctx = canvasRef.current.getContext("2d");
       const img = imageRef.current;
+
+      console.warn(positives, negatives)
 
       img.onload = () => {
         if (ctx) {
@@ -101,7 +157,29 @@ const MirrorPage = () => {
           ctx.font = "128px Modesto";
           ctx.fillStyle = "#FFFFFF";
           ctx.textAlign = "center";
-          ctx.fillText(userHero.name, 1080/2, 290); 
+          ctx.fillText(userHero.name, 1080/2, 290);
+          
+          ctx.font = "20px Modesto";
+          const gap = 50
+          let positiveY = 450
+          positives.forEach((positiveTrait) => {
+
+
+            ctx.fillText(positiveTrait,  200, positiveY)
+            positiveY += gap
+
+          })
+
+          let negativeY = 450
+          negatives.forEach((negativeTrait) => {
+
+
+            ctx.fillText(negativeTrait,  880, negativeY)
+            negativeY += gap
+
+          })
+          
+
         }
       };
     }
@@ -149,15 +227,17 @@ const MirrorPage = () => {
       const optionTrait = question.answer
       const intensity = question.answerIntensity
 
-      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2*intensity/2
-      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2*intensity/2
-      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2*intensity/2
-      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2*intensity/2
-      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2*intensity/2
+      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2*intensity
+      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2*intensity
+      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2*intensity
+      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2*intensity
+      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2*intensity
 
 
 
     })
+
+    setUserTraits(temp)
 
     let mostSuitedHeroDifference = 100
     let mostSuitedHero = null
@@ -186,6 +266,8 @@ const MirrorPage = () => {
 
     })
 
+    console.warn(temp)
+    console.warn(identity.heroes[parseInt(mostSuitedHero.id) - 1])
     return mostSuitedHero
     
 
@@ -194,9 +276,7 @@ const MirrorPage = () => {
 
   useEffect(() => {
     if (currentQuestionIndex == questions.length) {
-      // console.log(userTraits)
       const mostSuitedHero = findMostSuitedHero(characters);
-      // console.log(mostSuitedHero)
       setUserHero(mostSuitedHero);
       setImgKey(mostSuitedHero.imageKeys.icons[0])
     }
@@ -259,10 +339,10 @@ const MirrorPage = () => {
               
               const currentQuestionId = questions.findIndex((tempQuestion) => tempQuestion == question )
 
-              return <div>
-                <MirrorPrompt currentQuestionId={currentQuestionId} handleOption={handleOption} question={question} className={(' '+((currentQuestionId == currentQuestionIndex) ? 'text-white animate__animated animate__fadeInUp':'text-gray-600')) + `` + ((question.type == "reaction") ? '':'')} key={question.question} />
+              return <div className="animate__animated animate__fadeInUp">
+                <MirrorPrompt currentQuestionId={currentQuestionId} handleOption={handleOption} question={question} className={(' '+((currentQuestionId == currentQuestionIndex) ? 'text-white ':'text-gray-600')) + `` + ((question.type == "reaction") ? '':'')} key={question.question} />
 
-                {question.type != "reaction" && <div className="w-[90vw] md:w-full mx-auto h-1 bg-gray-400 bg-opacity-15 rounded-xl mt-11"></div>}
+                {question.type != "reaction" && <div className="w-[90vw]  md:w-full mx-auto h-1 bg-gray-400 bg-opacity-15 rounded-xl mt-11"></div>}
               </div> 
 
 

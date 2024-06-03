@@ -1,0 +1,70 @@
+{
+  "questions": [
+    {
+      "question": "You pay more attention to detail rather than seeing the bigger picture.",
+      "type": "agree",
+      "answerIntensity": 2,
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
+      "options": [
+        {
+          "text": "Detail-oriented",
+          "image": "path/to/detail_image.jpg",
+          "passive_aggresive": 1,
+          "kill_team": -1,
+          "micro_macro": -2
+        },
+        {
+          "text": "Bigger picture",
+          "image": "path/to/bigger_picture_image.jpg",
+          "passive_aggresive": -1,
+          "kill_team": 1,
+          "micro_macro": 2
+        }
+      ]
+    },
+    {
+      "question": "You are doing a group project, What would you do?",
+      "type": "option",
+      "answerIntensity": 2,
+      "answer": {
+        
+        
+        "passive_aggresive": 0,
+        "kill_team": 0,
+        "slow_quick": 0,
+        "micro_macro": 0,
+        "early_late": 0
+
+      },
+      "options": [
+        {
+          "text": "Work Alone",
+          "image": "path/to/alone_image.jpg",
+          "passive_aggresive": -1,
+          "kill_team": -2
+        },
+        {
+          "text": "Discuss",
+          "image": "path/to/discuss_image.jpg",
+          "passive_aggresive": 1,
+          "kill_team": 2
+        },
+        {
+          "text": "Wait",
+          "image": "path/to/wait_image.jpg",
+          "passive_aggresive": -2,
+          "early_late": 1
+        }
+      ]
+    }
+  ]
+}

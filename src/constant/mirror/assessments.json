@@ -1,0 +1,132 @@
+{
+  "passive_aggresive": [
+    {
+      "positive": [
+        "You are calm and composed.",
+        "You remain patient and understanding.",
+        "You make thoughtful decisions."
+      ],
+      "negative": [
+        "You avoid necessary confrontation.",
+        "You suppress your emotions.",
+        "You struggle with decisiveness."
+      ]
+    },
+    {
+      "positive": [
+        "You are assertive and driven.",
+        "Your confidence inspires others.",
+        "You push through obstacles."
+      ],
+      "negative": [
+        "Your assertiveness may seem aggressive.",
+        "You struggle with patience.",
+        "Your strong will causes conflicts."
+      ]
+    }
+  ],
+  "kill_team": [
+    {
+      "positive": [
+        "You are independent and creative.",
+        "You focus deeply alone.",
+        "You know what you want."
+      ],
+      "negative": [
+        "You struggle with teamwork.",
+        "You may feel isolated.",
+        "You seem detached sometimes."
+      ]
+    },
+    {
+      "positive": [
+        "You support and uplift others.",
+        "You excel in group projects.",
+        "You foster community."
+      ],
+      "negative": [
+        "You rely heavily on group support.",
+        "You seek others' opinions first.",
+        "You may burn out easily."
+      ]
+    }
+  ],
+  "slow_quick": [
+    {
+      "positive": [
+        "You ensure high-quality results.",
+        "You are thorough and meticulous.",
+        "You achieve excellence."
+      ],
+      "negative": [
+        "You take longer to finish tasks.",
+        "You struggle with tight deadlines.",
+        "Perfectionism may hinder progress."
+      ]
+    },
+    {
+      "positive": [
+        "You handle tasks efficiently.",
+        "You adapt quickly and easily.",
+        "You thrive in fast-paced environments."
+      ],
+      "negative": [
+        "You may overlook details.",
+        "You struggle with patience.",
+        "Your fast pace can overwhelm."
+      ]
+    }
+  ],
+  "micro_macro": [
+    {
+      "positive": [
+        "You catch small details.",
+        "You break down problems well.",
+        "You excel in precision."
+      ],
+      "negative": [
+        "You may miss the bigger picture.",
+        "You focus too much on details.",
+        "Meticulousness slows progress."
+      ]
+    },
+    {
+      "positive": [
+        "You see long-term goals.",
+        "You plan large projects well.",
+        "You excel in leadership."
+      ],
+      "negative": [
+        "You overlook important details.",
+        "You struggle with implementation.",
+        "Broad focus hinders daily tasks."
+      ]
+    }
+  ],
+  "early_late": [
+    {
+      "positive": [
+        "You plan ahead well.",
+        "You manage time effectively.",
+        "You meet deadlines easily."
+      ],
+      "negative": [
+        "You feel pressured to stay ahead.",
+        "You struggle with flexibility.",
+        "Impatience with others arises."
+      ]
+    },
+    {
+      "positive": [
+        "You thrive under pressure.",
+        "You handle challenges well.",
+        "You find creative solutions."
+      ],
+      "negative": [
+        "You procrastinate sometimes.",
+        "You struggle with long-term planning.",
+        "Reactive approach causes stress."
+      ]
+    }
+  ]
+}
