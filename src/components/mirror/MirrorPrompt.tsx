@@ -50,7 +50,7 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
                   
             {question.question}
 
-            <div className="flex justify-center gap-[2.5vw] md:gap-8 mt-5 ">
+            <div className="flex justify-center gap-[2.5vw] md:gap-8 mt-5 relative ">
 
                 <div className="my-auto text-gray-400 w-12 font-nova-bold max-md:absolute left-[3vw] bottom-0 max-md:translate-y-[120%]">    
                 Disagree
@@ -77,9 +77,9 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
 
     }else if(question.type == "reaction"){
 
-        return <div className={className + " translate-y-1/2"}>
+        return <div className={className}>
                   
-            <ReactionGame onGameEnd={(result) => {
+            <ReactionGame className="h-[80vh] w-full" onGameEnd={(result) => {
                 handleOption(currentQuestionId, question, result)
             }} />
             
@@ -99,7 +99,7 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
             
             question.options.map((option) => {
 
-                return <div key={option.text} className={"border md:p-2 p-1 w-[30vw] md:w-32 rounded-md cursor-pointer   " + ((question.answer === option) ? 'border-white bg-white bg-opacity-10 shadow-sm shadow-white': 'border-gray-700')} onClick={() => handleOption(currentQuestionId, question, option)}>
+                return <div key={option.text} className={"border md:p-2 p-1 w-[30vw] md:w-32 rounded-md cursor-pointer   " + ((question.answer === option) ? 'border-white text-white bg-white bg-opacity-10 shadow-sm shadow-white': 'border-gray-700')} onClick={() => handleOption(currentQuestionId, question, option)}>
 
                 {option.text}
 

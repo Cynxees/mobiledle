@@ -2,14 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 
 import questions from "../../constant/mirror/questions.json"
 
-const ReactionGame = ({onGameEnd}) => {
+const ReactionGame = ({onGameEnd, className=''}) => {
   const [gameState, setGameState] = useState("start"); // "start", "waiting", "clickNow", "result"
   const [reactionTime, setReactionTime] = useState(null);
   const startTimeRef = useRef(null);
 
   const handleStartClick = () => {
     setGameState("waiting");
-    const randomDelay = 1000 + Math.floor(Math.random() * 4000);
+    const randomDelay = 100000000 + Math.floor(Math.random() * 4000);
 
     setTimeout(() => {
       setGameState("clickNow");
@@ -31,7 +31,7 @@ const ReactionGame = ({onGameEnd}) => {
   };
 
   return (
-    <>
+    <div className={className + ((gameState == "result" ? ' ': ' absolute'))}>
       {gameState === "start" && (
         <div
           className="flex items-center justify-center h-full w-full bg-gray-200"
@@ -41,9 +41,19 @@ const ReactionGame = ({onGameEnd}) => {
         </div>
       )}
 
-      {gameState === "waiting" && (
-        <div className="flex items-center justify-center h-full w-full bg-red-500">
-          <h1>Wait for green...</h1>
+      {gameState === "waiting"  && (
+        <div className="flex flex-col gap-5 relative items-center justify-center h-full w-full motion-reduce:animate-bounce ">
+
+          <div className="absolute w-[60%] max-w-72 h-4 rounded border-2 border-black shadow-sm shadow-orange-400 bg-neutral-700 top-[20%] md:top-[30%]">
+
+            <div className="absolute w-[30%] h-full from-red-500 to-red-700 bg-gradient-to-r "></div>
+
+
+          </div>
+
+          <img className="w-[80%]"  src="/images/turtle.png" alt="" />
+
+          <img className="w-16" src="/images/retribution.png" alt="" />
         </div>
       )}
 
@@ -63,7 +73,7 @@ const ReactionGame = ({onGameEnd}) => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

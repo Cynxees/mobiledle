@@ -32,7 +32,7 @@
     },
     {
       "question": "You are doing a group project, What would you do?",
-      "type": "option",
+      "type": "reaction",
       "answer": {
         
         
