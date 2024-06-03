@@ -3,7 +3,7 @@
     {
       "question": "You pay more attention to detail rather than seeing the bigger picture.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -34,7 +34,7 @@
     {
       "question": "You are doing a group project, What would you do?",
       "type": "option",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -69,7 +69,7 @@
     {
       "question": "You are insulted by a stranger, What would you do?",
       "type": "option",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -104,7 +104,7 @@
     {
       "question": "When looking for a partner, You prioritize appearance over personality.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -131,7 +131,7 @@
     {
       "question": "You prefer to do things methodically than be flexible.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -160,7 +160,7 @@
     {
       "question": "Reaction test",
       "type": "reaction",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -193,7 +193,7 @@
     {
       "question": "You prefer to finish your work quickly rather than perfecting it.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -224,7 +224,7 @@
     {
       "question": "You like to help people.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -251,7 +251,7 @@
     {
       "question": "You procrastinate regularly.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -280,7 +280,7 @@
     {
       "question": "You prefer to be a leader than a worker.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -311,7 +311,7 @@
     {
       "question": "Your work style is usually consistent rather than a burst of effort.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         
@@ -340,7 +340,7 @@
     {
       "question": "You like to plan your day.",
       "type": "agree",
-      "answerIntensity": 3,
+      "answerIntensity": 2,
       "answer": {
         
         

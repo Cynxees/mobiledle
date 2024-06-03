@@ -46,9 +46,7 @@ const ReactionGame = ({question, onGameEnd, className=''}) => {
   };
 
   const handleCircleClick = () => {
-    console.warn('perfect: ', perfectTime)
     const endTime = Date.now();
-    console.warn('end: ', endTime)
     const reactTime = endTime - perfectTime
     setReactionTime(reactTime);
     setGameState("result");
@@ -83,7 +81,7 @@ const ReactionGame = ({question, onGameEnd, className=''}) => {
 
           <div className="absolute w-[60%] max-w-72 h-4 rounded border-2 border-black shadow-sm shadow-orange-400 bg-neutral-700 top-[20%] md:top-[30%]">
 
-            <div className="h-[200%] absolute left-[10%] border border-neutral-400 -translate-y-1/4 w-1 bg-red-600 rounded-lg">
+            <div className="h-[200%] absolute left-[10%] border border-orange-400 -translate-y-1/4 w-1 bg-white z-10 rounded-lg">
 
             </div>
             <div style={{width:healthPercent+"%"}} className="absolute h-full from-red-500 to-red-700 bg-gradient-to-r "></div>

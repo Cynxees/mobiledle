@@ -109,29 +109,8 @@ const MirrorPage = () => {
 
 
   const handleOption = (currentQuestionId, question, optionTrait) => {
-    // console.log("halo : ", optionTrait
 
     question.answer = optionTrait
-
-    // setUserTraits((prevUserTraits) => {
-
-    //   const temp = prevUserTraits
-
-    //   console.warn('old traits: ', temp)
-
-      // if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
-      // if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
-      // if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
-      // if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
-      // if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
-
-
-    //   console.warn('new traits::: ',temp)
-    //   return temp
-
-
-    // });
-
 
     if(currentQuestionId >= currentQuestionIndex){
 
@@ -169,19 +148,16 @@ const MirrorPage = () => {
 
       const optionTrait = question.answer
       const intensity = question.answerIntensity
-      console.warn(intensity, optionTrait)
 
-      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2*intensity/3
-      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2*intensity/3
-      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2*intensity/3
-      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2*intensity/3
-      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2*intensity/3
+      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2*intensity/2
+      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2*intensity/2
+      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2*intensity/2
+      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2*intensity/2
+      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2*intensity/2
 
 
 
     })
-
-    console.warn('final traits: ', temp)
 
     let mostSuitedHeroDifference = 100
     let mostSuitedHero = null
@@ -240,6 +216,7 @@ const MirrorPage = () => {
   return (
     <div className="flex flex-col gap-5 items-center h-screen w-screen overflow-y-scroll" ref={displayedQuestionsRef}>
 
+    <img className="w-0 h-0 absolute" src="/images/mirror_template.png" alt="" />
 
 
     <div className="mt-[20vh]">
