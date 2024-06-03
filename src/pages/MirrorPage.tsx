@@ -168,12 +168,14 @@ const MirrorPage = () => {
     questions.map((question) => {
 
       const optionTrait = question.answer
+      const intensity = question.answerIntensity
+      console.warn(intensity, optionTrait)
 
-      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2
-      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2
-      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2
-      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2
-      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2
+      if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2*intensity/3
+      if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2*intensity/3
+      if(optionTrait.slow_quick) temp.slow_quick += optionTrait.slow_quick/2*intensity/3
+      if(optionTrait.micro_macro) temp.micro_macro += optionTrait.micro_macro/2*intensity/3
+      if(optionTrait.early_late) temp.early_late += optionTrait.early_late/2*intensity/3
 
 
 
@@ -189,6 +191,8 @@ const MirrorPage = () => {
       const heroIdentity = identity.heroes[parseInt(hero.id) - 1]
 
       let difference = 0
+
+      
 
       difference += Math.abs(temp.early_late - heroIdentity.early_late)
       difference += Math.abs(temp.micro_macro - heroIdentity.micro_macro)

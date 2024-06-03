@@ -79,7 +79,7 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
 
         return <div className={className}>
                   
-            <ReactionGame className="h-[80vh] w-full" onGameEnd={(result) => {
+            <ReactionGame question={question} className={"w-full"} onGameEnd={(result) => {
                 handleOption(currentQuestionId, question, result)
             }} />
             
@@ -99,7 +99,7 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
             
             question.options.map((option) => {
 
-                return <div key={option.text} className={"border md:p-2 p-1 w-[30vw] md:w-32 rounded-md cursor-pointer   " + ((question.answer === option) ? 'border-white text-white bg-white bg-opacity-10 shadow-sm shadow-white': 'border-gray-700')} onClick={() => handleOption(currentQuestionId, question, option)}>
+                return <div key={option.text} className={"hover:bg-white hover:bg-opacity-10 hover:border-neutral-500 border md:p-2 p-1 w-[30vw] md:w-32 rounded-md cursor-pointer   " + ((question.answer === option) ? 'border-white text-white bg-white bg-opacity-10 shadow-sm shadow-white': 'border-gray-700')} onClick={() => handleOption(currentQuestionId, question, option)}>
 
                 {option.text}
 
