@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import mirrorConstant from "../constant/mirror/testQuestions.json";
+import mirrorConstant from "../constant/mirror/questions.json";
 import identity from "../constant/mirror/identity.json";
 import assessments from "../constant/mirror/assessments.json";
 import Navbar from "../components/navigation/Navbar";
@@ -171,8 +171,6 @@ const MirrorPage = () => {
       const ctx = canvasRef.current.getContext("2d");
       const img = imageRef.current;
 
-      console.warn(positives, negatives)
-
       img.onload = () => {
         if (ctx) {
           ctx.fillRect(0, 0, canvasRef.current.width, canvasRef.current.height);
@@ -243,7 +241,7 @@ const MirrorPage = () => {
     questions.map((question) => {
 
       const optionTrait = question.answer
-      const intensity = question.answerIntensity
+      const intensity = question.answerIntensity*1.5
 
       if(optionTrait.passive_aggresive) temp.passive_aggresive += optionTrait.passive_aggresive/2*intensity
       if(optionTrait.kill_team) temp.kill_team += optionTrait.kill_team/2*intensity
@@ -284,8 +282,6 @@ const MirrorPage = () => {
 
     })
 
-    console.warn(temp)
-    console.warn(identity.heroes[parseInt(mostSuitedHero.id) - 1])
     return mostSuitedHero
     
 
