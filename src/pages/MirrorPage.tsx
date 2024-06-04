@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import mirrorConstant from "../constant/mirror/questions.json";
+import mirrorConstant from "../constant/mirror/testQuestions.json";
 import identity from "../constant/mirror/identity.json";
 import assessments from "../constant/mirror/assessments.json";
 import Navbar from "../components/navigation/Navbar";
@@ -125,6 +125,30 @@ const MirrorPage = () => {
   
 
   useEffect(() => {
+
+    const wrapText = (ctx, text, x, y, maxWidth, lineHeight) => {
+      const words = text.split(' ');
+      let lineCount = 1
+      let line = '';
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          lineCount++
+          ctx.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, x, y);
+      return lineCount
+      
+    };
+
+
     if (userHero && imageRef.current && canvasRef.current) {
 
 
@@ -157,31 +181,25 @@ const MirrorPage = () => {
           ctx.font = "128px Modesto";
           ctx.fillStyle = "#FFFFFF";
           ctx.textAlign = "center";
-          ctx.fillText(userHero.name, 1080/2, 290);
-          
-          ctx.font = "20px Modesto";
-          const gap = 50
-          let positiveY = 450
+          ctx.fillText(userHero.name, 1080 / 2, 290);
+
+          ctx.font = "28px Modesto";
+          const gap = 40;
+          const gapPerAssessment = 35;
+
+          let positiveY = 450;
           positives.forEach((positiveTrait) => {
+            const lineCount = wrapText(ctx, positiveTrait, 200, positiveY, 300, gap);
+            positiveY += gapPerAssessment * (2 + lineCount-1)
+          });
 
-
-            ctx.fillText(positiveTrait,  200, positiveY)
-            positiveY += gap
-
-          })
-
-          let negativeY = 450
+          let negativeY = 450;
           negatives.forEach((negativeTrait) => {
-
-
-            ctx.fillText(negativeTrait,  880, negativeY)
-            negativeY += gap
-
-          })
-          
-
+            const lineCount = wrapText(ctx, negativeTrait, 880, negativeY, 300, gap);
+            negativeY += gapPerAssessment * (2 + lineCount-1)
+          });
         }
-      };
+      }
     }
   }, [userHero]);
 
