@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import questions from "../../constant/mirror/questions.json"
+import { useTranslation } from "react-i18next";
 
 const ReactionGame = ({question, onGameEnd, className=''}) => {
   const [gameState, setGameState] = useState("start"); // "start", "waiting", "clickNow", "result"
@@ -8,6 +9,7 @@ const ReactionGame = ({question, onGameEnd, className=''}) => {
   const [healthPercent, setHealthPercent] = useState(100)
   const startTimeRef = useRef(null);
 
+  const { t } = useTranslation();
   const [perfectTime, setPerfectTime] = useState(0)
 
   useEffect(() => {
@@ -62,11 +64,11 @@ const ReactionGame = ({question, onGameEnd, className=''}) => {
           
         >
           <div className="flex flex-col">
-            <h1 className="text-white">Reaction Test</h1>
+            <h1 className="text-white">{t`Reaction Test`}</h1>
             
-            Retribution when Health Bar reach Line
+            {t`Retribution when Health Bar reach Line`}
 
-            <button onClick={handleStartClick} className="mt-5 hover:bg-white hover:bg-opacity-10">I'm Ready</button>
+            <button onClick={handleStartClick} className="mt-5 hover:bg-white hover:bg-opacity-10">{t`I'm Ready!`}</button>
             
           </div>
 
@@ -76,7 +78,7 @@ const ReactionGame = ({question, onGameEnd, className=''}) => {
       {gameState === "waiting"  && (
         <div className="flex flex-col animate__animated animate__fadeInUp gap-5 relative items-center justify-center h-full w-full motion-reduce:animate-bounce ">
 
-          Reaction Test
+          {t`Reaction Test`}
 
 
           <div className="absolute w-[60%] max-w-72 h-4 rounded border-2 border-black shadow-sm shadow-orange-400 bg-neutral-700 top-[20%] md:top-[30%]">
@@ -96,19 +98,10 @@ const ReactionGame = ({question, onGameEnd, className=''}) => {
         </div>
       )}
 
-      {gameState === "clickNow" && (
-        <div
-          className="flex animate__animated animate__fadeInUp items-center justify-center h-full w-full bg-green-500"
-          onClick={handleCircleClick}
-        >
-          <h1>Click now!</h1>
-        </div>
-      )}
-
       {gameState === "result" && (
         <div className="flex flex-col items-center justify-center text-white w-full">
           <div className="flex flex-col items-center">
-            <h1>Reaction Speed: {reactionTime} ms</h1>
+            <h1>{t`Reaction Speed`}: {reactionTime} ms</h1>
           </div>
 
           <div className="w-[90vw] md:w-full mx-auto h-1 bg-gray-400 bg-opacity-15 rounded-xl mt-11"></div>

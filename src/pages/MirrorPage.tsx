@@ -97,7 +97,7 @@ const MirrorPage = () => {
     if(Math.floor(trait) + seed == 0 && positives.length < 3){
 
       // positive
-      positives = [...positives, assessments[traitName][0].positive[index2]]
+      positives = [...positives, t(assessments[traitName][0].positive[index2])]
       
 
 
@@ -105,14 +105,14 @@ const MirrorPage = () => {
     }else if(negatives.length < 3){
 
       // negative
-      negatives = [...negatives, assessments[traitName][0].negative[index2]]
+      negatives = [...negatives, t(assessments[traitName][0].negative[index2])]
       
 
 
     }else{
 
       // positive
-      positives = [...positives, assessments[traitName][0].positive[index2]]
+      positives = [...positives, t(assessments[traitName][0].positive[index2])]
 
 
     }
@@ -157,12 +157,41 @@ const MirrorPage = () => {
       let positives = [];
       let negatives = [];
 
-      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
-      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.kill_team, "kill_team");
-      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
-      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
-      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.slow_quick, "slow_quick");
-      [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
+      
+
+
+      if(seed%3 == 0){
+
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.kill_team, "kill_team");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.slow_quick, "slow_quick");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
+      }else if(seed%3 == 1){
+
+        
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.slow_quick, "slow_quick");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.kill_team, "kill_team");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
+
+
+      }else{
+
+
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.kill_team, "kill_team");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.slow_quick, "slow_quick");
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
+
+
+      }
+
 
 
 
@@ -181,19 +210,20 @@ const MirrorPage = () => {
           ctx.textAlign = "center";
           ctx.fillText(userHero.name, 1080 / 2, 290);
 
-          ctx.font = "28px Modesto";
+          ctx.font = "25px Modesto";
           const gap = 40;
-          const gapPerAssessment = 35;
+          const gapPerAssessment = 30;
+          const maxWidth = 350
 
           let positiveY = 450;
           positives.forEach((positiveTrait) => {
-            const lineCount = wrapText(ctx, positiveTrait, 200, positiveY, 300, gap);
+            const lineCount = wrapText(ctx, positiveTrait, 200, positiveY, maxWidth, gap);
             positiveY += gapPerAssessment * (2 + lineCount-1)
           });
 
           let negativeY = 450;
           negatives.forEach((negativeTrait) => {
-            const lineCount = wrapText(ctx, negativeTrait, 880, negativeY, 300, gap);
+            const lineCount = wrapText(ctx, negativeTrait, 880, negativeY, maxWidth, gap);
             negativeY += gapPerAssessment * (2 + lineCount-1)
           });
         }

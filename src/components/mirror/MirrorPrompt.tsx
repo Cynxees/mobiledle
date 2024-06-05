@@ -1,9 +1,11 @@
 
+import { useTranslation } from "react-i18next";
 import ReactionGame from "./ReactionGame"
 
 const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""}) => {
 
 
+    const { t } = useTranslation();
 
     const handleAgreeOption = (intensity, optionTrait) => {
 
@@ -48,12 +50,12 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
 
         return <div className={className + ' '}>
                   
-            {question.question}
+            {t(question.question)}
 
             <div className="flex justify-center gap-[2.5vw] md:gap-8 mt-5 relative ">
 
                 <div className="my-auto text-gray-400 w-12 font-nova-bold max-md:absolute left-[3vw] bottom-0 max-md:translate-y-[120%]">    
-                Disagree
+                {t`Disagree`}
                 </div>
                 
                 <div onMouseOver={(e) => e.currentTarget.classList.add(disagreeHoverButtonCss)} onMouseLeave={(e) => e.currentTarget.classList.remove(disagreeHoverButtonCss)} className={disagreeButtonCss + largeButtonCss + (question.answer == question.options[1] && question.answerIntensity == 3 ? disagreeButtonSelectedCss: '')} onClick={() => handleAgreeOption(3, question.options[1])} />
@@ -65,7 +67,7 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
                 <div onMouseOver={(e) => e.currentTarget.classList.add(agreeHoverButtonCss)} onMouseLeave={(e) => e.currentTarget.classList.remove(agreeHoverButtonCss)} className={largeButtonCss + agreeButtonCss + (question.answer == question.options[0] && question.answerIntensity == 3 ? agreeButtonSelectedCss: '')} onClick={() => handleAgreeOption(3, question.options[0])} />
 
                 <div className="my-auto text-gray-400 w-12 max-md:absolute right-[3vw] font-nova-bold bottom-0 max-md:translate-y-[120%]">       
-                Agree
+                {t`Agree`}
                 </div>
             </div>
 
@@ -91,7 +93,7 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
         return <div className={className + ' '}>
                   
 
-            {question.question}
+            {t(question.question)}
             <div className="flex justify-center gap-[2vw] md:gap-5 mt-2">
 
 
@@ -101,7 +103,7 @@ const MirrorPrompt = ({question, currentQuestionId, handleOption, className = ""
 
                 return <div key={option.text} className={"hover:bg-white hover:bg-opacity-10 hover:border-neutral-500 border md:p-2 p-1 w-[30vw] md:w-32 rounded-md cursor-pointer   " + ((question.answer === option) ? 'border-white text-white bg-white bg-opacity-10 shadow-sm shadow-white': 'border-gray-700')} onClick={() => handleOption(currentQuestionId, question, option)}>
 
-                {option.text}
+                {t(option.text)}
 
                 </div>
 

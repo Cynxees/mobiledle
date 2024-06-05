@@ -12,7 +12,7 @@ const Navbar = ({mode = '', currentPage = ''}) => {
   const { t, i18n } = useTranslation();
 
   const [currentLanguage, setCurrentLanguage] = useState<string>(() => {
-    return localStorage.getItem("savedLanguage") || 'en';
+    return localStorage.getItem("savedLanguage") || 'id';
   });
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
