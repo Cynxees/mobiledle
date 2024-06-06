@@ -355,7 +355,7 @@ const MirrorPage = () => {
 
     {userHero && currentQuestionIndex === questions.length ? (
       <div className="flex flex-col items-center">
-        <canvas ref={canvasRef} width={1080} height={1080} className="max-h-[50vh]" style={{ backgroundColor: '#FFFFFF', borderRadius: '10px' }}>
+        <canvas ref={canvasRef} width={1080} height={1080} className="max-h-[50vh] max-w-[90vw]" style={{ backgroundColor: '#FFFFFF', borderRadius: '10px' }}>
 
         <img ref={backgroundRef} src="/images/mirror_template.png" alt="" crossOrigin="anonymous"
           style={{ display: 'none' }} />
