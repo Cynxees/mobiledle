@@ -92,7 +92,7 @@ const MirrorPage = () => {
 
   const processTrait = (positives, negatives, seed, trait, traitName) => {
 
-    const index2 = seed%3
+    const index2 = seed%2
 
     if(Math.floor(trait) + seed == 0 && positives.length < 3){
 
@@ -157,40 +157,29 @@ const MirrorPage = () => {
       let positives = [];
       let negatives = [];
 
-      
+      let traitMap = {
 
+        0 : ['early_late' , 0],
+        1 : ['kill_team' , 0],
+        2 : ['micro_macro' , 0],
+        3 : ['passive_aggresive' , 0],
+        4 : ['slow_quick' , 0]
+      };
 
-      if(seed%3 == 0){
+      let traitCount = 0;
 
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.kill_team, "kill_team");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.slow_quick, "slow_quick");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
-      }else if(seed%3 == 1){
+      while(traitCount < 6){
 
         
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.slow_quick, "slow_quick");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.kill_team, "kill_team");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
+        let randomIndex = (seed%5 + traitCount)%5;
 
+        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, traitMap[randomIndex][0]);
 
-      }else{
-
-
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.early_late, "early_late");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.passive_aggresive, "passive_aggresive");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.kill_team, "kill_team");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.slow_quick, "slow_quick");
-        [positives, negatives] =processTrait(positives, negatives, seed, userTraits.micro_macro, "micro_macro");
+        traitCount++
 
 
       }
+
 
 
 
