@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import mirrorConstant from "../constant/mirror/testQuestions.json";
+import mirrorConstant from "../constant/mirror/questions.json";
 import identity from "../constant/mirror/identity.json";
 import assessments from "../constant/mirror/assessments.json";
 import Navbar from "../components/navigation/Navbar";
