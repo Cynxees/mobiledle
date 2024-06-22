@@ -109,14 +109,14 @@ export default function LandingPage() {
           <div className="flex flex-col h-[85vh] md:h-[60vh] overflow-y-scroll justify-start pt-12 md:pt-16 pb-52 mx-auto gap-4 md:gap-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           
           
-            <NavigationButton link="mirror"/>
+            <NavigationButton link="arcade"/>
             <NavigationButton link="classic"/>
 
             <NavigationButton link="blur"/>
             <NavigationButton link="disco"/>
-            <NavigationButton link="arcade"/>
             <NavigationButton link="survival"/>
             <NavigationButton link="swipe"/>
+            <NavigationButton link="mirror"/>
           
           </div>
 

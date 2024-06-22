@@ -71,7 +71,6 @@ export default function NavigationButton({link}: NavigationButtonProps) {
 
           </div>
           {(link == 'arcade') ? <div className="text-orange-300 font-modesto animate-pulse">[MULTIPLAYER]</div> :'' }
-          {(link == 'mirror') ? <div className="text-cyan-200 text-[0.7rem] md:text-[1.2rem] font-modesto animate-pulse">[1K DIAMOND GIVEAWAY]</div> :'' }
           <span className="text-[0.8rem] md:text-lg text-[#e8dca4] group-hover:text-white">{linkMetadata[link][1]}</span>
         </div>
       </div>
