@@ -8,7 +8,6 @@ import DevPage4 from "./pages/DevPage4";
 import 'animate.css';
 import SurvivalPage from "./pages/SurvivalPage";
 import SwipePage from "./pages/SwipePage";
-import ArcadeLandingPage from "./pages/ArcadePage/ArcadeLandingPage";
 import ArcadeRoomPage from "./pages/ArcadePage/ArcadeRoomPage";
 import ErrorPage from "./pages/ErrorPage";
 import MirrorParticlePage from "./pages/MirrorParticlePage";
@@ -16,10 +15,21 @@ import MemoryPage from "./pages/MemoryPage";
 import BlurPage from "./pages/BlurPage";
 import ArcadeLandingParticlePage from "./pages/ArcadePage/ArcadeLandingParticlePage";
 import DiscoPage from "./pages/DiscoPage";
+import { useEffect } from "react";
+import { logPageView, initGA } from "./analytics";
 
 
 
 function App() {
+
+  useEffect(() => {
+    initGA('G-Y7MDEMHFCE');
+  });
+
+  useEffect(() => {
+    logPageView();
+  }, [location]);
+
   return (
     
       <BrowserRouter>
